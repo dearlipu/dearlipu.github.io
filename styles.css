@@ -147,7 +147,7 @@ h2 {
   height: auto;
   max-width: 280px;
   border-radius: 0;
-  filter: brightness(0.5) saturate(0.7);
+  filter: brightness(1.5) saturate(0.7);
 }
 
 /* Large portfolio text */
