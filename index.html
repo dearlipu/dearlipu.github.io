@@ -3,146 +3,111 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Han Nguyen Portfolio</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Alata&family=Playfair+Display:ital,wght@0,700;1,900&display=swap" rel="stylesheet" />
+  <title>Portfolio</title>
   <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <!-- Dark Hero Section -->
   <header class="header-dark">
-    <nav class="nav container flex space-between align-center">
+    <div class="container flex-align-center space-between">
       <div class="logo">
         <span class="logo-icon">✦</span>
-        <span>Han Nguyen</span>
+        <span class="logo-text">Saurav Panda</span>
       </div>
-      <div class="nav-links">
-        <a href="#about">About me</a>
-        <a href="#resume">Resume</a>
-        <a href="#work">Work</a>
+      <nav class="nav-links">
+        <a href="#">About me</a>
+        <a href="#">Resume</a>
+        <a href="#">Work</a>
         <button class="btn-contact">Get in touch!</button>
-      </div>
-    </nav>
+      </nav>
+    </div>
   </header>
 
-  <section class="hero-dark container grid-hero">
-    <div class="hero-photo">
-      <img src="https://i.imgur.com/CS2ueeQ.png" alt="Han Nguyen Portrait" />
-      <!-- The orange star shapes -->
-      <div class="star star-top-left"></div>
-      <div class="star star-bottom-right"></div>
-    </div>
-    <div class="portfolio-text">
-      <h1>PORTFOLIO</h1>
-      <h1 class="portfolio-back">PORTFOLIO</h1>
-      <p class="contacts">
-        <span><strong>BE:</strong> /hannnb</span><br />
-        <span><strong>IG:</strong> @han.nnb</span><br />
-        <span><strong>LI:</strong> /han-nnb</span>
-      </p>
+  <section class="hero-dark">
+    <div class="container grid-hero">
+      <div class="photo-box">
+        <img src="green.png" alt="green" />
+      </div>
+      <div class="portfolio-text">
+        <h1 class="portfolio-title">PORTFOLIO</h1>
+        <div class="portfolio-back-text">PORTFOLIO<br />PORTFOLIO<br />PORTFOLIO</div>
+      </div>
+      <div class="contacts">
+        <p><strong>BE:</strong> /dearlipu</p>
+        <p><strong>IG:</strong> @dearlipu</p>
+        <p><strong>LI:</strong> /dearlipu</p>
+      </div>
     </div>
     <div class="hero-description">
-      <p>I love design and anything related to art.<br />
-         I approach problems in a rational, pragmatic way and seek the simplest, most functional solutions possible.</p>
+      <p>I love design and anything related to art. I approach problems in a rational, pragmatic way and seek the simplest, most functional solutions possible.</p>
     </div>
-    <button class="scroll-down">Scroll down</button>
+    <div class="scroll-down">Scroll Down</div>
   </section>
 
-  <!-- Light About Section -->
-  <header class="header-light">
-    <nav class="nav container flex space-between align-center">
-      <div class="logo">
-        <span class="logo-icon">✦</span>
-        <span>Han Nguyen</span>
-      </div>
-      <div class="nav-links">
-        <a href="#about" class="active">About me</a>
-        <a href="#resume">Resume</a>
-        <a href="#work">Work</a>
-        <button class="btn-contact">Get in touch!</button>
-      </div>
-    </nav>
-  </header>
-
-  <section id="about" class="about-section container flex">
+  <section class="about-section container flex-space-around">
     <div class="intro-text">
-      <h2>Hello, <br />I'm Han !</h2>
-      <p>I am a self-taught Graphic Designer based in Viet Nam with extensive marketing and communication experience. I am currently living in France and pursuing a degree in Web and Digital Project Management.</p>
-      <a href="https://linkedin.com/in/han-nnb" target="_blank" class="btn-linkedin">linkedin.com/in/han-nnb</a>
+      <h1>Hello,<br />I’m Saurav !</h1>
+      <p class="bio-text">
+        I am a self-taught Graphic Designer based in India with extensive marketing and communication experience. I am currently pursuing a degree in Web and Digital Project Management.
+      </p>
+      <a href="https://linkedin.com/in/han-nnb" target="_blank" class="linkedin-btn">
+        linkedin.com/in/dearlipu
+      </a>
     </div>
-    <div class="intro-photo">
-      <img src="https://i.imgur.com/CS2ueeQ.png" alt="Han Nguyen side" />
-      <span class="badge birthdate">2<sup>nd</sup> August 1999</span>
-      <span class="badge language">Vietnamese</span>
+
+    <div class="intro-photo-box">
+      <div class="intro-photo-wrapper">
+        <img src="red.png" alt="red" />
+        <div class="badge birthdate">3<sup>rd</sup> July 2002</div>
+        <div class="badge language">Indian</div>
+      </div>
       <div class="contact-box">
-        <h3>Contact</h3>
-        <p>📍 Narbonne, France</p>
+        <h2>Contact</h2>
+        <p>📍 Barkul, Chilika</p>
         <p>✉ nnbh928@gmail.com</p>
         <p>📞 07 82 84 ** **</p>
       </div>
     </div>
   </section>
 
-  <!-- Resume Section -->
-  <section id="resume" class="resume-section container">
-    <div class="education-experience flex">
-      <div class="education">
-        <h3>Education</h3>
-        <ul>
-          <li><strong>2022-2023</strong> Digital Campus, Montpellier
-            <br /><span>Web & Digital project Management</span>
-          </li>
-          <li><strong>2021-2022</strong> IUT de Béziers
-            <br /><span>Commercialisation Technique</span>
-          </li>
-          <li><strong>2017-2020</strong> Economic University, Danang
-            <br /><span>International Business</span>
-          </li>
-        </ul>
-      </div>
-
-      <div class="experience">
-        <h3>Experience</h3>
-        <ul>
-          <li>
-            <strong>2023</strong> Illustrator & Graphic Design Intern
-            <br /><small>Designed graphic for learning materials<br />Learny Bloom, La Rochelle, France</small>
-          </li>
-          <li>
-            <strong>2022</strong> Marketing Intern
-            <br /><small>Created content on social media<br />Bi Ethic, Narbonne, France</small>
-          </li>
-          <li>
-            <strong>2020</strong> Graphic Designer
-            <br /><small>Designed promotional materials for events<br />Songhan Incubator, Viet Nam</small>
-          </li>
-        </ul>
-        <div class="tags">
-          <span>#Creativity</span>
-          <span>#Communication</span>
-          <span>#Detail-oriented</span>
-          <span>#Adaptability</span>
-        </div>
-      </div>
-    </div>
-    
-    <div class="activities">
-      <h3>Activities</h3>
+  <section class="education-experience container">
+    <div class="education">
+      <h2>Education</h2>
       <ul>
-        <li><strong>2021</strong> Your Dream exhibition
-          <br /><small>Concept artist of autism in society</small>
+        <li><strong>2022-2023</strong>  Digital Campus<br /><span>Web & Digital project Management</span></li>
+        <li><strong>2021-2022</strong>  IUT des<br /><span>Commercialisation Technique</span></li>
+        <li><strong>2017-2020</strong>  Economic University<br /><span>International Business</span></li>
+      </ul>
+    </div>
+
+    <div class="experience">
+      <h2>Experience</h2>
+      <ul>
+        <li>
+          <strong>2023</strong> Illustrator & Graphic Design Intern<br />
+          <small>Designed graphic for learning materials</small>
         </li>
-        <li><strong>2020</strong> ‘Danang tui’ exhibition
-          <br /><small>Artist of miniature art about tradition craft village around Danang</small>
+        <li>
+          <strong>2022</strong> Marketing Intern<br />
+          <small>Created content on social media</small>
+        </li>
+        <li>
+          <strong>2020</strong> Graphic Designer<br />
+          <small>Designed promotional materials for events</small>
         </li>
       </ul>
+      <div class="tags">
+        <span>#Creativity</span>
+        <span>#Communication</span>
+        <span>#Detail-oriented</span>
+        <span>#Adaptability</span>
+      </div>
     </div>
   </section>
 
-  <!-- Technical skills -->
-  <section class="technical-skills container flex">
+  <section class="tech-skills container flex-space-around">
     <div class="software-tools">
-      <h3>Software tools</h3>
+      <h2>Software tools</h2>
       <div class="software-icons">
         <span>Ps</span>
         <span>Ai</span>
@@ -153,15 +118,14 @@
         <span>Ae</span>
       </div>
     </div>
-
-    <div class="web-development">
-      <h3>Web Development</h3>
+    <div class="web-dev">
+      <h2>Web Development</h2>
       <ul>
         <li>HTML</li>
-        <li>CSS</li>
-        <li>JavaScript</li>
         <li>PHP</li>
+        <li>CSS</li>
         <li>SQL</li>
+        <li>JavaScript</li>
         <li>CMS (Wordpress)</li>
       </ul>
       <div class="dev-tags">
@@ -174,42 +138,49 @@
     </div>
   </section>
 
-  <!-- Language and Hobbies -->
-  <section class="language-hobbies container flex">
+  <section class="language-hobbies container flex-space-around">
     <div class="language">
-      <h3>Language</h3>
+      <h2>Language</h2>
       <div>
         <div><strong>English</strong><br />Fluent</div>
-        <div><strong>French</strong><br />Intermediate</div>
-        <div><strong>Vietnamese</strong><br />Native</div>
+        <div><strong>Hindi</strong><br />Intermediate</div>
+        <div><strong>Odia</strong><br />Native</div>
       </div>
     </div>
 
     <div class="hobbies">
-      <h3>Hobbies & Interests</h3>
+      <h2>Hobbies & Interests</h2>
       <div class="hobby-items">
         <div>
-          <span class="icon">🎵</span>
+          <span class="icon" aria-label="Classical Music">&#9835;</span>
           <strong>Classical</strong><br />
           Funky/Gypsy Jazz
         </div>
         <div>
-          <span class="icon">🧶</span>
+          <span class="icon">&#128118;</span>
           <strong>Crochet</strong><br />
           Knitting
         </div>
         <div>
-          <span class="icon">🎨</span>
+          <span class="icon">&#127912;</span>
           <strong>Digital art</strong><br />
           Miniature craft
         </div>
         <div>
-          <span class="icon">🐈</span>
+          <span class="icon">&#128062;</span>
           <strong>Cat, cat</strong><br />
           and cat
         </div>
       </div>
     </div>
+  </section>
+
+  <section class="activities container">
+    <h2>Activities</h2>
+    <ul>
+      <li><strong>2021</strong> Your Dream exhibition<br /><small>Concept artist of autism in society</small></li>
+      <li><strong>2020</strong> ‘Danang tui’ exhibition<br /><small>Artist of miniature art about tradition craft village around Danang</small></li>
+    </ul>
   </section>
 
 </body>
