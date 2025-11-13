@@ -3,46 +3,168 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Saurav Panda — Portfolio</title>
-  <meta name="description" content="Portfolio of Saurav Panda (dearlipu) — art, editing, tech projects." />
+  <title>Saurav Panda — Portfolio (dearlipu)</title>
+  <meta name="description" content="Portfolio of Saurav (dearlipu) — artist, content creator, museum manager, and tech specialist." />
+  <meta name="author" content="Saurav Panda" />
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+
+  <!-- Simple, modern CSS -->
   <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;margin:0;background:#f7f7f9;color:#111}
-    header{padding:28px;text-align:center;background:#fff;border-bottom:1px solid #e6e6e6}
-    h1{margin:0;font-size:1.35rem}
-    .container{max-width:980px;margin:28px auto;padding:16px}
-    .controls{display:flex;gap:12px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
-    .btn{padding:10px 16px;background:#111;color:#fff;text-decoration:none;border-radius:8px;font-weight:600}
-    .viewer{width:100%;height:72vh;border:1px solid #ddd;background:#fff}
-    @media (max-width:700px){ .viewer{height:60vh} }
-    footer{padding:18px;text-align:center;color:#666;font-size:0.9rem}
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#94a3b8; --accent:#7c3aed; --glass: rgba(255,255,255,0.03);
+      --maxw:980px; --radius:14px; --pad:18px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:
+      radial-gradient(1200px 400px at 10% 10%, rgba(124,58,237,0.08), transparent 6%),
+      linear-gradient(180deg, #061022 0%, #08101a 60%);
+      color: #e6eef8; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+    a{color:inherit}
+    .wrap{max-width:var(--maxw);margin:28px auto;padding:12px;}
+    header{display:flex;gap:18px;align-items:center;padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+    .avatar{
+      width:104px;height:104px;border-radius:999px;flex:0 0 104px;background:linear-gradient(135deg,var(--accent), #2dd4bf);display:grid;place-items:center;overflow:hidden;border:3px solid rgba(255,255,255,0.04)
+    }
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    .who h1{margin:0;font-size:1.25rem;letter-spacing:0.2px}
+    .who .role{color:var(--muted);margin-top:6px;font-size:0.92rem}
+    .controls{margin-left:auto;display:flex;gap:10px;align-items:center}
+    .btn{background:var(--accent);color:white;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600;display:inline-block}
+    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px}
+    main{display:grid;grid-template-columns:1fr 420px;gap:20px;margin-top:18px}
+    .card{background:var(--card);border-radius:var(--radius);padding:var(--pad);box-shadow:0 6px 18px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.02)}
+    .viewer{width:100%;height:70vh;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.02)}
+    iframe.viewer-iframe{width:100%;height:100%;border:0;background:white}
+    .about p{color:var(--muted);line-height:1.5;margin:8px 0 0}
+    .links{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .chip{background:var(--glass);padding:8px 10px;border-radius:999px;color:var(--muted);font-weight:600;font-size:0.88rem}
+    aside .meta{display:flex;flex-direction:column;gap:12px}
+    .socials a{display:flex;gap:8px;align-items:center;padding:8px 10px;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));text-decoration:none;color:var(--muted)}
+    .project-list{display:flex;flex-direction:column;gap:10px}
+    .project{padding:10px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);display:flex;justify-content:space-between;align-items:center}
+    footer{margin-top:22px;text-align:center;color:var(--muted);font-size:0.9rem}
+    @media (max-width:980px){ main{grid-template-columns:1fr;}.viewer{height:60vh}.controls{margin-left:0;margin-top:8px;flex-wrap:wrap}}
   </style>
 </head>
 <body>
-  <header>
-    <h1>Saurav Panda — Portfolio</h1>
-    <div style="margin-top:6px;color:#666">Artist • Developer • Museum Manager</div>
-  </header>
+  <div class="wrap">
+    <!-- Header -->
+    <header>
+      <div class="avatar" aria-hidden="true">
+        <!-- Replace src with your profile image file in repo or an external link -->
+        <img src="profile.jpg" alt="Saurav (dearlipu) profile photo" onerror="this.style.display='none'">
+      </div>
+      <div class="who">
+        <h1>Saurav Panda <span style="color:var(--accent);font-weight:700">• dearlipu</span></h1>
+        <div class="role">Artist • Cinematic Content Creator • Museum Manager • Tech Specialist</div>
+        <div style="margin-top:8px" class="links">
+          <span class="chip">Surat → Barkul, Odisha</span>
+          <span class="chip">Languages: English, Hindi, Odia</span>
+        </div>
+      </div>
 
-  <main class="container">
-    <div class="controls">
-      <a class="btn" href="portfolio.pdf" download>Download PDF</a>
-      <a class="btn" href="portfolio.pdf" target="_blank" rel="noopener">Open PDF in new tab</a>
-    </div>
+      <div class="controls" role="region" aria-label="Quick actions">
+        <a class="btn" href="portfolio.pdf" download>Download PDF</a>
+        <a class="btn secondary" href="portfolio.pdf" target="_blank" rel="noopener">Open PDF</a>
+      </div>
+    </header>
 
-    <!-- Embedded PDF viewer -->
-    <iframe class="viewer" src="portfolio.pdf" title="Portfolio PDF">
-      <!-- fallback when iframe isn't supported -->
-      <p>Your browser doesn't support embedded PDFs. <a href="portfolio.pdf">Download the PDF</a>.</p>
-    </iframe>
+    <!-- Main content -->
+    <main>
+      <!-- Left: Viewer / projects -->
+      <section class="card">
+        <div style="display:flex;gap:12px;align-items:center;">
+          <div style="flex:1">
+            <h2 style="margin:0 0 8px 0">Portfolio</h2>
+            <div style="color:var(--muted);font-size:0.95rem">Click download or open to view the full PDF. Below is an embedded preview (may not work on some mobile browsers).</div>
+          </div>
+        </div>
 
-    <section style="margin-top:18px">
-      <h3>About</h3>
-      <p>Hi — I'm Saurav (dearlipu). I'm an artist, content creator and museum manager. Contact: sauravpanda34@gmail.com</p>
-    </section>
-  </main>
+        <div style="margin-top:12px" class="viewer" role="region" aria-label="Portfolio preview">
+          <!-- Embedded PDF: ensure portfolio.pdf exists in repo root -->
+          <iframe class="viewer-iframe" src="portfolio.pdf#toolbar=0&navpanes=0" title="Portfolio PDF preview">
+            <p style="padding:16px;color:var(--muted)">Your browser doesn't support embedded PDFs. <a href="portfolio.pdf" style="color:var(--accent)">Download the PDF</a>.</p>
+          </iframe>
+        </div>
 
-  <footer>© <span id="year"></span> Saurav Panda — <a href="https://github.com/dearlipu" target="_blank" rel="noopener">GitHub</a></footer>
+        <section style="margin-top:14px" class="about">
+          <h3 style="margin:0 0 6px 0">About me</h3>
+          <p>Hi — I'm Saurav (Lipun). I make cinematic videos, digital art, and manage museum exhibits. I also run NextGen (tech services) — Windows installs, data recovery, and device troubleshooting. I love learning animation, guitar, and languages.</p>
+        </section>
 
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+        <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+          <a class="chip" href="mailto:your-email@example.com">your-email@example.com</a>
+          <a class="chip" href="https://www.instagram.com/dearlipu" target="_blank" rel="noopener">@dearlipu</a>
+          <a class="chip" href="https://github.com/dearlipu" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </section>
+
+      <!-- Right: sidebar -->
+      <aside class="card" aria-labelledby="sidebarTitle">
+        <div class="meta">
+          <div id="sidebarTitle">
+            <h3 style="margin:0 0 4px 0">Quick Links</h3>
+            <div style="color:var(--muted);font-size:0.95rem">Open socials or view projects</div>
+          </div>
+
+          <div class="socials" style="display:flex;flex-direction:column;gap:8px">
+            <a href="https://www.instagram.com/dearlipu" target="_blank" rel="noopener">
+              <span>📷 Instagram</span>
+              <small style="margin-left:auto;color:var(--muted)">@dearlipu</small>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener">
+              <span>▶ YouTube</span>
+              <small style="margin-left:auto;color:var(--muted)">channel</small>
+            </a>
+            <a href="https://github.com/dearlipu" target="_blank" rel="noopener">
+              <span>🐙 GitHub</span>
+              <small style="margin-left:auto;color:var(--muted)">github.com/dearlipu</small>
+            </a>
+          </div>
+
+          <div>
+            <h4 style="margin:12px 0 8px 0">Pinned projects</h4>
+            <div class="project-list">
+              <div class="project">
+                <div>
+                  <strong>NextGen — Tech Services</strong>
+                  <div style="color:var(--muted);font-size:0.88rem">Windows, data recovery, office setup</div>
+                </div>
+                <a class="chip" href="#" aria-hidden="true">View</a>
+              </div>
+
+              <div class="project">
+                <div>
+                  <strong>Cinematic Instagram</strong>
+                  <div style="color:var(--muted);font-size:0.88rem">Showreel & editing samples</div>
+                </div>
+                <a class="chip" href="https://www.instagram.com/dearlipu" target="_blank" rel="noopener">Open</a>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:8px">
+            <h4 style="margin:10px 0 6px 0">Skills</h4>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <span class="chip">Video Editing</span>
+              <span class="chip">Graphic Design</span>
+              <span class="chip">Windows Support</span>
+              <span class="chip">Content Strategy</span>
+              <span class="chip">2D Animation (learning)</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      © <span id="year"></span> Saurav Panda · Built with ❤️ — <a href="https://github.com/dearlipu" target="_blank" rel="noopener">GitHub</a>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
