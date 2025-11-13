@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Saurav Panda — Portfolio</title>
+  <meta name="description" content="Portfolio of Saurav Panda (dearlipu) — art, editing, tech projects." />
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;margin:0;background:#f7f7f9;color:#111}
+    header{padding:28px;text-align:center;background:#fff;border-bottom:1px solid #e6e6e6}
+    h1{margin:0;font-size:1.35rem}
+    .container{max-width:980px;margin:28px auto;padding:16px}
+    .controls{display:flex;gap:12px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
+    .btn{padding:10px 16px;background:#111;color:#fff;text-decoration:none;border-radius:8px;font-weight:600}
+    .viewer{width:100%;height:72vh;border:1px solid #ddd;background:#fff}
+    @media (max-width:700px){ .viewer{height:60vh} }
+    footer{padding:18px;text-align:center;color:#666;font-size:0.9rem}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Saurav Panda — Portfolio</h1>
+    <div style="margin-top:6px;color:#666">Artist • Developer • Museum Manager</div>
+  </header>
+
+  <main class="container">
+    <div class="controls">
+      <a class="btn" href="portfolio.pdf" download>Download PDF</a>
+      <a class="btn" href="portfolio.pdf" target="_blank" rel="noopener">Open PDF in new tab</a>
+    </div>
+
+    <!-- Embedded PDF viewer -->
+    <iframe class="viewer" src="portfolio.pdf" title="Portfolio PDF">
+      <!-- fallback when iframe isn't supported -->
+      <p>Your browser doesn't support embedded PDFs. <a href="portfolio.pdf">Download the PDF</a>.</p>
+    </iframe>
+
+    <section style="margin-top:18px">
+      <h3>About</h3>
+      <p>Hi — I'm Saurav (dearlipu). I'm an artist, content creator and museum manager. Contact: sauravpanda34@gmail.com</p>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> Saurav Panda — <a href="https://github.com/dearlipu" target="_blank" rel="noopener">GitHub</a></footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
