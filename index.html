@@ -34,7 +34,7 @@
     const startIndex = 1;              // first page index
     const maxAttempts = 200;           // safety upper bound for attempts
     const consecutiveMissingStop = 8;  // stop after this many consecutive missing files
-    const tryExtensions = ['png','jpg','webp']; // tried in order for each index
+    const tryExtensions = ['png','jpg','webp','gif']; // tried in order for each index
 
     const wrap = document.getElementById('wrap');
     const loader = document.getElementById('loader');
@@ -126,5 +126,6 @@
   </script>
 </body>
 </html>
+
 
 
