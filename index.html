@@ -1,28 +1,160 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Portfolio</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-html,body {
-  height:100%;
-  margin:0;
-  background:#000;
-}
-.viewer {
-  position:fixed;
-  inset:0;
-  width:100%;
-  height:100%;
-  border:0;
-}
-</style>
+  <meta charset="utf-8" />
+  <title>Portfolio</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    /* Full-viewport black background and no page gaps */
+    html,body{height:100%;margin:0;background:#0b0b0b;color:#fff;font-family:system-ui,Segoe UI,Roboto,Arial;}
+    #viewerContainer{width:100%;height:100vh;overflow:auto; -webkit-overflow-scrolling:touch; display:block; box-sizing:border-box; padding:0; }
+    .pdfPageCanvas{display:block;margin:0 auto;padding:0;border:0;box-shadow:none; background:transparent;}
+    /* Remove any whitespace around canvases */
+    .pageWrapper{margin:0;padding:0;line-height:0;display:block;}
+    /* Optional: a small subtle separator line (set to 0 if you want zero gap) */
+    .pageSeparator{height:0;background:transparent;margin:0} /* set height:0 for absolutely no gap */
+    /* Loading indicator */
+    #loading { position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.6); padding:12px 16px; border-radius:8px; font-weight:600; display:flex; gap:10px; align-items:center; z-index:9999; }
+    #controls { position:fixed; right:12px; bottom:12px; z-index:9999; display:flex; gap:8px; }
+    .controlBtn { background:#111; color:#fff; border:1px solid rgba(255,255,255,0.04); padding:8px 10px; border-radius:8px; text-decoration:none; font-weight:600; }
+  </style>
 </head>
 <body>
-<iframe 
-  class="viewer"
-  src="https://docs.google.com/gview?embedded=true&url=https://raw.githubusercontent.com/dearlipu/dearlipu.github.io/main/portfolio.pdf">
-</iframe>
+  <div id="loading">Loading Portfolio… <span id="progress"></span></div>
+
+  <div id="viewerContainer" aria-label="PDF viewer" role="region"></div>
+
+  <div id="controls" aria-hidden="false">
+    <a class="controlBtn" id="zoomOut">−</a>
+    <a class="controlBtn" id="zoomReset">100%</a>
+    <a class="controlBtn" id="zoomIn">+</a>
+    <a class="controlBtn" id="download" href="portfolio.pdf" target="_blank" rel="noopener">Download</a>
+  </div>
+
+  <!-- PDF.js library (stable CDN) -->
+  <script src="https://unpkg.com/pdfjs-dist@3.10.100/build/pdf.min.js"></script>
+  <script>
+    // path to your PDF file (change if different)
+    const PDF_URL = 'portfolio.pdf';
+
+    // PDF.js worker config (uses CDN worker)
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@3.10.100/build/pdf.worker.min.js';
+
+    const viewer = document.getElementById('viewerContainer');
+    const loading = document.getElementById('loading');
+    const progressEl = document.getElementById('progress');
+
+    let pdfDoc = null;
+    let currentScale = 1.0;   // base scale multiplier
+    const SCALE_STEP = 0.1;
+
+    // Render a single page to canvas and append it (no gap)
+    async function renderPage(pageNumber) {
+      const page = await pdfDoc.getPage(pageNumber);
+      // get viewport at scale 1 first
+      const viewport = page.getViewport({ scale: 1.0 });
+
+      // compute scale to fit container width (we'll base on container width)
+      const containerWidth = Math.min(viewer.clientWidth, window.innerWidth);
+      const desiredWidth = containerWidth * 0.92; // small padding
+      let scale = desiredWidth / viewport.width;
+      scale = scale * currentScale; // apply user zoom
+
+      const scaledViewport = page.getViewport({ scale: scale });
+
+      // create wrapper and canvas
+      const wrap = document.createElement('div');
+      wrap.className = 'pageWrapper';
+      const canvas = document.createElement('canvas');
+      canvas.className = 'pdfPageCanvas';
+      canvas.width = Math.floor(scaledViewport.width);
+      canvas.height = Math.floor(scaledViewport.height);
+      canvas.style.width = canvas.width + 'px';
+      canvas.style.height = canvas.height + 'px';
+      wrap.appendChild(canvas);
+
+      // optional separator (set height to 0 for no gap)
+      const sep = document.createElement('div');
+      sep.className = 'pageSeparator';
+      sep.style.height = '0px'; // CHANGE this if you want a tiny gap like '6px'
+
+      // append canvas + separator to viewer
+      viewer.appendChild(wrap);
+      viewer.appendChild(sep);
+
+      // render page into canvas
+      const ctx = canvas.getContext('2d', { alpha: false });
+      const renderTask = page.render({
+        canvasContext: ctx,
+        viewport: scaledViewport,
+      });
+
+      return renderTask.promise;
+    }
+
+    // render all pages sequentially
+    async function renderAllPages() {
+      if (!pdfDoc) return;
+      viewer.innerHTML = ''; // clear
+      loading.style.display = 'flex';
+      progressEl.textContent = '';
+      for (let i = 1; i <= pdfDoc.numPages; i++) {
+        progressEl.textContent = 'Page ' + i + ' / ' + pdfDoc.numPages;
+        await renderPage(i);
+      }
+      loading.style.display = 'none';
+      // scroll to top
+      viewer.scrollTop = 0;
+    }
+
+    // load the document
+    (async function() {
+      try {
+        const loadingTask = pdfjsLib.getDocument({
+          url: PDF_URL,
+          // optional: disable range requests if raw github blocks; leave default normally
+        });
+
+        pdfDoc = await loadingTask.promise;
+        await renderAllPages();
+      } catch (e) {
+        loading.textContent = 'Failed to load PDF. Open directly:';
+        const link = document.createElement('a');
+        link.href = PDF_URL;
+        link.textContent = 'Open portfolio';
+        link.style.color = '#fff';
+        link.style.fontWeight = '700';
+        loading.appendChild(document.createTextNode(' '));
+        loading.appendChild(link);
+        console.error(e);
+      }
+    })();
+
+    // zoom controls: re-render pages with new scale
+    document.getElementById('zoomIn').addEventListener('click', async () => {
+      currentScale = +(currentScale + SCALE_STEP).toFixed(2);
+      document.getElementById('zoomReset').textContent = Math.round(currentScale*100)+'%';
+      await renderAllPages();
+    });
+    document.getElementById('zoomOut').addEventListener('click', async () => {
+      currentScale = Math.max(0.2, +(currentScale - SCALE_STEP).toFixed(2));
+      document.getElementById('zoomReset').textContent = Math.round(currentScale*100)+'%';
+      await renderAllPages();
+    });
+    document.getElementById('zoomReset').addEventListener('click', async () => {
+      currentScale = 1.0;
+      document.getElementById('zoomReset').textContent = '100%';
+      await renderAllPages();
+    });
+
+    // handle resize: re-render pages to match new width (debounced)
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        renderAllPages().catch(()=>{/*ignore*/});
+      }, 350);
+    });
+  </script>
 </body>
 </html>
