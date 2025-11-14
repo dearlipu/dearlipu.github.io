@@ -1,160 +1,113 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Portfolio</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <style>
-    /* Full-viewport black background and no page gaps */
-    html,body{height:100%;margin:0;background:#0b0b0b;color:#fff;font-family:system-ui,Segoe UI,Roboto,Arial;}
-    #viewerContainer{width:100%;height:100vh;overflow:auto; -webkit-overflow-scrolling:touch; display:block; box-sizing:border-box; padding:0; }
-    .pdfPageCanvas{display:block;margin:0 auto;padding:0;border:0;box-shadow:none; background:transparent;}
-    /* Remove any whitespace around canvases */
-    .pageWrapper{margin:0;padding:0;line-height:0;display:block;}
-    /* Optional: a small subtle separator line (set to 0 if you want zero gap) */
-    .pageSeparator{height:0;background:transparent;margin:0} /* set height:0 for absolutely no gap */
-    /* Loading indicator */
-    #loading { position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.6); padding:12px 16px; border-radius:8px; font-weight:600; display:flex; gap:10px; align-items:center; z-index:9999; }
-    #controls { position:fixed; right:12px; bottom:12px; z-index:9999; display:flex; gap:8px; }
-    .controlBtn { background:#111; color:#fff; border:1px solid rgba(255,255,255,0.04); padding:8px 10px; border-radius:8px; text-decoration:none; font-weight:600; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Viewer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfjs-dist/3.11.174/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdfjs-dist/3.11.174/pdf.worker.min.js';
+    </script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+        }
+        #pdf-container {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: relative;
+        }
+        canvas {
+            display: block;
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+        #zoom-controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 10;
+        }
+        button {
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin: 0 2px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: rgba(0,0,0,0.7);
+        }
+    </style>
 </head>
 <body>
-  <div id="loading">Loading Portfolio… <span id="progress"></span></div>
+    <div id="zoom-controls">
+        <button id="zoom-in">+</button>
+        <button id="zoom-out">-</button>
+        <button id="zoom-reset">Reset</button>
+    </div>
+    <div id="pdf-container"></div>
+    <script>
+        let pdfDoc = null;
+        let scale = 1.0;
+        const container = document.getElementById('pdf-container');
+        const zoomInBtn = document.getElementById('zoom-in');
+        const zoomOutBtn = document.getElementById('zoom-out');
+        const zoomResetBtn = document.getElementById('zoom-reset');
 
-  <div id="viewerContainer" aria-label="PDF viewer" role="region"></div>
+        async function loadPDF() {
+            try {
+                const response = await fetch('portfolio.pdf');
+                const arrayBuffer = await response.arrayBuffer();
+                pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+                renderPDF();
+            } catch (error) {
+                console.error('Error loading PDF:', error);
+            }
+        }
 
-  <div id="controls" aria-hidden="false">
-    <a class="controlBtn" id="zoomOut">−</a>
-    <a class="controlBtn" id="zoomReset">100%</a>
-    <a class="controlBtn" id="zoomIn">+</a>
-    <a class="controlBtn" id="download" href="portfolio.pdf" target="_blank" rel="noopener">Download</a>
-  </div>
+        async function renderPDF() {
+            container.innerHTML = '';
+            for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
+                const page = await pdfDoc.getPage(pageNum);
+                const viewport = page.getViewport({ scale: scale });
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                canvas.style.width = '100%';
+                canvas.style.height = 'auto';
+                container.appendChild(canvas);
+                await page.render({ canvasContext: context, viewport: viewport }).promise;
+            }
+        }
 
-  <!-- PDF.js library (stable CDN) -->
-  <script src="https://unpkg.com/pdfjs-dist@3.10.100/build/pdf.min.js"></script>
-  <script>
-    // path to your PDF file (change if different)
-    const PDF_URL = 'portfolio.pdf';
-
-    // PDF.js worker config (uses CDN worker)
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@3.10.100/build/pdf.worker.min.js';
-
-    const viewer = document.getElementById('viewerContainer');
-    const loading = document.getElementById('loading');
-    const progressEl = document.getElementById('progress');
-
-    let pdfDoc = null;
-    let currentScale = 1.0;   // base scale multiplier
-    const SCALE_STEP = 0.1;
-
-    // Render a single page to canvas and append it (no gap)
-    async function renderPage(pageNumber) {
-      const page = await pdfDoc.getPage(pageNumber);
-      // get viewport at scale 1 first
-      const viewport = page.getViewport({ scale: 1.0 });
-
-      // compute scale to fit container width (we'll base on container width)
-      const containerWidth = Math.min(viewer.clientWidth, window.innerWidth);
-      const desiredWidth = containerWidth * 0.92; // small padding
-      let scale = desiredWidth / viewport.width;
-      scale = scale * currentScale; // apply user zoom
-
-      const scaledViewport = page.getViewport({ scale: scale });
-
-      // create wrapper and canvas
-      const wrap = document.createElement('div');
-      wrap.className = 'pageWrapper';
-      const canvas = document.createElement('canvas');
-      canvas.className = 'pdfPageCanvas';
-      canvas.width = Math.floor(scaledViewport.width);
-      canvas.height = Math.floor(scaledViewport.height);
-      canvas.style.width = canvas.width + 'px';
-      canvas.style.height = canvas.height + 'px';
-      wrap.appendChild(canvas);
-
-      // optional separator (set height to 0 for no gap)
-      const sep = document.createElement('div');
-      sep.className = 'pageSeparator';
-      sep.style.height = '0px'; // CHANGE this if you want a tiny gap like '6px'
-
-      // append canvas + separator to viewer
-      viewer.appendChild(wrap);
-      viewer.appendChild(sep);
-
-      // render page into canvas
-      const ctx = canvas.getContext('2d', { alpha: false });
-      const renderTask = page.render({
-        canvasContext: ctx,
-        viewport: scaledViewport,
-      });
-
-      return renderTask.promise;
-    }
-
-    // render all pages sequentially
-    async function renderAllPages() {
-      if (!pdfDoc) return;
-      viewer.innerHTML = ''; // clear
-      loading.style.display = 'flex';
-      progressEl.textContent = '';
-      for (let i = 1; i <= pdfDoc.numPages; i++) {
-        progressEl.textContent = 'Page ' + i + ' / ' + pdfDoc.numPages;
-        await renderPage(i);
-      }
-      loading.style.display = 'none';
-      // scroll to top
-      viewer.scrollTop = 0;
-    }
-
-    // load the document
-    (async function() {
-      try {
-        const loadingTask = pdfjsLib.getDocument({
-          url: PDF_URL,
-          // optional: disable range requests if raw github blocks; leave default normally
+        zoomInBtn.addEventListener('click', () => {
+            scale += 0.1;
+            renderPDF();
         });
 
-        pdfDoc = await loadingTask.promise;
-        await renderAllPages();
-      } catch (e) {
-        loading.textContent = 'Failed to load PDF. Open directly:';
-        const link = document.createElement('a');
-        link.href = PDF_URL;
-        link.textContent = 'Open portfolio';
-        link.style.color = '#fff';
-        link.style.fontWeight = '700';
-        loading.appendChild(document.createTextNode(' '));
-        loading.appendChild(link);
-        console.error(e);
-      }
-    })();
+        zoomOutBtn.addEventListener('click', () => {
+            if (scale > 0.1) {
+                scale -= 0.1;
+                renderPDF();
+            }
+        });
 
-    // zoom controls: re-render pages with new scale
-    document.getElementById('zoomIn').addEventListener('click', async () => {
-      currentScale = +(currentScale + SCALE_STEP).toFixed(2);
-      document.getElementById('zoomReset').textContent = Math.round(currentScale*100)+'%';
-      await renderAllPages();
-    });
-    document.getElementById('zoomOut').addEventListener('click', async () => {
-      currentScale = Math.max(0.2, +(currentScale - SCALE_STEP).toFixed(2));
-      document.getElementById('zoomReset').textContent = Math.round(currentScale*100)+'%';
-      await renderAllPages();
-    });
-    document.getElementById('zoomReset').addEventListener('click', async () => {
-      currentScale = 1.0;
-      document.getElementById('zoomReset').textContent = '100%';
-      await renderAllPages();
-    });
+        zoomResetBtn.addEventListener('click', () => {
+            scale = 1.0;
+            renderPDF();
+        });
 
-    // handle resize: re-render pages to match new width (debounced)
-    let resizeTimer = null;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        renderAllPages().catch(()=>{/*ignore*/});
-      }, 350);
-    });
-  </script>
+        loadPDF();
+    </script>
 </body>
 </html>
