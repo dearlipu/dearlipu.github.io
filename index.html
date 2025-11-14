@@ -47,6 +47,35 @@
     .page img{ width:100vw; } /* keep same behavior */
     #loader{font-size:14px;padding:8px 10px}
   }
+
+  /* Quick Navigation Buttons */
+#quick-nav {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 9999;
+}
+
+#quick-nav button {
+  width: 48px;
+  height: 48px;
+  font-size: 22px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  color: white;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: 0.2s;
+}
+
+#quick-nav button:hover {
+  background: rgba(255,255,255,0.22);
+}
+
 </style>
 </head>
 <body>
@@ -137,7 +166,25 @@
     }
   })();
 })();
+
+  // Quick scroll buttons
+document.getElementById("toTop").onclick = () => {
+  document.getElementById("viewer").scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+document.getElementById("toBottom").onclick = () => {
+  const viewer = document.getElementById("viewer");
+  viewer.scrollTo({ top: viewer.scrollHeight, behavior: 'smooth' });
+};
+
 </script>
+  
+<!-- Quick Navigation Buttons -->
+<div id="quick-nav">
+  <button id="toTop">⬆</button>
+  <button id="toBottom">⬇</button>
+</div>
 
 </body>
 </html>
+
