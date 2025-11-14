@@ -2,201 +2,127 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Portfolio — Continuous Viewer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <style>
-    html,body{
-      height:100%;
-      margin:0;
-      background:#0d0d0d;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-      overflow:hidden;
-    }
-
-    #viewerContainer{
-      width:100%;
-      height:100vh;
-      overflow:auto;
-      -webkit-overflow-scrolling:touch;
-      padding:0;
-      margin:0;
-    }
-
-    .pdfPageCanvas{
-      display:block;
-      margin:0 auto;
-      padding:0;
-      border:0;
-      background:transparent;
-    }
-
-    .pageWrapper{
-      margin:0;
-      padding:0;
-      line-height:0;
-      display:block;
-    }
-
-    .pageSeparator{
-      height:0px; /* zero gap */
-      margin:0;
-      background:transparent;
-      padding:0;
-    }
-
-    #loading{
-      position:fixed;
-      left:50%;
-      top:50%;
-      transform:translate(-50%,-50%);
-      background:rgba(0,0,0,0.75);
-      padding:14px 18px;
-      border-radius:8px;
-      font-size:16px;
-      font-weight:600;
-      color:#fff;
-      z-index:9999;
-    }
-
-    #controls{
-      position:fixed;
-      right:15px;
-      bottom:15px;
-      z-index:9999;
-      display:flex;
-      gap:10px;
-    }
-
-    .btn{
-      background:#111;
-      color:#fff;
-      padding:8px 12px;
-      border-radius:6px;
-      border:1px solid rgba(255,255,255,0.1);
-      cursor:pointer;
-      user-select:none;
-      font-weight:600;
-    }
+    :root { --bg: #0b0b0b; --maxw:1200px; --gap:0px; }
+    html,body{height:100%;margin:0;background:var(--bg);color:#fff;font-family:system-ui,Segoe UI,Roboto,Arial;}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0;box-sizing:border-box;}
+    /* each page block — zero margins so pages touch */
+    .page { margin: 0; display:block; width:100%; line-height:0; background:transparent; }
+    .page img{ width:100%; height:auto; display:block; border:0; margin:0; padding:0; background:transparent; }
+    /* loader message */
+    .loader { color:#cfd8e3; text-align:center; padding:36px 16px; font-weight:700; }
+    /* lightbox */
+    .lb { position:fixed; inset:0; background:rgba(0,0,0,0.95); display:flex; align-items:center; justify-content:center; z-index:9999; }
+    .lb img{ max-width:98vw; max-height:96vh; width:auto; height:auto; box-shadow:0 20px 80px rgba(0,0,0,0.9); }
+    .lb-close { position:fixed; top:18px; right:18px; color:#fff; font-weight:700; background:rgba(255,255,255,0.04); padding:8px 12px; border-radius:8px; cursor:pointer; z-index:10000; }
+    /* small-screen padding */
+    @media (max-width:700px){ .wrap{padding:0 8px} }
   </style>
 </head>
-
 <body>
-
-  <div id="loading">Loading PDF… <span id="progress"></span></div>
-
-  <div id="viewerContainer"></div>
-
-  <div id="controls">
-    <div class="btn" id="zoomOut">−</div>
-    <div class="btn" id="zoomReset">100%</div>
-    <div class="btn" id="zoomIn">+</div>
-    <a class="btn" href="portfolio.pdf" target="_blank">Download</a>
+  <div class="wrap" id="wrap">
+    <div id="loader" class="loader">Hi I'm Saurav…</div>
   </div>
 
-  <!-- PDF.js -->
-  <script src="https://unpkg.com/pdfjs-dist@3.10.100/build/pdf.min.js"></script>
-
   <script>
-    const PDF_URL = 'portfolio.pdf'; // your PDF file name
-    const viewer = document.getElementById('viewerContainer');
-    const loading = document.getElementById('loading');
-    const progressEl = document.getElementById('progress');
+  (function(){
+    // Configuration
+    const folder = 'assets/pages/';    // folder where you upload images
+    const baseName = 'page-';          // base name pattern -> page-1.png, page-2.png, ...
+    const startIndex = 1;              // first page index
+    const maxAttempts = 200;           // safety upper bound for attempts
+    const consecutiveMissingStop = 8;  // stop after this many consecutive missing files
+    const tryExtensions = ['png','jpg','webp']; // tried in order for each index
 
-    pdfjsLib.GlobalWorkerOptions.workerSrc =
-      "https://unpkg.com/pdfjs-dist@3.10.100/build/pdf.worker.min.js";
+    const wrap = document.getElementById('wrap');
+    const loader = document.getElementById('loader');
 
-    let pdfDoc = null;
-    let currentScale = 1.0;
-    const SCALE_STEP = 0.10;
-
-    async function renderPage(num){
-      const page = await pdfDoc.getPage(num);
-
-      const viewport = page.getViewport({scale:1.0});
-      const containerWidth = Math.min(viewer.clientWidth, window.innerWidth);
-      const desiredWidth = containerWidth * 0.95;
-
-      let scale = desiredWidth / viewport.width;
-      scale *= currentScale;
-
-      const scaledViewport = page.getViewport({scale:scale});
-
-      const wrap = document.createElement("div");
-      wrap.className = "pageWrapper";
-
-      const canvas = document.createElement("canvas");
-      canvas.className = "pdfPageCanvas";
-
-      canvas.width = scaledViewport.width;
-      canvas.height = scaledViewport.height;
-      wrap.appendChild(canvas);
-
-      const separator = document.createElement("div");
-      separator.className = "pageSeparator";
-
-      viewer.appendChild(wrap);
-      viewer.appendChild(separator);
-
-      const ctx = canvas.getContext("2d",{alpha:false});
-      await page.render({
-        canvasContext:ctx,
-        viewport:scaledViewport
-      }).promise;
+    // Helper to attempt to load a URL, returns promise that resolves true if loaded (img onload), false if not (onerror)
+    function testImage(url, timeout = 8000){
+      return new Promise((resolve) => {
+        const img = new Image();
+        let done = false;
+        const timer = setTimeout(()=>{ if(!done){ done = true; img.src = ''; resolve(false); } }, timeout);
+        img.onload = ()=>{ if(!done){ done = true; clearTimeout(timer); resolve(true); } };
+        img.onerror = ()=>{ if(!done){ done = true; clearTimeout(timer); resolve(false); } };
+        img.decoding = 'async';
+        img.src = url;
+      });
     }
 
-    async function renderAllPages(){
-      viewer.innerHTML = '';
-      loading.style.display='flex';
-      for(let i=1;i<=pdfDoc.numPages;i++){
-        progressEl.textContent = `(${i}/${pdfDoc.numPages})`;
-        await renderPage(i);
+    // Create page element and append to DOM (lazy loading)
+    function appendImage(src, altText){
+      const page = document.createElement('div');
+      page.className = 'page';
+      const img = document.createElement('img');
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.alt = altText || '';
+      img.src = src;
+      // open in lightbox when clicked
+      img.addEventListener('click', ()=>openLightbox(src));
+      page.appendChild(img);
+      wrap.appendChild(page);
+    }
+
+    // Simple lightbox
+    function openLightbox(src){
+      const existing = document.querySelector('.lb');
+      if(existing) existing.remove();
+      const lb = document.createElement('div'); lb.className = 'lb';
+      const img = document.createElement('img'); img.src = src;
+      const close = document.createElement('div'); close.className = 'lb-close'; close.textContent = 'Close';
+      close.onclick = ()=>document.body.removeChild(lb);
+      lb.onclick = (e)=>{ if(e.target === lb) document.body.removeChild(lb); };
+      lb.appendChild(img); lb.appendChild(close);
+      document.body.appendChild(lb);
+    }
+
+    // Core: scan sequentially and append found images
+    (async function scanAndRender(){
+      loader.textContent = 'Scanning images…';
+      let index = startIndex;
+      let consecutiveMissing = 0;
+      let foundAny = false;
+
+      for(let attempt=0; attempt < maxAttempts; attempt++, index++){
+        let foundForIndex = false;
+
+        for(const ext of tryExtensions){
+          const url = folder + baseName + index + '.' + ext;
+          // test quickly if image exists
+          // On GitHub Pages this should return the image if present
+          // We use testImage which loads the image; it's okay since images will be appended later (cached)
+          const ok = await testImage(url, 6000);
+          if(ok){
+            // append this url and mark found
+            appendImage(url, `Page ${index}`);
+            foundForIndex = true;
+            foundAny = true;
+            consecutiveMissing = 0;
+            break; // stop checking other extensions for this index
+          }
+        }
+
+        if(!foundForIndex){
+          consecutiveMissing++;
+        }
+
+        // stop if we've seen enough consecutive missing files (no more pages)
+        if(consecutiveMissing >= consecutiveMissingStop) break;
       }
-      loading.style.display='none';
-      viewer.scrollTop = 0;
-    }
 
-    (async ()=>{
-      try{
-        // FETCH PDF FIRST (fixes loading issues on GitHub Pages)
-        const resp = await fetch(PDF_URL);
-        if(!resp.ok) throw new Error("PDF fetch failed");
-        const buffer = await resp.arrayBuffer();
-
-        pdfDoc = await pdfjsLib.getDocument({data:buffer}).promise;
-        await renderAllPages();
-      }catch(err){
-        console.error(err);
-        loading.textContent = "Failed to load PDF. Click to open.";
-        loading.onclick = ()=>window.open(PDF_URL,'_blank');
+      // finished scanning
+      if(!foundAny){
+        loader.textContent = 'No images found. Upload images named like: ' + folder + baseName + '1.png';
+      }else{
+        loader.style.display = 'none';
       }
     })();
 
-    // Zoom controls
-    document.getElementById("zoomIn").onclick = async ()=>{
-      currentScale += SCALE_STEP;
-      document.getElementById("zoomReset").textContent = Math.round(currentScale*100)+'%';
-      await renderAllPages();
-    };
-
-    document.getElementById("zoomOut").onclick = async ()=>{
-      currentScale = Math.max(0.20, currentScale-SCALE_STEP);
-      document.getElementById("zoomReset").textContent = Math.round(currentScale*100)+'%';
-      await renderAllPages();
-    };
-
-    document.getElementById("zoomReset").onclick = async ()=>{
-      currentScale = 1.0;
-      document.getElementById("zoomReset").textContent = '100%';
-      await renderAllPages();
-    };
-
-    // Re-render on resize (debounced)
-    let resizeTimer=null;
-    window.onresize=()=>{
-      clearTimeout(resizeTimer);
-      resizeTimer=setTimeout(()=>renderAllPages(),300);
-    };
+  })();
   </script>
-
 </body>
 </html>
