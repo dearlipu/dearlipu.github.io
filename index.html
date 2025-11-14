@@ -5,7 +5,7 @@
   <title>Portfolio</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <style>
-    :root { --bg: #0b0b0b; --maxw:1200px; --gap:0px; }
+    :root { --bg: #ffffff; --maxw:1200px; --gap:0px; }
     html,body{height:100%;margin:0;background:var(--bg);color:#fff;font-family:system-ui,Segoe UI,Roboto,Arial;}
     .wrap{max-width:var(--maxw);margin:0 auto;padding:0;box-sizing:border-box;}
     /* each page block — zero margins so pages touch */
@@ -23,7 +23,7 @@
 </head>
 <body>
   <div class="wrap" id="wrap">
-    <div id="loader" class="loader">Hi I'm Saurav…</div>
+    <div id="loader" class="loader">Loading Portfolio…</div>
   </div>
 
   <script>
@@ -82,7 +82,7 @@
 
     // Core: scan sequentially and append found images
     (async function scanAndRender(){
-      loader.textContent = 'Scanning images…';
+      loader.textContent = 'Hi, I'm @dearlipu…';
       let index = startIndex;
       let consecutiveMissing = 0;
       let foundAny = false;
@@ -126,3 +126,4 @@
   </script>
 </body>
 </html>
+
