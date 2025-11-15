@@ -47,66 +47,103 @@
     .page img{ width:100vw; } /* keep same behavior */
     #loader{font-size:14px;padding:8px 10px}
   }
-
-  /* Floating controls: top, bottom, resume */
-#float-controls {
+  
+/* --- Floating single button + mini download --- */
+#floatSingle {
   position: fixed;
   right: 18px;
-  bottom: 24px;
+  bottom: 20px;
+  z-index: 14000;
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  z-index: 12000;
-  pointer-events: none; /* allow precise per-button pointer control */
+  align-items: center;
+  gap: 10px;
+  pointer-events: none; /* enable per-button pointer control */
 }
 
-.btn-floater {
+/* main button (arrow) */
+#mainBtn {
   pointer-events: auto;
-  width: 52px;
-  height: 52px;
-  border-radius: 12px;
-  display: inline-grid;
-  place-items: center;
-  background: rgba(0,0,0,0.54);
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.06);
-  box-shadow: 0 8px 28px rgba(2,6,23,0.5);
-  cursor: pointer;
-  transition: transform .18s ease, opacity .18s ease, background .18s ease;
-  -webkit-tap-highlight-color: transparent;
-  backdrop-filter: blur(6px);
-  user-select: none;
-}
-.btn-floater:active { transform: translateY(1px) scale(.995); }
-.btn-floater:hover { transform: translateY(-3px) }
-
-/* Resume button slightly larger and labeled */
-#resumeBtn {
   width: 56px;
   height: 56px;
   border-radius: 14px;
-  font-weight:700;
-  font-size:13px;
-  padding:6px;
+  background: linear-gradient(180deg,#101316,#0b0f12);
+  color: #fff;
+  display: inline-grid;
+  place-items: center;
+  font-size: 22px;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 12px 40px rgba(2,6,23,0.6);
+  cursor: pointer;
+  transition: transform .16s ease, opacity .18s ease;
+  backdrop-filter: blur(6px);
+  user-select: none;
+}
+
+/* mini download button attached left of main */
+#downloadMini {
+  pointer-events: auto;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
   background: linear-gradient(180deg,#7c3aed,#5b21b6);
+  display:inline-grid;
+  place-items:center;
+  color:#fff;
+  border:1px solid rgba(0,0,0,0.12);
+  box-shadow:0 10px 30px rgba(0,0,0,0.45);
+  transform: translateX(-6px);
+  cursor:pointer;
+  text-decoration:none;
+}
+
+/* small label on hover (optional) */
+#downloadMini:hover::after{
+  content: "Resume";
+  position: absolute;
+  right: 70px;
+  background: rgba(0,0,0,0.72);
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #fff;
+  white-space:nowrap;
+  box-shadow:0 8px 20px rgba(0,0,0,0.6);
 }
 
 /* hidden state for auto-hide */
-.float-hidden { opacity: 0; transform: translateY(8px) scale(.98); pointer-events: none; }
+.float-hidden { opacity: 0; transform: translateY(12px) scale(.98); pointer-events: none; }
 
-/* small-screen: nudge left a bit to avoid system gestures */
-@media (max-width:420px) {
-  #float-controls { right: 12px; bottom: 18px; gap:10px; }
-  .btn-floater { width:48px; height:48px; border-radius:12px; }
-  #resumeBtn { width:52px; height:52px; border-radius:12px; font-size:12px; }
+/* touch targets for small screens */
+@media (max-width:420px){
+  #mainBtn{ width:50px; height:50px; border-radius:12px; font-size:20px; }
+  #downloadMini{ width:40px; height:40px; border-radius:10px; }
 }
-
+  
 </style>
 </head>
 <body>
 
 <div id="loader">Loading images…</div>
 <div id="viewer"><div class="wrap" id="wrap"></div></div>
+
+  <!-- Floating single control (main arrow + mini download) -->
+<div id="floatSingle" aria-hidden="false">
+  <a id="downloadMini" href="portfolio.pdf" target="_blank" rel="noopener" title="Download resume (PDF)">
+    <!-- download SVG -->
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M12 3v12" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M8 11l4 4 4-4" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="3.5" y="3.5" width="17" height="17" rx="2.5" stroke="white" stroke-opacity="0.08" stroke-width="1.2"/>
+    </svg>
+  </a>
+
+  <button id="mainBtn" aria-label="Scroll to top or bottom" title="Scroll to top / bottom">
+    <!-- arrow path, direction will be toggled by JS -->
+    <svg id="mainIcon" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path id="arrowPath" d="M6 15l6-6 6 6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+</div>
 
 <script>
 (function(){
@@ -192,125 +229,106 @@
   })();
 })();
 
-  // Floating quick controls behaviour
 (function(){
-  const viewer = document.getElementById('viewer') || window; // fallback to window if no viewer container
-  const controls = document.getElementById('float-controls');
-  const topBtn = document.getElementById('jumpTop');
-  const bottomBtn = document.getElementById('jumpBottom');
-  const resumeBtn = document.getElementById('resumeBtn');
+  const viewerEl = document.getElementById('viewer'); // your scroll container
+  const viewer = viewerEl || window; // fallback to window if not present
 
-  // Safety: if missing elements, stop
-  if(!controls || !topBtn || !bottomBtn || !resumeBtn) return;
+  const mainBtn = document.getElementById('mainBtn');
+  const mainIconPath = document.getElementById('arrowPath');
+  const floatSingle = document.getElementById('floatSingle');
 
-  // Scroll actions: smooth scroll inside viewer (if exists) else page
-  function scrollToTop() {
-    if(viewer === window) window.scrollTo({ top:0, behavior:'smooth' });
+  if(!mainBtn || !floatSingle) return;
+
+  // Scroll helpers
+  function getScrollTop(){
+    if(viewer === window) return window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    return viewer.scrollTop;
+  }
+  function getScrollHeight(){
+    if(viewer === window) return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+    return viewer.scrollHeight;
+  }
+  function getClientHeight(){
+    if(viewer === window) return window.innerHeight || document.documentElement.clientHeight;
+    return viewer.clientHeight;
+  }
+
+  function scrollToTop(){
+    if(viewer === window) window.scrollTo({ top: 0, behavior: 'smooth' });
     else viewer.scrollTo({ top: 0, behavior: 'smooth' });
   }
-  function scrollToBottom() {
-    if(viewer === window) window.scrollTo({ top: document.body.scrollHeight, behavior:'smooth' });
+  function scrollToBottom(){
+    if(viewer === window) window.scrollTo({ top: getScrollHeight(), behavior: 'smooth' });
     else viewer.scrollTo({ top: viewer.scrollHeight, behavior: 'smooth' });
   }
 
-  topBtn.addEventListener('click', scrollToTop);
-  bottomBtn.addEventListener('click', scrollToBottom);
-
-  // Auto-hide logic:
-  // - show controls when user moves mouse, touches screen, or scrolls inside viewer
-  // - hide after X ms of inactivity
-  let hideTimer = null;
-  const HIDE_AFTER = 3500; // ms idle before hiding
-
-  function showControls() {
-    controls.classList.remove('float-hidden');
-    // reset hide timer
-    if(hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
-    hideTimer = setTimeout(()=>controls.classList.add('float-hidden'), HIDE_AFTER);
+  // toggle icon direction depending on position
+  function updateIconDirection(){
+    const top = getScrollTop();
+    const remain = getScrollHeight() - (top + getClientHeight());
+    // if near bottom show UP arrow (so clicking takes you to top), else show DOWN arrow
+    if(remain < 120){
+      // near bottom -> show up arrow
+      mainIconPath.setAttribute('d', 'M6 15l6-6 6 6'); // up arrow (same as original)
+    } else {
+      // not near bottom -> show down arrow
+      mainIconPath.setAttribute('d', 'M6 9l6 6 6-6'); // down arrow
+    }
   }
 
-  function initHideTimer() {
-    // show initially then schedule hide
+  // click action: if near bottom -> go top; else go bottom
+  mainBtn.addEventListener('click', ()=>{
+    const top = getScrollTop();
+    const remain = getScrollHeight() - (top + getClientHeight());
+    if(remain < 120) scrollToTop(); else scrollToBottom();
+    // show controls when clicked
     showControls();
-  }
-
-  // Events to wake controls
-  const wakeEvents = ['mousemove','keydown','touchstart','wheel'];
-  wakeEvents.forEach(ev => {
-    // attach to viewer if it exists, else window
-    (viewer === window ? window : viewer).addEventListener(ev, showControls, { passive: true });
   });
 
-  // Also show on clicking anywhere
-  (viewer === window ? window : viewer).addEventListener('click', showControls, { passive: true });
-
-  // Also show when the resume button is hovered (desktop)
-  resumeBtn.addEventListener('mouseenter', showControls);
-
-  // Start timer
-  initHideTimer();
-
-  // Accessibility: show controls when focusing via keyboard
-  document.addEventListener('focusin', showControls);
-
-  // Optional: hide controls when viewer is near top (so they don't overlay initial hero)
-  function updateVisibilityBasedOnScroll(){
-    let scrollTop = (viewer === window) ? window.scrollY : viewer.scrollTop;
-    // hide Top button if already near top
-    if(scrollTop < 80) topBtn.style.opacity = '0.45';
-    else topBtn.style.opacity = '1';
-    // hide Bottom button if near bottom
-    let distanceToBottom = (viewer === window) ? (document.body.scrollHeight - (window.scrollY + window.innerHeight)) : (viewer.scrollHeight - (viewer.scrollTop + viewer.clientHeight));
-    if(distanceToBottom < 120) bottomBtn.style.opacity = '0.45';
-    else bottomBtn.style.opacity = '1';
+  // Auto-hide logic
+  let hideTimer = null;
+  const HIDE_AFTER = 3000; // ms
+  function showControls(){
+    floatSingle.classList.remove('float-hidden');
+    if(hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+    hideTimer = setTimeout(()=> floatSingle.classList.add('float-hidden'), HIDE_AFTER);
   }
-  (viewer === window ? window : viewer).addEventListener('scroll', ()=>{
-    showControls(); updateVisibilityBasedOnScroll();
-  }, { passive:true });
 
-  // Initial visibility update
-  updateVisibilityBasedOnScroll();
+  // Events to show controls
+  const wakeTargets = (viewer === window ? [window] : [viewer]);
+  wakeTargets.forEach(t => {
+    t.addEventListener('mousemove', showControls, { passive:true });
+    t.addEventListener('touchstart', showControls, { passive:true });
+    t.addEventListener('wheel', showControls, { passive:true });
+    t.addEventListener('keydown', showControls, { passive:true });
+    t.addEventListener('scroll', ()=>{ showControls(); updateIconDirection(); }, { passive:true });
+  });
 
-  // If you want to auto-hide the resume button specifically when user scrolls (optional),
-  // uncomment next lines:
-  // (viewer === window ? window : viewer).addEventListener('scroll', () => {
-  //   resumeBtn.style.opacity = '0.0'; // hide
-  //   // show back after a short delay
-  //   clearTimeout(hideTimer);
-  //   hideTimer = setTimeout(()=>resumeBtn.style.opacity = '1.0', 1200);
-  // }, { passive:true });
+  // initial state
+  showControls();
+  updateIconDirection();
+
+  // update icon on resize (recalculate)
+  window.addEventListener('resize', updateIconDirection);
+
+  // Accessibility: keyboard activate main button with Enter/Space
+  mainBtn.addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter' || e.key === ' '){
+      e.preventDefault();
+      mainBtn.click();
+    }
+  });
+
+  // If you want to control the resume download click behavior or change filename:
+  // const downloadMini = document.getElementById('downloadMini');
+  // downloadMini.href = 'portfolio.pdf'; // set or change dynamically
 
 })();
 
 </script>
 
-  <!-- Floating controls: Top, Resume, Bottom -->
-<div id="float-controls" aria-hidden="false">
-  <button id="jumpTop" class="btn-floater" title="Go to top" aria-label="Go to top">
-    <!-- Up arrow SVG -->
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <path d="M6 15l6-6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
-
-  <a id="resumeBtn" class="btn-floater" href="portfolio.pdf" target="_blank" rel="noopener" download title="Download Resume (PDF)" aria-label="Download Resume">
-    <!-- File / download SVG + small label -->
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <path d="M12 3v12" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M8 11l4 4 4-4" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      <rect x="3.5" y="3.5" width="17" height="17" rx="2.5" stroke="white" stroke-opacity="0.12" stroke-width="1.2"/>
-    </svg>
-  </a>
-
-  <button id="jumpBottom" class="btn-floater" title="Go to bottom" aria-label="Go to bottom">
-    <!-- Down arrow SVG -->
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
-</div>
-
 </body>
 </html>
+
 
 
