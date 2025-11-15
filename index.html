@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Portfolio</title>
+<title>Saurav Panda - Portfolio</title>
 
 <style>
   html,body{
@@ -26,11 +26,10 @@
 
   .sep{height:0;margin:0;padding:0;}
 
-  /* loader container (centered) */
   #loader{
     position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);
-    background:transparent;padding:0;color:#fff;font-weight:700;border-radius:10px;z-index:9999;
-    display:flex;flex-direction:column;gap:18px;align-items:center;justify-content:center;pointer-events:none;
+    background:rgba(0,0,0,0.6);padding:12px 16px;color:#fff;
+    font-weight:700;border-radius:10px;z-index:9999;
   }
 
   .lb{
@@ -52,130 +51,94 @@
     display:flex;align-items:center;gap:12px;pointer-events:none;
   }
 
-  /* Make both controls circular and same size */
-  :root{ --float-size:56px; }
   #mainBtn{
-    pointer-events:auto;
-    width:var(--float-size);
-    height:var(--float-size);
-    min-width:var(--float-size);
-    min-height:var(--float-size);
-    border-radius:999px;
+    pointer-events:auto;width:44px;height:44px;border-radius:100px;
     background:linear-gradient(180deg,rgba(255,255,255,0.10),rgba(255,255,255,0.03));
     border:1px solid rgba(255,255,255,0.18);
-    backdrop-filter:blur(14px) saturate(160%);
-    -webkit-backdrop-filter:blur(14px) saturate(160%);
+    backdrop-filter:blur(16px) saturate(180%);
+    -webkit-backdrop-filter:blur(16px) saturate(180%);
     box-shadow:0 14px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);
-    display:grid;place-items:center;cursor:pointer;color:#fff;
-    transition:transform .18s,box-shadow .18s,opacity .18s;position:relative;
+    display:grid;place-items:center;cursor:pointer;color:#000;
+    transition:transform .20s, box-shadow .20s, opacity .20s;
+    position:relative;
   }
 
   #mainBtn::before{
-    content:'';position:absolute;inset:-8px;border-radius:999px;
-    background:linear-gradient(90deg,rgba(124,58,237,0.08),rgba(6,182,212,0.07));
-    filter:blur(12px);opacity:0;transition:opacity .25s;pointer-events:none;
+    content:'';position:absolute;inset:-8px;border-radius:28px;
+    background:linear-gradient(90deg,rgba(124,58,237,0.10),rgba(6,182,212,0.10));
+    filter:blur(18px);opacity:0;transition:opacity .25s;
   }
   #mainBtn:hover::before{ opacity:1; }
 
   #mainBtn:hover{ transform:translateY(-6px) scale(1.03); }
   #mainBtn:active{ transform:scale(0.96); }
 
-  /* icon size and stroke */
-  #mainBtn svg { width:24px;height:24px; }
-  #mainBtn svg path { stroke:white; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; fill:none; }
+  #mainBtn svg path{
+    stroke:white;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+  }
 
-  /* Download circular button */
+  /* Resume Pill */
   #downloadMini{
-    pointer-events:auto;
-    width:var(--float-size);
-    height:var(--float-size);
-    min-width:var(--float-size);
-    min-height:var(--float-size);
-    border-radius:999px;
-    padding:0;display:grid;place-items:center;
-    background:linear-gradient(180deg, rgba(124,58,237,0.22), rgba(91,33,182,0.24));
-    border:1px solid rgba(0,0,0,0.12);
-    box-shadow:0 12px 32px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.03);
-    color:#fff;text-decoration:none;font-weight:700;font-size:14px;
-    transform:translateX(0);transition:transform .16s,box-shadow .16s,opacity .18s;
-  }
-  /* hide long text inside; show only chevron if present */
-  #downloadMini .dl-label{ display:none; }
-  #downloadMini:hover{ transform:translateY(-4px) scale(1.03); box-shadow:0 20px 48px rgba(124,58,237,0.18); }
-
-  .float-hidden{ opacity:0; transform:translateY(12px) scale(0.95); pointer-events:none; transition:opacity .2s,transform .2s; }
-
-  /* ========== Premium iPhone-style skeleton ========== */
-  .skel-wrap {
-    display:flex;flex-direction:column;gap:18px;align-items:center;justify-content:center;
-    width:100%;box-sizing:border-box;padding:0;margin:0;
+    pointer-events:auto;display:flex;align-items:center;gap:8px;
+    height:44px;padding:0 14px;border-radius:16px;
+    background:linear-gradient(180deg,rgba(255,255,255,0.10),rgba(255,255,255,0.03));
+    border:1px solid rgba(255,255,255,0.18);
+    backdrop-filter:blur(16px) saturate(180%);
+    -webkit-backdrop-filter:blur(16px) saturate(180%);
+    box-shadow:0 14px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);
+    color:#000;text-decoration:none;font-weight:700;font-size:15px;
+    transform:translateX(-6px);
+    transition:transform .20s, opacity .20s;
   }
 
-  .skel-page {
-    width:100vw;max-width:100%;height:84vh;border-radius:18px;
-    background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-    box-shadow:0 18px 60px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.02);
-    overflow:hidden;position:relative;transform-origin:center;
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px) saturate(140%);
+  #downloadMini:hover{
+    transform:translateX(-10px) translateY(-4px);
+   /* box-shadow:0 20px 50px rgba(124,58,237,0.20); */
   }
 
-  .skel-shimmer {
-    position:absolute;inset:0;
-    background: linear-gradient(120deg,
-      rgba(255,255,255,0.00) 0%,
-      rgba(255,255,255,0.035) 30%,
-      rgba(255,255,255,0.06) 50%,
-      rgba(255,255,255,0.035) 70%,
-      rgba(255,255,255,0.00) 100%);
-    transform:translateX(-40%) rotate(-6deg);
-    filter: blur(18px) saturate(120%);animation:skel-shimmer-move 1.35s ease-in-out infinite;
-    will-change:transform;
+  .float-hidden{
+    opacity:0;transform:translateY(12px) scale(0.95);pointer-events:none;
   }
 
-  .skel-lines {
-    position:absolute;left:6%;right:6%;bottom:8%;height:12%;display:flex;flex-direction:column;gap:8px;justify-content:flex-end;pointer-events:none;
-  }
-  .skel-lines > div{ height:10px;border-radius:6px;background:linear-gradient(90deg, rgba(0,0,0,0.06), rgba(255,255,255,0.03)); opacity:0.85; }
+  /* SKELETON LOADER */
+.skeleton {
+  width: 100vw;
+  height: 80vh;
+  background: linear-gradient(90deg, #1f1f1f 0px, #2b2b2b 40px, #1f1f1f 80px);
+  background-size: 600px 100%;
+  animation: skeleton-loading 1.4s infinite ease-in-out;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
 
-  @keyframes skel-shimmer-move{
-    0%{ transform:translateX(-60%) rotate(-6deg); opacity:0.95; }
-    50%{ transform:translateX(40%) rotate(-6deg); opacity:1; }
-    100%{ transform:translateX(120%) rotate(-6deg); opacity:0.95; }
-  }
+@keyframes skeleton-loading {
+  0% { background-position: -600px 0; }
+  100% { background-position: 600px 0; }
+}
 
-  /* hide/fade loader */
-  #loader.hide{ transition:opacity .45s ease, transform .45s ease; opacity:0; transform:translateY(6px) scale(.995); pointer-events:none; }
-
-  @media (max-width:900px){ .skel-page{height:78vh;border-radius:14px;} }
-  @media (max-width:420px){ .skel-page{height:72vh;border-radius:10px;} .skel-lines>div{height:8px;} }
 </style>
 </head>
 
 <body>
 
-<div id="loader" aria-hidden="false"></div>
+<div id="loader"></div>
 <div id="viewer"><div class="wrap" id="wrap"></div></div>
 
 
 <!-- --------- FLOATING BUTTON GROUP ----------- -->
 <div id="floatSingle">
-  <!-- Download chevron inside circle -->
-  <a id="downloadMini" href="assets/files/portfolio.pdf" download aria-label="Download resume">
-    <span class="dl-label">Resume</span>
-    <span class="dl-chevron">⤓</span>
-  </a>
+  <a id="downloadMini" href="assets/files/saurav_panda_resume.pdf" download>Resume ⤵</a>
 
-  <button id="mainBtn" aria-label="Scroll to top or bottom">
-    <svg id="mainIcon" width="26" height="26" viewBox="0 0 24 24" aria-hidden>
+  <button id="mainBtn">
+    <svg id="mainIcon" width="26" height="26" viewBox="0 0 24 24">
       <path id="arrowPath" d="M6 15l6-6 6 6"></path>
     </svg>
   </button>
 </div>
 
-
 <script>
-/* --------- IMAGE LOADER + SKELETONS ----------- */
+/* --------- IMAGE LOADER ----------- */
 (function(){
   const wrap = document.getElementById('wrap');
   const loader = document.getElementById('loader');
@@ -192,35 +155,15 @@
     wrap.appendChild(Object.assign(document.createElement('div'),{className:'sep'}));
   }
 
-  // show premium skeletons
-  function showSkeletons(count=3){
-    loader.innerHTML = '';
-    const holder = document.createElement('div');
-    holder.className = 'skel-wrap';
-    for(let i=0;i<count;i++){
-      const page = document.createElement('div');
-      page.className = 'skel-page';
-      const shimmer = document.createElement('div'); shimmer.className='skel-shimmer';
-      page.appendChild(shimmer);
-      const lines = document.createElement('div'); lines.className='skel-lines';
-      for(let j=0;j<3;j++){ const l=document.createElement('div'); lines.appendChild(l); }
-      page.appendChild(lines);
-      holder.appendChild(page);
-    }
-    loader.appendChild(holder);
-    loader.classList.remove('hide');
-    loader.style.display = 'flex';
-  }
-
-  // hide skeletons gracefully
-  function hideSkeletons(){
-    loader.classList.add('hide');
-    setTimeout(()=>{ try{ loader.remove(); }catch(e){} }, 520);
-  }
-
   async function scan(){
-    // show skeletons while scanning (3 pages visual)
-    showSkeletons(3);
+
+    // Insert skeleton blocks
+loader.innerHTML = '';
+for (let i = 0; i < 5; i++) {
+  const sk = document.createElement('div');
+  sk.className = 'skeleton';
+  loader.appendChild(sk);
+}
 
     let found=false;
     for(let n=1;n<300;n++){
@@ -233,14 +176,12 @@
       else{ miss=0; found=true; }
       idx++;
     }
-
-    // hide skeletons
-    hideSkeletons();
+    loader.style.opacity = '0';
+setTimeout(() => loader.remove(), 300);   // fade out
+    
   }
-
   scan();
 })();
-
 
 /* --------- LIGHTBOX ----------- */
 function openLightbox(src){
@@ -252,7 +193,6 @@ function openLightbox(src){
   lb.onclick=e=>{ if(e.target===lb) lb.remove(); };
   lb.appendChild(img); lb.appendChild(cls); document.body.appendChild(lb);
 }
-
 
 /* --------- FLOATING CONTROL LOGIC ----------- */
 (function(){
