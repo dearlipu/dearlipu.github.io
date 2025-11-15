@@ -48,32 +48,57 @@
     #loader{font-size:14px;padding:8px 10px}
   }
 
-  /* Quick Navigation Buttons */
-#quick-nav {
+  /* Floating controls: top, bottom, resume */
+#float-controls {
   position: fixed;
   right: 18px;
-  bottom: 18px;
+  bottom: 24px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  z-index: 9999;
+  gap: 12px;
+  z-index: 12000;
+  pointer-events: none; /* allow precise per-button pointer control */
 }
 
-#quick-nav button {
-  width: 48px;
-  height: 48px;
-  font-size: 22px;
-  border: none;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.12);
-  color: white;
+.btn-floater {
+  pointer-events: auto;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: inline-grid;
+  place-items: center;
+  background: rgba(0,0,0,0.54);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 8px 28px rgba(2,6,23,0.5);
   cursor: pointer;
+  transition: transform .18s ease, opacity .18s ease, background .18s ease;
+  -webkit-tap-highlight-color: transparent;
   backdrop-filter: blur(6px);
-  transition: 0.2s;
+  user-select: none;
+}
+.btn-floater:active { transform: translateY(1px) scale(.995); }
+.btn-floater:hover { transform: translateY(-3px) }
+
+/* Resume button slightly larger and labeled */
+#resumeBtn {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  font-weight:700;
+  font-size:13px;
+  padding:6px;
+  background: linear-gradient(180deg,#7c3aed,#5b21b6);
 }
 
-#quick-nav button:hover {
-  background: rgba(255,255,255,0.22);
+/* hidden state for auto-hide */
+.float-hidden { opacity: 0; transform: translateY(8px) scale(.98); pointer-events: none; }
+
+/* small-screen: nudge left a bit to avoid system gestures */
+@media (max-width:420px) {
+  #float-controls { right: 12px; bottom: 18px; gap:10px; }
+  .btn-floater { width:48px; height:48px; border-radius:12px; }
+  #resumeBtn { width:52px; height:52px; border-radius:12px; font-size:12px; }
 }
 
 </style>
@@ -167,24 +192,125 @@
   })();
 })();
 
-  // Quick scroll buttons
-document.getElementById("toTop").onclick = () => {
-  document.getElementById("viewer").scrollTo({ top: 0, behavior: 'smooth' });
-};
+  // Floating quick controls behaviour
+(function(){
+  const viewer = document.getElementById('viewer') || window; // fallback to window if no viewer container
+  const controls = document.getElementById('float-controls');
+  const topBtn = document.getElementById('jumpTop');
+  const bottomBtn = document.getElementById('jumpBottom');
+  const resumeBtn = document.getElementById('resumeBtn');
 
-document.getElementById("toBottom").onclick = () => {
-  const viewer = document.getElementById("viewer");
-  viewer.scrollTo({ top: viewer.scrollHeight, behavior: 'smooth' });
-};
+  // Safety: if missing elements, stop
+  if(!controls || !topBtn || !bottomBtn || !resumeBtn) return;
+
+  // Scroll actions: smooth scroll inside viewer (if exists) else page
+  function scrollToTop() {
+    if(viewer === window) window.scrollTo({ top:0, behavior:'smooth' });
+    else viewer.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function scrollToBottom() {
+    if(viewer === window) window.scrollTo({ top: document.body.scrollHeight, behavior:'smooth' });
+    else viewer.scrollTo({ top: viewer.scrollHeight, behavior: 'smooth' });
+  }
+
+  topBtn.addEventListener('click', scrollToTop);
+  bottomBtn.addEventListener('click', scrollToBottom);
+
+  // Auto-hide logic:
+  // - show controls when user moves mouse, touches screen, or scrolls inside viewer
+  // - hide after X ms of inactivity
+  let hideTimer = null;
+  const HIDE_AFTER = 3500; // ms idle before hiding
+
+  function showControls() {
+    controls.classList.remove('float-hidden');
+    // reset hide timer
+    if(hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+    hideTimer = setTimeout(()=>controls.classList.add('float-hidden'), HIDE_AFTER);
+  }
+
+  function initHideTimer() {
+    // show initially then schedule hide
+    showControls();
+  }
+
+  // Events to wake controls
+  const wakeEvents = ['mousemove','keydown','touchstart','wheel'];
+  wakeEvents.forEach(ev => {
+    // attach to viewer if it exists, else window
+    (viewer === window ? window : viewer).addEventListener(ev, showControls, { passive: true });
+  });
+
+  // Also show on clicking anywhere
+  (viewer === window ? window : viewer).addEventListener('click', showControls, { passive: true });
+
+  // Also show when the resume button is hovered (desktop)
+  resumeBtn.addEventListener('mouseenter', showControls);
+
+  // Start timer
+  initHideTimer();
+
+  // Accessibility: show controls when focusing via keyboard
+  document.addEventListener('focusin', showControls);
+
+  // Optional: hide controls when viewer is near top (so they don't overlay initial hero)
+  function updateVisibilityBasedOnScroll(){
+    let scrollTop = (viewer === window) ? window.scrollY : viewer.scrollTop;
+    // hide Top button if already near top
+    if(scrollTop < 80) topBtn.style.opacity = '0.45';
+    else topBtn.style.opacity = '1';
+    // hide Bottom button if near bottom
+    let distanceToBottom = (viewer === window) ? (document.body.scrollHeight - (window.scrollY + window.innerHeight)) : (viewer.scrollHeight - (viewer.scrollTop + viewer.clientHeight));
+    if(distanceToBottom < 120) bottomBtn.style.opacity = '0.45';
+    else bottomBtn.style.opacity = '1';
+  }
+  (viewer === window ? window : viewer).addEventListener('scroll', ()=>{
+    showControls(); updateVisibilityBasedOnScroll();
+  }, { passive:true });
+
+  // Initial visibility update
+  updateVisibilityBasedOnScroll();
+
+  // If you want to auto-hide the resume button specifically when user scrolls (optional),
+  // uncomment next lines:
+  // (viewer === window ? window : viewer).addEventListener('scroll', () => {
+  //   resumeBtn.style.opacity = '0.0'; // hide
+  //   // show back after a short delay
+  //   clearTimeout(hideTimer);
+  //   hideTimer = setTimeout(()=>resumeBtn.style.opacity = '1.0', 1200);
+  // }, { passive:true });
+
+})();
 
 </script>
-  
-<!-- Quick Navigation Buttons -->
-<div id="quick-nav">
-  <button id="toTop">⬆</button>
-  <button id="toBottom">⬇</button>
+
+  <!-- Floating controls: Top, Resume, Bottom -->
+<div id="float-controls" aria-hidden="false">
+  <button id="jumpTop" class="btn-floater" title="Go to top" aria-label="Go to top">
+    <!-- Up arrow SVG -->
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M6 15l6-6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <a id="resumeBtn" class="btn-floater" href="portfolio.pdf" target="_blank" rel="noopener" download title="Download Resume (PDF)" aria-label="Download Resume">
+    <!-- File / download SVG + small label -->
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M12 3v12" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M8 11l4 4 4-4" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="3.5" y="3.5" width="17" height="17" rx="2.5" stroke="white" stroke-opacity="0.12" stroke-width="1.2"/>
+    </svg>
+  </a>
+
+  <button id="jumpBottom" class="btn-floater" title="Go to bottom" aria-label="Go to bottom">
+    <!-- Down arrow SVG -->
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
 </div>
 
 </body>
 </html>
+
 
