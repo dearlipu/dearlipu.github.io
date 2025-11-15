@@ -45,57 +45,92 @@
     z-index:9999;font-weight:700;
   }
 
-  /* ---- PREMIUM GLASS FLOATING CONTROLS ---- */
-  #floatSingle{
-    position:fixed;right:20px;bottom:20px;z-index:14000;
-    display:flex;align-items:center;gap:12px;pointer-events:none;
-  }
+  /* === Make both controls circular, equal height, aligned === */
+/* change size here if you want larger/smaller */
+:root { --float-size: 56px; --float-gap: 10px; }
 
-  #mainBtn{
-    pointer-events:auto;width:64px;height:64px;border-radius:20px;
-    background:linear-gradient(180deg,rgba(255,255,255,0.10),rgba(255,255,255,0.03));
-    border:1px solid rgba(255,255,255,0.18);
-    backdrop-filter:blur(18px) saturate(180%);
-    -webkit-backdrop-filter:blur(18px) saturate(180%);
-    box-shadow:0 18px 50px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.05);
-    display:grid;place-items:center;cursor:pointer;color:#fff;
-    transition:transform .20s, box-shadow .20s, opacity .20s;
-    position:relative;
-  }
+/* container slightly adjusted to avoid being covered by scrollbar */
+#floatSingle {
+  right: 18px;
+  bottom: 20px;
+  gap: var(--float-gap);
+  /* keep pointer-events:none for container; buttons remain interactive */
+  pointer-events: none;
+}
 
-  #mainBtn::before{
-    content:'';position:absolute;inset:-8px;border-radius:28px;
-    background:linear-gradient(90deg,rgba(124,58,237,0.10),rgba(6,182,212,0.10));
-    filter:blur(18px);opacity:0;transition:opacity .25s;
-  }
-  #mainBtn:hover::before{ opacity:1; }
+/* MAIN circular button */
+#mainBtn {
+  pointer-events: auto;
+  width: var(--float-size);
+  height: var(--float-size);
+  min-width: var(--float-size);
+  min-height: var(--float-size);
+  border-radius: 50%;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 16px 44px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.03);
+  transition: transform .18s, box-shadow .18s, opacity .18s;
+  transform-origin: center;
+  position: relative;
+  color: #fff;
+}
 
-  #mainBtn:hover{ transform:translateY(-6px) scale(1.03); }
-  #mainBtn:active{ transform:scale(0.96); }
+/* keep subtle glow ring but shrink so it fits circle */
+#mainBtn::before{
+  inset: -6px;
+  border-radius: 999px;
+  filter: blur(12px);
+}
 
-  #mainBtn svg path{
-    stroke:white;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
-  }
+/* scale + hover */
+#mainBtn:hover{ transform: translateY(-4px) scale(1.03); }
+#mainBtn:active{ transform: translateY(-1px) scale(.99); }
 
-  /* Resume Pill */
-  #downloadMini{
-    pointer-events:auto;display:flex;align-items:center;gap:8px;
-    height:44px;padding:0 14px;border-radius:16px;
-    background:linear-gradient(180deg,rgba(255,255,255,0.10),rgba(255,255,255,0.03));
-    border:1px solid rgba(255,255,255,0.18);
-    backdrop-filter:blur(16px) saturate(180%);
-    -webkit-backdrop-filter:blur(16px) saturate(180%);
-    box-shadow:0 14px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);
-    color:#fff;text-decoration:none;font-weight:700;font-size:15px;
-    transform:translateX(-6px);
-    transition:transform .20s, opacity .20s;
-  }
+/* make icon centered and slightly bigger for clarity */
+#mainBtn svg { width: 22px; height:22px; }
+#mainBtn svg path { stroke-width: 1.9; }
 
-  #downloadMini:hover{
-    transform:translateX(-10px) translateY(-4px);
-    box-shadow:0 20px 50px rgba(124,58,237,0.20);
-  }
+/* DOWNLOAD button as circle to match main button */
+#downloadMini {
+  pointer-events: auto;
+  width: var(--float-size);
+  height: var(--float-size);
+  min-width: var(--float-size);
+  min-height: var(--float-size);
+  border-radius: 50%;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, rgba(124,58,237,0.20), rgba(91,33,182,0.22));
+  border: 1px solid rgba(0,0,0,0.12);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);
+  color: #fff;
+  text-decoration: none;
+  font-weight:700;
+  transition: transform .18s, box-shadow .18s, opacity .18s;
+  transform: translateX(0); /* don't tuck it; keep aligned */
+}
 
+/* show chevron or small icon inside; hide long label text if present */
+#downloadMini .dl-label { display: none !important; }
+#downloadMini .dl-chevron { display: inline-block; font-size: 16px; transform: translateY(0); }
+
+/* hover effect */
+#downloadMini:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 18px 46px rgba(124,58,237,0.16); }
+
+/* Auto-hide class (keeps same transitions) */
+.float-hidden { opacity: 0; transform: translateY(12px) scale(.96); pointer-events: none; }
+
+/* Small screen tweak */
+@media (max-width:420px){
+  :root { --float-size: 50px; --float-gap: 8px; }
+  #downloadMini .dl-chevron { font-size: 15px; }
+  #mainBtn svg { width: 20px; height: 20px; }
+}
+  
   .float-hidden{
     opacity:0;transform:translateY(12px) scale(0.95);pointer-events:none;
   }
@@ -205,3 +240,4 @@ function openLightbox(src){
 
 </body>
 </html>
+
