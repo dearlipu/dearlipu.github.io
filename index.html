@@ -1,130 +1,207 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Portfolio</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <style>
-    :root { --bg: #ffffff; --maxw:1200px; --gap:0px; }
-    html,body{height:100%;margin:0;background:var(--bg);color:#fff;font-family:system-ui,Segoe UI,Roboto,Arial;}
-    .wrap{max-width:var(--maxw);margin:0 auto;padding:0;box-sizing:border-box;}
-    /* each page block — zero margins so pages touch */
-    .page { margin: 0; display:block; width:100%; line-height:0; background:transparent; }
-    .page img{ width:100%; height:auto; display:block; border:0; margin:0; padding:0; background:transparent; }
-    /* loader message */
-    .loader { color:#cfd8e3; text-align:center; padding:36px 16px; font-weight:700; }
-    /* lightbox */
-    .lb { position:fixed; inset:0; background:rgba(0,0,0,0.95); display:flex; align-items:center; justify-content:center; z-index:9999; }
-    .lb img{ max-width:98vw; max-height:96vh; width:auto; height:auto; box-shadow:0 20px 80px rgba(0,0,0,0.9); }
-    .lb-close { position:fixed; top:18px; right:18px; color:#fff; font-weight:700; background:rgba(255,255,255,0.04); padding:8px 12px; border-radius:8px; cursor:pointer; z-index:10000; }
-    /* small-screen padding */
-    @media (max-width:700px){ .wrap{padding:0 8px} }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Portfolio</title>
+
+<style>
+  html,body{
+    height:100%;margin:0;padding:0;overflow-x:hidden;background:#000;
+    font-family:-apple-system,system-ui,Segoe UI,Roboto,sans-serif;
+  }
+
+  #viewer{
+    width:100vw;height:100vh;overflow:auto;-webkit-overflow-scrolling:touch;
+    margin:0;padding:0;box-sizing:border-box;
+  }
+
+  .wrap{width:100%;margin:0;padding:0;}
+
+  .page{margin:0;padding:0;line-height:0;}
+  .page img{
+    width:100vw;height:auto;margin:0;border:0;display:block;
+    object-fit:cover;user-select:none;
+  }
+
+  .sep{height:0;margin:0;padding:0;}
+
+  #loader{
+    position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);
+    background:rgba(0,0,0,0.6);padding:12px 16px;color:#fff;
+    font-weight:700;border-radius:10px;z-index:9999;
+  }
+
+  .lb{
+    position:fixed;inset:0;background:rgba(0,0,0,0.95);
+    display:flex;align-items:center;justify-content:center;z-index:9998;
+  }
+  .lb img{
+    max-width:96vw;max-height:96vh;box-shadow:0 20px 80px rgba(0,0,0,0.8);
+  }
+  .lb-close{
+    position:fixed;top:16px;right:16px;padding:8px 12px;color:#fff;
+    background:rgba(255,255,255,0.08);border-radius:10px;cursor:pointer;
+    z-index:9999;font-weight:700;
+  }
+
+  /* ---- PREMIUM GLASS FLOATING CONTROLS ---- */
+  #floatSingle{
+    position:fixed;right:20px;bottom:20px;z-index:14000;
+    display:flex;align-items:center;gap:12px;pointer-events:none;
+  }
+
+  #mainBtn{
+    pointer-events:auto;width:64px;height:64px;border-radius:20px;
+    background:linear-gradient(180deg,rgba(255,255,255,0.10),rgba(255,255,255,0.03));
+    border:1px solid rgba(255,255,255,0.18);
+    backdrop-filter:blur(18px) saturate(180%);
+    -webkit-backdrop-filter:blur(18px) saturate(180%);
+    box-shadow:0 18px 50px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.05);
+    display:grid;place-items:center;cursor:pointer;color:#fff;
+    transition:transform .20s, box-shadow .20s, opacity .20s;
+    position:relative;
+  }
+
+  #mainBtn::before{
+    content:'';position:absolute;inset:-8px;border-radius:28px;
+    background:linear-gradient(90deg,rgba(124,58,237,0.10),rgba(6,182,212,0.10));
+    filter:blur(18px);opacity:0;transition:opacity .25s;
+  }
+  #mainBtn:hover::before{ opacity:1; }
+
+  #mainBtn:hover{ transform:translateY(-6px) scale(1.03); }
+  #mainBtn:active{ transform:scale(0.96); }
+
+  #mainBtn svg path{
+    stroke:white;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+  }
+
+  /* Resume Pill */
+  #downloadMini{
+    pointer-events:auto;display:flex;align-items:center;gap:8px;
+    height:44px;padding:0 14px;border-radius:16px;
+    background:linear-gradient(180deg,rgba(255,255,255,0.10),rgba(255,255,255,0.03));
+    border:1px solid rgba(255,255,255,0.18);
+    backdrop-filter:blur(16px) saturate(180%);
+    -webkit-backdrop-filter:blur(16px) saturate(180%);
+    box-shadow:0 14px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);
+    color:#fff;text-decoration:none;font-weight:700;font-size:15px;
+    transform:translateX(-6px);
+    transition:transform .20s, opacity .20s;
+  }
+
+  #downloadMini:hover{
+    transform:translateX(-10px) translateY(-4px);
+    box-shadow:0 20px 50px rgba(124,58,237,0.20);
+  }
+
+  .float-hidden{
+    opacity:0;transform:translateY(12px) scale(0.95);pointer-events:none;
+  }
+
+</style>
 </head>
+
 <body>
-  <div class="wrap" id="wrap">
-    <div id="loader" class="loader">Loading Portfolio…</div>
-  </div>
 
-  <script>
-  (function(){
-    // Configuration
-    const folder = 'assets/pages/';    // folder where you upload images
-    const baseName = 'page-';          // base name pattern -> page-1.png, page-2.png, ...
-    const startIndex = 1;              // first page index
-    const maxAttempts = 200;           // safety upper bound for attempts
-    const consecutiveMissingStop = 8;  // stop after this many consecutive missing files
-    const tryExtensions = ['png','jpg','webp']; // tried in order for each index
+<div id="loader">Loading…</div>
+<div id="viewer"><div class="wrap" id="wrap"></div></div>
 
-    const wrap = document.getElementById('wrap');
-    const loader = document.getElementById('loader');
 
-    // Helper to attempt to load a URL, returns promise that resolves true if loaded (img onload), false if not (onerror)
-    function testImage(url, timeout = 8000){
-      return new Promise((resolve) => {
-        const img = new Image();
-        let done = false;
-        const timer = setTimeout(()=>{ if(!done){ done = true; img.src = ''; resolve(false); } }, timeout);
-        img.onload = ()=>{ if(!done){ done = true; clearTimeout(timer); resolve(true); } };
-        img.onerror = ()=>{ if(!done){ done = true; clearTimeout(timer); resolve(false); } };
-        img.decoding = 'async';
-        img.src = url;
-      });
-    }
+<!-- --------- FLOATING BUTTON GROUP ----------- -->
+<div id="floatSingle">
+  <a id="downloadMini" href="portfolio.pdf" download>Resume ⤵</a>
 
-    // Create page element and append to DOM (lazy loading)
-    function appendImage(src, altText){
-      const page = document.createElement('div');
-      page.className = 'page';
-      const img = document.createElement('img');
-      img.loading = 'lazy';
-      img.decoding = 'async';
-      img.alt = altText || '';
-      img.src = src;
-      // open in lightbox when clicked
-      img.addEventListener('click', ()=>openLightbox(src));
-      page.appendChild(img);
-      wrap.appendChild(page);
-    }
+  <button id="mainBtn">
+    <svg id="mainIcon" width="26" height="26" viewBox="0 0 24 24">
+      <path id="arrowPath" d="M6 15l6-6 6 6"></path>
+    </svg>
+  </button>
+</div>
 
-    // Simple lightbox
-    function openLightbox(src){
-      const existing = document.querySelector('.lb');
-      if(existing) existing.remove();
-      const lb = document.createElement('div'); lb.className = 'lb';
-      const img = document.createElement('img'); img.src = src;
-      const close = document.createElement('div'); close.className = 'lb-close'; close.textContent = 'Close';
-      close.onclick = ()=>document.body.removeChild(lb);
-      lb.onclick = (e)=>{ if(e.target === lb) document.body.removeChild(lb); };
-      lb.appendChild(img); lb.appendChild(close);
-      document.body.appendChild(lb);
-    }
 
-    // Core: scan sequentially and append found images
-    (async function scanAndRender(){
-      loader.textContent = 'Scanning images…';
-      let index = startIndex;
-      let consecutiveMissing = 0;
-      let foundAny = false;
+<script>
+/* --------- IMAGE LOADER ----------- */
+(function(){
+  const wrap = document.getElementById('wrap');
+  const loader = document.getElementById('loader');
+  const folder='assets/pages/'; const base='page-'; const tryExt=['png','jpg','webp','gif'];
+  let idx=1, miss=0;
 
-      for(let attempt=0; attempt < maxAttempts; attempt++, index++){
-        let foundForIndex = false;
+  function exists(url){ return new Promise(res=>{ let i=new Image(); i.onload=()=>res(true); i.onerror=()=>res(false); i.src=url; }); }
 
-        for(const ext of tryExtensions){
-          const url = folder + baseName + index + '.' + ext;
-          // test quickly if image exists
-          // On GitHub Pages this should return the image if present
-          // We use testImage which loads the image; it's okay since images will be appended later (cached)
-          const ok = await testImage(url, 6000);
-          if(ok){
-            // append this url and mark found
-            appendImage(url, `Page ${index}`);
-            foundForIndex = true;
-            foundAny = true;
-            consecutiveMissing = 0;
-            break; // stop checking other extensions for this index
-          }
-        }
+  function addImg(url){
+    let p=document.createElement('div'); p.className='page';
+    let img=document.createElement('img'); img.src=url; img.loading='lazy';
+    img.onclick=()=>openLightbox(url);
+    p.appendChild(img); wrap.appendChild(p);
+    wrap.appendChild(Object.assign(document.createElement('div'),{className:'sep'}));
+  }
 
-        if(!foundForIndex){
-          consecutiveMissing++;
-        }
-
-        // stop if we've seen enough consecutive missing files (no more pages)
-        if(consecutiveMissing >= consecutiveMissingStop) break;
+  async function scan(){
+    let found=false;
+    for(let n=1;n<300;n++){
+      let ok=false;
+      for(const ext of tryExt){
+        let path=`${folder}${base}${idx}.${ext}`;
+        if(await exists(path)){ addImg(path); ok=true; break; }
       }
+      if(!ok){ miss++; if(miss>=6) break; }
+      else{ miss=0; found=true; }
+      idx++;
+    }
+    loader.style.display='none';
+  }
+  scan();
+})();
 
-      // finished scanning
-      if(!foundAny){
-        loader.textContent = 'No images found. Upload images named like: ' + folder + baseName + '1.png';
-      }else{
-        loader.style.display = 'none';
-      }
-    })();
 
-  })();
-  </script>
+/* --------- LIGHTBOX ----------- */
+function openLightbox(src){
+  let old=document.querySelector('.lb'); if(old) old.remove();
+  let lb=document.createElement('div'); lb.className='lb';
+  let img=document.createElement('img'); img.src=src;
+  let cls=document.createElement('div'); cls.className='lb-close'; cls.innerText='Close';
+  cls.onclick=()=>lb.remove();
+  lb.onclick=e=>{ if(e.target===lb) lb.remove(); };
+  lb.appendChild(img); lb.appendChild(cls); document.body.appendChild(lb);
+}
+
+
+/* --------- FLOATING CONTROL LOGIC ----------- */
+(function(){
+  const viewer=document.getElementById('viewer');
+  const btn=document.getElementById('mainBtn');
+  const arrow=document.getElementById('arrowPath');
+  const float=document.getElementById('floatSingle');
+
+  function topPos(){ return viewer.scrollTop; }
+  function botRemain(){ return viewer.scrollHeight-(viewer.scrollTop+viewer.clientHeight); }
+
+  function goTop(){ viewer.scrollTo({top:0,behavior:'smooth'}); }
+  function goBottom(){ viewer.scrollTo({top:viewer.scrollHeight,behavior:'smooth'}); }
+
+  function updateIcon(){
+    arrow.setAttribute('d', botRemain()<80 ? 'M6 15l6-6 6 6' : 'M6 9l6 6 6-6');
+  }
+
+  btn.onclick=()=> botRemain()<80 ? goTop() : goBottom();
+
+  let timer=null;
+  function show(){
+    float.classList.remove('float-hidden');
+    if(timer) clearTimeout(timer);
+    timer=setTimeout(()=>float.classList.add('float-hidden'),2100);
+  }
+
+  viewer.addEventListener('scroll',()=>{ updateIcon(); show(); });
+  viewer.addEventListener('mousemove',show);
+  viewer.addEventListener('touchstart',show);
+
+  updateIcon(); show();
+})();
+</script>
+
 </body>
 </html>
-
-
