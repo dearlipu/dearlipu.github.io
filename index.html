@@ -111,7 +111,7 @@
 
 <!-- --------- FLOATING BUTTON GROUP ----------- -->
 <div id="floatSingle">
-  <a id="downloadMini" href="portfolio.pdf" download>Resume ⤵</a>
+  <a id="downloadMini" href="assets/files/portfolio.pdf" download>Resume ⤵</a>
 
   <button id="mainBtn">
     <svg id="mainIcon" width="26" height="26" viewBox="0 0 24 24">
@@ -126,7 +126,7 @@
 (function(){
   const wrap = document.getElementById('wrap');
   const loader = document.getElementById('loader');
-  const folder='assets/pages/'; const base='page-'; const tryExt=['png','jpg','webp'];
+  const folder='assets/pages/'; const base='page-'; const tryExt=['png','jpg','webp','gif'];
   let idx=1, miss=0;
 
   function exists(url){ return new Promise(res=>{ let i=new Image(); i.onload=()=>res(true); i.onerror=()=>res(false); i.src=url; }); }
@@ -205,6 +205,7 @@ function openLightbox(src){
 
 </body>
 </html>
+
 
 
 
