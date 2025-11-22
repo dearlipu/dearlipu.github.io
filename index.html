@@ -59,8 +59,7 @@
     #loader{
       position:fixed;
       inset:0;
-      background:
-        radial-gradient(circle at top,#191919 0,#000 55%);
+      background:radial-gradient(circle at top,#191919 0,#000 55%);
       display:flex;
       flex-direction:column;
       align-items:center;
@@ -148,34 +147,6 @@
       .sk-thumb{
         height:min(360px,45vh);
       }
-    }
-
-    /* Lightbox */
-    .lb{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,0.95);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      z-index:9998;
-    }
-    .lb img{
-      max-width:96vw;
-      max-height:96vh;
-      box-shadow:0 20px 80px rgba(0,0,0,0.8);
-    }
-    .lb-close{
-      position:fixed;
-      top:16px;
-      right:16px;
-      padding:8px 12px;
-      color:#fff;
-      background:rgba(255,255,255,0.08);
-      border-radius:10px;
-      cursor:pointer;
-      z-index:9999;
-      font-weight:700;
     }
 
     /* ---- GLASS FLOATING CONTROLS (RIGHT) ---- */
@@ -401,11 +372,11 @@
   </div>
 
   <!-- --------- SOCIAL FLOAT (LEFT) ----------- -->
- <div id="socialFloat">
+  <div id="socialFloat" class="float-hidden">
     <button id="socialBtn" class="glass-btn" aria-label="Open social links">
       <!-- share / nodes icon -->
       <svg width="22" height="22" viewBox="0 0 24 24">
-        <path d="M7 12a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm10-10a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm0 12a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM9.2 13.4l5.7 2.9M14.9 7.7 9.4 11"/>
+        <path d="M7 12a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm10-10a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm0 12a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM9.2 13.4l5.7 2.9M14.9 7.7 9.4 11"></path>
       </svg>
     </button>
 
@@ -473,7 +444,7 @@
       const img = document.createElement('img');
       img.src   = url;
       img.loading = 'lazy';
-      img.onclick = () => openLightbox(url);
+      // lightbox removed – simple static images
 
       p.appendChild(img);
       wrap.appendChild(p);
@@ -546,29 +517,6 @@
     scan();
   })();
 
-  /* --------- LIGHTBOX ----------- */
-  function openLightbox(src){
-    const old = document.querySelector('.lb');
-    if(old) old.remove();
-
-    const lb  = document.createElement('div');
-    lb.className = 'lb';
-
-    const img = document.createElement('img');
-    img.src = src;
-
-    const cls = document.createElement('div');
-    cls.className = 'lb-close';
-    cls.innerText = 'Close';
-
-    cls.onclick = () => lb.remove();
-    lb.onclick  = e => { if(e.target === lb) lb.remove(); };
-
-    lb.appendChild(img);
-    lb.appendChild(cls);
-    document.body.appendChild(lb);
-  }
-
   /* --------- FLOATING CONTROL LOGIC (SCROLL + AUTOHIDE) ----------- */
   (function(){
     const viewer      = document.getElementById('viewer');
@@ -576,6 +524,7 @@
     const arrow       = document.getElementById('arrowPath');
     const float       = document.getElementById('floatSingle');
     const socialFloat = document.getElementById('socialFloat');
+    const socialMenu  = document.getElementById('socialMenu');
 
     const UP_PATH   = 'M12 17 L12 7 M8 11 L12 7 L16 11';
     const DOWN_PATH = 'M12 7 L12 17 M8 13 L12 17 L16 13';
@@ -602,10 +551,16 @@
     function show(){
       float.classList.remove('float-hidden');
       socialFloat.classList.remove('float-hidden');
+
       if(timer) clearTimeout(timer);
+
       timer = setTimeout(() => {
         float.classList.add('float-hidden');
         socialFloat.classList.add('float-hidden');
+        // also fully close menu when auto-hidden
+        if(socialMenu){
+          socialMenu.classList.remove('open');
+        }
       }, 2100);
     }
 
@@ -630,7 +585,7 @@
         socialMenu.classList.remove('open');
       } else {
         socialMenu.classList.add('open');
-        // when opened, ensure float is visible (do not hide)
+        // when opened, ensure float is visible
         socialFloat.classList.remove('float-hidden');
       }
     }
@@ -640,6 +595,13 @@
     }
 
     socialBtn.addEventListener('click', toggleMenu);
+
+    // Close when clicking any social link (icon)
+    document.querySelectorAll('#socialMenu .social-item').forEach(item => {
+      item.addEventListener('click', () => {
+        closeMenu();
+      });
+    });
 
     // Close when click outside
     document.addEventListener('click', (e) => {
