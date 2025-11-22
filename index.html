@@ -90,7 +90,7 @@
     .skeleton-row{
       display:flex;
       flex-direction:column;
-      gap:10px;
+      gap:14px;
       width:100%;
       max-width:900px;
     }
@@ -135,6 +135,19 @@
     @keyframes skeleton-loading{
       0%{ background-position-x:-120%; }
       100%{ background-position-x:120%; }
+    }
+
+    /* Desktop: bigger & more spread */
+    @media (min-width: 900px){
+      .skeleton-row{
+        flex-direction:row;
+      }
+      .skeleton-page{
+        flex:1;
+      }
+      .sk-thumb{
+        height:min(360px,45vh);
+      }
     }
 
     /* Lightbox */
@@ -182,8 +195,8 @@
       width:44px;
       height:44px;
       border-radius:100px;
-      background:linear-gradient(180deg,rgba(255,255,255,0.10),rgba(255,255,255,0.03));
-      border:1px solid rgba(255,255,255,0.18);
+      background:linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.22);
       backdrop-filter:blur(16px) saturate(180%);
       -webkit-backdrop-filter:blur(16px) saturate(180%);
       box-shadow:0 14px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);
@@ -200,7 +213,7 @@
       position:absolute;
       inset:-8px;
       border-radius:28px;
-      background:linear-gradient(90deg,rgba(124,58,237,0.14),rgba(6,182,212,0.14));
+      background:linear-gradient(90deg,rgba(124,58,237,0.16),rgba(6,182,212,0.16));
       filter:blur(18px);
       opacity:0;
       transition:opacity .25s;
@@ -284,10 +297,10 @@
       left:0;
       padding:10px 12px;
       border-radius:18px;
-      background:linear-gradient(180deg,rgba(15,15,15,0.98),rgba(5,5,5,0.97));
-      border:1px solid rgba(255,255,255,0.12);
+      background:linear-gradient(135deg,rgba(255,255,255,0.14),rgba(255,255,255,0.04));
+      border:1px solid rgba(255,255,255,0.28);
       box-shadow:0 18px 55px rgba(0,0,0,0.85);
-      min-width:210px;
+      min-width:220px;
       display:flex;
       flex-direction:column;
       gap:6px;
@@ -295,6 +308,9 @@
       transform:translateY(10px) scale(0.97);
       pointer-events:none;
       transition:opacity .18s ease, transform .18s ease;
+      color:#f7f7f7;
+      backdrop-filter:blur(18px) saturate(180%);
+      -webkit-backdrop-filter:blur(18px) saturate(180%);
     }
 
     #socialMenu.open{
@@ -307,7 +323,7 @@
       font-size:11px;
       text-transform:uppercase;
       letter-spacing:.12em;
-      opacity:.6;
+      opacity:.7;
       margin-bottom:4px;
     }
 
@@ -328,24 +344,31 @@
     }
 
     .social-badge{
-      width:22px;
-      height:22px;
+      width:24px;
+      height:24px;
       border-radius:999px;
       display:flex;
       align-items:center;
       justify-content:center;
-      font-size:11px;
-      background:rgba(255,255,255,0.06);
+      background:rgba(0,0,0,0.35);
+      border:1px solid rgba(255,255,255,0.35);
+    }
+
+    .social-badge svg{
+      width:14px;
+      height:14px;
+      stroke:#fff;
+      fill:none;
     }
 
     .social-item:hover{
-      background:rgba(255,255,255,0.06);
+      background:rgba(255,255,255,0.10);
     }
 
     .social-footer-text{
       margin-top:4px;
       font-size:10px;
-      opacity:.5;
+      opacity:.55;
     }
   </style>
 </head>
@@ -359,63 +382,88 @@
   </div>
 
   <!-- --------- FLOATING BUTTON GROUP (RIGHT) ----------- -->
-  <div id="floatSingle">
+  <div id="floatSingle" class="float-hidden">
     <a id="downloadMini" href="assets/files/saurav_panda_resume.pdf" download>
       Resume ⤵
     </a>
 
     <button id="mainBtn" class="glass-btn" aria-label="Scroll up/down">
+      <!-- new nicer arrow icon (line + arrow head) -->
       <svg id="mainIcon" width="26" height="26" viewBox="0 0 24 24">
-        <path id="arrowPath" d="M6 15l6-6 6 6"></path>
+        <path id="arrowPath" d="M12 7 L12 17 M8 13 L12 17 L16 13"></path>
       </svg>
     </button>
   </div>
 
   <!-- --------- SOCIAL FLOAT (LEFT) ----------- -->
-  <div id="socialFloat">
+  <div id="socialFloat" class="float-hidden">
     <button id="socialBtn" class="glass-btn" aria-label="Open social links">
       <!-- simple "share / nodes" icon -->
       <svg width="22" height="22" viewBox="0 0 24 24">
-        <path d="M7 12a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm10-10a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm0 12a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM9.2 13.4l5.7 2.9M14.9 7.7 9.4 11"/>
+        <path d="M7 12a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm10-10a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm0 12a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM9.2 13.4l5.7 2.9M14.9 7.7 9.4 11"></path>
       </svg>
     </button>
 
     <div id="socialMenu">
       <div class="social-heading">Connect with me</div>
 
+      <!-- Instagram -->
       <a class="social-item" href="https://instagram.com/dearlipu" target="_blank" rel="noopener">
-        <div class="social-badge">IG</div>
+        <div class="social-badge">
+          <svg viewBox="0 0 24 24">
+            <rect x="5" y="5" width="14" height="14" rx="4" ry="4"></rect>
+            <circle cx="12" cy="12" r="3.3"></circle>
+            <circle cx="16.2" cy="7.8" r="0.8" fill="#fff" stroke="none"></circle>
+          </svg>
+        </div>
         <div>
           <div>Instagram</div>
           <span class="handle">@dearlipu</span>
         </div>
       </a>
 
+      <!-- GitHub -->
       <a class="social-item" href="https://github.com/dearlipu" target="_blank" rel="noopener">
-        <div class="social-badge">GH</div>
+        <div class="social-badge">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 3a9 9 0 0 0-2.8 17.5c.4.1.5-.2.5-.4v-1.4c-2 .4-2.5-.9-2.5-.9-.3-.8-.8-1-0.8-1-.7-.4.1-.4.1-.4.7.1 1.1.7 1.3 1.0.6 1.1 1.6.8 2 .6.1-.5.3-.8.5-1-1.6-.2-3.2-.8-3.2-3.5 0-.8.3-1.4.7-1.9-.1-.2-.3-.9.1-1.9 0 0 .6-.2 2 .7a6.7 6.7 0 0 1 3.6 0c1.4-.9 2-.7 2-.7.4 1 .2 1.7.1 1.9.4.5.7 1.1.7 1.9 0 2.7-1.6 3.3-3.2 3.5.3.2.6.7.6 1.4v2c0 .2.1.5.5.4A9 9 0 0 0 12 3z"></path>
+          </svg>
+        </div>
         <div>
           <div>GitHub</div>
           <span class="handle">github.com/dearlipu</span>
         </div>
       </a>
 
+      <!-- YouTube -->
       <a class="social-item" href="https://youtube.com" target="_blank" rel="noopener">
-        <div class="social-badge">YT</div>
+        <div class="social-badge">
+          <svg viewBox="0 0 24 24">
+            <rect x="4" y="7" width="16" height="10" rx="3" ry="3"></rect>
+            <path d="M11 10.5L14.5 12 11 13.5z"></path>
+          </svg>
+        </div>
         <div>
           <div>YouTube</div>
           <span class="handle">channel coming soon</span>
         </div>
       </a>
 
+      <!-- Email -->
       <a class="social-item" href="mailto:contact@dearlipu.in">
-        <div class="social-badge">@</div>
+        <div class="social-badge">
+          <svg viewBox="0 0 24 24">
+            <rect x="4" y="6" width="16" height="12" rx="2" ry="2"></rect>
+            <path d="M5 8l7 5 7-5"></path>
+          </svg>
+        </div>
         <div>
           <div>Email</div>
           <span class="handle">contact@dearlipu.in</span>
         </div>
       </a>
 
-      <div class="social-footer-text">Tap anywhere outside to close.</div>
+      <div class="social-footer-text">Tap outside to close.</div>
     </div>
   </div>
 
@@ -496,7 +544,6 @@
         let ok = false;
         for(const ext of tryExt){
           const path = `${folder}${base}${idx}.${ext}`;
-          // sequential to avoid hammering disk/network
           // eslint-disable-next-line no-await-in-loop
           if(await exists(path)){
             addImg(path);
@@ -544,12 +591,16 @@
     document.body.appendChild(lb);
   }
 
-  /* --------- FLOATING CONTROL LOGIC (SCROLL) ----------- */
+  /* --------- FLOATING CONTROL LOGIC (SCROLL + AUTOHIDE) ----------- */
   (function(){
-    const viewer = document.getElementById('viewer');
-    const btn    = document.getElementById('mainBtn');
-    const arrow  = document.getElementById('arrowPath');
-    const float  = document.getElementById('floatSingle');
+    const viewer      = document.getElementById('viewer');
+    const btn         = document.getElementById('mainBtn');
+    const arrow       = document.getElementById('arrowPath');
+    const float       = document.getElementById('floatSingle');
+    const socialFloat = document.getElementById('socialFloat');
+
+    const UP_PATH   = 'M12 17 L12 7 M8 11 L12 7 L16 11';
+    const DOWN_PATH = 'M12 7 L12 17 M8 13 L12 17 L16 13';
 
     function botRemain(){
       return viewer.scrollHeight - (viewer.scrollTop + viewer.clientHeight);
@@ -564,8 +615,7 @@
     }
 
     function updateIcon(){
-      // If near bottom, show "up" arrow, else "down"
-      arrow.setAttribute('d', botRemain() < 80 ? 'M6 15l6-6 6 6' : 'M6 9l6 6 6-6');
+      arrow.setAttribute('d', botRemain() < 80 ? UP_PATH : DOWN_PATH);
     }
 
     btn.onclick = () => botRemain() < 80 ? goTop() : goBottom();
@@ -573,8 +623,12 @@
     let timer = null;
     function show(){
       float.classList.remove('float-hidden');
+      socialFloat.classList.remove('float-hidden');
       if(timer) clearTimeout(timer);
-      timer = setTimeout(() => float.classList.add('float-hidden'), 2100);
+      timer = setTimeout(() => {
+        float.classList.add('float-hidden');
+        socialFloat.classList.add('float-hidden');
+      }, 2100);
     }
 
     viewer.addEventListener('scroll', () => { updateIcon(); show(); });
@@ -587,13 +641,15 @@
 
   /* --------- SOCIAL DROPDOWN LOGIC ----------- */
   (function(){
-    const socialBtn  = document.getElementById('socialBtn');
-    const socialMenu = document.getElementById('socialMenu');
-    const socialFloat= document.getElementById('socialFloat');
+    const socialBtn   = document.getElementById('socialBtn');
+    const socialMenu  = document.getElementById('socialMenu');
+    const socialFloat = document.getElementById('socialFloat');
 
     function toggleMenu(e){
       e.stopPropagation();
       socialMenu.classList.toggle('open');
+      // make sure float visible when interacting
+      socialFloat.classList.remove('float-hidden');
     }
 
     function closeMenu(){
