@@ -207,33 +207,6 @@
       stroke-linejoin:round;
     }
 
-    /* Resume Pill */
-    #downloadMini{
-      pointer-events:auto;
-      display:flex;
-      align-items:center;
-      gap:8px;
-      height:44px;
-      padding:0 14px;
-      border-radius:999px;
-      background:linear-gradient(180deg,rgba(255,255,255,0.10),rgba(255,255,255,0.03));
-      border:1px solid rgba(255,255,255,0.18);
-      backdrop-filter:blur(16px) saturate(180%);
-      -webkit-backdrop-filter:blur(16px) saturate(180%);
-      box-shadow:0 14px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);
-      color:#fff;
-      text-decoration:none;
-      font-weight:700;
-      font-size:15px;
-      transform:translateX(-6px);
-      transition:transform .20s, opacity .20s;
-      white-space:nowrap;
-    }
-
-    #downloadMini:hover{
-      transform:translateX(-10px) translateY(-4px);
-    }
-
     .float-hidden{
       opacity:0;
       transform:translateY(12px) scale(0.95);
@@ -248,6 +221,7 @@
       z-index:14000;
       display:flex;
       align-items:flex-end;
+      gap:10px;
       pointer-events:none;
       transition:opacity .2s ease, transform .2s ease;
     }
@@ -263,24 +237,24 @@
       stroke-linejoin:round;
     }
 
-    /* Pill-style glass menu with icons (darker) */
+    /* Pill-style glass menu with icons (darker, vertical) */
     #socialMenu{
       position:absolute;
       bottom:54px;
       left:0;
-      padding:7px 10px;
-      border-radius:999px;
+      padding:8px 6px;
+      border-radius:16px;
       background:linear-gradient(180deg,rgba(5,5,5,0.98),rgba(0,0,0,0.99));
       border:1px solid rgba(255,255,255,0.10);
       box-shadow:0 18px 55px rgba(0,0,0,0.85);
       display:flex;
+      flex-direction:column;
       align-items:center;
       gap:6px;
       opacity:0;
       transform:translateY(10px) scale(0.97);
       pointer-events:none;
       transition:opacity .18s ease, transform .18s ease;
-      white-space:nowrap;
     }
 
     #socialMenu.open{
@@ -313,15 +287,15 @@
     }
 
     .social-item:hover{
-      background:rgba(255,255,255,0.09);
+      background:rgba(255,255,255,0.12);
     }
 
     .social-item::after{
       content:attr(data-label);
       position:absolute;
-      bottom:44px;
-      left:50%;
-      transform:translateX(-50%);
+      left:44px;
+      top:50%;
+      transform:translateY(-50%);
       background:rgba(0,0,0,0.9);
       color:#f5f5f5;
       padding:3px 8px;
@@ -337,7 +311,7 @@
 
     .social-item:hover::after{
       opacity:1;
-      transform:translateX(-50%) translateY(-2px);
+      transform:translateY(-50%) translateX(2px);
     }
 
     /* Smaller tooltips on mobile */
@@ -345,6 +319,54 @@
       .social-item::after{
         display:none;
       }
+    }
+
+    /* Resume Pill - moved to left, with glow */
+    #downloadMini{
+      pointer-events:auto;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      height:44px;
+      padding:0 14px;
+      border-radius:999px;
+      background:linear-gradient(180deg,rgba(255,255,255,0.10),rgba(255,255,255,0.03));
+      border:1px solid rgba(255,255,255,0.18);
+      backdrop-filter:blur(16px) saturate(180%);
+      -webkit-backdrop-filter:blur(16px) saturate(180%);
+      box-shadow:0 14px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);
+      color:#fff;
+      text-decoration:none;
+      font-weight:700;
+      font-size:15px;
+      transform:translateX(0);
+      transition:transform .20s, opacity .20s;
+      white-space:nowrap;
+      position:relative;
+    }
+
+    #downloadMini::before{
+      content:'';
+      position:absolute;
+      inset:-8px;
+      border-radius:999px;
+      background:linear-gradient(90deg,rgba(124,58,237,0.16),rgba(6,182,212,0.16));
+      filter:blur(18px);
+      opacity:0;
+      transition:opacity .25s;
+      z-index:-1;
+    }
+
+    #downloadMini:hover::before{
+      opacity:1;
+    }
+
+    #downloadMini:hover{
+      transform:translateY(-4px);
+    }
+
+    #downloadMini:active{
+      transform:translateY(-1px) scale(0.98);
     }
   </style>
 </head>
@@ -359,28 +381,28 @@
 
   <!-- --------- FLOATING BUTTON GROUP (RIGHT) ----------- -->
   <div id="floatSingle" class="float-hidden">
-    <a id="downloadMini" href="assets/files/saurav_panda_resume.pdf" download>
-      Resume ⤵
-    </a>
-
     <button id="mainBtn" class="glass-btn" aria-label="Scroll up/down">
-      <!-- new nicer arrow icon (line + arrow head) -->
+      <!-- scroll icon -->
       <svg id="mainIcon" width="26" height="26" viewBox="0 0 24 24">
         <path id="arrowPath" d="M12 7 L12 17 M8 13 L12 17 L16 13"></path>
       </svg>
     </button>
   </div>
 
-  <!-- --------- SOCIAL FLOAT (LEFT) ----------- -->
+  <!-- --------- SOCIAL FLOAT (LEFT) + RESUME ----------- -->
   <div id="socialFloat" class="float-hidden">
     <button id="socialBtn" class="glass-btn" aria-label="Open social links">
-      <!-- share / nodes icon -->
+      <!-- new social/share icon -->
       <svg width="22" height="22" viewBox="0 0 24 24">
-        <path d="M7 12a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm10-10a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm0 12a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM9.2 13.4l5.7 2.9M14.9 7.7 9.4 11"></path>
+        <path d="M8 5a2.5 2.5 0 1 1 5 0 2.5 2.5 0 0 1-5 0Zm0 14a2.5 2.5 0 1 1 5 0 2.5 2.5 0 0 1-5 0ZM16 12a2.5 2.5 0 1 1 5 0 2.5 2.5 0 0 1-5 0ZM10.2 7.1l3.3 3M13.5 13.9l-3.3 3"></path>
       </svg>
     </button>
 
-    <!-- pill dropdown with icons -->
+    <a id="downloadMini" href="assets/files/saurav_panda_resume.pdf" download>
+      Resume ⤵
+    </a>
+
+    <!-- vertical dropdown with icons -->
     <div id="socialMenu">
       <!-- Instagram -->
       <a class="social-item" data-label="Instagram" href="https://instagram.com/dearlipu" target="_blank" rel="noopener">
@@ -444,7 +466,6 @@
       const img = document.createElement('img');
       img.src   = url;
       img.loading = 'lazy';
-      // no lightbox click
 
       p.appendChild(img);
       wrap.appendChild(p);
