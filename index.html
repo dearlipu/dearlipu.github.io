@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>dearlipu — Saurav Panda | Portfolio</title>
+  <meta name="description" content="Visual portfolio of Saurav 'dearlipu' Panda — artist, museum manager, content creator and tech support (NextGen).">
+  <meta name="keywords" content="Saurav Panda, dearlipu, portfolio, OdiArt Museum, NextGen, photography, art, tech support">
+
+  <style>
+    html,body{
+      height:100%;
+      margin:0;
+      padding:0;
+      overflow-x:hidden;
+      background:#000;
+      font-family:-apple-system,system-ui,Segoe UI,Roboto,sans-serif;
+    }
+
+    #viewer{
+      width:100vw;
+      height:100vh;
+      overflow:auto;
+      -webkit-overflow-scrolling:touch;
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    .wrap{
+      width:100%;
+      margin:0;
+      padding:0;
+    }
+
+    .page{
+      margin:0;
+      padding:0;
+      line-height:0;
+    }
+
+    .page img{
+      width:100vw;
+      height:auto;
+      margin:0;
+      border:0;
+      display:block;
+      object-fit:cover;
+      user-select:none;
+    }
+
+    .sep{
+      height:0;
+      margin:0;
+      padding:0;
+    }
+
+    #loader{
+      position:fixed;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      background:rgba(0,0,0,0.6);
+      padding:12px 16px;
+      color:#fff;
+      font-weight:700;
+      border-radius:10px;
+      z-index:9999;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    /* Lightbox */
+    .lb{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.95);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:9998;
+    }
+    .lb img{
+      max-width:96vw;
+      max-height:96vh;
+      box-shadow:0 20px 80px rgba(0,0,0,0.8);
+    }
+    .lb-close{
+      position:fixed;
+      top:16px;
+      right:16px;
+      padding:8px 12px;
+      color:#fff;
+      background:rgba(255,255,255,0.08);
+      border-radius:10px;
+      cursor:pointer;
+      z-index:9999;
+      font-weight:700;
+    }
+
+    /* ---- PREMIUM GLASS FLOATING CONTROLS ---- */
+    #floatSingle{
+      position:fixed;
+      right:20px;
+      bottom:20px;
+      z-index:14000;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      pointer-events:none;
+    }
+
+    #mainBtn{
+      pointer-events:auto;
+      width:44px;
+      height:44px;
+      border-radius:100px;
+      background:linear-gradient(180deg,rgba(255,255,255,0.10),rgba(255,255,255,0.03));
+      border:1px solid rgba(255,255,255,0.18);
+      backdrop-filter:blur(16px) saturate(180%);
+      -webkit-backdrop-filter:blur(16px) saturate(180%);
+      box-shadow:0 14px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      color:#000;
+      transition:transform .20s, box-shadow .20s, opacity .20s;
+      position:relative;
+    }
+
+    #mainBtn::before{
+      content:'';
+      position:absolute;
+      inset:-8px;
+      border-radius:28px;
+      background:linear-gradient(90deg,rgba(124,58,237,0.10),rgba(6,182,212,0.10));
+      filter:blur(18px);
+      opacity:0;
+      transition:opacity .25s;
+    }
+    #mainBtn:hover::before{
+      opacity:1;
+    }
+
+    #mainBtn:hover{
+      transform:translateY(-6px) scale(1.03);
+    }
+    #mainBtn:active{
+      transform:scale(0.96);
+    }
+
+    #mainBtn svg path{
+      stroke:white;
+      stroke-width:2;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+    /* Resume Pill */
+    #downloadMini{
+      pointer-events:auto;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      height:44px;
+      padding:0 14px;
+      border-radius:999px;
+      background:linear-gradient(180deg,rgba(255,255,255,0.10),rgba(255,255,255,0.03));
+      border:1px solid rgba(255,255,255,0.18);
+      backdrop-filter:blur(16px) saturate(180%);
+      -webkit-backdrop-filter:blur(16px) saturate(180%);
+      box-shadow:0 14px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);
+      color:#fff;
+      text-decoration:none;
+      font-weight:700;
+      font-size:15px;
+      transform:translateX(-6px);
+      transition:transform .20s, opacity .20s;
+      white-space:nowrap;
+    }
+
+    #downloadMini:hover{
+      transform:translateX(-10px) translateY(-4px);
+    }
+
+    .float-hidden{
+      opacity:0;
+      transform:translateY(12px) scale(0.95);
+      pointer-events:none;
+    }
+
+    /* SKELETON LOADER */
+    .skeleton {
+      width:100vw;
+      height:80vh;
+      background:linear-gradient(90deg,#1f1f1f 0px,#2b2b2b 40px,#1f1f1f 80px);
+      background-size:600px 100%;
+      animation:skeleton-loading 1.4s infinite ease-in-out;
+      margin:0;
+      padding:0;
+      border:0;
+    }
+
+    @keyframes skeleton-loading {
+      0% { background-position:-600px 0; }
+      100% { background-position:600px 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="loader">Loading portfolio…</div>
+  <div id="viewer">
+    <div class="wrap" id="wrap"></div>
+  </div>
+
+  <!-- --------- FLOATING BUTTON GROUP ----------- -->
+  <div id="floatSingle">
+    <a id="downloadMini" href="assets/files/saurav_panda_resume.pdf" download>
+      Resume ⤵
+    </a>
+
+    <button id="mainBtn" aria-label="Scroll up/down">
+      <svg id="mainIcon" width="26" height="26" viewBox="0 0 24 24">
+        <path id="arrowPath" d="M6 15l6-6 6 6"></path>
+      </svg>
+    </button>
+  </div>
+
+  <script>
+  /* --------- IMAGE LOADER ----------- */
+  (function(){
+    const wrap   = document.getElementById('wrap');
+    const loader = document.getElementById('loader');
+    const folder = 'assets/pages/';
+    const base   = 'page-';
+    const tryExt = ['png','jpg','webp','gif'];
+
+    let idx  = 1;
+    let miss = 0;
+
+    function exists(url){
+      return new Promise(res => {
+        const i = new Image();
+        i.onload  = () => res(true);
+        i.onerror = () => res(false);
+        i.src = url;
+      });
+    }
+
+    function addImg(url){
+      const p   = document.createElement('div');
+      p.className = 'page';
+
+      const img = document.createElement('img');
+      img.src   = url;
+      img.loading = 'lazy';
+      img.onclick = () => openLightbox(url);
+
+      p.appendChild(img);
+      wrap.appendChild(p);
+
+      const sep = document.createElement('div');
+      sep.className = 'sep';
+      wrap.appendChild(sep);
+    }
+
+    async function scan(){
+
+      // Insert skeleton blocks
+      loader.innerHTML = '';
+      for(let i=0;i<5;i++){
+        const sk = document.createElement('div');
+        sk.className = 'skeleton';
+        loader.appendChild(sk);
+      }
+
+      for(let n=1;n<300;n++){
+        let ok = false;
+        for(const ext of tryExt){
+          const path = `${folder}${base}${idx}.${ext}`;
+          // eslint-disable-next-line no-await-in-loop
+          if(await exists(path)){
+            addImg(path);
+            ok = true;
+            break;
+          }
+        }
+        if(!ok){
+          miss++;
+          if(miss>=6) break;   // stop if several consecutive pages missing
+        } else {
+          miss = 0;
+        }
+        idx++;
+      }
+
+      // Fade out loader
+      loader.style.transition = 'opacity 0.3s ease';
+      loader.style.opacity = '0';
+      setTimeout(() => loader.remove(), 300);
+    }
+
+    scan();
+  })();
+
+  /* --------- LIGHTBOX ----------- */
+  function openLightbox(src){
+    const old = document.querySelector('.lb');
+    if(old) old.remove();
+
+    const lb  = document.createElement('div');
+    lb.className = 'lb';
+
+    const img = document.createElement('img');
+    img.src = src;
+
+    const cls = document.createElement('div');
+    cls.className = 'lb-close';
+    cls.innerText = 'Close';
+
+    cls.onclick = () => lb.remove();
+    lb.onclick  = e => { if(e.target === lb) lb.remove(); };
+
+    lb.appendChild(img);
+    lb.appendChild(cls);
+    document.body.appendChild(lb);
+  }
+
+  /* --------- FLOATING CONTROL LOGIC ----------- */
+  (function(){
+    const viewer = document.getElementById('viewer');
+    const btn    = document.getElementById('mainBtn');
+    const arrow  = document.getElementById('arrowPath');
+    const float  = document.getElementById('floatSingle');
+
+    function botRemain(){
+      return viewer.scrollHeight - (viewer.scrollTop + viewer.clientHeight);
+    }
+
+    function goTop(){
+      viewer.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function goBottom(){
+      viewer.scrollTo({top:viewer.scrollHeight, behavior:'smooth'});
+    }
+
+    function updateIcon(){
+      // If near bottom, show "up" arrow, else "down"
+      arrow.setAttribute('d', botRemain() < 80 ? 'M6 15l6-6 6 6' : 'M6 9l6 6 6-6');
+    }
+
+    btn.onclick = () => botRemain() < 80 ? goTop() : goBottom();
+
+    let timer = null;
+    function show(){
+      float.classList.remove('float-hidden');
+      if(timer) clearTimeout(timer);
+      timer = setTimeout(() => float.classList.add('float-hidden'), 2100);
+    }
+
+    viewer.addEventListener('scroll', () => { updateIcon(); show(); });
+    viewer.addEventListener('mousemove', show);
+    viewer.addEventListener('touchstart', show);
+
+    updateIcon();
+    show();
+  })();
+  </script>
+
+</body>
+</html>
