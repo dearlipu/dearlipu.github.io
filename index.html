@@ -3,10 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Saurav Panda - Portfolio</title>
-
-  <!-- Bootstrap Icons for social + arrow icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <title>dearlipu — Saurav Panda | Portfolio</title>
+  <meta name="description" content="Visual portfolio of Saurav 'dearlipu' Panda — artist, museum manager, content creator and tech support (NextGen).">
+  <meta name="keywords" content="Saurav Panda, dearlipu, OdiArt Museum, NextGen, portfolio, photography, art, tech support">
 
   <style>
     html,body{
@@ -56,102 +55,130 @@
       padding:0;
     }
 
-    /* ====== SKELETON LOADER ====== */
+    /* -------- PREMIUM SKELETON LOADER OVERLAY -------- */
     #loader{
       position:fixed;
       inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:radial-gradient(circle at top,rgba(40,40,40,0.9),rgba(0,0,0,0.98));
-      z-index:9999;
-    }
-
-    .skeleton-wrap{
-      width:100%;
-      max-width:1200px;
-      padding:16px;
-      box-sizing:border-box;
+      background:
+        radial-gradient(circle at top,#191919 0,#000 55%);
       display:flex;
       flex-direction:column;
-      gap:16px;
+      align-items:center;
+      justify-content:center;
+      gap:18px;
+      z-index:9999;
+      padding:20px;
+      box-sizing:border-box;
+      color:#fff;
+      text-align:center;
+    }
+
+    .loader-title{
+      font-size:18px;
+      font-weight:600;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      opacity:.85;
+    }
+
+    .loader-sub{
+      font-size:13px;
+      opacity:.65;
+      margin-bottom:8px;
     }
 
     .skeleton-row{
       display:flex;
       flex-direction:column;
-      gap:16px;
+      gap:14px;
+      width:100%;
+      max-width:900px;
     }
 
     .skeleton-page{
-      flex:1;
-      border-radius:18px;
-      padding:14px;
-      background:rgba(18,18,18,0.96);
-      box-shadow:0 24px 80px rgba(0,0,0,0.9);
+      border-radius:20px;
+      background:rgba(10,10,10,0.9);
+      padding:16px;
+      box-shadow:0 22px 60px rgba(0,0,0,0.80);
+      border:1px solid rgba(255,255,255,0.04);
       overflow:hidden;
     }
 
     .sk-thumb{
-      width:100%;
-      height:220px;
-      border-radius:14px;
-      background:linear-gradient(110deg,#1c1c1c 0px,#2b2b2b 40px,#1c1c1c 80px);
-      background-size:600px 100%;
-      animation:skeleton-loading 1.3s infinite ease-in-out;
-      margin-bottom:10px;
+      height:190px;
+      border-radius:16px;
+      margin-bottom:12px;
     }
 
     .sk-line{
       height:10px;
       border-radius:999px;
-      background:linear-gradient(110deg,#1a1a1a 0px,#292929 40px,#1a1a1a 80px);
-      background-size:600px 100%;
-      animation:skeleton-loading 1.3s infinite ease-in-out;
-      margin:4px 0;
-      opacity:.9;
+      margin-bottom:8px;
     }
 
-    .sk-line.short{
-      width:58%;
+    .sk-line:last-child{
+      margin-bottom:0;
     }
 
-    .sk-line.medium{
-      width:80%;
-    }
+    .sk-line.w1{ width:78%; }
+    .sk-line.w2{ width:62%; }
+    .sk-line.w3{ width:90%; }
+    .sk-line.w4{ width:48%; }
 
-    .sk-line.full{
-      width:100%;
+    .sk-thumb,
+    .sk-line{
+      background-image:linear-gradient(110deg,#222 0%,#333 40%,#111 80%);
+      background-size:200% 100%;
+      animation:skeleton-loading 1.25s infinite linear;
     }
 
     @keyframes skeleton-loading{
-      0%{ background-position:-600px 0; }
-      100%{ background-position:600px 0; }
+      0%{ background-position-x:-120%; }
+      100%{ background-position-x:120%; }
     }
 
-    /* Responsive skeleton */
-    @media (min-width:900px){
+    /* Desktop: bigger & more spread */
+    @media (min-width: 900px){
       .skeleton-row{
         flex-direction:row;
       }
       .skeleton-page{
-        padding:18px;
+        flex:1;
       }
       .sk-thumb{
-        height:280px;
+        height:min(360px,45vh);
       }
     }
 
-    @media (min-width:1400px){
-      .skeleton-page{
-        padding:24px;
-      }
-      .sk-thumb{
-        height:360px;
-      }
+    /* Lightbox */
+    .lb{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.95);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:9998;
+    }
+    .lb img{
+      max-width:96vw;
+      max-height:96vh;
+      box-shadow:0 20px 80px rgba(0,0,0,0.8);
+    }
+    .lb-close{
+      position:fixed;
+      top:16px;
+      right:16px;
+      padding:8px 12px;
+      color:#fff;
+      background:rgba(255,255,255,0.08);
+      border-radius:10px;
+      cursor:pointer;
+      z-index:9999;
+      font-weight:700;
     }
 
-    /* ====== FLOATING CONTROLS (SCROLL + RESUME) ====== */
+    /* ---- GLASS FLOATING CONTROLS (RIGHT) ---- */
     #floatSingle{
       position:fixed;
       right:20px;
@@ -163,84 +190,77 @@
       pointer-events:none;
     }
 
-    /* dark glass token style for all buttons */
-    .glass-token{
-      background:radial-gradient(circle at top,rgba(20,20,20,0.98),rgba(5,5,5,0.96));
-      border:1px solid rgba(255,255,255,0.14);
-      backdrop-filter:blur(18px) saturate(180%);
-      -webkit-backdrop-filter:blur(18px) saturate(180%);
-      box-shadow:
-        0 18px 50px rgba(0,0,0,0.85),
-        inset 0 1px 0 rgba(255,255,255,0.05);
-      color:#f5f5f5;
-    }
-
-    #mainBtn{
+    .glass-btn{
       pointer-events:auto;
-      width:46px;
-      height:46px;
-      border-radius:999px;
-      border:none;
+      width:44px;
+      height:44px;
+      border-radius:100px;
+      background:linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.22);
+      backdrop-filter:blur(16px) saturate(180%);
+      -webkit-backdrop-filter:blur(16px) saturate(180%);
+      box-shadow:0 14px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);
       display:grid;
       place-items:center;
       cursor:pointer;
+      color:#fff;
       transition:transform .20s, box-shadow .20s, opacity .20s;
       position:relative;
     }
 
-    #mainBtn::before{
+    .glass-btn::before{
       content:'';
       position:absolute;
       inset:-8px;
-      border-radius:999px;
-      background:radial-gradient(circle at top,rgba(124,58,237,0.2),rgba(6,182,212,0.05));
-      filter:blur(22px);
+      border-radius:28px;
+      background:linear-gradient(90deg,rgba(124,58,237,0.16),rgba(6,182,212,0.16));
+      filter:blur(18px);
       opacity:0;
       transition:opacity .25s;
-      pointer-events:none;
     }
-
-    #mainBtn:hover::before{
+    .glass-btn:hover::before{
       opacity:1;
     }
 
-    #mainBtn:hover{
-      transform:translateY(-5px) scale(1.03);
+    .glass-btn:hover{
+      transform:translateY(-6px) scale(1.03);
     }
-
-    #mainBtn:active{
-      transform:scale(0.95);
+    .glass-btn:active{
+      transform:scale(0.96);
     }
 
     #mainBtn svg path{
       stroke:white;
-      stroke-width:1.9;
+      stroke-width:2;
       stroke-linecap:round;
       stroke-linejoin:round;
     }
 
+    /* Resume Pill */
     #downloadMini{
       pointer-events:auto;
       display:flex;
       align-items:center;
       gap:8px;
       height:44px;
-      padding:0 16px;
+      padding:0 14px;
       border-radius:999px;
+      background:linear-gradient(180deg,rgba(255,255,255,0.10),rgba(255,255,255,0.03));
+      border:1px solid rgba(255,255,255,0.18);
+      backdrop-filter:blur(16px) saturate(180%);
+      -webkit-backdrop-filter:blur(16px) saturate(180%);
+      box-shadow:0 14px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);
+      color:#fff;
       text-decoration:none;
-      font-weight:600;
-      font-size:14px;
+      font-weight:700;
+      font-size:15px;
       transform:translateX(-6px);
       transition:transform .20s, opacity .20s;
-      color:#f5f5f5;
-    }
-
-    #downloadMini i{
-      font-size:16px;
+      white-space:nowrap;
     }
 
     #downloadMini:hover{
-      transform:translateX(-10px) translateY(-3px);
+      transform:translateX(-10px) translateY(-4px);
     }
 
     .float-hidden{
@@ -249,347 +269,402 @@
       pointer-events:none;
     }
 
-    /* ====== SOCIAL BUTTON (BOTTOM LEFT) ====== */
-    #socialWrap{
+    /* ---- SOCIAL FLOAT (LEFT) ---- */
+    #socialFloat{
       position:fixed;
       left:20px;
       bottom:20px;
       z-index:14000;
       display:flex;
-      flex-direction:column;
-      align-items:flex-start;
-      gap:10px;
+      align-items:flex-end;
       pointer-events:none;
     }
 
     #socialBtn{
       pointer-events:auto;
-      width:46px;
-      height:46px;
-      border-radius:999px;
-      border:none;
-      display:grid;
-      place-items:center;
-      cursor:pointer;
-      transition:transform .20s, box-shadow .20s, opacity .20s;
-      position:relative;
-      color:#f5f5f5;
     }
 
-    #socialBtn i{
-      font-size:18px;
-    }
-
-    #socialBtn:hover{
-      transform:translateY(-4px) scale(1.03);
+    #socialBtn svg path{
+      stroke:white;
+      stroke-width:2;
+      stroke-linecap:round;
+      stroke-linejoin:round;
     }
 
     #socialMenu{
-      pointer-events:auto;
-      margin-bottom:4px;
+      position:absolute;
+      bottom:54px;
+      left:0;
       padding:10px 12px;
-      border-radius:999px;
+      border-radius:18px;
+      background:linear-gradient(135deg,rgba(255,255,255,0.14),rgba(255,255,255,0.04));
+      border:1px solid rgba(255,255,255,0.28);
+      box-shadow:0 18px 55px rgba(0,0,0,0.85);
+      min-width:220px;
       display:flex;
-      align-items:center;
-      gap:8px;
+      flex-direction:column;
+      gap:6px;
       opacity:0;
-      transform:translateY(8px) scale(0.97);
+      transform:translateY(10px) scale(0.97);
+      pointer-events:none;
       transition:opacity .18s ease, transform .18s ease;
-      visibility:hidden;
+      color:#f7f7f7;
+      backdrop-filter:blur(18px) saturate(180%);
+      -webkit-backdrop-filter:blur(18px) saturate(180%);
     }
 
     #socialMenu.open{
       opacity:1;
       transform:translateY(0) scale(1);
-      visibility:visible;
+      pointer-events:auto;
     }
 
-    .social-pill{
-      width:auto;
-      padding:6px 10px;
+    .social-heading{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      opacity:.7;
+      margin-bottom:4px;
+    }
+
+    .social-item{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:13px;
+      padding:5px 4px;
+      border-radius:8px;
+      color:#f5f5f5;
+      text-decoration:none;
+    }
+
+    .social-item span.handle{
+      opacity:.7;
+      font-size:11px;
+    }
+
+    .social-badge{
+      width:24px;
+      height:24px;
       border-radius:999px;
       display:flex;
       align-items:center;
       justify-content:center;
-      text-decoration:none;
-      font-size:14px;
-      color:#f5f5f5;
-      font-weight:600;
-      gap:6px;
-      transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+      background:rgba(0,0,0,0.35);
+      border:1px solid rgba(255,255,255,0.35);
     }
 
-    .social-pill i{
-      font-size:15px;
+    .social-badge svg{
+      width:14px;
+      height:14px;
+      stroke:#fff;
+      fill:none;
     }
 
-    .social-pill:hover{
-      transform:translateY(-3px);
-      box-shadow:0 18px 40px rgba(0,0,0,0.8);
-      background:radial-gradient(circle at top,rgba(45,45,45,1),rgba(15,15,15,1));
+    .social-item:hover{
+      background:rgba(255,255,255,0.10);
     }
 
-    .social-pill--ig{
-      border:1px solid rgba(236,72,153,0.6);
-    }
-    .social-pill--gh{
-      border:1px solid rgba(148,163,184,0.7);
-    }
-    .social-pill--yt{
-      border:1px solid rgba(248,113,113,0.7);
-    }
-    .social-pill--mail{
-      border:1px solid rgba(56,189,248,0.7);
-    }
-
-    @media (max-width:480px){
-      #floatSingle{
-        right:14px;
-        bottom:14px;
-      }
-      #socialWrap{
-        left:14px;
-        bottom:14px;
-      }
-      #downloadMini{
-        display:none; /* keep only arrow on very small screens if you want */
-      }
+    .social-footer-text{
+      margin-top:4px;
+      font-size:10px;
+      opacity:.55;
     }
   </style>
 </head>
 
 <body>
 
-<div id="loader"></div>
-<div id="viewer"><div class="wrap" id="wrap"></div></div>
+  <div id="loader"></div>
 
-<!-- --------- FLOATING BUTTON GROUP (RIGHT) ----------- -->
-<div id="floatSingle">
-  <a id="downloadMini" class="glass-token" href="assets/files/saurav_panda_resume.pdf" download>
-    <i class="bi bi-download"></i>
-    <span>Resume</span>
-  </a>
-
-  <button id="mainBtn" class="glass-token" aria-label="Scroll to top or bottom">
-    <svg id="mainIcon" width="24" height="24" viewBox="0 0 24 24">
-      <!-- double chevron, JS will swap d for up/down -->
-      <path id="arrowPath" d="M7 15l5-5 5 5M7 11l5-5 5 5"></path>
-    </svg>
-  </button>
-</div>
-
-<!-- --------- SOCIAL BUTTON GROUP (LEFT) ----------- -->
-<div id="socialWrap">
-  <div id="socialMenu" class="glass-token">
-    <a class="social-pill glass-token social-pill--ig" href="https://instagram.com/dearlipu" target="_blank" rel="noopener">
-      <i class="bi bi-instagram"></i>
-      <span>IG</span>
-    </a>
-    <a class="social-pill glass-token social-pill--gh" href="https://github.com/dearlipu" target="_blank" rel="noopener">
-      <i class="bi bi-github"></i>
-      <span>GitHub</span>
-    </a>
-    <a class="social-pill glass-token social-pill--yt" href="https://youtube.com" target="_blank" rel="noopener">
-      <i class="bi bi-youtube"></i>
-      <span>YouTube</span>
-    </a>
-    <a class="social-pill glass-token social-pill--mail" href="mailto:contact@dearlipu.in">
-      <i class="bi bi-envelope-fill"></i>
-      <span>Mail</span>
-    </a>
+  <div id="viewer">
+    <div class="wrap" id="wrap"></div>
   </div>
 
-  <button id="socialBtn" class="glass-token" aria-label="Open social links">
-    <i class="bi bi-share-fill"></i>
-  </button>
-</div>
+  <!-- --------- FLOATING BUTTON GROUP (RIGHT) ----------- -->
+  <div id="floatSingle" class="float-hidden">
+    <a id="downloadMini" href="assets/files/saurav_panda_resume.pdf" download>
+      Resume ⤵
+    </a>
 
-<script>
-/* --------- IMAGE LOADER ----------- */
-(function(){
-  const wrap   = document.getElementById('wrap');
-  const loader = document.getElementById('loader');
-  const folder = 'assets/pages/';
-  const base   = 'page-';
-  const tryExt = ['png','jpg','webp','gif'];
-  let idx = 1, miss = 0;
+    <button id="mainBtn" class="glass-btn" aria-label="Scroll up/down">
+      <!-- new nicer arrow icon (line + arrow head) -->
+      <svg id="mainIcon" width="26" height="26" viewBox="0 0 24 24">
+        <path id="arrowPath" d="M12 7 L12 17 M8 13 L12 17 L16 13"></path>
+      </svg>
+    </button>
+  </div>
 
-  // build skeleton UI
-  function buildSkeleton(){
-    loader.innerHTML = '';
-    const shell = document.createElement('div');
-    shell.className = 'skeleton-wrap';
+  <!-- --------- SOCIAL FLOAT (LEFT) ----------- -->
+  <div id="socialFloat" class="float-hidden">
+    <button id="socialBtn" class="glass-btn" aria-label="Open social links">
+      <!-- simple "share / nodes" icon -->
+      <svg width="22" height="22" viewBox="0 0 24 24">
+        <path d="M7 12a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm10-10a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm0 12a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM9.2 13.4l5.7 2.9M14.9 7.7 9.4 11"></path>
+      </svg>
+    </button>
 
-    for(let r=0;r<2;r++){
+    <div id="socialMenu">
+      <div class="social-heading">Connect with me</div>
+
+      <!-- Instagram -->
+      <a class="social-item" href="https://instagram.com/dearlipu" target="_blank" rel="noopener">
+        <div class="social-badge">
+          <svg viewBox="0 0 24 24">
+            <rect x="5" y="5" width="14" height="14" rx="4" ry="4"></rect>
+            <circle cx="12" cy="12" r="3.3"></circle>
+            <circle cx="16.2" cy="7.8" r="0.8" fill="#fff" stroke="none"></circle>
+          </svg>
+        </div>
+        <div>
+          <div>Instagram</div>
+          <span class="handle">@dearlipu</span>
+        </div>
+      </a>
+
+      <!-- GitHub -->
+      <a class="social-item" href="https://github.com/dearlipu" target="_blank" rel="noopener">
+        <div class="social-badge">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 3a9 9 0 0 0-2.8 17.5c.4.1.5-.2.5-.4v-1.4c-2 .4-2.5-.9-2.5-.9-.3-.8-.8-1-0.8-1-.7-.4.1-.4.1-.4.7.1 1.1.7 1.3 1.0.6 1.1 1.6.8 2 .6.1-.5.3-.8.5-1-1.6-.2-3.2-.8-3.2-3.5 0-.8.3-1.4.7-1.9-.1-.2-.3-.9.1-1.9 0 0 .6-.2 2 .7a6.7 6.7 0 0 1 3.6 0c1.4-.9 2-.7 2-.7.4 1 .2 1.7.1 1.9.4.5.7 1.1.7 1.9 0 2.7-1.6 3.3-3.2 3.5.3.2.6.7.6 1.4v2c0 .2.1.5.5.4A9 9 0 0 0 12 3z"></path>
+          </svg>
+        </div>
+        <div>
+          <div>GitHub</div>
+          <span class="handle">github.com/dearlipu</span>
+        </div>
+      </a>
+
+      <!-- YouTube -->
+      <a class="social-item" href="https://youtube.com" target="_blank" rel="noopener">
+        <div class="social-badge">
+          <svg viewBox="0 0 24 24">
+            <rect x="4" y="7" width="16" height="10" rx="3" ry="3"></rect>
+            <path d="M11 10.5L14.5 12 11 13.5z"></path>
+          </svg>
+        </div>
+        <div>
+          <div>YouTube</div>
+          <span class="handle">channel coming soon</span>
+        </div>
+      </a>
+
+      <!-- Email -->
+      <a class="social-item" href="mailto:contact@dearlipu.in">
+        <div class="social-badge">
+          <svg viewBox="0 0 24 24">
+            <rect x="4" y="6" width="16" height="12" rx="2" ry="2"></rect>
+            <path d="M5 8l7 5 7-5"></path>
+          </svg>
+        </div>
+        <div>
+          <div>Email</div>
+          <span class="handle">contact@dearlipu.in</span>
+        </div>
+      </a>
+
+      <div class="social-footer-text">Tap outside to close.</div>
+    </div>
+  </div>
+
+  <script>
+  /* --------- IMAGE LOADER ----------- */
+  (function(){
+    const wrap   = document.getElementById('wrap');
+    const loader = document.getElementById('loader');
+    const folder = 'assets/pages/';
+    const base   = 'page-';
+    const tryExt = ['png','jpg','webp','gif'];
+
+    let idx  = 1;
+    let miss = 0;
+
+    function exists(url){
+      return new Promise(res => {
+        const i = new Image();
+        i.onload  = () => res(true);
+        i.onerror = () => res(false);
+        i.src = url;
+      });
+    }
+
+    function addImg(url){
+      const p   = document.createElement('div');
+      p.className = 'page';
+
+      const img = document.createElement('img');
+      img.src   = url;
+      img.loading = 'lazy';
+      img.onclick = () => openLightbox(url);
+
+      p.appendChild(img);
+      wrap.appendChild(p);
+
+      const sep = document.createElement('div');
+      sep.className = 'sep';
+      wrap.appendChild(sep);
+    }
+
+    function buildSkeleton(){
+      loader.innerHTML = '';
+
+      const title = document.createElement('div');
+      title.className = 'loader-title';
+      title.textContent = 'Preparing your portfolio…';
+
+      const sub = document.createElement('div');
+      sub.className = 'loader-sub';
+      sub.textContent = 'Loading high-resolution pages';
+
       const row = document.createElement('div');
       row.className = 'skeleton-row';
 
-      for(let p=0;p<2;p++){
-        const page = document.createElement('div');
-        page.className = 'skeleton-page';
-
-        const thumb = document.createElement('div');
-        thumb.className = 'sk-thumb';
-        page.appendChild(thumb);
-
-        const l1 = document.createElement('div');
-        l1.className = 'sk-line full';
-        const l2 = document.createElement('div');
-        l2.className = 'sk-line medium';
-        const l3 = document.createElement('div');
-        l3.className = 'sk-line short';
-
-        page.appendChild(l1);
-        page.appendChild(l2);
-        page.appendChild(l3);
-
-        row.appendChild(page);
+      for(let i=0;i<3;i++){
+        const card = document.createElement('div');
+        card.className = 'skeleton-page';
+        card.innerHTML = `
+          <div class="sk-thumb"></div>
+          <div class="sk-line w1"></div>
+          <div class="sk-line w3"></div>
+          <div class="sk-line w2"></div>
+          <div class="sk-line w4"></div>
+        `;
+        row.appendChild(card);
       }
 
-      shell.appendChild(row);
+      loader.appendChild(title);
+      loader.appendChild(sub);
+      loader.appendChild(row);
     }
 
-    loader.appendChild(shell);
-  }
+    async function scan(){
+      buildSkeleton();
 
-  function exists(url){
-    return new Promise(res=>{
-      const i = new Image();
-      i.onload  = ()=>res(true);
-      i.onerror = ()=>res(false);
-      i.src = url;
-    });
-  }
-
-  function addImg(url){
-    const p   = document.createElement('div');
-    p.className = 'page';
-    const img = document.createElement('img');
-    img.src   = url;
-    img.loading = 'lazy';
-    // NO lightbox click – user wants just scroll
-    p.appendChild(img);
-    wrap.appendChild(p);
-    const sep = document.createElement('div');
-    sep.className = 'sep';
-    wrap.appendChild(sep);
-  }
-
-  async function scan(){
-    buildSkeleton();
-
-    for(let n=1;n<300;n++){
-      let ok = false;
-      for(const ext of tryExt){
-        const path = `${folder}${base}${idx}.${ext}`;
-        if(await exists(path)){
-          addImg(path);
-          ok = true;
-          break;
+      for(let n=1;n<300;n++){
+        let ok = false;
+        for(const ext of tryExt){
+          const path = `${folder}${base}${idx}.${ext}`;
+          // eslint-disable-next-line no-await-in-loop
+          if(await exists(path)){
+            addImg(path);
+            ok = true;
+            break;
+          }
         }
+        if(!ok){
+          miss++;
+          if(miss>=6) break;   // stop if several consecutive pages missing
+        } else {
+          miss = 0;
+        }
+        idx++;
       }
-      if(!ok){
-        miss++;
-        if(miss>=6) break;
-      }else{
-        miss = 0;
-      }
-      idx++;
+
+      loader.style.transition = 'opacity 0.3s ease';
+      loader.style.opacity = '0';
+      setTimeout(() => loader.remove(), 300);
     }
 
-    loader.style.opacity = '0';
-    setTimeout(()=> loader.remove(), 300);
+    scan();
+  })();
+
+  /* --------- LIGHTBOX ----------- */
+  function openLightbox(src){
+    const old = document.querySelector('.lb');
+    if(old) old.remove();
+
+    const lb  = document.createElement('div');
+    lb.className = 'lb';
+
+    const img = document.createElement('img');
+    img.src = src;
+
+    const cls = document.createElement('div');
+    cls.className = 'lb-close';
+    cls.innerText = 'Close';
+
+    cls.onclick = () => lb.remove();
+    lb.onclick  = e => { if(e.target === lb) lb.remove(); };
+
+    lb.appendChild(img);
+    lb.appendChild(cls);
+    document.body.appendChild(lb);
   }
 
-  scan();
-})();
+  /* --------- FLOATING CONTROL LOGIC (SCROLL + AUTOHIDE) ----------- */
+  (function(){
+    const viewer      = document.getElementById('viewer');
+    const btn         = document.getElementById('mainBtn');
+    const arrow       = document.getElementById('arrowPath');
+    const float       = document.getElementById('floatSingle');
+    const socialFloat = document.getElementById('socialFloat');
 
-/* --------- FLOATING SCROLL CONTROL ----------- */
-(function(){
-  const viewer = document.getElementById('viewer');
-  const btn    = document.getElementById('mainBtn');
-  const arrow  = document.getElementById('arrowPath');
-  const float  = document.getElementById('floatSingle');
+    const UP_PATH   = 'M12 17 L12 7 M8 11 L12 7 L16 11';
+    const DOWN_PATH = 'M12 7 L12 17 M8 13 L12 17 L16 13';
 
-  function botRemain(){
-    return viewer.scrollHeight - (viewer.scrollTop + viewer.clientHeight);
-  }
-
-  function goTop(){
-    viewer.scrollTo({top:0,behavior:'smooth'});
-  }
-
-  function goBottom(){
-    viewer.scrollTo({top:viewer.scrollHeight,behavior:'smooth'});
-  }
-
-  function updateIcon(){
-    // near bottom -> show UP double chevron; else DOWN
-    if(botRemain() < 80){
-      arrow.setAttribute('d','M7 15l5-5 5 5M7 11l5-5 5 5'); // up
-    }else{
-      arrow.setAttribute('d','M7 9l5 5 5-5M7 13l5 5 5-5'); // down
+    function botRemain(){
+      return viewer.scrollHeight - (viewer.scrollTop + viewer.clientHeight);
     }
-  }
 
-  btn.addEventListener('click',()=>{
-    if(botRemain() < 80) goTop(); else goBottom();
+    function goTop(){
+      viewer.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function goBottom(){
+      viewer.scrollTo({top:viewer.scrollHeight, behavior:'smooth'});
+    }
+
+    function updateIcon(){
+      arrow.setAttribute('d', botRemain() < 80 ? UP_PATH : DOWN_PATH);
+    }
+
+    btn.onclick = () => botRemain() < 80 ? goTop() : goBottom();
+
+    let timer = null;
+    function show(){
+      float.classList.remove('float-hidden');
+      socialFloat.classList.remove('float-hidden');
+      if(timer) clearTimeout(timer);
+      timer = setTimeout(() => {
+        float.classList.add('float-hidden');
+        socialFloat.classList.add('float-hidden');
+      }, 2100);
+    }
+
+    viewer.addEventListener('scroll', () => { updateIcon(); show(); });
+    viewer.addEventListener('mousemove', show);
+    viewer.addEventListener('touchstart', show);
+
+    updateIcon();
     show();
-  });
+  })();
 
-  let timer = null;
-  function show(){
-    float.classList.remove('float-hidden');
-    if(timer) clearTimeout(timer);
-    timer = setTimeout(()=> float.classList.add('float-hidden'), 2200);
-  }
+  /* --------- SOCIAL DROPDOWN LOGIC ----------- */
+  (function(){
+    const socialBtn   = document.getElementById('socialBtn');
+    const socialMenu  = document.getElementById('socialMenu');
+    const socialFloat = document.getElementById('socialFloat');
 
-  viewer.addEventListener('scroll',()=>{ updateIcon(); show(); });
-  viewer.addEventListener('mousemove',show);
-  viewer.addEventListener('touchstart',show);
+    function toggleMenu(e){
+      e.stopPropagation();
+      socialMenu.classList.toggle('open');
+      // make sure float visible when interacting
+      socialFloat.classList.remove('float-hidden');
+    }
 
-  updateIcon();
-  show();
-})();
+    function closeMenu(){
+      socialMenu.classList.remove('open');
+    }
 
-/* --------- SOCIAL MENU (CLICK TO OPEN, CLICK OUTSIDE TO CLOSE) ----------- */
-(function(){
-  const socialBtn  = document.getElementById('socialBtn');
-  const socialMenu = document.getElementById('socialMenu');
-  const viewer     = document.getElementById('viewer');
+    socialBtn.addEventListener('click', toggleMenu);
 
-  let isOpen = false;
-
-  function openMenu(){
-    socialMenu.classList.add('open');
-    isOpen = true;
-  }
-
-  function closeMenu(){
-    socialMenu.classList.remove('open');
-    isOpen = false;
-  }
-
-  socialBtn.addEventListener('click', (e)=>{
-    e.stopPropagation();
-    if(isOpen) closeMenu(); else openMenu();
-  });
-
-  socialMenu.addEventListener('click', (e)=>{
-    e.stopPropagation(); // clicking inside menu won't close
-  });
-
-  // click outside anywhere -> close
-  document.addEventListener('click', ()=>{
-    if(isOpen) closeMenu();
-  });
-
-  // scrolling also closes the menu
-  viewer.addEventListener('scroll', ()=>{
-    if(isOpen) closeMenu();
-  });
-})();
-</script>
+    document.addEventListener('click', (e) => {
+      if(!socialFloat.contains(e.target)){
+        closeMenu();
+      }
+    });
+  })();
+  </script>
 
 </body>
 </html>
