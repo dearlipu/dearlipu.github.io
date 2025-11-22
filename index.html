@@ -55,113 +55,31 @@
       padding:0;
     }
 
-    /* -------- PREMIUM SKELETON LOADER OVERLAY -------- */
+    /* -------- SKELETON LOADER (from 1st code, full viewport) -------- */
     #loader{
       position:fixed;
       inset:0;
-      background:radial-gradient(circle at top,#191919 0,#000 55%);
+      background:#000;
       display:flex;
-      flex-direction:column;
       align-items:center;
       justify-content:center;
-      gap:18px;
       z-index:9999;
-      padding:20px;
-      box-sizing:border-box;
-      color:#fff;
-      text-align:center;
     }
 
-    .loader-title{
-      font-size:18px;
-      font-weight:600;
-      letter-spacing:.04em;
-      text-transform:uppercase;
-      opacity:.85;
-    }
-
-    .loader-sub{
-      font-size:13px;
-      opacity:.65;
-      margin-bottom:8px;
-    }
-
-    .skeleton-row{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      width:100%;
-      max-width:clamp(320px,90vw,1100px);
-    }
-
-    .skeleton-page{
-      border-radius:20px;
-      background:rgba(10,10,10,0.9);
-      padding:16px;
-      box-shadow:0 22px 60px rgba(0,0,0,0.80);
-      border:1px solid rgba(255,255,255,0.04);
-      overflow:hidden;
-    }
-
-    .sk-thumb{
-      border-radius:16px;
-      margin-bottom:12px;
-      height:clamp(160px,45vh,420px);
-    }
-
-    .sk-line{
-      height:10px;
-      border-radius:999px;
-      margin-bottom:8px;
-    }
-
-    .sk-line:last-child{
-      margin-bottom:0;
-    }
-
-    .sk-line.w1{ width:78%; }
-    .sk-line.w2{ width:62%; }
-    .sk-line.w3{ width:90%; }
-    .sk-line.w4{ width:48%; }
-
-    .sk-thumb,
-    .sk-line{
-      background-image:linear-gradient(110deg,#222 0%,#333 40%,#111 80%);
-      background-size:200% 100%;
-      animation:skeleton-loading 1.25s infinite linear;
+    .skeleton{
+      width:100vw;
+      height:100vh;
+      background:linear-gradient(90deg,#1f1f1f 0px,#2b2b2b 40px,#1f1f1f 80px);
+      background-size:600px 100%;
+      animation:skeleton-loading 1.4s infinite ease-in-out;
+      margin:0;
+      padding:0;
+      border:0;
     }
 
     @keyframes skeleton-loading{
-      0%{ background-position-x:-120%; }
-      100%{ background-position-x:120%; }
-    }
-
-    /* Lightbox styles kept but unused (safe to remove if you want) */
-    .lb{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,0.95);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      z-index:9998;
-    }
-    .lb img{
-      max-width:96vw;
-      max-height:96vh;
-      box-shadow:0 20px 80px rgba(0,0,0,0.8);
-    }
-    .lb-close{
-      position:fixed;
-      top:16px;
-      right:16px;
-      padding:8px 12px;
-      color:#fff;
-      background:rgba(255,255,255,0.08);
-      border-radius:10px;
-      cursor:pointer;
-      z-index:9999;
-      font-weight:700;
+      0%{ background-position:-600px 0; }
+      100%{ background-position:600px 0; }
     }
 
     /* ---- GLASS FLOATING CONTROLS (RIGHT) ---- */
@@ -182,11 +100,12 @@
       width:44px;
       height:44px;
       border-radius:100px;
-      background:linear-gradient(180deg,rgba(255,255,255,0.10),rgba(255,255,255,0.03));
-      border:1px solid rgba(255,255,255,0.18);
-      backdrop-filter:blur(16px) saturate(180%);
-      -webkit-backdrop-filter:blur(16px) saturate(180%);
-      box-shadow:0 14px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);
+      /* darker glass */
+      background:linear-gradient(180deg,rgba(20,20,20,0.95),rgba(0,0,0,0.92));
+      border:1px solid rgba(255,255,255,0.12);
+      backdrop-filter:blur(20px) saturate(120%);
+      -webkit-backdrop-filter:blur(20px) saturate(120%);
+      box-shadow:0 14px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
       display:grid;
       place-items:center;
       cursor:pointer;
@@ -200,7 +119,7 @@
       position:absolute;
       inset:-8px;
       border-radius:28px;
-      background:linear-gradient(90deg,rgba(124,58,237,0.14),rgba(6,182,212,0.14));
+      background:linear-gradient(90deg,rgba(124,58,237,0.16),rgba(6,182,212,0.16));
       filter:blur(18px);
       opacity:0;
       transition:opacity .25s;
@@ -232,11 +151,11 @@
       height:44px;
       padding:0 14px;
       border-radius:999px;
-      background:linear-gradient(180deg,rgba(255,255,255,0.10),rgba(255,255,255,0.03));
-      border:1px solid rgba(255,255,255,0.18);
-      backdrop-filter:blur(16px) saturate(180%);
-      -webkit-backdrop-filter:blur(16px) saturate(180%);
-      box-shadow:0 14px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);
+      background:linear-gradient(180deg,rgba(20,20,20,0.95),rgba(0,0,0,0.9));
+      border:1px solid rgba(255,255,255,0.14);
+      backdrop-filter:blur(20px) saturate(120%);
+      -webkit-backdrop-filter:blur(20px) saturate(120%);
+      box-shadow:0 14px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
       color:#fff;
       text-decoration:none;
       font-weight:700;
@@ -279,16 +198,16 @@
       stroke-linejoin:round;
     }
 
-    /* Pill-style glass menu with icons */
+    /* Pill-style dark glass social menu */
     #socialMenu{
       position:absolute;
       bottom:54px;
       left:0;
       padding:7px 10px;
       border-radius:999px;
-      background:linear-gradient(180deg,rgba(15,15,15,0.98),rgba(5,5,5,0.97));
+      background:linear-gradient(180deg,rgba(8,8,8,0.98),rgba(0,0,0,0.98));
       border:1px solid rgba(255,255,255,0.12);
-      box-shadow:0 18px 55px rgba(0,0,0,0.85);
+      box-shadow:0 18px 55px rgba(0,0,0,0.9);
       display:flex;
       align-items:center;
       gap:6px;
@@ -329,7 +248,7 @@
     }
 
     .social-item:hover{
-      background:rgba(255,255,255,0.09);
+      background:rgba(255,255,255,0.10);
     }
 
     .social-item::after{
@@ -356,7 +275,7 @@
       transform:translateX(-50%) translateY(-2px);
     }
 
-    /* Smaller tooltips on mobile */
+    /* Hide tooltips on small screens */
     @media (max-width:600px){
       .social-item::after{
         display:none;
@@ -374,21 +293,21 @@
   </div>
 
   <!-- --------- FLOATING BUTTON GROUP (RIGHT) ----------- -->
-  <div id="floatSingle">
+  <div id="floatSingle" class="float-hidden">
     <a id="downloadMini" href="assets/files/saurav_panda_resume.pdf" download>
       Resume ⤵
     </a>
 
     <button id="mainBtn" class="glass-btn" aria-label="Scroll up/down">
-      <!-- New scroll icon (circle + arrow) -->
+      <!-- Scroll icon similar to your 1st code (down arrow toggling to up) -->
       <svg id="mainIcon" width="26" height="26" viewBox="0 0 24 24">
-        <path id="arrowPath" d="M7 10l5 5 5-5"></path>
+        <path id="arrowPath" d="M6 9l6 6 6-6"></path>
       </svg>
     </button>
   </div>
 
   <!-- --------- SOCIAL FLOAT (LEFT) ----------- -->
-  <div id="socialFloat">
+  <div id="socialFloat" class="float-hidden">
     <button id="socialBtn" class="glass-btn" aria-label="Open social links">
       <!-- share / nodes icon -->
       <svg width="22" height="22" viewBox="0 0 24 24">
@@ -460,7 +379,7 @@
       const img = document.createElement('img');
       img.src   = url;
       img.loading = 'lazy';
-      // removed lightbox onclick
+      // lightbox removed as you requested – no onclick
 
       p.appendChild(img);
       wrap.appendChild(p);
@@ -471,35 +390,7 @@
     }
 
     function buildSkeleton(){
-      loader.innerHTML = '';
-
-      const title = document.createElement('div');
-      title.className = 'loader-title';
-      title.textContent = 'Preparing your portfolio…';
-
-      const sub = document.createElement('div');
-      sub.className = 'loader-sub';
-      sub.textContent = 'Loading high-resolution pages';
-
-      const row = document.createElement('div');
-      row.className = 'skeleton-row';
-
-      for(let i=0;i<3;i++){
-        const card = document.createElement('div');
-        card.className = 'skeleton-page';
-        card.innerHTML = `
-          <div class="sk-thumb"></div>
-          <div class="sk-line w1"></div>
-          <div class="sk-line w3"></div>
-          <div class="sk-line w2"></div>
-          <div class="sk-line w4"></div>
-        `;
-        row.appendChild(card);
-      }
-
-      loader.appendChild(title);
-      loader.appendChild(sub);
-      loader.appendChild(row);
+      loader.innerHTML = '<div class="skeleton"></div>';
     }
 
     async function scan(){
@@ -509,6 +400,7 @@
         let ok = false;
         for(const ext of tryExt){
           const path = `${folder}${base}${idx}.${ext}`;
+          // sequential check
           // eslint-disable-next-line no-await-in-loop
           if(await exists(path)){
             addImg(path);
@@ -555,11 +447,11 @@
     }
 
     function updateIcon(){
-      // down arrow when not near bottom, up arrow near bottom
+      // down arrow when not near bottom, up arrow when near bottom
       if(botRemain() < 80){
-        arrow.setAttribute('d','M7 14l5-5 5 5');
+        arrow.setAttribute('d','M6 15l6-6 6 6');  // up arrow
       } else {
-        arrow.setAttribute('d','M7 10l5 5 5-5');
+        arrow.setAttribute('d','M6 9l6 6 6-6');   // down arrow
       }
     }
 
@@ -613,11 +505,13 @@
 
     socialBtn.addEventListener('click', toggleMenu);
 
-    // Close when click outside
+    // Close when click outside (with small delay to avoid instant close on same click)
     document.addEventListener('click', (e) => {
-      if(!socialFloat.contains(e.target)){
-        closeMenu();
-      }
+      setTimeout(() => {
+        if(!socialFloat.contains(e.target)){
+          closeMenu();
+        }
+      }, 50);
     });
   })();
   </script>
