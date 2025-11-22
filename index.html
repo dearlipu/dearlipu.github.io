@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>dearlipu — Saurav Panda | Portfolio</title>
-  <meta name="description" content="Visual portfolio of Saurav 'dearlipu' Panda — artist, museum manager, content creator and tech support (NextGen).">
-  <meta name="keywords" content="Saurav Panda, dearlipu, portfolio, OdiArt Museum, NextGen, photography, art, tech support">
+  <title>Saurav Panda - Portfolio</title>
+  <meta name="description" content="Visual portfolio of Saurav Panda — artist, museum manager, content creator and tech support (NextGen).">
+  <meta name="keywords" content="Saurav Panda, dearlipu, OdiArt Museum, NextGen, portfolio, photography, art, tech support">
 
   <style>
     html,body{
@@ -55,22 +55,86 @@
       padding:0;
     }
 
+    /* -------- PREMIUM SKELETON LOADER OVERLAY -------- */
     #loader{
       position:fixed;
-      left:50%;
-      top:50%;
-      transform:translate(-50%,-50%);
-      background:rgba(0,0,0,0.6);
-      padding:12px 16px;
-      color:#fff;
-      font-weight:700;
-      border-radius:10px;
-      z-index:9999;
+      inset:0;
+      background:
+        radial-gradient(circle at top,#191919 0,#000 55%);
       display:flex;
+      flex-direction:column;
       align-items:center;
       justify-content:center;
+      gap:18px;
+      z-index:9999;
+      padding:20px;
+      box-sizing:border-box;
+      color:#fff;
+      text-align:center;
+    }
+
+    .loader-title{
+      font-size:18px;
+      font-weight:600;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      opacity:.85;
+    }
+
+    .loader-sub{
+      font-size:13px;
+      opacity:.65;
+      margin-bottom:8px;
+    }
+
+    .skeleton-row{
+      display:flex;
       flex-direction:column;
-      gap:12px;
+      gap:10px;
+      width:100%;
+      max-width:900px;
+    }
+
+    .skeleton-page{
+      border-radius:20px;
+      background:rgba(10,10,10,0.9);
+      padding:16px;
+      box-shadow:0 22px 60px rgba(0,0,0,0.80);
+      border:1px solid rgba(255,255,255,0.04);
+      overflow:hidden;
+    }
+
+    .sk-thumb{
+      height:190px;
+      border-radius:16px;
+      margin-bottom:12px;
+    }
+
+    .sk-line{
+      height:10px;
+      border-radius:999px;
+      margin-bottom:8px;
+    }
+
+    .sk-line:last-child{
+      margin-bottom:0;
+    }
+
+    .sk-line.w1{ width:78%; }
+    .sk-line.w2{ width:62%; }
+    .sk-line.w3{ width:90%; }
+    .sk-line.w4{ width:48%; }
+
+    .sk-thumb,
+    .sk-line{
+      background-image:linear-gradient(110deg,#222 0%,#333 40%,#111 80%);
+      background-size:200% 100%;
+      animation:skeleton-loading 1.25s infinite linear;
+    }
+
+    @keyframes skeleton-loading{
+      0%{ background-position-x:-120%; }
+      100%{ background-position-x:120%; }
     }
 
     /* Lightbox */
@@ -101,7 +165,7 @@
       font-weight:700;
     }
 
-    /* ---- PREMIUM GLASS FLOATING CONTROLS ---- */
+    /* ---- GLASS FLOATING CONTROLS (RIGHT) ---- */
     #floatSingle{
       position:fixed;
       right:20px;
@@ -113,7 +177,7 @@
       pointer-events:none;
     }
 
-    #mainBtn{
+    .glass-btn{
       pointer-events:auto;
       width:44px;
       height:44px;
@@ -126,29 +190,29 @@
       display:grid;
       place-items:center;
       cursor:pointer;
-      color:#000;
+      color:#fff;
       transition:transform .20s, box-shadow .20s, opacity .20s;
       position:relative;
     }
 
-    #mainBtn::before{
+    .glass-btn::before{
       content:'';
       position:absolute;
       inset:-8px;
       border-radius:28px;
-      background:linear-gradient(90deg,rgba(124,58,237,0.10),rgba(6,182,212,0.10));
+      background:linear-gradient(90deg,rgba(124,58,237,0.14),rgba(6,182,212,0.14));
       filter:blur(18px);
       opacity:0;
       transition:opacity .25s;
     }
-    #mainBtn:hover::before{
+    .glass-btn:hover::before{
       opacity:1;
     }
 
-    #mainBtn:hover{
+    .glass-btn:hover{
       transform:translateY(-6px) scale(1.03);
     }
-    #mainBtn:active{
+    .glass-btn:active{
       transform:scale(0.96);
     }
 
@@ -192,43 +256,167 @@
       pointer-events:none;
     }
 
-    /* SKELETON LOADER */
-    .skeleton {
-      width:100vw;
-      height:80vh;
-      background:linear-gradient(90deg,#1f1f1f 0px,#2b2b2b 40px,#1f1f1f 80px);
-      background-size:600px 100%;
-      animation:skeleton-loading 1.4s infinite ease-in-out;
-      margin:0;
-      padding:0;
-      border:0;
+    /* ---- SOCIAL FLOAT (LEFT) ---- */
+    #socialFloat{
+      position:fixed;
+      left:20px;
+      bottom:20px;
+      z-index:14000;
+      display:flex;
+      align-items:flex-end;
+      pointer-events:none;
     }
 
-    @keyframes skeleton-loading {
-      0% { background-position:-600px 0; }
-      100% { background-position:600px 0; }
+    #socialBtn{
+      pointer-events:auto;
+    }
+
+    #socialBtn svg path{
+      stroke:white;
+      stroke-width:2;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+    #socialMenu{
+      position:absolute;
+      bottom:54px;
+      left:0;
+      padding:10px 12px;
+      border-radius:18px;
+      background:linear-gradient(180deg,rgba(15,15,15,0.98),rgba(5,5,5,0.97));
+      border:1px solid rgba(255,255,255,0.12);
+      box-shadow:0 18px 55px rgba(0,0,0,0.85);
+      min-width:210px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      opacity:0;
+      transform:translateY(10px) scale(0.97);
+      pointer-events:none;
+      transition:opacity .18s ease, transform .18s ease;
+    }
+
+    #socialMenu.open{
+      opacity:1;
+      transform:translateY(0) scale(1);
+      pointer-events:auto;
+    }
+
+    .social-heading{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      opacity:.6;
+      margin-bottom:4px;
+    }
+
+    .social-item{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:13px;
+      padding:5px 4px;
+      border-radius:8px;
+      color:#f5f5f5;
+      text-decoration:none;
+    }
+
+    .social-item span.handle{
+      opacity:.7;
+      font-size:11px;
+    }
+
+    .social-badge{
+      width:22px;
+      height:22px;
+      border-radius:999px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:11px;
+      background:rgba(255,255,255,0.06);
+    }
+
+    .social-item:hover{
+      background:rgba(255,255,255,0.06);
+    }
+
+    .social-footer-text{
+      margin-top:4px;
+      font-size:10px;
+      opacity:.5;
     }
   </style>
 </head>
 
 <body>
 
-  <div id="loader">Loading portfolio…</div>
+  <div id="loader"></div>
+
   <div id="viewer">
     <div class="wrap" id="wrap"></div>
   </div>
 
-  <!-- --------- FLOATING BUTTON GROUP ----------- -->
+  <!-- --------- FLOATING BUTTON GROUP (RIGHT) ----------- -->
   <div id="floatSingle">
     <a id="downloadMini" href="assets/files/saurav_panda_resume.pdf" download>
       Resume ⤵
     </a>
 
-    <button id="mainBtn" aria-label="Scroll up/down">
+    <button id="mainBtn" class="glass-btn" aria-label="Scroll up/down">
       <svg id="mainIcon" width="26" height="26" viewBox="0 0 24 24">
         <path id="arrowPath" d="M6 15l6-6 6 6"></path>
       </svg>
     </button>
+  </div>
+
+  <!-- --------- SOCIAL FLOAT (LEFT) ----------- -->
+  <div id="socialFloat">
+    <button id="socialBtn" class="glass-btn" aria-label="Open social links">
+      <!-- simple "share / nodes" icon -->
+      <svg width="22" height="22" viewBox="0 0 24 24">
+        <path d="M7 12a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm10-10a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm0 12a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM9.2 13.4l5.7 2.9M14.9 7.7 9.4 11"/>
+      </svg>
+    </button>
+
+    <div id="socialMenu">
+      <div class="social-heading">Connect with me</div>
+
+      <a class="social-item" href="https://instagram.com/dearlipu" target="_blank" rel="noopener">
+        <div class="social-badge">IG</div>
+        <div>
+          <div>Instagram</div>
+          <span class="handle">@dearlipu</span>
+        </div>
+      </a>
+
+      <a class="social-item" href="https://github.com/dearlipu" target="_blank" rel="noopener">
+        <div class="social-badge">GH</div>
+        <div>
+          <div>GitHub</div>
+          <span class="handle">github.com/dearlipu</span>
+        </div>
+      </a>
+
+      <a class="social-item" href="https://youtube.com" target="_blank" rel="noopener">
+        <div class="social-badge">YT</div>
+        <div>
+          <div>YouTube</div>
+          <span class="handle">channel coming soon</span>
+        </div>
+      </a>
+
+      <a class="social-item" href="mailto:contact@dearlipu.in">
+        <div class="social-badge">@</div>
+        <div>
+          <div>Email</div>
+          <span class="handle">contact@dearlipu.in</span>
+        </div>
+      </a>
+
+      <div class="social-footer-text">Tap anywhere outside to close.</div>
+    </div>
   </div>
 
   <script>
@@ -269,20 +457,46 @@
       wrap.appendChild(sep);
     }
 
-    async function scan(){
-
-      // Insert skeleton blocks
+    function buildSkeleton(){
       loader.innerHTML = '';
-      for(let i=0;i<5;i++){
-        const sk = document.createElement('div');
-        sk.className = 'skeleton';
-        loader.appendChild(sk);
+
+      const title = document.createElement('div');
+      title.className = 'loader-title';
+      title.textContent = 'Preparing your portfolio…';
+
+      const sub = document.createElement('div');
+      sub.className = 'loader-sub';
+      sub.textContent = 'Loading high-resolution pages';
+
+      const row = document.createElement('div');
+      row.className = 'skeleton-row';
+
+      for(let i=0;i<3;i++){
+        const card = document.createElement('div');
+        card.className = 'skeleton-page';
+        card.innerHTML = `
+          <div class="sk-thumb"></div>
+          <div class="sk-line w1"></div>
+          <div class="sk-line w3"></div>
+          <div class="sk-line w2"></div>
+          <div class="sk-line w4"></div>
+        `;
+        row.appendChild(card);
       }
+
+      loader.appendChild(title);
+      loader.appendChild(sub);
+      loader.appendChild(row);
+    }
+
+    async function scan(){
+      buildSkeleton();
 
       for(let n=1;n<300;n++){
         let ok = false;
         for(const ext of tryExt){
           const path = `${folder}${base}${idx}.${ext}`;
+          // sequential to avoid hammering disk/network
           // eslint-disable-next-line no-await-in-loop
           if(await exists(path)){
             addImg(path);
@@ -299,7 +513,6 @@
         idx++;
       }
 
-      // Fade out loader
       loader.style.transition = 'opacity 0.3s ease';
       loader.style.opacity = '0';
       setTimeout(() => loader.remove(), 300);
@@ -331,7 +544,7 @@
     document.body.appendChild(lb);
   }
 
-  /* --------- FLOATING CONTROL LOGIC ----------- */
+  /* --------- FLOATING CONTROL LOGIC (SCROLL) ----------- */
   (function(){
     const viewer = document.getElementById('viewer');
     const btn    = document.getElementById('mainBtn');
@@ -370,6 +583,30 @@
 
     updateIcon();
     show();
+  })();
+
+  /* --------- SOCIAL DROPDOWN LOGIC ----------- */
+  (function(){
+    const socialBtn  = document.getElementById('socialBtn');
+    const socialMenu = document.getElementById('socialMenu');
+    const socialFloat= document.getElementById('socialFloat');
+
+    function toggleMenu(e){
+      e.stopPropagation();
+      socialMenu.classList.toggle('open');
+    }
+
+    function closeMenu(){
+      socialMenu.classList.remove('open');
+    }
+
+    socialBtn.addEventListener('click', toggleMenu);
+
+    document.addEventListener('click', (e) => {
+      if(!socialFloat.contains(e.target)){
+        closeMenu();
+      }
+    });
   })();
   </script>
 
