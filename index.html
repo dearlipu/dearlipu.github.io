@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>dearlipu — Saurav Panda | Portfolio</title>
-  <meta name="description" content="Visual portfolio of Saurav 'dearlipu' Panda — artist, museum manager, content creator and tech support (NextGen).">
+  <title>Saurav Panda - Portfolio</title>
+  <meta name="description" content="Visual portfolio of Saurav Panda — artist, museum manager, content creator and tech support (NextGen).">
   <meta name="keywords" content="Saurav Panda, dearlipu, OdiArt Museum, NextGen, portfolio, photography, art, tech support">
 
   <style>
@@ -55,31 +55,127 @@
       padding:0;
     }
 
-    /* -------- SKELETON LOADER (from 1st code, full viewport) -------- */
+    /* -------- PREMIUM SKELETON LOADER OVERLAY -------- */
     #loader{
       position:fixed;
       inset:0;
-      background:#000;
+      background:
+        radial-gradient(circle at top,#191919 0,#000 55%);
       display:flex;
+      flex-direction:column;
       align-items:center;
       justify-content:center;
+      gap:18px;
       z-index:9999;
+      padding:20px;
+      box-sizing:border-box;
+      color:#fff;
+      text-align:center;
     }
 
-    .skeleton{
-      width:100vw;
-      height:100vh;
-      background:linear-gradient(90deg,#1f1f1f 0px,#2b2b2b 40px,#1f1f1f 80px);
-      background-size:600px 100%;
-      animation:skeleton-loading 1.4s infinite ease-in-out;
-      margin:0;
-      padding:0;
-      border:0;
+    .loader-title{
+      font-size:18px;
+      font-weight:600;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      opacity:.85;
+    }
+
+    .loader-sub{
+      font-size:13px;
+      opacity:.65;
+      margin-bottom:8px;
+    }
+
+    .skeleton-row{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      width:100%;
+      max-width:900px;
+    }
+
+    .skeleton-page{
+      border-radius:20px;
+      background:rgba(10,10,10,0.9);
+      padding:16px;
+      box-shadow:0 22px 60px rgba(0,0,0,0.80);
+      border:1px solid rgba(255,255,255,0.04);
+      overflow:hidden;
+    }
+
+    .sk-thumb{
+      height:190px;
+      border-radius:16px;
+      margin-bottom:12px;
+    }
+
+    .sk-line{
+      height:10px;
+      border-radius:999px;
+      margin-bottom:8px;
+    }
+
+    .sk-line:last-child{
+      margin-bottom:0;
+    }
+
+    .sk-line.w1{ width:78%; }
+    .sk-line.w2{ width:62%; }
+    .sk-line.w3{ width:90%; }
+    .sk-line.w4{ width:48%; }
+
+    .sk-thumb,
+    .sk-line{
+      background-image:linear-gradient(110deg,#222 0%,#333 40%,#111 80%);
+      background-size:200% 100%;
+      animation:skeleton-loading 1.25s infinite linear;
     }
 
     @keyframes skeleton-loading{
-      0%{ background-position:-600px 0; }
-      100%{ background-position:600px 0; }
+      0%{ background-position-x:-120%; }
+      100%{ background-position-x:120%; }
+    }
+
+    /* Desktop: bigger & more spread */
+    @media (min-width: 900px){
+      .skeleton-row{
+        flex-direction:row;
+      }
+      .skeleton-page{
+        flex:1;
+      }
+      .sk-thumb{
+        height:min(360px,45vh);
+      }
+    }
+
+    /* Lightbox */
+    .lb{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.95);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:9998;
+    }
+    .lb img{
+      max-width:96vw;
+      max-height:96vh;
+      box-shadow:0 20px 80px rgba(0,0,0,0.8);
+    }
+    .lb-close{
+      position:fixed;
+      top:16px;
+      right:16px;
+      padding:8px 12px;
+      color:#fff;
+      background:rgba(255,255,255,0.08);
+      border-radius:10px;
+      cursor:pointer;
+      z-index:9999;
+      font-weight:700;
     }
 
     /* ---- GLASS FLOATING CONTROLS (RIGHT) ---- */
@@ -92,7 +188,6 @@
       align-items:center;
       gap:12px;
       pointer-events:none;
-      transition:opacity .2s ease, transform .2s ease;
     }
 
     .glass-btn{
@@ -100,12 +195,11 @@
       width:44px;
       height:44px;
       border-radius:100px;
-      /* darker glass */
-      background:linear-gradient(180deg,rgba(20,20,20,0.95),rgba(0,0,0,0.92));
-      border:1px solid rgba(255,255,255,0.12);
-      backdrop-filter:blur(20px) saturate(120%);
-      -webkit-backdrop-filter:blur(20px) saturate(120%);
-      box-shadow:0 14px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+      background:linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.22);
+      backdrop-filter:blur(16px) saturate(180%);
+      -webkit-backdrop-filter:blur(16px) saturate(180%);
+      box-shadow:0 14px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);
       display:grid;
       place-items:center;
       cursor:pointer;
@@ -151,11 +245,11 @@
       height:44px;
       padding:0 14px;
       border-radius:999px;
-      background:linear-gradient(180deg,rgba(20,20,20,0.95),rgba(0,0,0,0.9));
-      border:1px solid rgba(255,255,255,0.14);
-      backdrop-filter:blur(20px) saturate(120%);
-      -webkit-backdrop-filter:blur(20px) saturate(120%);
-      box-shadow:0 14px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+      background:linear-gradient(180deg,rgba(255,255,255,0.10),rgba(255,255,255,0.03));
+      border:1px solid rgba(255,255,255,0.18);
+      backdrop-filter:blur(16px) saturate(180%);
+      -webkit-backdrop-filter:blur(16px) saturate(180%);
+      box-shadow:0 14px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);
       color:#fff;
       text-decoration:none;
       font-weight:700;
@@ -198,16 +292,16 @@
       stroke-linejoin:round;
     }
 
-    /* Pill-style dark glass social menu */
+    /* Pill-style glass menu with icons */
     #socialMenu{
       position:absolute;
       bottom:54px;
       left:0;
       padding:7px 10px;
       border-radius:999px;
-      background:linear-gradient(180deg,rgba(8,8,8,0.98),rgba(0,0,0,0.98));
+      background:linear-gradient(180deg,rgba(15,15,15,0.98),rgba(5,5,5,0.97));
       border:1px solid rgba(255,255,255,0.12);
-      box-shadow:0 18px 55px rgba(0,0,0,0.9);
+      box-shadow:0 18px 55px rgba(0,0,0,0.85);
       display:flex;
       align-items:center;
       gap:6px;
@@ -248,7 +342,7 @@
     }
 
     .social-item:hover{
-      background:rgba(255,255,255,0.10);
+      background:rgba(255,255,255,0.09);
     }
 
     .social-item::after{
@@ -275,7 +369,7 @@
       transform:translateX(-50%) translateY(-2px);
     }
 
-    /* Hide tooltips on small screens */
+    /* Smaller tooltips on mobile */
     @media (max-width:600px){
       .social-item::after{
         display:none;
@@ -299,19 +393,19 @@
     </a>
 
     <button id="mainBtn" class="glass-btn" aria-label="Scroll up/down">
-      <!-- Scroll icon similar to your 1st code (down arrow toggling to up) -->
+      <!-- new nicer arrow icon (line + arrow head) -->
       <svg id="mainIcon" width="26" height="26" viewBox="0 0 24 24">
-        <path id="arrowPath" d="M6 9l6 6 6-6"></path>
+        <path id="arrowPath" d="M12 7 L12 17 M8 13 L12 17 L16 13"></path>
       </svg>
     </button>
   </div>
 
   <!-- --------- SOCIAL FLOAT (LEFT) ----------- -->
-  <div id="socialFloat" class="float-hidden">
+ <div id="socialFloat">
     <button id="socialBtn" class="glass-btn" aria-label="Open social links">
       <!-- share / nodes icon -->
       <svg width="22" height="22" viewBox="0 0 24 24">
-        <path d="M7 12a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm10-10a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm0 12a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM9.2 13.4l5.7 2.9M14.9 7.7 9.4 11"></path>
+        <path d="M7 12a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm10-10a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm0 12a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM9.2 13.4l5.7 2.9M14.9 7.7 9.4 11"/>
       </svg>
     </button>
 
@@ -379,7 +473,7 @@
       const img = document.createElement('img');
       img.src   = url;
       img.loading = 'lazy';
-      // lightbox removed as you requested – no onclick
+      img.onclick = () => openLightbox(url);
 
       p.appendChild(img);
       wrap.appendChild(p);
@@ -390,7 +484,35 @@
     }
 
     function buildSkeleton(){
-      loader.innerHTML = '<div class="skeleton"></div>';
+      loader.innerHTML = '';
+
+      const title = document.createElement('div');
+      title.className = 'loader-title';
+      title.textContent = 'Preparing your portfolio…';
+
+      const sub = document.createElement('div');
+      sub.className = 'loader-sub';
+      sub.textContent = 'Loading high-resolution pages';
+
+      const row = document.createElement('div');
+      row.className = 'skeleton-row';
+
+      for(let i=0;i<3;i++){
+        const card = document.createElement('div');
+        card.className = 'skeleton-page';
+        card.innerHTML = `
+          <div class="sk-thumb"></div>
+          <div class="sk-line w1"></div>
+          <div class="sk-line w3"></div>
+          <div class="sk-line w2"></div>
+          <div class="sk-line w4"></div>
+        `;
+        row.appendChild(card);
+      }
+
+      loader.appendChild(title);
+      loader.appendChild(sub);
+      loader.appendChild(row);
     }
 
     async function scan(){
@@ -400,7 +522,6 @@
         let ok = false;
         for(const ext of tryExt){
           const path = `${folder}${base}${idx}.${ext}`;
-          // sequential check
           // eslint-disable-next-line no-await-in-loop
           if(await exists(path)){
             addImg(path);
@@ -425,14 +546,39 @@
     scan();
   })();
 
+  /* --------- LIGHTBOX ----------- */
+  function openLightbox(src){
+    const old = document.querySelector('.lb');
+    if(old) old.remove();
+
+    const lb  = document.createElement('div');
+    lb.className = 'lb';
+
+    const img = document.createElement('img');
+    img.src = src;
+
+    const cls = document.createElement('div');
+    cls.className = 'lb-close';
+    cls.innerText = 'Close';
+
+    cls.onclick = () => lb.remove();
+    lb.onclick  = e => { if(e.target === lb) lb.remove(); };
+
+    lb.appendChild(img);
+    lb.appendChild(cls);
+    document.body.appendChild(lb);
+  }
+
   /* --------- FLOATING CONTROL LOGIC (SCROLL + AUTOHIDE) ----------- */
   (function(){
     const viewer      = document.getElementById('viewer');
     const btn         = document.getElementById('mainBtn');
     const arrow       = document.getElementById('arrowPath');
-    const floatRight  = document.getElementById('floatSingle');
-    const floatLeft   = document.getElementById('socialFloat');
-    const socialMenu  = document.getElementById('socialMenu');
+    const float       = document.getElementById('floatSingle');
+    const socialFloat = document.getElementById('socialFloat');
+
+    const UP_PATH   = 'M12 17 L12 7 M8 11 L12 7 L16 11';
+    const DOWN_PATH = 'M12 7 L12 17 M8 13 L12 17 L16 13';
 
     function botRemain(){
       return viewer.scrollHeight - (viewer.scrollTop + viewer.clientHeight);
@@ -447,29 +593,19 @@
     }
 
     function updateIcon(){
-      // down arrow when not near bottom, up arrow when near bottom
-      if(botRemain() < 80){
-        arrow.setAttribute('d','M6 15l6-6 6 6');  // up arrow
-      } else {
-        arrow.setAttribute('d','M6 9l6 6 6-6');   // down arrow
-      }
+      arrow.setAttribute('d', botRemain() < 80 ? UP_PATH : DOWN_PATH);
     }
 
     btn.onclick = () => botRemain() < 80 ? goTop() : goBottom();
 
     let timer = null;
     function show(){
-      floatRight.classList.remove('float-hidden');
-      floatLeft.classList.remove('float-hidden');
-
+      float.classList.remove('float-hidden');
+      socialFloat.classList.remove('float-hidden');
       if(timer) clearTimeout(timer);
-
-      // if social menu is open, don't auto-hide
-      if(socialMenu && socialMenu.classList.contains('open')) return;
-
       timer = setTimeout(() => {
-        floatRight.classList.add('float-hidden');
-        floatLeft.classList.add('float-hidden');
+        float.classList.add('float-hidden');
+        socialFloat.classList.add('float-hidden');
       }, 2100);
     }
 
@@ -505,13 +641,11 @@
 
     socialBtn.addEventListener('click', toggleMenu);
 
-    // Close when click outside (with small delay to avoid instant close on same click)
+    // Close when click outside
     document.addEventListener('click', (e) => {
-      setTimeout(() => {
-        if(!socialFloat.contains(e.target)){
-          closeMenu();
-        }
-      }, 50);
+      if(!socialFloat.contains(e.target)){
+        closeMenu();
+      }
     });
   })();
   </script>
