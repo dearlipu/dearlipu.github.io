@@ -200,11 +200,50 @@
       transform:scale(0.96);
     }
 
-    #mainBtn svg path{
+    .glass-btn:hover svg{
+      filter:drop-shadow(0 0 6px rgba(255,255,255,0.9));
+    }
+
+    #mainBtn svg path,
+    #mainBtn svg circle{
       stroke:white;
       stroke-width:2;
       stroke-linecap:round;
       stroke-linejoin:round;
+    }
+
+    /* Resume Pill (now on left, below social button) */
+    #downloadMini{
+      pointer-events:auto;
+      display:flex;
+      align-items:center;
+      gap:6px;
+      height:40px;
+      padding:0 14px;
+      border-radius:999px;
+      background:linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.18);
+      backdrop-filter:blur(16px) saturate(180%);
+      -webkit-backdrop-filter:blur(16px) saturate(180%);
+      box-shadow:0 14px 30px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);
+      color:#fff;
+      text-decoration:none;
+      font-weight:700;
+      font-size:14px;
+      transition:transform .20s, opacity .20s;
+      white-space:nowrap;
+    }
+
+    #downloadMini:hover{
+      transform:translateY(-3px);
+    }
+
+    #downloadMini svg{
+      stroke:currentColor;
+    }
+
+    #downloadMini:hover svg{
+      filter:drop-shadow(0 0 6px rgba(255,255,255,0.9));
     }
 
     .float-hidden{
@@ -220,8 +259,9 @@
       bottom:20px;
       z-index:14000;
       display:flex;
-      align-items:flex-end;
-      gap:10px;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:8px;
       pointer-events:none;
       transition:opacity .2s ease, transform .2s ease;
     }
@@ -239,11 +279,9 @@
 
     /* Pill-style glass menu with icons (darker, vertical) */
     #socialMenu{
-      position:absolute;
-      bottom:54px;
-      left:0;
+      position:relative;
       padding:8px 6px;
-      border-radius:16px;
+      border-radius:18px;
       background:linear-gradient(180deg,rgba(5,5,5,0.98),rgba(0,0,0,0.99));
       border:1px solid rgba(255,255,255,0.10);
       box-shadow:0 18px 55px rgba(0,0,0,0.85);
@@ -255,6 +293,7 @@
       transform:translateY(10px) scale(0.97);
       pointer-events:none;
       transition:opacity .18s ease, transform .18s ease;
+      white-space:nowrap;
     }
 
     #socialMenu.open{
@@ -290,12 +329,16 @@
       background:rgba(255,255,255,0.12);
     }
 
+    .social-item:hover svg{
+      filter:drop-shadow(0 0 6px rgba(255,255,255,0.9));
+    }
+
     .social-item::after{
       content:attr(data-label);
       position:absolute;
-      left:44px;
+      right:-6px;
       top:50%;
-      transform:translateY(-50%);
+      transform:translate(100%,-50%);
       background:rgba(0,0,0,0.9);
       color:#f5f5f5;
       padding:3px 8px;
@@ -311,7 +354,7 @@
 
     .social-item:hover::after{
       opacity:1;
-      transform:translateY(-50%) translateX(2px);
+      transform:translate(100%,-55%);
     }
 
     /* Smaller tooltips on mobile */
@@ -319,54 +362,6 @@
       .social-item::after{
         display:none;
       }
-    }
-
-    /* Resume Pill - moved to left, with glow */
-    #downloadMini{
-      pointer-events:auto;
-      display:flex;
-      align-items:center;
-      gap:8px;
-      height:44px;
-      padding:0 14px;
-      border-radius:999px;
-      background:linear-gradient(180deg,rgba(255,255,255,0.10),rgba(255,255,255,0.03));
-      border:1px solid rgba(255,255,255,0.18);
-      backdrop-filter:blur(16px) saturate(180%);
-      -webkit-backdrop-filter:blur(16px) saturate(180%);
-      box-shadow:0 14px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);
-      color:#fff;
-      text-decoration:none;
-      font-weight:700;
-      font-size:15px;
-      transform:translateX(0);
-      transition:transform .20s, opacity .20s;
-      white-space:nowrap;
-      position:relative;
-    }
-
-    #downloadMini::before{
-      content:'';
-      position:absolute;
-      inset:-8px;
-      border-radius:999px;
-      background:linear-gradient(90deg,rgba(124,58,237,0.16),rgba(6,182,212,0.16));
-      filter:blur(18px);
-      opacity:0;
-      transition:opacity .25s;
-      z-index:-1;
-    }
-
-    #downloadMini:hover::before{
-      opacity:1;
-    }
-
-    #downloadMini:hover{
-      transform:translateY(-4px);
-    }
-
-    #downloadMini:active{
-      transform:translateY(-1px) scale(0.98);
     }
   </style>
 </head>
@@ -382,24 +377,42 @@
   <!-- --------- FLOATING BUTTON GROUP (RIGHT) ----------- -->
   <div id="floatSingle" class="float-hidden">
     <button id="mainBtn" class="glass-btn" aria-label="Scroll up/down">
-      <!-- scroll icon -->
-      <svg id="mainIcon" width="26" height="26" viewBox="0 0 24 24">
-        <path id="arrowPath" d="M12 7 L12 17 M8 13 L12 17 L16 13"></path>
+      <!-- circle arrow icon (Lucide-style) -->
+      <svg id="mainIcon" xmlns="http://www.w3.org/2000/svg"
+        width="26" height="26" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle id="circlePath" cx="12" cy="12" r="10"></circle>
+        <path id="arrowMain" d="M12 8v8"></path>
+        <path id="arrowHead" d="m8 12 4 4 4-4"></path>
       </svg>
     </button>
   </div>
 
-  <!-- --------- SOCIAL FLOAT (LEFT) + RESUME ----------- -->
+  <!-- --------- SOCIAL FLOAT + RESUME (LEFT) ----------- -->
   <div id="socialFloat" class="float-hidden">
     <button id="socialBtn" class="glass-btn" aria-label="Open social links">
-      <!-- new social/share icon -->
-      <svg width="22" height="22" viewBox="0 0 24 24">
-        <path d="M8 5a2.5 2.5 0 1 1 5 0 2.5 2.5 0 0 1-5 0Zm0 14a2.5 2.5 0 1 1 5 0 2.5 2.5 0 0 1-5 0ZM16 12a2.5 2.5 0 1 1 5 0 2.5 2.5 0 0 1-5 0ZM10.2 7.1l3.3 3M13.5 13.9l-3.3 3"></path>
+      <!-- social main button icon -->
+      <svg xmlns="http://www.w3.org/2000/svg"
+        width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/>
+        <path d="M8 12h8"/>
+        <path d="M12 8v8"/>
       </svg>
     </button>
 
     <a id="downloadMini" href="assets/files/saurav_panda_resume.pdf" download>
-      Resume ⤵
+      Resume
+      <svg xmlns="http://www.w3.org/2000/svg"
+        width="18" height="18" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 15V3"/>
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <path d="m7 10 5 5 5-5"/>
+      </svg>
     </a>
 
     <!-- vertical dropdown with icons -->
@@ -466,6 +479,7 @@
       const img = document.createElement('img');
       img.src   = url;
       img.loading = 'lazy';
+      // no lightbox click
 
       p.appendChild(img);
       wrap.appendChild(p);
@@ -542,14 +556,18 @@
   (function(){
     const viewer      = document.getElementById('viewer');
     const btn         = document.getElementById('mainBtn');
-    const arrow       = document.getElementById('arrowPath');
+    const circle      = document.getElementById('circlePath');
+    const arrowMain   = document.getElementById('arrowMain');
+    const arrowHead   = document.getElementById('arrowHead');
     const floatRight  = document.getElementById('floatSingle');
     const floatLeft   = document.getElementById('socialFloat');
     const socialMenu  = document.getElementById('socialMenu');
     const socialBtn   = document.getElementById('socialBtn');
 
-    const UP_PATH   = 'M12 17 L12 7 M8 11 L12 7 L16 11';
-    const DOWN_PATH = 'M12 7 L12 17 M8 13 L12 17 L16 13';
+    const DOWN_MAIN = 'M12 8v8';
+    const DOWN_HEAD = 'm8 12 4 4 4-4';
+    const UP_MAIN   = 'M12 16V8';
+    const UP_HEAD   = 'm16 12-4-4-4 4';
 
     let hideTimer = null;
 
@@ -566,7 +584,13 @@
     }
 
     function updateIcon(){
-      arrow.setAttribute('d', botRemain() < 80 ? UP_PATH : DOWN_PATH);
+      if(botRemain() < 80){
+        arrowMain.setAttribute('d', UP_MAIN);
+        arrowHead.setAttribute('d', UP_HEAD);
+      } else {
+        arrowMain.setAttribute('d', DOWN_MAIN);
+        arrowHead.setAttribute('d', DOWN_HEAD);
+      }
     }
 
     function clearHideTimer(){
@@ -613,7 +637,7 @@
 
     function closeMenu(){
       socialMenu.classList.remove('open');
-      scheduleHide();                     // resume normal auto-hide
+      scheduleHide();                     // resume auto-hide
     }
 
     function toggleMenu(e){
@@ -634,7 +658,7 @@
       });
     });
 
-    // Close when click outside
+    // Close when click outside the socialFloat
     document.addEventListener('click', (e) => {
       if(!floatLeft.contains(e.target)){
         if(socialMenu.classList.contains('open')){
