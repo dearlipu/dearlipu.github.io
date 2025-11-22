@@ -263,15 +263,15 @@
       stroke-linejoin:round;
     }
 
-    /* Pill-style glass menu with icons */
+    /* Pill-style glass menu with icons (darker) */
     #socialMenu{
       position:absolute;
       bottom:54px;
       left:0;
       padding:7px 10px;
       border-radius:999px;
-      background:linear-gradient(180deg,rgba(15,15,15,0.98),rgba(5,5,5,0.97));
-      border:1px solid rgba(255,255,255,0.12);
+      background:linear-gradient(180deg,rgba(5,5,5,0.98),rgba(0,0,0,0.99));
+      border:1px solid rgba(255,255,255,0.10);
       box-shadow:0 18px 55px rgba(0,0,0,0.85);
       display:flex;
       align-items:center;
@@ -444,7 +444,7 @@
       const img = document.createElement('img');
       img.src   = url;
       img.loading = 'lazy';
-      // lightbox removed – simple static images
+      // no lightbox click
 
       p.appendChild(img);
       wrap.appendChild(p);
@@ -517,17 +517,20 @@
     scan();
   })();
 
-  /* --------- FLOATING CONTROL LOGIC (SCROLL + AUTOHIDE) ----------- */
+  /* --------- FLOATING + SOCIAL LOGIC (SCROLL + AUTOHIDE) ----------- */
   (function(){
     const viewer      = document.getElementById('viewer');
     const btn         = document.getElementById('mainBtn');
     const arrow       = document.getElementById('arrowPath');
-    const float       = document.getElementById('floatSingle');
-    const socialFloat = document.getElementById('socialFloat');
+    const floatRight  = document.getElementById('floatSingle');
+    const floatLeft   = document.getElementById('socialFloat');
     const socialMenu  = document.getElementById('socialMenu');
+    const socialBtn   = document.getElementById('socialBtn');
 
     const UP_PATH   = 'M12 17 L12 7 M8 11 L12 7 L16 11';
     const DOWN_PATH = 'M12 7 L12 17 M8 13 L12 17 L16 13';
+
+    let hideTimer = null;
 
     function botRemain(){
       return viewer.scrollHeight - (viewer.scrollTop + viewer.clientHeight);
@@ -545,58 +548,65 @@
       arrow.setAttribute('d', botRemain() < 80 ? UP_PATH : DOWN_PATH);
     }
 
-    btn.onclick = () => botRemain() < 80 ? goTop() : goBottom();
+    function clearHideTimer(){
+      if(hideTimer){
+        clearTimeout(hideTimer);
+        hideTimer = null;
+      }
+    }
 
-    let timer = null;
-    function show(){
-      float.classList.remove('float-hidden');
-      socialFloat.classList.remove('float-hidden');
+    function scheduleHide(){
+      clearHideTimer();
 
-      if(timer) clearTimeout(timer);
+      // If social menu is open, do NOT auto-hide
+      if(socialMenu && socialMenu.classList.contains('open')) return;
 
-      timer = setTimeout(() => {
-        float.classList.add('float-hidden');
-        socialFloat.classList.add('float-hidden');
-        // also fully close menu when auto-hidden
-        if(socialMenu){
-          socialMenu.classList.remove('open');
-        }
+      hideTimer = setTimeout(() => {
+        floatRight.classList.add('float-hidden');
+        floatLeft.classList.add('float-hidden');
       }, 2100);
     }
 
-    viewer.addEventListener('scroll', () => { updateIcon(); show(); });
-    viewer.addEventListener('mousemove', show);
-    viewer.addEventListener('touchstart', show);
+    function showFloats(){
+      floatRight.classList.remove('float-hidden');
+      floatLeft.classList.remove('float-hidden');
+      scheduleHide();
+    }
 
-    updateIcon();
-    show();
-  })();
+    btn.onclick = () => botRemain() < 80 ? goTop() : goBottom();
 
-  /* --------- SOCIAL DROPDOWN LOGIC ----------- */
-  (function(){
-    const socialBtn   = document.getElementById('socialBtn');
-    const socialMenu  = document.getElementById('socialMenu');
-    const socialFloat = document.getElementById('socialFloat');
+    viewer.addEventListener('scroll', () => {
+      updateIcon();
+      showFloats();
+    });
+    viewer.addEventListener('mousemove', showFloats);
+    viewer.addEventListener('touchstart', showFloats);
 
-    function toggleMenu(e){
-      e.stopPropagation();
-      const isOpen = socialMenu.classList.contains('open');
-      if(isOpen){
-        socialMenu.classList.remove('open');
-      } else {
-        socialMenu.classList.add('open');
-        // when opened, ensure float is visible
-        socialFloat.classList.remove('float-hidden');
-      }
+    /* --------- SOCIAL DROPDOWN LOGIC (SHARED TIMER) ----------- */
+    function openMenu(){
+      socialMenu.classList.add('open');
+      clearHideTimer();                   // keep visible
+      floatLeft.classList.remove('float-hidden');
+      floatRight.classList.remove('float-hidden');
     }
 
     function closeMenu(){
       socialMenu.classList.remove('open');
+      scheduleHide();                     // resume normal auto-hide
+    }
+
+    function toggleMenu(e){
+      e.stopPropagation();
+      if(socialMenu.classList.contains('open')){
+        closeMenu();
+      } else {
+        openMenu();
+      }
     }
 
     socialBtn.addEventListener('click', toggleMenu);
 
-    // Close when clicking any social link (icon)
+    // Close when clicking any social item
     document.querySelectorAll('#socialMenu .social-item').forEach(item => {
       item.addEventListener('click', () => {
         closeMenu();
@@ -605,10 +615,16 @@
 
     // Close when click outside
     document.addEventListener('click', (e) => {
-      if(!socialFloat.contains(e.target)){
-        closeMenu();
+      if(!floatLeft.contains(e.target)){
+        if(socialMenu.classList.contains('open')){
+          closeMenu();
+        }
       }
     });
+
+    // initial
+    updateIcon();
+    showFloats();
   })();
   </script>
 
