@@ -3,9 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>dearlipu — Saurav Panda | Portfolio</title>
-  <meta name="description" content="Visual portfolio of Saurav 'dearlipu' Panda — artist, museum manager, content creator and tech support (NextGen).">
-  <meta name="keywords" content="Saurav Panda, dearlipu, OdiArt Museum, NextGen, portfolio, photography, art, tech support">
+  <title>Saurav Panda - Portfolio</title>
+
+  <!-- Bootstrap Icons for social + arrow icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
   <style>
     html,body{
@@ -55,116 +56,102 @@
       padding:0;
     }
 
-    /* -------- PREMIUM SKELETON LOADER OVERLAY -------- */
+    /* ====== SKELETON LOADER ====== */
     #loader{
       position:fixed;
       inset:0;
-      background:radial-gradient(circle at top,#191919 0,#000 55%);
       display:flex;
-      flex-direction:column;
       align-items:center;
       justify-content:center;
-      gap:18px;
+      background:radial-gradient(circle at top,rgba(40,40,40,0.9),rgba(0,0,0,0.98));
       z-index:9999;
-      padding:20px;
+    }
+
+    .skeleton-wrap{
+      width:100%;
+      max-width:1200px;
+      padding:16px;
       box-sizing:border-box;
-      color:#fff;
-      text-align:center;
-    }
-
-    .loader-title{
-      font-size:18px;
-      font-weight:600;
-      letter-spacing:.04em;
-      text-transform:uppercase;
-      opacity:.85;
-    }
-
-    .loader-sub{
-      font-size:13px;
-      opacity:.65;
-      margin-bottom:8px;
+      display:flex;
+      flex-direction:column;
+      gap:16px;
     }
 
     .skeleton-row{
       display:flex;
       flex-direction:column;
-      gap:10px;
-      width:100%;
-      max-width:clamp(320px,90vw,1100px);
+      gap:16px;
     }
 
     .skeleton-page{
-      border-radius:20px;
-      background:rgba(10,10,10,0.9);
-      padding:16px;
-      box-shadow:0 22px 60px rgba(0,0,0,0.80);
-      border:1px solid rgba(255,255,255,0.04);
+      flex:1;
+      border-radius:18px;
+      padding:14px;
+      background:rgba(18,18,18,0.96);
+      box-shadow:0 24px 80px rgba(0,0,0,0.9);
       overflow:hidden;
     }
 
     .sk-thumb{
-      border-radius:16px;
-      margin-bottom:12px;
-      height:clamp(160px,45vh,420px);
+      width:100%;
+      height:220px;
+      border-radius:14px;
+      background:linear-gradient(110deg,#1c1c1c 0px,#2b2b2b 40px,#1c1c1c 80px);
+      background-size:600px 100%;
+      animation:skeleton-loading 1.3s infinite ease-in-out;
+      margin-bottom:10px;
     }
 
     .sk-line{
       height:10px;
       border-radius:999px;
-      margin-bottom:8px;
+      background:linear-gradient(110deg,#1a1a1a 0px,#292929 40px,#1a1a1a 80px);
+      background-size:600px 100%;
+      animation:skeleton-loading 1.3s infinite ease-in-out;
+      margin:4px 0;
+      opacity:.9;
     }
 
-    .sk-line:last-child{
-      margin-bottom:0;
+    .sk-line.short{
+      width:58%;
     }
 
-    .sk-line.w1{ width:78%; }
-    .sk-line.w2{ width:62%; }
-    .sk-line.w3{ width:90%; }
-    .sk-line.w4{ width:48%; }
+    .sk-line.medium{
+      width:80%;
+    }
 
-    .sk-thumb,
-    .sk-line{
-      background-image:linear-gradient(110deg,#222 0%,#333 40%,#111 80%);
-      background-size:200% 100%;
-      animation:skeleton-loading 1.25s infinite linear;
+    .sk-line.full{
+      width:100%;
     }
 
     @keyframes skeleton-loading{
-      0%{ background-position-x:-120%; }
-      100%{ background-position-x:120%; }
+      0%{ background-position:-600px 0; }
+      100%{ background-position:600px 0; }
     }
 
-    /* Lightbox */
-    .lb{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,0.95);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      z-index:9998;
-    }
-    .lb img{
-      max-width:96vw;
-      max-height:96vh;
-      box-shadow:0 20px 80px rgba(0,0,0,0.8);
-    }
-    .lb-close{
-      position:fixed;
-      top:16px;
-      right:16px;
-      padding:8px 12px;
-      color:#fff;
-      background:rgba(255,255,255,0.08);
-      border-radius:10px;
-      cursor:pointer;
-      z-index:9999;
-      font-weight:700;
+    /* Responsive skeleton */
+    @media (min-width:900px){
+      .skeleton-row{
+        flex-direction:row;
+      }
+      .skeleton-page{
+        padding:18px;
+      }
+      .sk-thumb{
+        height:280px;
+      }
     }
 
-    /* ---- GLASS FLOATING CONTROLS (RIGHT) ---- */
+    @media (min-width:1400px){
+      .skeleton-page{
+        padding:24px;
+      }
+      .sk-thumb{
+        height:360px;
+      }
+    }
+
+    /* ====== FLOATING CONTROLS (SCROLL + RESUME) ====== */
     #floatSingle{
       position:fixed;
       right:20px;
@@ -174,80 +161,86 @@
       align-items:center;
       gap:12px;
       pointer-events:none;
-      transition:opacity .2s ease, transform .2s ease;
     }
 
-    .glass-btn{
+    /* dark glass token style for all buttons */
+    .glass-token{
+      background:radial-gradient(circle at top,rgba(20,20,20,0.98),rgba(5,5,5,0.96));
+      border:1px solid rgba(255,255,255,0.14);
+      backdrop-filter:blur(18px) saturate(180%);
+      -webkit-backdrop-filter:blur(18px) saturate(180%);
+      box-shadow:
+        0 18px 50px rgba(0,0,0,0.85),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+      color:#f5f5f5;
+    }
+
+    #mainBtn{
       pointer-events:auto;
-      width:44px;
-      height:44px;
-      border-radius:100px;
-      background:linear-gradient(180deg,rgba(255,255,255,0.10),rgba(255,255,255,0.03));
-      border:1px solid rgba(255,255,255,0.18);
-      backdrop-filter:blur(16px) saturate(180%);
-      -webkit-backdrop-filter:blur(16px) saturate(180%);
-      box-shadow:0 14px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);
+      width:46px;
+      height:46px;
+      border-radius:999px;
+      border:none;
       display:grid;
       place-items:center;
       cursor:pointer;
-      color:#fff;
       transition:transform .20s, box-shadow .20s, opacity .20s;
       position:relative;
     }
 
-    .glass-btn::before{
+    #mainBtn::before{
       content:'';
       position:absolute;
       inset:-8px;
-      border-radius:28px;
-      background:linear-gradient(90deg,rgba(124,58,237,0.14),rgba(6,182,212,0.14));
-      filter:blur(18px);
+      border-radius:999px;
+      background:radial-gradient(circle at top,rgba(124,58,237,0.2),rgba(6,182,212,0.05));
+      filter:blur(22px);
       opacity:0;
       transition:opacity .25s;
+      pointer-events:none;
     }
-    .glass-btn:hover::before{
+
+    #mainBtn:hover::before{
       opacity:1;
     }
 
-    .glass-btn:hover{
-      transform:translateY(-6px) scale(1.03);
+    #mainBtn:hover{
+      transform:translateY(-5px) scale(1.03);
     }
-    .glass-btn:active{
-      transform:scale(0.96);
+
+    #mainBtn:active{
+      transform:scale(0.95);
     }
 
     #mainBtn svg path{
       stroke:white;
-      stroke-width:2;
+      stroke-width:1.9;
       stroke-linecap:round;
       stroke-linejoin:round;
     }
 
-    /* Resume Pill */
     #downloadMini{
       pointer-events:auto;
       display:flex;
       align-items:center;
       gap:8px;
       height:44px;
-      padding:0 14px;
+      padding:0 16px;
       border-radius:999px;
-      background:linear-gradient(180deg,rgba(255,255,255,0.10),rgba(255,255,255,0.03));
-      border:1px solid rgba(255,255,255,0.18);
-      backdrop-filter:blur(16px) saturate(180%);
-      -webkit-backdrop-filter:blur(16px) saturate(180%);
-      box-shadow:0 14px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);
-      color:#fff;
       text-decoration:none;
-      font-weight:700;
-      font-size:15px;
+      font-weight:600;
+      font-size:14px;
       transform:translateX(-6px);
       transition:transform .20s, opacity .20s;
-      white-space:nowrap;
+      color:#f5f5f5;
+    }
+
+    #downloadMini i{
+      font-size:16px;
     }
 
     #downloadMini:hover{
-      transform:translateX(-10px) translateY(-4px);
+      transform:translateX(-10px) translateY(-3px);
     }
 
     .float-hidden{
@@ -256,110 +249,110 @@
       pointer-events:none;
     }
 
-    /* ---- SOCIAL FLOAT (LEFT) ---- */
-    #socialFloat{
+    /* ====== SOCIAL BUTTON (BOTTOM LEFT) ====== */
+    #socialWrap{
       position:fixed;
       left:20px;
       bottom:20px;
       z-index:14000;
       display:flex;
-      align-items:flex-end;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:10px;
       pointer-events:none;
-      transition:opacity .2s ease, transform .2s ease;
     }
 
     #socialBtn{
       pointer-events:auto;
-    }
-
-    #socialBtn svg path{
-      stroke:white;
-      stroke-width:2;
-      stroke-linecap:round;
-      stroke-linejoin:round;
-    }
-
-    /* Pill-style glass menu with icons */
-    #socialMenu{
-      position:absolute;
-      bottom:54px;
-      left:0;
-      padding:7px 10px;
+      width:46px;
+      height:46px;
       border-radius:999px;
-      background:linear-gradient(180deg,rgba(15,15,15,0.98),rgba(5,5,5,0.97));
-      border:1px solid rgba(255,255,255,0.12);
-      box-shadow:0 18px 55px rgba(0,0,0,0.85);
+      border:none;
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      transition:transform .20s, box-shadow .20s, opacity .20s;
+      position:relative;
+      color:#f5f5f5;
+    }
+
+    #socialBtn i{
+      font-size:18px;
+    }
+
+    #socialBtn:hover{
+      transform:translateY(-4px) scale(1.03);
+    }
+
+    #socialMenu{
+      pointer-events:auto;
+      margin-bottom:4px;
+      padding:10px 12px;
+      border-radius:999px;
       display:flex;
       align-items:center;
-      gap:6px;
+      gap:8px;
       opacity:0;
-      transform:translateY(10px) scale(0.97);
-      pointer-events:none;
+      transform:translateY(8px) scale(0.97);
       transition:opacity .18s ease, transform .18s ease;
-      white-space:nowrap;
+      visibility:hidden;
     }
 
     #socialMenu.open{
       opacity:1;
       transform:translateY(0) scale(1);
-      pointer-events:auto;
+      visibility:visible;
     }
 
-    .social-item{
-      width:36px;
-      height:36px;
+    .social-pill{
+      width:auto;
+      padding:6px 10px;
       border-radius:999px;
       display:flex;
       align-items:center;
       justify-content:center;
-      background:rgba(255,255,255,0.04);
-      cursor:pointer;
       text-decoration:none;
-      position:relative;
-    }
-
-    .social-item svg{
-      width:18px;
-      height:18px;
-      fill:none;
-      stroke:#f5f5f5;
-      stroke-width:1.7;
-      stroke-linecap:round;
-      stroke-linejoin:round;
-    }
-
-    .social-item:hover{
-      background:rgba(255,255,255,0.09);
-    }
-
-    .social-item::after{
-      content:attr(data-label);
-      position:absolute;
-      bottom:44px;
-      left:50%;
-      transform:translateX(-50%);
-      background:rgba(0,0,0,0.9);
+      font-size:14px;
       color:#f5f5f5;
-      padding:3px 8px;
-      border-radius:999px;
-      font-size:10px;
-      letter-spacing:.04em;
-      text-transform:uppercase;
-      opacity:0;
-      pointer-events:none;
-      white-space:nowrap;
-      transition:opacity .15s ease, transform .15s ease;
+      font-weight:600;
+      gap:6px;
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
     }
 
-    .social-item:hover::after{
-      opacity:1;
-      transform:translateX(-50%) translateY(-2px);
+    .social-pill i{
+      font-size:15px;
     }
 
-    /* Smaller tooltips on mobile */
-    @media (max-width:600px){
-      .social-item::after{
-        display:none;
+    .social-pill:hover{
+      transform:translateY(-3px);
+      box-shadow:0 18px 40px rgba(0,0,0,0.8);
+      background:radial-gradient(circle at top,rgba(45,45,45,1),rgba(15,15,15,1));
+    }
+
+    .social-pill--ig{
+      border:1px solid rgba(236,72,153,0.6);
+    }
+    .social-pill--gh{
+      border:1px solid rgba(148,163,184,0.7);
+    }
+    .social-pill--yt{
+      border:1px solid rgba(248,113,113,0.7);
+    }
+    .social-pill--mail{
+      border:1px solid rgba(56,189,248,0.7);
+    }
+
+    @media (max-width:480px){
+      #floatSingle{
+        right:14px;
+        bottom:14px;
+      }
+      #socialWrap{
+        left:14px;
+        bottom:14px;
+      }
+      #downloadMini{
+        display:none; /* keep only arrow on very small screens if you want */
       }
     }
   </style>
@@ -367,284 +360,236 @@
 
 <body>
 
-  <div id="loader"></div>
+<div id="loader"></div>
+<div id="viewer"><div class="wrap" id="wrap"></div></div>
 
-  <div id="viewer">
-    <div class="wrap" id="wrap"></div>
-  </div>
+<!-- --------- FLOATING BUTTON GROUP (RIGHT) ----------- -->
+<div id="floatSingle">
+  <a id="downloadMini" class="glass-token" href="assets/files/saurav_panda_resume.pdf" download>
+    <i class="bi bi-download"></i>
+    <span>Resume</span>
+  </a>
 
-  <!-- --------- FLOATING BUTTON GROUP (RIGHT) ----------- -->
-  <div id="floatSingle">
-    <a id="downloadMini" href="assets/files/saurav_panda_resume.pdf" download>
-      Resume ⤵
+  <button id="mainBtn" class="glass-token" aria-label="Scroll to top or bottom">
+    <svg id="mainIcon" width="24" height="24" viewBox="0 0 24 24">
+      <!-- double chevron, JS will swap d for up/down -->
+      <path id="arrowPath" d="M7 15l5-5 5 5M7 11l5-5 5 5"></path>
+    </svg>
+  </button>
+</div>
+
+<!-- --------- SOCIAL BUTTON GROUP (LEFT) ----------- -->
+<div id="socialWrap">
+  <div id="socialMenu" class="glass-token">
+    <a class="social-pill glass-token social-pill--ig" href="https://instagram.com/dearlipu" target="_blank" rel="noopener">
+      <i class="bi bi-instagram"></i>
+      <span>IG</span>
     </a>
-
-    <button id="mainBtn" class="glass-btn" aria-label="Scroll up/down">
-      <!-- New scroll icon (circle + arrow) -->
-      <svg id="mainIcon" width="26" height="26" viewBox="0 0 24 24">
-        <path id="arrowPath" d="M7 10l5 5 5-5"></path>
-      </svg>
-    </button>
+    <a class="social-pill glass-token social-pill--gh" href="https://github.com/dearlipu" target="_blank" rel="noopener">
+      <i class="bi bi-github"></i>
+      <span>GitHub</span>
+    </a>
+    <a class="social-pill glass-token social-pill--yt" href="https://youtube.com" target="_blank" rel="noopener">
+      <i class="bi bi-youtube"></i>
+      <span>YouTube</span>
+    </a>
+    <a class="social-pill glass-token social-pill--mail" href="mailto:contact@dearlipu.in">
+      <i class="bi bi-envelope-fill"></i>
+      <span>Mail</span>
+    </a>
   </div>
 
-  <!-- --------- SOCIAL FLOAT (LEFT) ----------- -->
-  <div id="socialFloat">
-    <button id="socialBtn" class="glass-btn" aria-label="Open social links">
-      <!-- share / nodes icon -->
-      <svg width="22" height="22" viewBox="0 0 24 24">
-        <path d="M7 12a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm10-10a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm0 12a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM9.2 13.4l5.7 2.9M14.9 7.7 9.4 11"/>
-      </svg>
-    </button>
+  <button id="socialBtn" class="glass-token" aria-label="Open social links">
+    <i class="bi bi-share-fill"></i>
+  </button>
+</div>
 
-    <!-- pill dropdown with icons -->
-    <div id="socialMenu">
-      <!-- Instagram -->
-      <a class="social-item" data-label="Instagram" href="https://instagram.com/dearlipu" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24">
-          <rect x="4" y="4" width="16" height="16" rx="4"></rect>
-          <circle cx="12" cy="12" r="4"></circle>
-          <circle cx="17.3" cy="6.7" r="1.1"></circle>
-        </svg>
-      </a>
+<script>
+/* --------- IMAGE LOADER ----------- */
+(function(){
+  const wrap   = document.getElementById('wrap');
+  const loader = document.getElementById('loader');
+  const folder = 'assets/pages/';
+  const base   = 'page-';
+  const tryExt = ['png','jpg','webp','gif'];
+  let idx = 1, miss = 0;
 
-      <!-- GitHub -->
-      <a class="social-item" data-label="GitHub" href="https://github.com/dearlipu" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24">
-          <path d="M9 18.3c-3 .9-3-1.5-4.2-1.8M15 18.3v-2.4c0-.7-.2-1.2-.6-1.6 2.1-.2 4.3-1 4.3-4.5 0-1-.3-1.8-.9-2.5.1-.2.4-1.1-.1-2.3 0 0-.8-.3-2.6.9-.8-.2-1.6-.3-2.4-.3s-1.6.1-2.4.3C5.5 4.9 4.7 5.2 4.7 5.2c-.5 1.2-.2 2.1-.1 2.3-.6.7-.9 1.5-.9 2.5 0 3.5 2.2 4.3 4.3 4.5-.3.3-.5.7-.6 1.3"></path>
-        </svg>
-      </a>
+  // build skeleton UI
+  function buildSkeleton(){
+    loader.innerHTML = '';
+    const shell = document.createElement('div');
+    shell.className = 'skeleton-wrap';
 
-      <!-- YouTube -->
-      <a class="social-item" data-label="YouTube" href="https://youtube.com" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24">
-          <rect x="3.5" y="7" width="17" height="10" rx="3"></rect>
-          <path d="M11 10.5 14.5 12 11 13.5Z"></path>
-        </svg>
-      </a>
-
-      <!-- Email -->
-      <a class="social-item" data-label="Email" href="mailto:contact@dearlipu.in">
-        <svg viewBox="0 0 24 24">
-          <rect x="4" y="5" width="16" height="14" rx="2"></rect>
-          <path d="M5 7.5 12 12l7-4.5"></path>
-        </svg>
-      </a>
-    </div>
-  </div>
-
-  <script>
-  /* --------- IMAGE LOADER ----------- */
-  (function(){
-    const wrap   = document.getElementById('wrap');
-    const loader = document.getElementById('loader');
-    const folder = 'assets/pages/';
-    const base   = 'page-';
-    const tryExt = ['png','jpg','webp','gif'];
-
-    let idx  = 1;
-    let miss = 0;
-
-    function exists(url){
-      return new Promise(res => {
-        const i = new Image();
-        i.onload  = () => res(true);
-        i.onerror = () => res(false);
-        i.src = url;
-      });
-    }
-
-    function addImg(url){
-      const p   = document.createElement('div');
-      p.className = 'page';
-
-      const img = document.createElement('img');
-      img.src   = url;
-      img.loading = 'lazy';
-      img.onclick = () => openLightbox(url);
-
-      p.appendChild(img);
-      wrap.appendChild(p);
-
-      const sep = document.createElement('div');
-      sep.className = 'sep';
-      wrap.appendChild(sep);
-    }
-
-    function buildSkeleton(){
-      loader.innerHTML = '';
-
-      const title = document.createElement('div');
-      title.className = 'loader-title';
-      title.textContent = 'Preparing your portfolio…';
-
-      const sub = document.createElement('div');
-      sub.className = 'loader-sub';
-      sub.textContent = 'Loading high-resolution pages';
-
+    for(let r=0;r<2;r++){
       const row = document.createElement('div');
       row.className = 'skeleton-row';
 
-      for(let i=0;i<3;i++){
-        const card = document.createElement('div');
-        card.className = 'skeleton-page';
-        card.innerHTML = `
-          <div class="sk-thumb"></div>
-          <div class="sk-line w1"></div>
-          <div class="sk-line w3"></div>
-          <div class="sk-line w2"></div>
-          <div class="sk-line w4"></div>
-        `;
-        row.appendChild(card);
+      for(let p=0;p<2;p++){
+        const page = document.createElement('div');
+        page.className = 'skeleton-page';
+
+        const thumb = document.createElement('div');
+        thumb.className = 'sk-thumb';
+        page.appendChild(thumb);
+
+        const l1 = document.createElement('div');
+        l1.className = 'sk-line full';
+        const l2 = document.createElement('div');
+        l2.className = 'sk-line medium';
+        const l3 = document.createElement('div');
+        l3.className = 'sk-line short';
+
+        page.appendChild(l1);
+        page.appendChild(l2);
+        page.appendChild(l3);
+
+        row.appendChild(page);
       }
 
-      loader.appendChild(title);
-      loader.appendChild(sub);
-      loader.appendChild(row);
+      shell.appendChild(row);
     }
 
-    async function scan(){
-      buildSkeleton();
-
-      for(let n=1;n<300;n++){
-        let ok = false;
-        for(const ext of tryExt){
-          const path = `${folder}${base}${idx}.${ext}`;
-          // sequential check
-          // eslint-disable-next-line no-await-in-loop
-          if(await exists(path)){
-            addImg(path);
-            ok = true;
-            break;
-          }
-        }
-        if(!ok){
-          miss++;
-          if(miss>=6) break;   // stop if several consecutive pages missing
-        } else {
-          miss = 0;
-        }
-        idx++;
-      }
-
-      loader.style.transition = 'opacity 0.3s ease';
-      loader.style.opacity = '0';
-      setTimeout(() => loader.remove(), 300);
-    }
-
-    scan();
-  })();
-
-  /* --------- LIGHTBOX ----------- */
-  function openLightbox(src){
-    const old = document.querySelector('.lb');
-    if(old) old.remove();
-
-    const lb  = document.createElement('div');
-    lb.className = 'lb';
-
-    const img = document.createElement('img');
-    img.src = src;
-
-    const cls = document.createElement('div');
-    cls.className = 'lb-close';
-    cls.innerText = 'Close';
-
-    cls.onclick = () => lb.remove();
-    lb.onclick  = e => { if(e.target === lb) lb.remove(); };
-
-    lb.appendChild(img);
-    lb.appendChild(cls);
-    document.body.appendChild(lb);
+    loader.appendChild(shell);
   }
 
-  /* --------- FLOATING CONTROL LOGIC (SCROLL + AUTOHIDE) ----------- */
-  (function(){
-    const viewer      = document.getElementById('viewer');
-    const btn         = document.getElementById('mainBtn');
-    const arrow       = document.getElementById('arrowPath');
-    const floatRight  = document.getElementById('floatSingle');
-    const floatLeft   = document.getElementById('socialFloat');
-    const socialMenu  = document.getElementById('socialMenu');
-
-    function botRemain(){
-      return viewer.scrollHeight - (viewer.scrollTop + viewer.clientHeight);
-    }
-
-    function goTop(){
-      viewer.scrollTo({top:0, behavior:'smooth'});
-    }
-
-    function goBottom(){
-      viewer.scrollTo({top:viewer.scrollHeight, behavior:'smooth'});
-    }
-
-    function updateIcon(){
-      // down arrow when not near bottom, up arrow near bottom
-      if(botRemain() < 80){
-        arrow.setAttribute('d','M7 14l5-5 5 5');
-      } else {
-        arrow.setAttribute('d','M7 10l5 5 5-5');
-      }
-    }
-
-    btn.onclick = () => botRemain() < 80 ? goTop() : goBottom();
-
-    let timer = null;
-    function show(){
-      floatRight.classList.remove('float-hidden');
-      floatLeft.classList.remove('float-hidden');
-
-      if(timer) clearTimeout(timer);
-
-      // if social menu is open, don't auto-hide
-      if(socialMenu && socialMenu.classList.contains('open')) return;
-
-      timer = setTimeout(() => {
-        floatRight.classList.add('float-hidden');
-        floatLeft.classList.add('float-hidden');
-      }, 2100);
-    }
-
-    viewer.addEventListener('scroll', () => { updateIcon(); show(); });
-    viewer.addEventListener('mousemove', show);
-    viewer.addEventListener('touchstart', show);
-
-    updateIcon();
-    show();
-  })();
-
-  /* --------- SOCIAL DROPDOWN LOGIC ----------- */
-  (function(){
-    const socialBtn   = document.getElementById('socialBtn');
-    const socialMenu  = document.getElementById('socialMenu');
-    const socialFloat = document.getElementById('socialFloat');
-
-    function toggleMenu(e){
-      e.stopPropagation();
-      const isOpen = socialMenu.classList.contains('open');
-      if(isOpen){
-        socialMenu.classList.remove('open');
-      } else {
-        socialMenu.classList.add('open');
-        // when opened, ensure float is visible (do not hide)
-        socialFloat.classList.remove('float-hidden');
-      }
-    }
-
-    function closeMenu(){
-      socialMenu.classList.remove('open');
-    }
-
-    socialBtn.addEventListener('click', toggleMenu);
-
-    // Close when click outside
-    document.addEventListener('click', (e) => {
-      if(!socialFloat.contains(e.target)){
-        closeMenu();
-      }
+  function exists(url){
+    return new Promise(res=>{
+      const i = new Image();
+      i.onload  = ()=>res(true);
+      i.onerror = ()=>res(false);
+      i.src = url;
     });
-  })();
-  </script>
+  }
+
+  function addImg(url){
+    const p   = document.createElement('div');
+    p.className = 'page';
+    const img = document.createElement('img');
+    img.src   = url;
+    img.loading = 'lazy';
+    // NO lightbox click – user wants just scroll
+    p.appendChild(img);
+    wrap.appendChild(p);
+    const sep = document.createElement('div');
+    sep.className = 'sep';
+    wrap.appendChild(sep);
+  }
+
+  async function scan(){
+    buildSkeleton();
+
+    for(let n=1;n<300;n++){
+      let ok = false;
+      for(const ext of tryExt){
+        const path = `${folder}${base}${idx}.${ext}`;
+        if(await exists(path)){
+          addImg(path);
+          ok = true;
+          break;
+        }
+      }
+      if(!ok){
+        miss++;
+        if(miss>=6) break;
+      }else{
+        miss = 0;
+      }
+      idx++;
+    }
+
+    loader.style.opacity = '0';
+    setTimeout(()=> loader.remove(), 300);
+  }
+
+  scan();
+})();
+
+/* --------- FLOATING SCROLL CONTROL ----------- */
+(function(){
+  const viewer = document.getElementById('viewer');
+  const btn    = document.getElementById('mainBtn');
+  const arrow  = document.getElementById('arrowPath');
+  const float  = document.getElementById('floatSingle');
+
+  function botRemain(){
+    return viewer.scrollHeight - (viewer.scrollTop + viewer.clientHeight);
+  }
+
+  function goTop(){
+    viewer.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  function goBottom(){
+    viewer.scrollTo({top:viewer.scrollHeight,behavior:'smooth'});
+  }
+
+  function updateIcon(){
+    // near bottom -> show UP double chevron; else DOWN
+    if(botRemain() < 80){
+      arrow.setAttribute('d','M7 15l5-5 5 5M7 11l5-5 5 5'); // up
+    }else{
+      arrow.setAttribute('d','M7 9l5 5 5-5M7 13l5 5 5-5'); // down
+    }
+  }
+
+  btn.addEventListener('click',()=>{
+    if(botRemain() < 80) goTop(); else goBottom();
+    show();
+  });
+
+  let timer = null;
+  function show(){
+    float.classList.remove('float-hidden');
+    if(timer) clearTimeout(timer);
+    timer = setTimeout(()=> float.classList.add('float-hidden'), 2200);
+  }
+
+  viewer.addEventListener('scroll',()=>{ updateIcon(); show(); });
+  viewer.addEventListener('mousemove',show);
+  viewer.addEventListener('touchstart',show);
+
+  updateIcon();
+  show();
+})();
+
+/* --------- SOCIAL MENU (CLICK TO OPEN, CLICK OUTSIDE TO CLOSE) ----------- */
+(function(){
+  const socialBtn  = document.getElementById('socialBtn');
+  const socialMenu = document.getElementById('socialMenu');
+  const viewer     = document.getElementById('viewer');
+
+  let isOpen = false;
+
+  function openMenu(){
+    socialMenu.classList.add('open');
+    isOpen = true;
+  }
+
+  function closeMenu(){
+    socialMenu.classList.remove('open');
+    isOpen = false;
+  }
+
+  socialBtn.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    if(isOpen) closeMenu(); else openMenu();
+  });
+
+  socialMenu.addEventListener('click', (e)=>{
+    e.stopPropagation(); // clicking inside menu won't close
+  });
+
+  // click outside anywhere -> close
+  document.addEventListener('click', ()=>{
+    if(isOpen) closeMenu();
+  });
+
+  // scrolling also closes the menu
+  viewer.addEventListener('scroll', ()=>{
+    if(isOpen) closeMenu();
+  });
+})();
+</script>
 
 </body>
 </html>
