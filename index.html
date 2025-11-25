@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Saurav Panda - Portfolio</title>
 
+  <!-- Favicon (update path to your actual logo file) -->
+  <link rel="icon" type="image/webp" sizes="32x32" href="assets/files/logo.webp">
+  <link rel="icon" type="image/webp" sizes="192x192" href="assets/files/logo.webp">
+  <link rel="apple-touch-icon" href="assets/files/logo.webp">
+
   <style>
     html,body{
       height:100%;
@@ -203,6 +208,7 @@
       align-items:center;
       gap:10px;
       pointer-events:none;
+      transition:opacity .2s ease, transform .2s ease;
     }
 
     #socialBtn{
@@ -358,8 +364,8 @@
   </div>
 
   <!-- --------- SOCIAL FLOAT (RIGHT) + RESUME ----------- -->
-  <div id="socialFloat">
-    <a id="downloadMini" href="assets/files/saurav_panda_resume.pdf" download>
+  <div id="socialFloat" class="float-hidden">
+    <a id="downloadMini" href="assets/files/saurav_panda_resume.pdf">
       Resume
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-download">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -372,13 +378,13 @@
     <button id="socialBtn" class="glass-btn" aria-label="Open social links">
       <!-- social/share icon -->
       <svg xmlns="http://www.w3.org/2000/svg"
-          width="20" height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="white"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round">
+           width="20" height="20"
+           viewBox="0 0 24 24"
+           fill="none"
+           stroke="white"
+           stroke-width="2"
+           stroke-linecap="round"
+           stroke-linejoin="round">
         <path d="M8 9h8" />
         <path d="M8 13h6" />
         <path d="M9 18h-3a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-3l-3 3l-3 -3z" />
@@ -389,7 +395,7 @@
     <div id="socialMenu">
       <!-- Instagram -->
       <a id="social-instagram" class="social-item" data-label="Instagram"
-        href="https://instagram.com/dearlipu" target="_blank">
+         href="https://instagram.com/dearlipu" target="_blank">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram">
           <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
           <path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
@@ -400,12 +406,12 @@
 
       <!-- Behance -->
       <a id="social-github" class="social-item" data-label="Behance"
-        href="https://www.behance.net/dearlipu" target="_blank">
+         href="https://www.behance.net/dearlipu" target="_blank">
         <svg xmlns="http://www.w3.org/2000/svg"
-            width="24" height="24" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round"
-            class="icon icon-tabler icons-tabler-outline icon-tabler-brand-behance">
+             width="24" height="24" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             class="icon icon-tabler icons-tabler-outline icon-tabler-brand-behance">
           <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
           <path d="M3 18v-12h4.5a3 3 0 0 1 0 6a3 3 0 0 1 0 6h-4.5" />
           <path d="M3 12l4.5 0" />
@@ -416,7 +422,7 @@
 
       <!-- YouTube -->
       <a id="social-youtube" class="social-item" data-label="YouTube"
-        href="https://youtube.com/dearlipu" target="_blank">
+         href="https://youtube.com/dearlipu" target="_blank">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-youtube">
           <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
           <path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z" />
@@ -426,7 +432,7 @@
 
       <!-- Email -->
       <a id="social-email" class="social-item" data-label="Email"
-        href="mailto:sauravpanda34+job@gmail.com">
+         href="mailto:sauravpanda34+job@gmail.com">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-at">
           <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
           <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
@@ -437,7 +443,7 @@
   </div>
 
   <script>
-  /* --------- IMAGE LOADER (slightly optimized) ----------- */
+  /* --------- IMAGE LOADER (optimized for webp) ----------- */
   (function(){
     const wrap   = document.getElementById('wrap');
     const loader = document.getElementById('loader');
@@ -464,7 +470,7 @@
       const img = document.createElement('img');
       img.src   = url;
       img.loading = 'lazy';
-      img.decoding = 'async';   // hint browser to decode off-main-thread
+      img.decoding = 'async';   // hint: decode off main thread
 
       p.appendChild(img);
       wrap.appendChild(p);
@@ -537,17 +543,47 @@
     scan();
   })();
 
-  /* --------- SOCIAL DROPDOWN ONLY (no scroll button) ----------- */
+  /* --------- SOCIAL DROPDOWN + AUTOHIDE + RESUME LOGIC ----------- */
   (function(){
-    const socialMenu = document.getElementById('socialMenu');
-    const socialBtn  = document.getElementById('socialBtn');
+    const viewer      = document.getElementById('viewer');
+    const socialFloat = document.getElementById('socialFloat');
+    const socialMenu  = document.getElementById('socialMenu');
+    const socialBtn   = document.getElementById('socialBtn');
+    const resumeLink  = document.getElementById('downloadMini');
+    const socialItems = document.querySelectorAll('#socialMenu .social-item');
 
+    let hideTimer = null;
+
+    function clearHideTimer(){
+      if(hideTimer){
+        clearTimeout(hideTimer);
+        hideTimer = null;
+      }
+    }
+
+    function scheduleHide(){
+      clearHideTimer();
+      if(socialMenu.classList.contains('open')) return; // keep visible when menu open
+      hideTimer = setTimeout(() => {
+        socialFloat.classList.add('float-hidden');
+      }, 2200);
+    }
+
+    function showFloats(){
+      socialFloat.classList.remove('float-hidden');
+      scheduleHide();
+    }
+
+    // SOCIAL MENU
     function openMenu(){
       socialMenu.classList.add('open');
+      clearHideTimer();
+      socialFloat.classList.remove('float-hidden');
     }
 
     function closeMenu(){
       socialMenu.classList.remove('open');
+      scheduleHide();
     }
 
     function toggleMenu(e){
@@ -562,7 +598,7 @@
     socialBtn.addEventListener('click', toggleMenu);
 
     // Close when clicking any social item
-    document.querySelectorAll('#socialMenu .social-item').forEach(item => {
+    socialItems.forEach(item => {
       item.addEventListener('click', () => {
         closeMenu();
       });
@@ -570,10 +606,39 @@
 
     // Close when click outside
     document.addEventListener('click', (e) => {
-      if(!socialMenu.contains(e.target) && e.target !== socialBtn && !socialBtn.contains(e.target)){
-        closeMenu();
+      if(!socialFloat.contains(e.target)){
+        if(socialMenu.classList.contains('open')){
+          closeMenu();
+        }
       }
     });
+
+    // Resume: open in new tab + background download
+    if(resumeLink){
+      const resumeUrl = resumeLink.getAttribute('href');
+      resumeLink.addEventListener('click', function(e){
+        e.preventDefault();
+
+        // 1) Open resume in new tab (view online)
+        window.open(resumeUrl, '_blank');
+
+        // 2) Trigger background download
+        const a = document.createElement('a');
+        a.href = resumeUrl;
+        a.download = 'Saurav_Panda_Resume.pdf'; // download file name
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      });
+    }
+
+    // Auto-show on interactions, then hide
+    viewer.addEventListener('scroll', showFloats);
+    viewer.addEventListener('mousemove', showFloats);
+    viewer.addEventListener('touchstart', showFloats);
+
+    // Initial show then auto-hide
+    showFloats();
   })();
   </script>
 
