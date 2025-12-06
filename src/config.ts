@@ -66,7 +66,7 @@ export const siteConfig = {
     },
     {
       company: "Nanotech Computer Academy",
-      title: "Professor",
+      title: "Lecturer",
       dateRange: "Jul 2022 – Mar 2023",
       bullets: [
         "Taught MS Office, internet basics, and digital literacy to students.",
