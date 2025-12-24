@@ -10,7 +10,7 @@ export const siteConfig = {
     email: "sauravpanda34+web@gmail.com",
     instagram: "https://www.instagram.com/dearlipu",
     youtube: "#",
-    twitter: "https://x.com/dearlipu",
+    behance: "https://www.behance.net/dearlipu",
   },
 
   aboutMe:
