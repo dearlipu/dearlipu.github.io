@@ -73,6 +73,7 @@ projects: [
         "Guided learners through HTML, CSS, and beginner-level project development.",
         "Designed structured study materials and conducted practical labs.",
         "Maintained lab systems, installed software, and ensured smooth technical operations.",
+        "Taught Adobe CC Softwares, 3D Modeling and 2D Animation from basic-to-advance.",
       ],
     },
     {
