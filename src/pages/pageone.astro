@@ -1,19 +1,16 @@
 ---
 import "../styles/global.css";
-
 const WHATSAPP_NUMBER = "918144991049";
 ---
 
-<section class="service-wrap">
+<section class="service-section">
 
   <!-- IMAGE -->
-  <div class="service-image">
-    <img
-      src="/service/img1.webp"
-      alt="Magazine / Booklet Design"
-      loading="lazy"
-    />
-  </div>
+  <img
+    src="/service/img1.webp"
+    alt="Magazine / Booklet Design"
+    class="service-image"
+  />
 
   <!-- TITLE -->
   <h1 class="service-title">Magazine / Booklet Design</h1>
@@ -25,19 +22,18 @@ const WHATSAPP_NUMBER = "918144991049";
       readable typography, and professional finishing.
     </p>
     <p>
-      Files are prepared with proper margins, bleed, color profiles,
-      and printer-friendly output — no shortcuts.
+      Proper margins, bleed, color profiles, and printer-ready output —
+      no shortcuts.
     </p>
   </div>
 
-  <!-- PRICING GRID -->
+  <!-- PRICING -->
   <div class="pricing-grid">
 
     <!-- BASIC -->
     <div class="pricing-card">
       <h3>Basic</h3>
       <span class="starting">Starting from</span>
-
       <p class="price" data-inr="₹800 / page" data-usd="$10 / page"></p>
 
       <ul>
@@ -48,100 +44,94 @@ const WHATSAPP_NUMBER = "918144991049";
         <li>✖ Custom graphics</li>
       </ul>
 
-      <a href="#" class="wa-btn"
-         data-plan="Basic"
-         data-code="MAG-BSC-34">
+      <button class="wa-btn" data-plan="Basic" data-code="MAG-BSC-34">
         WhatsApp Me
-      </a>
+      </button>
     </div>
 
     <!-- STANDARD -->
     <div class="pricing-card featured">
       <span class="badge">Most Popular</span>
-      <span class="discount">10% OFF</span>
 
       <h3>Standard</h3>
       <span class="starting">Starting from</span>
-
       <p class="price" data-inr="₹1,500 / page" data-usd="$18 / page"></p>
 
       <ul>
         <li>✔ Full redesign</li>
         <li>✔ Typography improvement</li>
         <li>✔ Image alignment</li>
-        <li>✔ 2 revision rounds</li>
-        <li>✖ Custom illustrations</li>
+        <li>✔ 2 revisions</li>
       </ul>
 
-      <a href="#" class="wa-btn"
-         data-plan="Standard"
-         data-code="MAG-STD-82">
+      <button class="wa-btn" data-plan="Standard" data-code="MAG-STD-82">
         WhatsApp Me
-      </a>
+      </button>
     </div>
 
     <!-- PREMIUM -->
     <div class="pricing-card">
       <h3>Premium</h3>
       <span class="starting">Starting from</span>
-
       <p class="price" data-inr="₹2,500 / page" data-usd="$30 / page"></p>
 
       <ul>
         <li>✔ Creative redesign</li>
         <li>✔ Custom graphics</li>
         <li>✔ Color correction</li>
-        <li>✔ Pre-press support</li>
         <li>✔ Priority handling</li>
       </ul>
 
-      <a href="#" class="wa-btn"
-         data-plan="Premium"
-         data-code="MAG-PRM-99">
+      <button class="wa-btn" data-plan="Premium" data-code="MAG-PRM-99">
         WhatsApp Me
-      </a>
+      </button>
     </div>
 
   </div>
 </section>
 
 <style>
-/* ===== LAYOUT ===== */
-.service-wrap {
+/* ===== HARD RESET ===== */
+* {
+  box-sizing: border-box;
+}
+
+.service-section {
   max-width: 1100px;
   margin: auto;
   padding: 3rem 1rem;
-  overflow-x: hidden;
+  overflow-x: hidden; /* 🔑 CRITICAL */
 }
 
-.service-image img {
+/* ===== IMAGE ===== */
+.service-image {
   width: 100%;
-  max-height: 420px;
+  max-height: 360px;
   object-fit: cover;
   border-radius: 1.5rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }
 
+/* ===== TEXT ===== */
 .service-title {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
-  margin-bottom: 1rem;
 }
 
 .service-about {
   max-width: 720px;
   color: #555;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 
-/* ===== PRICING GRID (CRITICAL FIX) ===== */
+/* ===== GRID (MOBILE FIRST) ===== */
 .pricing-grid {
   display: grid;
-  grid-template-columns: 1fr; /* MOBILE */
+  grid-template-columns: 1fr; /* MOBILE: 1 COLUMN */
   gap: 1.25rem;
-  overflow-x: hidden;
 }
 
+/* DESKTOP ONLY */
 @media (min-width: 768px) {
   .pricing-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -157,57 +147,53 @@ const WHATSAPP_NUMBER = "918144991049";
   padding: 1.75rem;
   display: flex;
   flex-direction: column;
-  min-width: 0;
-  box-sizing: border-box;
+  min-width: 0;        /* 🔑 CRITICAL */
+  max-width: 100%;    /* 🔑 CRITICAL */
 }
 
 .pricing-card h3 {
   font-size: 1.25rem;
-  font-weight: 600;
 }
 
 .starting {
   font-size: .85rem;
   color: #777;
-  margin-bottom: .5rem;
 }
 
 .price {
   font-size: 1.75rem;
   font-weight: 700;
-  margin-bottom: 1.5rem;
+  margin: 1rem 0;
 }
 
 .pricing-card ul {
   flex: 1;
+  padding-left: 0;
   list-style: none;
-  padding: 0;
-  margin: 0;
-  color: #555;
 }
 
 .pricing-card li {
-  margin-bottom: .6rem;
+  margin-bottom: .5rem;
 }
 
 /* ===== BUTTON ===== */
 .wa-btn {
-  display: block;
   width: 100%;
-  text-align: center;
   margin-top: 1.5rem;
-  padding: .75rem 1rem;
+  padding: .75rem;
   border-radius: 999px;
-  background: var(--accent-color, #22c55e);
+  border: none;
+  background: #25D366; /* WhatsApp Green */
   color: #fff;
   font-weight: 600;
-  text-decoration: none;
-  box-shadow: 0 12px 28px rgba(0,0,0,.18);
+  cursor: pointer;
+  z-index: 2;
 }
 
 /* ===== FEATURED ===== */
 .featured {
   border: 2px solid #000;
+  position: relative;
 }
 
 .badge {
@@ -221,28 +207,17 @@ const WHATSAPP_NUMBER = "918144991049";
   border-radius: 999px;
 }
 
-.discount {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  background: #16a34a;
-  color: #fff;
-  font-size: 11px;
-  padding: 4px 10px;
-  border-radius: 999px;
-}
-
-/* ===== DESKTOP HOVER ONLY ===== */
+/* HOVER ONLY DESKTOP */
 @media (hover: hover) and (pointer: fine) {
   .pricing-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 26px 55px rgba(0,0,0,.12);
+    box-shadow: 0 25px 50px rgba(0,0,0,.12);
   }
 }
 </style>
 
 <script>
-/* ===== CURRENCY (STATIC SAFE) ===== */
+/* ===== CURRENCY ===== */
 const prices = document.querySelectorAll(".price");
 const isIndia = navigator.language?.includes("en-IN");
 
@@ -250,11 +225,9 @@ prices.forEach(p => {
   p.textContent = isIndia ? p.dataset.inr : p.dataset.usd;
 });
 
-/* ===== WHATSAPP CTA ===== */
+/* ===== WHATSAPP ===== */
 document.querySelectorAll(".wa-btn").forEach(btn => {
-  btn.addEventListener("click", e => {
-    e.preventDefault();
-
+  btn.addEventListener("click", () => {
     const plan = btn.dataset.plan;
     const code = btn.dataset.code;
 
@@ -262,8 +235,7 @@ document.querySelectorAll(".wa-btn").forEach(btn => {
       `I want ${plan} plan for Magazine / Booklet Design.\nCode: ${code}`
     );
 
-    window.location.href =
-      `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+    location.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
   });
 });
 </script>
