@@ -23,7 +23,7 @@ const hasCertifications = siteConfig.certifications && siteConfig.certifications
           class="footer-name text-2xl font-bold relative inline-block footer-brand"
           style={`--accent-color:${siteConfig.accentColor}; color: var(--accent-color);`}
         >
-          <span class="name-front">dearlipu</span>
+          <span class="name-front">@dearlipu</span>
           <span class="name-back">Saurav Panda</span>
         </h3>
         <p class="text-base text-gray-600">
@@ -221,6 +221,19 @@ const hasCertifications = siteConfig.certifications && siteConfig.certifications
     </svg>
   </div>
 
+    <!-- Email Toast -->
+    <div
+      id="emailToast"
+      class="pointer-events-none fixed top-6 left-1/2 -translate-x-1/2 z-[999]
+             hidden items-center gap-3
+             rounded-full bg-gray-900 px-4 py-2
+             text-sm text-white shadow-lg"
+      role="status"
+      aria-live="polite"
+    >
+      <span id="emailToastText">Email copied</span>
+    </div>
+
 <style>
   .footer-name { cursor: pointer; }
   .footer-name .name-front, .footer-name .name-back { display: block; transition: opacity .25s, transform .25s; }
@@ -236,19 +249,6 @@ const hasCertifications = siteConfig.certifications && siteConfig.certifications
   @media (min-width: 1024px) { .mx-auto.max-w-6xl { max-width:72rem; } }
   #footerMailFallback .select-all { user-select:all; }
 </style>
-
-    <!-- Email Toast -->
-    <div
-      id="emailToast"
-      class="pointer-events-none fixed top-6 left-1/2 -translate-x-1/2 z-[999]
-             hidden items-center gap-3
-             rounded-full bg-gray-900 px-4 py-2
-             text-sm text-white shadow-lg"
-      role="status"
-      aria-live="polite"
-    >
-      <span id="emailToastText">Email copied</span>
-    </div>
 
 <script>
   (function () {
