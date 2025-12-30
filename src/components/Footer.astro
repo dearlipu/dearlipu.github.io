@@ -55,6 +55,13 @@ const hasCertifications = siteConfig.certifications && siteConfig.certifications
               <path d="M3 7l9 6l9 -6"></path>
             </svg>
           </a>
+          <!-- Fallback (hidden by default) -->
+          <div id="footerMailFallback" class="hidden mt-2 inline-flex items-center gap-3 bg-white border border-gray-200 rounded-full px-3 py-2 shadow-sm" aria-hidden="true">
+            <span class="text-sm text-gray-700">Email:</span>
+            <span id="footerMailText" class="font-medium text-sm select-all">{EMAIL}</span>
+            <button id="footerCopyBtn" class="ml-2 px-2 py-1 rounded-full bg-gray-100 text-sm">Copy</button>
+            <button id="footerFallbackClose" class="ml-2 text-sm text-gray-500">Close</button>
+          </div>
           <a
             href={siteConfig.social.instagram}
             target="_blank"
@@ -79,7 +86,7 @@ const hasCertifications = siteConfig.certifications && siteConfig.certifications
           <path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
           <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
           <path d="M16.5 7.5v.01" />
-          </svg>
+            </svg>
           </a>
           <a
             href={siteConfig.social.behance}
@@ -133,13 +140,6 @@ const hasCertifications = siteConfig.certifications && siteConfig.certifications
           <path d="M10 9l5 3l-5 3z" />
             </svg>
           </a>
-          <!-- Fallback (hidden by default) -->
-          <div id="footerMailFallback" class="hidden mt-2 inline-flex items-center gap-3 bg-white border border-gray-200 rounded-full px-3 py-2 shadow-sm" aria-hidden="true">
-            <span class="text-sm text-gray-700">Email:</span>
-            <span id="footerMailText" class="font-medium text-sm select-all">{EMAIL}</span>
-            <button id="footerCopyBtn" class="ml-2 px-2 py-1 rounded-full bg-gray-100 text-sm">Copy</button>
-            <button id="footerFallbackClose" class="ml-2 text-sm text-gray-500">Close</button>
-          </div>
         </div>
       </div>
 
