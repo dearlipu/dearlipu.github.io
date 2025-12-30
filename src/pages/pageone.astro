@@ -3,45 +3,37 @@ import "../styles/global.css";
 const WHATSAPP_NUMBER = "918144991049";
 ---
 
-<section class="pricing-section">
-
+<section class="pricing-wrap">
   <!-- IMAGE -->
   <img
     src="/service/img1.webp"
-    alt="Magazine & Booklet Design"
-    class="hero-image"
+    alt="Magazine / Booklet Design"
+    class="service-img"
   />
 
   <!-- TITLE -->
   <h1 class="title">Magazine / Booklet Design</h1>
+  <p class="desc">
+    Clean, print-ready magazine & booklet design with correct margins, bleed,
+    color profiles, and professional finishing.
+  </p>
 
-  <!-- ABOUT -->
-  <div class="about">
-    <p>
-      I design clean, print-ready magazines and booklets with strong layout,
-      readable typography, and professional finishing.
-    </p>
-    <p>
-      Proper margins, bleed, color profiles, and printer-ready output —
-      no shortcuts.
-    </p>
-  </div>
-
-  <!-- PRICING GRID -->
+  <!-- PRICING -->
   <div class="pricing-grid">
 
     <!-- BASIC -->
-    <div class="card">
-      <h3>Basic</h3>
-      <span class="sub">Starting from</span>
-      <p class="price" data-inr="₹800 / page" data-usd="$10 / page"></p>
+    <div class="plan">
+      <div class="plan-head">
+        <h3>Basic</h3>
+        <span class="price" data-inr="₹800 / page" data-usd="$10 / page"></span>
+      </div>
 
       <ul>
-        <li>✔ Layout cleanup</li>
-        <li>✔ Text & image fixes</li>
-        <li>✔ Print-ready PDF</li>
-        <li>✖ Redesign</li>
-        <li>✖ Custom graphics</li>
+        <li>Layout cleanup</li>
+        <li>Text & image fixes</li>
+        <li>Print-ready PDF</li>
+        <li class="off">Redesign</li>
+        <li class="off">Custom graphics</li>
       </ul>
 
       <button class="wa-btn" data-plan="Basic" data-code="MAG-BSC-34">
@@ -50,36 +42,40 @@ const WHATSAPP_NUMBER = "918144991049";
     </div>
 
     <!-- STANDARD -->
-    <div class="card featured">
-      <span class="badge">Most Popular</span>
+    <div class="plan popular">
+      <span class="tag">Most Popular</span>
 
-      <h3>Standard</h3>
-      <span class="sub">Starting from</span>
-      <p class="price" data-inr="₹1,500 / page" data-usd="$18 / page"></p>
+      <div class="plan-head">
+        <h3>Standard</h3>
+        <span class="price" data-inr="₹1,500 / page" data-usd="$18 / page"></span>
+      </div>
 
       <ul>
-        <li>✔ Full redesign</li>
-        <li>✔ Typography improvement</li>
-        <li>✔ Image alignment</li>
-        <li>✔ 2 revisions</li>
+        <li>Full redesign</li>
+        <li>Typography improvement</li>
+        <li>Image alignment</li>
+        <li>2 revisions</li>
+        <li class="off">Custom illustrations</li>
       </ul>
 
-      <button class="wa-btn" data-plan="Standard" data-code="MAG-STD-82">
+      <button class="wa-btn solid" data-plan="Standard" data-code="MAG-STD-82">
         WhatsApp Me
       </button>
     </div>
 
     <!-- PREMIUM -->
-    <div class="card">
-      <h3>Premium</h3>
-      <span class="sub">Starting from</span>
-      <p class="price" data-inr="₹2,500 / page" data-usd="$30 / page"></p>
+    <div class="plan">
+      <div class="plan-head">
+        <h3>Premium</h3>
+        <span class="price" data-inr="₹2,500 / page" data-usd="$30 / page"></span>
+      </div>
 
       <ul>
-        <li>✔ Creative redesign</li>
-        <li>✔ Custom graphics</li>
-        <li>✔ Color correction</li>
-        <li>✔ Priority handling</li>
+        <li>Creative redesign</li>
+        <li>Custom graphics</li>
+        <li>Color correction</li>
+        <li>Pre-press support</li>
+        <li>Priority handling</li>
       </ul>
 
       <button class="wa-btn" data-plan="Premium" data-code="MAG-PRM-99">
@@ -91,145 +87,139 @@ const WHATSAPP_NUMBER = "918144991049";
 </section>
 
 <style>
-/* ===== RESET ===== */
-* { box-sizing: border-box; }
-
-/* ===== SECTION ===== */
-.pricing-section {
+/* WRAPPER */
+.pricing-wrap {
   max-width: 1100px;
   margin: auto;
-  padding: 3rem 1rem;
-  overflow-x: hidden;
+  padding: 2rem 1rem;
 }
 
-/* ===== IMAGE ===== */
-.hero-image {
+/* IMAGE */
+.service-img {
   width: 100%;
-  max-height: 360px;
+  max-height: 420px;
   object-fit: cover;
   border-radius: 1.5rem;
   margin-bottom: 2rem;
 }
 
-/* ===== TEXT ===== */
+/* TEXT */
 .title {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: .75rem;
+  margin-bottom: .5rem;
 }
-
-.about {
-  max-width: 720px;
+.desc {
   color: #555;
-  margin-bottom: 2.5rem;
+  max-width: 650px;
+  margin-bottom: 3rem;
 }
 
-/* ===== GRID (THIS FIXES MOBILE) ===== */
+/* GRID */
 .pricing-grid {
   display: grid;
-  grid-template-columns: 1fr;   /* MOBILE: 1 COLUMN */
-  gap: 1.25rem;
+  gap: 1.5rem;
 }
 
+/* DESKTOP */
 @media (min-width: 768px) {
   .pricing-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
   }
 }
 
-/* ===== CARD ===== */
-.card {
-  background: #fff;
+/* PLAN CARD */
+.plan {
   border: 1px solid #e5e7eb;
   border-radius: 1.25rem;
-  padding: 1.75rem;
+  padding: 1.5rem;
+  background: #fff;
   display: flex;
   flex-direction: column;
-  min-width: 0;
 }
 
-.card h3 {
+.plan-head {
+  margin-bottom: 1rem;
+}
+
+.plan h3 {
   font-size: 1.25rem;
   font-weight: 600;
 }
 
-.sub {
-  font-size: .85rem;
-  color: #777;
-}
-
 .price {
-  font-size: 1.75rem;
+  display: block;
+  font-size: 1.5rem;
   font-weight: 700;
-  margin: 1rem 0;
+  margin-top: .25rem;
 }
 
-.card ul {
+/* FEATURES */
+.plan ul {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 1rem 0 1.5rem;
   flex: 1;
-  color: #555;
+}
+.plan li {
+  padding: .35rem 0;
+  color: #333;
+}
+.plan li.off {
+  color: #aaa;
+  text-decoration: line-through;
 }
 
-.card li {
-  margin-bottom: .5rem;
+/* POPULAR */
+.popular {
+  border: 2px solid black;
+}
+.tag {
+  background: black;
+  color: white;
+  font-size: .7rem;
+  padding: .3rem .6rem;
+  border-radius: 999px;
+  width: fit-content;
+  margin-bottom: .75rem;
 }
 
-/* ===== BUTTON ===== */
+/* BUTTON */
 .wa-btn {
   width: 100%;
-  margin-top: 1.5rem;
   padding: .75rem;
   border-radius: 999px;
-  border: none;
-  background: #25D366; /* WhatsApp green */
+  border: 1px solid #ddd;
+  background: #fff;
+  font-weight: 500;
+  cursor: pointer;
+}
+.wa-btn.solid {
+  background: var(--accent-color, #25D366);
   color: white;
-  font-weight: 600;
+  border: none;
 }
-
-/* ===== FEATURED ===== */
-.featured {
-  border: 2px solid #000;
-  position: relative;
-}
-
-.badge {
-  position: absolute;
-  top: -12px;
-  left: 16px;
-  background: #000;
-  color: #fff;
-  font-size: 12px;
-  padding: 4px 12px;
-  border-radius: 999px;
-}
-
-/* ===== HOVER (DESKTOP ONLY) ===== */
-@media (hover:hover) and (pointer:fine) {
-  .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 25px 50px rgba(0,0,0,.12);
-  }
+.wa-btn:hover {
+  filter: brightness(.95);
 }
 </style>
 
 <script>
-/* ===== CURRENCY ===== */
-document.querySelectorAll(".price").forEach(p => {
-  p.textContent = navigator.language.includes("en-IN")
-    ? p.dataset.inr
-    : p.dataset.usd;
-});
-
-/* ===== WHATSAPP ===== */
-document.querySelectorAll(".wa-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const msg = encodeURIComponent(
-      `I want ${btn.dataset.plan} plan for Magazine / Booklet Design.\nCode: ${btn.dataset.code}`
-    );
-    location.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+  // Currency (static)
+  document.querySelectorAll(".price").forEach(p => {
+    p.textContent =
+      navigator.language.includes("en-IN")
+        ? p.dataset.inr
+        : p.dataset.usd;
   });
-});
+
+  // WhatsApp
+  document.querySelectorAll(".wa-btn").forEach(btn => {
+    btn.onclick = () => {
+      const msg = encodeURIComponent(
+        `I want ${btn.dataset.plan} plan for Magazine / Booklet Design.\nCode: ${btn.dataset.code}`
+      );
+      location.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+    };
+  });
 </script>
