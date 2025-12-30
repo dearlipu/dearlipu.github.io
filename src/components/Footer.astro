@@ -7,16 +7,17 @@ const SUBJECT = `${SITE_NAME} • Inquiry`;
 const BODY = `Hi ${siteConfig.name || "there"},%0D%0A%0D%0AI saw your portfolio and would like to talk about...`;
 const MAILTO = `mailto:${EMAIL}?subject=${encodeURIComponent(SUBJECT)}&body=${encodeURIComponent(BODY)}`;
 
-const hasProjects = siteConfig.projects?.length > 0;
-const hasExperience = siteConfig.experience?.length > 0;
-const hasEducation = siteConfig.education?.length > 0;
+const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
+const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
+const hasEducation = siteConfig.education && siteConfig.education.length > 0;
+const hasCertifications = siteConfig.certifications && siteConfig.certifications.length > 0;
 ---
-
 <footer class="relative bg-gray-50 border-t border-gray-200">
   <div class="mx-auto max-w-6xl px-6 py-12 lg:px-8">
-    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
-
-      <!-- LEFT -->
+    <div
+      class="flex flex-col md:flex-row md:items-center md:justify-between gap-8"
+    >
+      <!-- LEFT: Name + Title -->
       <div class="flex flex-col gap-4">
         <h3
           class="footer-name text-2xl font-bold relative inline-block footer-brand"
@@ -25,130 +26,275 @@ const hasEducation = siteConfig.education?.length > 0;
           <span class="name-front">dearlipu</span>
           <span class="name-back">Saurav Panda</span>
         </h3>
-
-        <p class="text-base text-gray-600">{siteConfig.title}</p>
-
+        <p class="text-base text-gray-600">
+          {siteConfig.title}
+        </p>
         <div class="flex gap-x-6">
-          <!-- Email -->
           <a
             id="footerMailLink"
-            href={MAILTO}
+            href={`mailto:${EMAIL}?subject=${SUBJECT}&body=${BODY}`}
             data-email={EMAIL}
             data-mailto={MAILTO}
             aria-label="Email"
-            class="text-gray-600 hover:text-[var(--accent-color)] transition-colors"
-            style={`--accent-color:${siteConfig.accentColor}`}
+            class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
+            style={`--accent-color: ${siteConfig.accentColor}`}
           >
-            <!-- mail icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/>
-              <path d="M3 7l9 6l9-6"/>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="h-6 w-6"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path
+                d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"
+              ></path>
+              <path d="M3 7l9 6l9 -6"></path>
             </svg>
           </a>
-
-          <!-- Instagram -->
-          <a href={siteConfig.social.instagram} target="_blank" aria-label="Instagram" class="text-gray-600 hover:text-[var(--accent-color)]">
-            <!-- icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="4" y="4" width="16" height="16" rx="4"/>
-              <circle cx="12" cy="12" r="3"/>
-              <path d="M16.5 7.5v.01"/>
+        </div>
+          <a
+            href={siteConfig.social.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
+            style={`--accent-color: ${siteConfig.accentColor}`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="h-6 w-6"
+              >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+          <path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
+          <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+          <path d="M16.5 7.5v.01" />
             </svg>
           </a>
-
-          <!-- Behance -->
-          <a href={siteConfig.social.behance} target="_blank" aria-label="Behance" class="text-gray-600 hover:text-[var(--accent-color)]">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M3 18V6h4.5a3 3 0 0 1 0 6a3 3 0 0 1 0 6H3z"/>
-              <path d="M14 13h7a3.5 3.5 0 0 0-7 0v2a3.5 3.5 0 0 0 6.64 1"/>
-              <path d="M16 6h3"/>
+          <a
+            href={siteConfig.social.behance}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Behance"
+            class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
+            style={`--accent-color: ${siteConfig.accentColor}`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="h-6 w-6"
+              >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+          <path d="M3 18v-12h4.5a3 3 0 0 1 0 6a3 3 0 0 1 0 6h-4.5" />
+          <path d="M3 12l4.5 0" />
+          <path d="M14 13h7a3.5 3.5 0 0 0 -7 0v2a3.5 3.5 0 0 0 6.64 1" />
+          <path d="M16 6l3 0" />
             </svg>
           </a>
-
-          <!-- YouTube -->
-          <a href={siteConfig.social.youtube} target="_blank" aria-label="YouTube" class="text-gray-600 hover:text-[var(--accent-color)]">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="6" width="20" height="12" rx="4"/>
-              <path d="M10 9l5 3l-5 3z"/>
+          <a
+            href={siteConfig.social.youtube}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="YouTube"
+            class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
+            style={`--accent-color: ${siteConfig.accentColor}`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="h-6 w-6"
+              >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+          <path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z" />
+          <path d="M10 9l5 3l-5 3z" />
             </svg>
           </a>
         </div>
       </div>
 
-      <!-- RIGHT -->
-      <div class="flex flex-col md:items-end gap-4">
-        <!-- Mobile resume -->
+      <!-- RIGHT SIDE -->
+      <div class="flex items-start gap-6">
+        <!-- Mobile Resume Button ONLY -->
         <div class="block md:hidden">
-          <a href="/saurav_panda_resume.pdf" download class="resume-pill">Resume</a>
+          <a href="/saurav_panda_resume.pdf" download class="resume-pill">
+            Resume
+          </a>
         </div>
+      </div>
 
-        <!-- Desktop nav -->
-        <nav class="hidden md:flex gap-x-8">
-          <a href="#about">About</a>
-          {hasProjects && <a href="#projects">Projects</a>}
-          {hasExperience && <a href="#experience">Experience</a>}
-          {hasEducation && <a href="#education">Education</a>}
+      <!-- PC Right ONLY -->
+      <div class="hidden md:block flex flex-col md:items-end gap-4">
+        <nav class="flex gap-x-8">
+          <a
+            href="#about"
+            class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
+            >About</a
+          >
+          {
+            hasProjects && (
+              <a
+                href="#projects"
+                class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
+              >
+                Projects
+              </a>
+            )
+          }
+          {
+            hasExperience && (
+              <a
+                href="#experience"
+                class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
+              >
+                Experience
+              </a>
+            )
+          }
+          {
+            hasEducation && (
+              <a
+                href="#education"
+                class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
+              >
+                Education
+              </a>
+            )
+          }
         </nav>
-
-        <p class="hidden md:block text-sm text-gray-500">
-          © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
+        <p class="text-sm text-gray-500">
+          © {new Date().getFullYear()}
+          {siteConfig.name}. All rights reserved.
         </p>
       </div>
     </div>
   </div>
 
-  <!-- EMAIL FALLBACK (OUTSIDE FLEX) -->
-  <div
-    id="footerMailFallback"
-    class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50
-           bg-white border border-gray-200 rounded-full px-4 py-2 shadow-xl
-           flex items-center gap-3"
-    aria-hidden="true"
-  >
-    <span class="text-sm">Email:</span>
-    <span id="footerMailText" class="font-medium text-sm select-all">{EMAIL}</span>
-    <button id="footerCopyBtn" class="px-3 py-1 bg-gray-100 rounded-full text-sm">Copy</button>
-    <button id="footerFallbackClose" class="text-sm text-gray-500">Close</button>
+  <!-- Decorative pattern -->
+  <div class="absolute inset-0 -z-10 overflow-hidden">
+    <svg
+      aria-hidden="true"
+      class="absolute bottom-0 left-0 w-full h-24 text-gray-100"
+    >
+      <pattern
+        id="footer-pattern"
+        x="0"
+        y="0"
+        width="100"
+        height="100"
+        patternUnits="userSpaceOnUse"
+      >
+        <path
+          d="M0 50 Q 25 40, 50 50 T 100 50"
+          stroke="currentColor"
+          stroke-width="0.5"
+          fill="none"
+          opacity="0.4"></path>
+      </pattern>
+      <rect width="100%" height="100%" fill="url(#footer-pattern)"></rect>
+    </svg>
   </div>
 
+<!-- Email Toast -->
+<div
+  id="emailToast"
+  class="pointer-events-none fixed top-6 left-1/2 -translate-x-1/2 z-[999]
+         hidden items-center gap-3
+         rounded-full bg-gray-900 px-4 py-2
+         text-sm text-white shadow-lg"
+  role="status"
+  aria-live="polite"
+>
+  <span id="emailToastText">Email copied</span>
+</div>
+
+<style>
+  .footer-name { cursor: pointer; }
+  .footer-name .name-front, .footer-name .name-back { display: block; transition: opacity .25s, transform .25s; }
+  .name-back { opacity:0; transform: translateY(6px); position:absolute; left:0; top:0; }
+  .footer-name:hover .name-front { opacity:0; transform: translateY(-6px); }
+  .footer-name:hover .name-back { opacity:1; transform: translateY(0); }
+  .footer-brand { font-family: "Ubuntu", sans-serif; font-weight:700; }
+
+  .resume-pill { display:inline-flex; align-items:center; justify-content:center; padding:.55rem 1.4rem; background:#f3f4f6; color:#1f2937; font-size:1rem; font-weight:600; border-radius:999px; box-shadow:0 6px 18px rgba(15,23,42,.06); }
+  .resume-pill:hover { background:#e9e9ea; transform:translateY(-2px); }
+
+  /* small layout tweak */
+  @media (min-width: 1024px) { .mx-auto.max-w-6xl { max-width:72rem; } }
+  #footerMailFallback .select-all { user-select:all; }
+</style>
+
 <script>
-(function () {
-  const link = document.getElementById("footerMailLink");
-  const fallback = document.getElementById("footerMailFallback");
-  const copyBtn = document.getElementById("footerCopyBtn");
-  const closeBtn = document.getElementById("footerFallbackClose");
+  (function () {
+    const mailLink = document.getElementById("footerMailLink");
+    const toast = document.getElementById("emailToast");
+    const toastText = document.getElementById("emailToastText");
 
-  if (!link || !fallback) return;
+    if (!mailLink || !toast) return;
 
-  const email = link.dataset.email;
-  const mailto = link.dataset.mailto;
-  const isMobile = () => /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+    const email = mailLink.dataset.email;
+    const mailto = mailLink.dataset.mailto;
 
-  function show() {
-    fallback.classList.remove("hidden");
-  }
+    const isMobile = () =>
+      /Mobi|Android|iPhone|iPad|Phone/i.test(navigator.userAgent);
 
-  function hide() {
-    fallback.classList.add("hidden");
-  }
+    let hideTimer;
 
-  link.addEventListener("click", (e) => {
-    if (isMobile()) return;
-    e.preventDefault();
-    window.location.href = mailto;
-    setTimeout(show, 1200);
-  });
+    function showToast(message) {
+      clearTimeout(hideTimer);
+      toastText.textContent = message;
+      toast.classList.remove("hidden");
+      toast.classList.add("flex");
 
-  copyBtn?.addEventListener("click", async () => {
-    await navigator.clipboard.writeText(email);
-    copyBtn.textContent = "Copied";
-    setTimeout(() => {
-      copyBtn.textContent = "Copy";
-      hide();
-    }, 1200);
-  });
+      hideTimer = setTimeout(() => {
+        toast.classList.add("hidden");
+        toast.classList.remove("flex");
+      }, 1500);
+    }
 
-  closeBtn?.addEventListener("click", hide);
-})();
+    mailLink.addEventListener("click", async (e) => {
+      if (isMobile()) return; // mobile → native mail app
+
+      e.preventDefault();
+
+      // try opening mail client
+      window.location.href = mailto;
+
+      // copy email silently
+      try {
+        await navigator.clipboard.writeText(email);
+        showToast("Email copied to clipboard");
+      } catch {
+        showToast("Email: " + email);
+      }
+    });
+  })();
 </script>
 </footer>
