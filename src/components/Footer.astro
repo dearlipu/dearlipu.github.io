@@ -56,12 +56,14 @@ const hasCertifications = siteConfig.certifications && siteConfig.certifications
             </svg>
           </a>
           <!-- Fallback (hidden by default) -->
+        <div class="hidden md:flex flex-col md:items-end gap-1">
           <div id="footerMailFallback" class="hidden mt-2 inline-flex items-center gap-3 bg-white border border-gray-200 rounded-full px-3 py-2 shadow-sm" aria-hidden="true">
             <span class="text-sm text-gray-700">Email:</span>
             <span id="footerMailText" class="font-medium text-sm select-all">{EMAIL}</span>
             <button id="footerCopyBtn" class="ml-2 px-2 py-1 rounded-full bg-gray-100 text-sm">Copy</button>
             <button id="footerFallbackClose" class="ml-2 text-sm text-gray-500">Close</button>
           </div>
+        </div>
           <a
             href={siteConfig.social.instagram}
             target="_blank"
