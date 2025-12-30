@@ -3,40 +3,37 @@ import "../styles/global.css";
 const WHATSAPP_NUMBER = "918144991049";
 ---
 
-<section class="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
-  <!-- SERVICE IMAGE -->
-  <div class="mb-12">
-    <img
-      src="/service/img1.webp"
-      alt="Magazine & Booklet Design"
-      class="w-full max-h-[260px] md:max-h-[420px] object-cover rounded-3xl"
-      loading="lazy"
-    />
-  </div>
+<section class="pricing-section">
+
+  <!-- IMAGE -->
+  <img
+    src="/service/img1.webp"
+    alt="Magazine & Booklet Design"
+    class="hero-image"
+  />
 
   <!-- TITLE -->
-  <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-    Magazine / Booklet Design
-  </h1>
+  <h1 class="title">Magazine / Booklet Design</h1>
 
   <!-- ABOUT -->
-  <div class="max-w-3xl text-gray-600 mb-16 space-y-4">
+  <div class="about">
     <p>
       I design clean, print-ready magazines and booklets with strong layout,
       readable typography, and professional finishing.
     </p>
     <p>
-      Every file is prepared with correct margins, bleed, color profiles,
-      and printer-friendly output — no shortcuts.
+      Proper margins, bleed, color profiles, and printer-ready output —
+      no shortcuts.
     </p>
   </div>
 
-  <!-- PRICING (FLEXBOX FOR BETTER MOBILE VERTICAL STACKING) -->
-  <div class="flex flex-col md:flex-row md:flex-wrap gap-6 md:gap-8">
+  <!-- PRICING GRID -->
+  <div class="pricing-grid">
+
     <!-- BASIC -->
-    <div class="pricing-card">
+    <div class="card">
       <h3>Basic</h3>
-      <p class="sub">Starting from</p>
+      <span class="sub">Starting from</span>
       <p class="price" data-inr="₹800 / page" data-usd="$10 / page"></p>
 
       <ul>
@@ -53,12 +50,11 @@ const WHATSAPP_NUMBER = "918144991049";
     </div>
 
     <!-- STANDARD -->
-    <div class="pricing-card featured">
+    <div class="card featured">
       <span class="badge">Most Popular</span>
-      <span class="discount">10% OFF</span>
 
       <h3>Standard</h3>
-      <p class="sub">Starting from</p>
+      <span class="sub">Starting from</span>
       <p class="price" data-inr="₹1,500 / page" data-usd="$18 / page"></p>
 
       <ul>
@@ -66,7 +62,6 @@ const WHATSAPP_NUMBER = "918144991049";
         <li>✔ Typography improvement</li>
         <li>✔ Image alignment</li>
         <li>✔ 2 revisions</li>
-        <li>✖ Custom illustrations</li>
       </ul>
 
       <button class="wa-btn" data-plan="Standard" data-code="MAG-STD-82">
@@ -75,16 +70,15 @@ const WHATSAPP_NUMBER = "918144991049";
     </div>
 
     <!-- PREMIUM -->
-    <div class="pricing-card">
+    <div class="card">
       <h3>Premium</h3>
-      <p class="sub">Starting from</p>
+      <span class="sub">Starting from</span>
       <p class="price" data-inr="₹2,500 / page" data-usd="$30 / page"></p>
 
       <ul>
         <li>✔ Creative redesign</li>
         <li>✔ Custom graphics</li>
         <li>✔ Color correction</li>
-        <li>✔ Pre-press support</li>
         <li>✔ Priority handling</li>
       </ul>
 
@@ -92,78 +86,150 @@ const WHATSAPP_NUMBER = "918144991049";
         WhatsApp Me
       </button>
     </div>
+
   </div>
 </section>
 
 <style>
-  .pricing-card {
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 1.25rem;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    flex: 1; /* Ensures equal width on larger screens when in flex-row */
+/* ===== RESET ===== */
+* { box-sizing: border-box; }
+
+/* ===== SECTION ===== */
+.pricing-section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 3rem 1rem;
+  overflow-x: hidden;
+}
+
+/* ===== IMAGE ===== */
+.hero-image {
+  width: 100%;
+  max-height: 360px;
+  object-fit: cover;
+  border-radius: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* ===== TEXT ===== */
+.title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: .75rem;
+}
+
+.about {
+  max-width: 720px;
+  color: #555;
+  margin-bottom: 2.5rem;
+}
+
+/* ===== GRID (THIS FIXES MOBILE) ===== */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr;   /* MOBILE: 1 COLUMN */
+  gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .pricing-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
   }
-  
-  .pricing-card h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
+}
+
+/* ===== CARD ===== */
+.card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 1.25rem;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.sub {
+  font-size: .85rem;
+  color: #777;
+}
+
+.price {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 1rem 0;
+}
+
+.card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  color: #555;
+}
+
+.card li {
+  margin-bottom: .5rem;
+}
+
+/* ===== BUTTON ===== */
+.wa-btn {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: .75rem;
+  border-radius: 999px;
+  border: none;
+  background: #25D366; /* WhatsApp green */
+  color: white;
+  font-weight: 600;
+}
+
+/* ===== FEATURED ===== */
+.featured {
+  border: 2px solid #000;
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: -12px;
+  left: 16px;
+  background: #000;
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+/* ===== HOVER (DESKTOP ONLY) ===== */
+@media (hover:hover) and (pointer:fine) {
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 25px 50px rgba(0,0,0,.12);
   }
-  
-  .sub {
-    font-size: 0.875rem;
-    color: #6b7280;
-    margin-bottom: 0.75rem;
-  }
-  
-  .price {
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin-bottom: 1.25rem;
-  }
-  
-  .pricing-card ul {
-    flex: 1;
-    color: #4b5563;
-    display: grid;
-    gap: 0.5rem;
-  }
-  
-  .wa-btn {
-    margin-top: 1.5rem;
-    padding: 0.75rem;
-    border-radius: 999px;
-    background: var(--accent-color, #22c55e);
-    color: #fff;
-    font-weight: 500;
-    width: 100%;
-  }
-  
-  @media (hover:hover) {
-    .pricing-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 45px rgba(0,0,0,.12);
-    }
-  }
+}
 </style>
 
 <script>
-  // currency (no API)
-  document.querySelectorAll(".price").forEach(p => {
-    p.textContent =
-      navigator.language.includes("en-IN")
-        ? p.dataset.inr
-        : p.dataset.usd;
-  });
+/* ===== CURRENCY ===== */
+document.querySelectorAll(".price").forEach(p => {
+  p.textContent = navigator.language.includes("en-IN")
+    ? p.dataset.inr
+    : p.dataset.usd;
+});
 
-  // WhatsApp
-  document.querySelectorAll(".wa-btn").forEach(btn => {
-    btn.onclick = () => {
-      const msg = encodeURIComponent(
-        `I want ${btn.dataset.plan} plan for Magazine / Booklet Design.\nCode: ${btn.dataset.code}`
-      );
-      location.href = `https://wa.me/918144991041?text=${msg}`;
-    };
+/* ===== WHATSAPP ===== */
+document.querySelectorAll(".wa-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const msg = encodeURIComponent(
+      `I want ${btn.dataset.plan} plan for Magazine / Booklet Design.\nCode: ${btn.dataset.code}`
+    );
+    location.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
   });
+});
 </script>
