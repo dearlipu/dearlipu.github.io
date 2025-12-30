@@ -2,7 +2,6 @@
 import "../styles/global.css";
 
 const WHATSAPP_NUMBER = "918144991041";
-const ACCENT = "var(--accent-color)"; // your site theme color
 ---
 
 <section class="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
@@ -35,18 +34,16 @@ const ACCENT = "var(--accent-color)"; // your site theme color
   </div>
 
   <!-- PRICING -->
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+  <div class="flex flex-col gap-6 md:grid md:grid-cols-3 md:gap-8">
 
     <!-- BASIC -->
     <div class="pricing-card border rounded-2xl p-6 md:p-8 flex flex-col">
       <h3 class="text-xl font-semibold mb-1">Basic</h3>
       <p class="text-sm text-gray-500 mb-4">Starting from</p>
 
-      <p
-        class="price text-3xl font-bold mb-6"
-        data-inr="₹800 / page"
-        data-usd="$10 / page">
-      </p>
+      <p class="price text-3xl font-bold mb-6"
+         data-inr="₹800 / page"
+         data-usd="$10 / page"></p>
 
       <ul class="space-y-3 text-gray-600 flex-1">
         <li>✔ Layout cleanup</li>
@@ -56,28 +53,25 @@ const ACCENT = "var(--accent-color)"; // your site theme color
         <li>✖ Custom graphics</li>
       </ul>
 
-      <a
-        href="#"
-        data-plan="Basic"
-        data-code="MAG-BSC-34"
-        class="wa-btn mt-8 text-center py-3 rounded-full font-medium">
+      <a href="#"
+         data-plan="Basic"
+         data-code="MAG-BSC-34"
+         class="wa-btn mt-8 text-center py-3 rounded-full font-medium">
         WhatsApp Me
       </a>
     </div>
 
     <!-- STANDARD -->
-    <div class="pricing-card border-2 border-black rounded-2xl p-6 md:p-8 flex flex-col relative scale-[1.02]">
+    <div class="pricing-card featured border-2 border-black rounded-2xl p-6 md:p-8 flex flex-col relative">
       <span class="badge">Most Popular</span>
       <span class="discount">10% OFF</span>
 
       <h3 class="text-xl font-semibold mb-1">Standard</h3>
       <p class="text-sm text-gray-500 mb-4">Starting from</p>
 
-      <p
-        class="price text-3xl font-bold mb-6"
-        data-inr="₹1,500 / page"
-        data-usd="$18 / page">
-      </p>
+      <p class="price text-3xl font-bold mb-6"
+         data-inr="₹1,500 / page"
+         data-usd="$18 / page"></p>
 
       <ul class="space-y-3 text-gray-600 flex-1">
         <li>✔ Full redesign</li>
@@ -87,11 +81,10 @@ const ACCENT = "var(--accent-color)"; // your site theme color
         <li>✖ Custom illustrations</li>
       </ul>
 
-      <a
-        href="#"
-        data-plan="Standard"
-        data-code="MAG-STD-82"
-        class="wa-btn mt-8 text-center py-3 rounded-full font-medium text-white">
+      <a href="#"
+         data-plan="Standard"
+         data-code="MAG-STD-82"
+         class="wa-btn mt-8 text-center py-3 rounded-full font-medium">
         WhatsApp Me
       </a>
     </div>
@@ -101,11 +94,9 @@ const ACCENT = "var(--accent-color)"; // your site theme color
       <h3 class="text-xl font-semibold mb-1">Premium</h3>
       <p class="text-sm text-gray-500 mb-4">Starting from</p>
 
-      <p
-        class="price text-3xl font-bold mb-6"
-        data-inr="₹2,500 / page"
-        data-usd="$30 / page">
-      </p>
+      <p class="price text-3xl font-bold mb-6"
+         data-inr="₹2,500 / page"
+         data-usd="$30 / page"></p>
 
       <ul class="space-y-3 text-gray-600 flex-1">
         <li>✔ Creative redesign</li>
@@ -115,11 +106,10 @@ const ACCENT = "var(--accent-color)"; // your site theme color
         <li>✔ Priority handling</li>
       </ul>
 
-      <a
-        href="#"
-        data-plan="Premium"
-        data-code="MAG-PRM-99"
-        class="wa-btn mt-8 text-center py-3 rounded-full font-medium">
+      <a href="#"
+         data-plan="Premium"
+         data-code="MAG-PRM-99"
+         class="wa-btn mt-8 text-center py-3 rounded-full font-medium">
         WhatsApp Me
       </a>
     </div>
@@ -129,38 +119,49 @@ const ACCENT = "var(--accent-color)"; // your site theme color
 
 <style>
   .pricing-card {
+    background: #fff;
     transition: transform .35s ease, box-shadow .35s ease;
-    background: white;
   }
-  .pricing-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 30px 60px rgba(0,0,0,.12);
+
+  /* Hover ONLY on desktop */
+  @media (hover: hover) and (pointer: fine) {
+    .pricing-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 28px 60px rgba(0,0,0,.12);
+    }
+  }
+
+  .featured {
+    box-shadow: 0 20px 45px rgba(0,0,0,.1);
   }
 
   .wa-btn {
-    background: var(--accent-color);
-    color: white;
-    border: none;
-    box-shadow: 0 10px 20px rgba(0,0,0,.15);
+    background: var(--accent-color, #2563eb);
+    color: #fff;
+    box-shadow: 0 12px 28px rgba(0,0,0,.18);
+    transition: filter .2s ease, transform .15s ease;
   }
-  
-  @media (max-width: 768px) {
-    .wa-btn {
-      width: 100%;
-    }
+
+  .wa-btn:active {
+    transform: scale(0.97);
   }
+
   .wa-btn:hover {
-    filter: brightness(0.9);
+    filter: brightness(0.92);
+  }
+
+  @media (max-width: 768px) {
+    .wa-btn { width: 100%; }
   }
 
   .badge {
     position: absolute;
     top: -14px;
     left: 16px;
-    background: black;
-    color: white;
+    background: #000;
+    color: #fff;
     font-size: 12px;
-    padding: 4px 10px;
+    padding: 4px 12px;
     border-radius: 999px;
   }
 
@@ -169,15 +170,15 @@ const ACCENT = "var(--accent-color)"; // your site theme color
     top: 12px;
     right: 16px;
     background: #16a34a;
-    color: white;
+    color: #fff;
     font-size: 11px;
-    padding: 4px 8px;
+    padding: 4px 10px;
     border-radius: 999px;
   }
 </style>
 
 <script>
-  // Static currency detection (no API)
+  // Static currency (no API)
   const prices = document.querySelectorAll(".price");
   const isIndia = navigator.language?.includes("en-IN");
 
@@ -185,7 +186,7 @@ const ACCENT = "var(--accent-color)"; // your site theme color
     p.textContent = isIndia ? p.dataset.inr : p.dataset.usd;
   });
 
-  // WhatsApp lead tracking
+  // WhatsApp lead tracking (mobile-safe)
   document.querySelectorAll(".wa-btn").forEach(btn => {
     btn.addEventListener("click", e => {
       e.preventDefault();
@@ -197,10 +198,8 @@ const ACCENT = "var(--accent-color)"; // your site theme color
         `I want ${plan} plan for Magazine / Booklet Design.\nCode: ${code}`
       );
 
-      window.open(
-        `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`,
-        "_blank"
-      );
+      window.location.href =
+        `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
     });
   });
 </script>
