@@ -1,0 +1,50 @@
+---
+import { siteConfig } from "../config";
+const certs = siteConfig.certifications || [];
+---
+
+{certs.length > 0 && (
+  <section id="certifications" class="p-8 sm:p-12 md:p-16 lg:p-24">
+    <div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+
+        <!-- LEFT TITLE -->
+        <div class="lg:col-span-4">
+          <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900">
+            Badges
+          </h2>
+          <div class="w-[75px] h-[5px] mt-2 rounded-full"
+            style={`background-color: ${siteConfig.accentColor}`} />
+        </div>
+
+        <!-- RIGHT BADGE LIST -->
+        <div class="lg:col-span-8">
+          <div class="flex flex-wrap gap-3 mt-4">
+            {certs.map((c) => (
+              <a
+                href={c.url ?? "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-3 px-4 py-2 bg-gray-100 text-gray-800
+                       rounded-full text-sm font-medium hover:bg-gray-200 transition-colors duration-200
+                       no-underline"
+              >
+                <!-- Badge name -->
+                <span>{c.name}</span>
+
+                <!-- Provider + Year pill -->
+                <span class="ml-1 inline-flex items-center text-xs text-gray-600 bg-white/60 
+                             px-2 py-0.5 rounded-full border border-gray-200">
+                  <span class="font-medium">{c.provider}</span>
+                  <span class="mx-1">•</span>
+                  <span class="font-medium">{c.year}</span>
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+)}

@@ -5,26 +5,63 @@ import About from "../components/About.astro";
 import Projects from "../components/Projects.astro";
 import Experience from "../components/Experience.astro";
 import Education from "../components/Education.astro";
+import Certifications from "../components/Certifications.astro";
 import Footer from "../components/Footer.astro";
 import { siteConfig } from "../config";
 import "../styles/global.css";
 ---
 
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={siteConfig.description} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
-      rel="stylesheet"
-    />
-    <title>{siteConfig.name} - {siteConfig.title}</title>
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <meta name="google-site-verification" content="TSCFrIOxF2u50hCpi2uMfBaJEYATy4CKBIzyvy6iyyc" />
+  <meta name="viewport" content="width=device-width" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+  <!-- Title & Description -->
+  <title>Saurav Panda – Portfolio</title>
+  <meta name="description" content={siteConfig.description} />
+
+  <!-- Keyword SEO -->
+  <meta name="keywords" content="Saurav Panda, dearlipu, Graphic Designer, Developer, Portfolio, UI Design, Video Editing, Branding, Creative Designer" />
+
+  <!-- Author -->
+  <meta name="author" content="Saurav Panda" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://dearlipu.github.io/" />
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://dearlipu.github.io/sitemap-index.xml">
+
+  <!-- OPEN GRAPH / SOCIAL PREVIEW -->
+  <meta property="og:title" content="Saurav Panda – Portfolio" />
+  <meta property="og:description" content={siteConfig.description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dearlipu.github.io/" />
+  <meta property="og:image" content="https://dearlipu.github.io/social-card.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- TWITTER PREVIEW -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Saurav Panda – Portfolio" />
+  <meta name="twitter:description" content={siteConfig.description} />
+  <meta name="twitter:image" content="https://dearlipu.github.io/social-card.png" />
+
+  <!-- ROBOTS -->
+  <meta name="robots" content="index, follow" />
+
+  <!-- FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+
+  <!-- Astro -->
+  <meta name="generator" content={Astro.generator} />
+</head>
   <body>
     <Header />
     <section>
@@ -33,6 +70,7 @@ import "../styles/global.css";
       <Projects />
       <Experience />
       <Education />
+      <Certifications />
     </section>
     <Footer />
   </body>
