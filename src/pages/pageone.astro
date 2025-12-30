@@ -1,15 +1,16 @@
 ---
 import "../styles/global.css";
 
-const WHATSAPP_NUMBER = "918144991041"; // change this
+const WHATSAPP_NUMBER = "918144991041";
+const ACCENT = "var(--accent-color)"; // your site theme color
 ---
 
 <section class="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
 
   <!-- SERVICE IMAGE -->
-  <div class="mb-10">
+  <div class="mb-12">
     <img
-      src="/service/img1.webp" 
+      src="/service/img1.webp"
       alt="Magazine & Booklet Design"
       class="w-full max-h-[420px] object-cover rounded-3xl"
       loading="lazy"
@@ -17,7 +18,7 @@ const WHATSAPP_NUMBER = "918144991041"; // change this
   </div>
 
   <!-- TITLE -->
-  <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+  <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">
     Magazine / Booklet Design
   </h1>
 
@@ -28,8 +29,8 @@ const WHATSAPP_NUMBER = "918144991041"; // change this
       readable typography, and professional finishing.
     </p>
     <p>
-      You’ll get industry-standard files, proper margins, color accuracy,
-      and designs that actually work in print — not just on screen.
+      Every file is prepared with correct margins, bleed, color profiles,
+      and printer-friendly output — no shortcuts.
     </p>
   </div>
 
@@ -37,13 +38,14 @@ const WHATSAPP_NUMBER = "918144991041"; // change this
   <div class="grid md:grid-cols-3 gap-8">
 
     <!-- BASIC -->
-    <div class="border rounded-2xl p-8 flex flex-col">
-      <h3 class="text-xl font-semibold mb-2">Basic</h3>
+    <div class="pricing-card border rounded-2xl p-8 flex flex-col">
+      <h3 class="text-xl font-semibold mb-1">Basic</h3>
+      <p class="text-sm text-gray-500 mb-4">Starting from</p>
 
       <p
         class="price text-3xl font-bold mb-6"
-        data-inr="₹800–1,200 / page"
-        data-usd="$10–15 / page">
+        data-inr="₹800 / page"
+        data-usd="$10 / page">
       </p>
 
       <ul class="space-y-3 text-gray-600 flex-1">
@@ -57,24 +59,24 @@ const WHATSAPP_NUMBER = "918144991041"; // change this
       <a
         href="#"
         data-plan="Basic"
-        data-code="#MKG34"
-        class="wa-btn mt-8 text-center py-3 rounded-full border font-medium hover:bg-gray-50">
+        data-code="MAG-BSC-34"
+        class="wa-btn mt-8 text-center py-3 rounded-full font-medium">
         WhatsApp Me
       </a>
     </div>
 
     <!-- STANDARD -->
-    <div class="border-2 border-black rounded-2xl p-8 flex flex-col relative">
-      <span class="absolute -top-3 left-4 bg-black text-white text-xs px-4 py-1 rounded-full">
-        Most Popular
-      </span>
+    <div class="pricing-card border-2 border-black rounded-2xl p-8 flex flex-col relative scale-[1.02]">
+      <span class="badge">Most Popular</span>
+      <span class="discount">10% OFF</span>
 
-      <h3 class="text-xl font-semibold mb-2">Standard</h3>
+      <h3 class="text-xl font-semibold mb-1">Standard</h3>
+      <p class="text-sm text-gray-500 mb-4">Starting from</p>
 
       <p
         class="price text-3xl font-bold mb-6"
-        data-inr="₹1,500–2,000 / page"
-        data-usd="$18–25 / page">
+        data-inr="₹1,500 / page"
+        data-usd="$18 / page">
       </p>
 
       <ul class="space-y-3 text-gray-600 flex-1">
@@ -88,20 +90,21 @@ const WHATSAPP_NUMBER = "918144991041"; // change this
       <a
         href="#"
         data-plan="Standard"
-        data-code="#STD82"
-        class="wa-btn mt-8 text-center py-3 rounded-full bg-black text-white font-medium hover:opacity-90">
+        data-code="MAG-STD-82"
+        class="wa-btn mt-8 text-center py-3 rounded-full font-medium text-white">
         WhatsApp Me
       </a>
     </div>
 
     <!-- PREMIUM -->
-    <div class="border rounded-2xl p-8 flex flex-col">
-      <h3 class="text-xl font-semibold mb-2">Premium</h3>
+    <div class="pricing-card border rounded-2xl p-8 flex flex-col">
+      <h3 class="text-xl font-semibold mb-1">Premium</h3>
+      <p class="text-sm text-gray-500 mb-4">Starting from</p>
 
       <p
         class="price text-3xl font-bold mb-6"
-        data-inr="₹2,500–3,500 / page"
-        data-usd="$30–45 / page">
+        data-inr="₹2,500 / page"
+        data-usd="$30 / page">
       </p>
 
       <ul class="space-y-3 text-gray-600 flex-1">
@@ -115,8 +118,8 @@ const WHATSAPP_NUMBER = "918144991041"; // change this
       <a
         href="#"
         data-plan="Premium"
-        data-code="#PRM99"
-        class="wa-btn mt-8 text-center py-3 rounded-full border font-medium hover:bg-gray-50">
+        data-code="MAG-PRM-99"
+        class="wa-btn mt-8 text-center py-3 rounded-full font-medium">
         WhatsApp Me
       </a>
     </div>
@@ -124,24 +127,57 @@ const WHATSAPP_NUMBER = "918144991041"; // change this
   </div>
 </section>
 
-<!-- SCRIPT -->
+<style>
+  .pricing-card {
+    transition: transform .35s ease, box-shadow .35s ease;
+    background: white;
+  }
+  .pricing-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(0,0,0,.12);
+  }
+
+  .wa-btn {
+    background: var(--accent-color);
+    color: white;
+  }
+  .wa-btn:hover {
+    filter: brightness(0.9);
+  }
+
+  .badge {
+    position: absolute;
+    top: -14px;
+    left: 16px;
+    background: black;
+    color: white;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+
+  .discount {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: #16a34a;
+    color: white;
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 999px;
+  }
+</style>
+
 <script>
-  // Auto currency by location
+  // Static currency detection (no API)
   const prices = document.querySelectorAll(".price");
+  const isIndia = navigator.language?.includes("en-IN");
 
-  fetch("https://ipapi.co/json/")
-    .then(res => res.json())
-    .then(data => {
-      const isIndia = data.country === "IN";
-      prices.forEach(p => {
-        p.textContent = isIndia ? p.dataset.inr : p.dataset.usd;
-      });
-    })
-    .catch(() => {
-      prices.forEach(p => p.textContent = p.dataset.inr);
-    });
+  prices.forEach(p => {
+    p.textContent = isIndia ? p.dataset.inr : p.dataset.usd;
+  });
 
-  // WhatsApp message with plan + code
+  // WhatsApp lead tracking
   document.querySelectorAll(".wa-btn").forEach(btn => {
     btn.addEventListener("click", e => {
       e.preventDefault();
@@ -150,7 +186,7 @@ const WHATSAPP_NUMBER = "918144991041"; // change this
       const code = btn.dataset.code;
 
       const message = encodeURIComponent(
-        `I want ${plan} plan, Code:${code}`
+        `I want ${plan} plan for Magazine / Booklet Design.\nCode: ${code}`
       );
 
       window.open(
