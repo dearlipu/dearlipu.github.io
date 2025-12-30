@@ -32,7 +32,7 @@ projects: [
       name: "Disney Nationality Archive",
       description:
         "A short animated promo made using Adobe After Effects, featuring text animation, shape transitions, and brand elements.",
-      link: "https://www.behance.net/gallery/238766633/Disney-Nationality-Archive-El-Ojo-de-Iberoamrica?tracking_source=curated_galleries_advertising",
+      link: "/pageone",
       skills: ["Illustrator", "Photoshop", "After Effects"],
     },
     {
