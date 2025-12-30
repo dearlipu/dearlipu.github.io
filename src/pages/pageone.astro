@@ -1,6 +1,5 @@
 ---
 import "../styles/global.css";
-
 const WHATSAPP_NUMBER = "918144991041";
 ---
 
@@ -33,19 +32,16 @@ const WHATSAPP_NUMBER = "918144991041";
     </p>
   </div>
 
-  <!-- PRICING -->
-  <div class="flex flex-col gap-6 md:grid md:grid-cols-3 md:gap-8">
+  <!-- PRICING (GRID ONLY – SAFE) -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
 
     <!-- BASIC -->
-    <div class="pricing-card border rounded-2xl p-6 md:p-8 flex flex-col">
-      <h3 class="text-xl font-semibold mb-1">Basic</h3>
-      <p class="text-sm text-gray-500 mb-4">Starting from</p>
+    <div class="pricing-card">
+      <h3>Basic</h3>
+      <p class="sub">Starting from</p>
+      <p class="price" data-inr="₹800 / page" data-usd="$10 / page"></p>
 
-      <p class="price text-3xl font-bold mb-6"
-         data-inr="₹800 / page"
-         data-usd="$10 / page"></p>
-
-      <ul class="space-y-3 text-gray-600 flex-1">
+      <ul>
         <li>✔ Layout cleanup</li>
         <li>✔ Text & image fixes</li>
         <li>✔ Print-ready PDF</li>
@@ -53,52 +49,40 @@ const WHATSAPP_NUMBER = "918144991041";
         <li>✖ Custom graphics</li>
       </ul>
 
-      <a href="#"
-         data-plan="Basic"
-         data-code="MAG-BSC-34"
-         class="wa-btn mt-8 text-center py-3 rounded-full font-medium">
+      <button class="wa-btn" data-plan="Basic" data-code="MAG-BSC-34">
         WhatsApp Me
-      </a>
+      </button>
     </div>
 
     <!-- STANDARD -->
-    <div class="pricing-card featured border-2 border-black rounded-2xl p-6 md:p-8 flex flex-col relative">
+    <div class="pricing-card featured">
       <span class="badge">Most Popular</span>
       <span class="discount">10% OFF</span>
 
-      <h3 class="text-xl font-semibold mb-1">Standard</h3>
-      <p class="text-sm text-gray-500 mb-4">Starting from</p>
+      <h3>Standard</h3>
+      <p class="sub">Starting from</p>
+      <p class="price" data-inr="₹1,500 / page" data-usd="$18 / page"></p>
 
-      <p class="price text-3xl font-bold mb-6"
-         data-inr="₹1,500 / page"
-         data-usd="$18 / page"></p>
-
-      <ul class="space-y-3 text-gray-600 flex-1">
+      <ul>
         <li>✔ Full redesign</li>
         <li>✔ Typography improvement</li>
         <li>✔ Image alignment</li>
-        <li>✔ 2 revision rounds</li>
+        <li>✔ 2 revisions</li>
         <li>✖ Custom illustrations</li>
       </ul>
 
-      <a href="#"
-         data-plan="Standard"
-         data-code="MAG-STD-82"
-         class="wa-btn mt-8 text-center py-3 rounded-full font-medium">
+      <button class="wa-btn" data-plan="Standard" data-code="MAG-STD-82">
         WhatsApp Me
-      </a>
+      </button>
     </div>
 
     <!-- PREMIUM -->
-    <div class="pricing-card border rounded-2xl p-6 md:p-8 flex flex-col">
-      <h3 class="text-xl font-semibold mb-1">Premium</h3>
-      <p class="text-sm text-gray-500 mb-4">Starting from</p>
+    <div class="pricing-card">
+      <h3>Premium</h3>
+      <p class="sub">Starting from</p>
+      <p class="price" data-inr="₹2,500 / page" data-usd="$30 / page"></p>
 
-      <p class="price text-3xl font-bold mb-6"
-         data-inr="₹2,500 / page"
-         data-usd="$30 / page"></p>
-
-      <ul class="space-y-3 text-gray-600 flex-1">
+      <ul>
         <li>✔ Creative redesign</li>
         <li>✔ Custom graphics</li>
         <li>✔ Color correction</li>
@@ -106,100 +90,82 @@ const WHATSAPP_NUMBER = "918144991041";
         <li>✔ Priority handling</li>
       </ul>
 
-      <a href="#"
-         data-plan="Premium"
-         data-code="MAG-PRM-99"
-         class="wa-btn mt-8 text-center py-3 rounded-full font-medium">
+      <button class="wa-btn" data-plan="Premium" data-code="MAG-PRM-99">
         WhatsApp Me
-      </a>
+      </button>
     </div>
 
   </div>
 </section>
 
-<style>
+<styles>
   .pricing-card {
     background: #fff;
-    transition: transform .35s ease, box-shadow .35s ease;
+    border: 1px solid #e5e7eb;
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
   }
-
-  /* Hover ONLY on desktop */
-  @media (hover: hover) and (pointer: fine) {
+  
+  .pricing-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  .sub {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 0.75rem;
+  }
+  
+  .price {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+  }
+  
+  .pricing-card ul {
+    flex: 1;
+    color: #4b5563;
+    display: grid;
+    gap: 0.5rem;
+  }
+  
+  .wa-btn {
+    margin-top: 1.5rem;
+    padding: 0.75rem;
+    border-radius: 999px;
+    background: var(--accent-color, #22c55e);
+    color: #fff;
+    font-weight: 500;
+    width: 100%;
+  }
+  
+  @media (hover:hover) {
     .pricing-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 28px 60px rgba(0,0,0,.12);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 45px rgba(0,0,0,.12);
     }
   }
-
-  .featured {
-    box-shadow: 0 20px 45px rgba(0,0,0,.1);
-  }
-
-  .wa-btn {
-    background: var(--accent-color, #2563eb);
-    color: #fff;
-    box-shadow: 0 12px 28px rgba(0,0,0,.18);
-    transition: filter .2s ease, transform .15s ease;
-  }
-
-  .wa-btn:active {
-    transform: scale(0.97);
-  }
-
-  .wa-btn:hover {
-    filter: brightness(0.92);
-  }
-
-  @media (max-width: 768px) {
-    .wa-btn { width: 100%; }
-  }
-
-  .badge {
-    position: absolute;
-    top: -14px;
-    left: 16px;
-    background: #000;
-    color: #fff;
-    font-size: 12px;
-    padding: 4px 12px;
-    border-radius: 999px;
-  }
-
-  .discount {
-    position: absolute;
-    top: 12px;
-    right: 16px;
-    background: #16a34a;
-    color: #fff;
-    font-size: 11px;
-    padding: 4px 10px;
-    border-radius: 999px;
-  }
-</style>
+</styles>
 
 <script>
-  // Static currency (no API)
-  const prices = document.querySelectorAll(".price");
-  const isIndia = navigator.language?.includes("en-IN");
-
-  prices.forEach(p => {
-    p.textContent = isIndia ? p.dataset.inr : p.dataset.usd;
+  // currency (no API)
+  document.querySelectorAll(".price").forEach(p => {
+    p.textContent =
+      navigator.language.includes("en-IN")
+        ? p.dataset.inr
+        : p.dataset.usd;
   });
 
-  // WhatsApp lead tracking (mobile-safe)
+  // WhatsApp
   document.querySelectorAll(".wa-btn").forEach(btn => {
-    btn.addEventListener("click", e => {
-      e.preventDefault();
-
-      const plan = btn.dataset.plan;
-      const code = btn.dataset.code;
-
-      const message = encodeURIComponent(
-        `I want ${plan} plan for Magazine / Booklet Design.\nCode: ${code}`
+    btn.onclick = () => {
+      const msg = encodeURIComponent(
+        `I want ${btn.dataset.plan} plan for Magazine / Booklet Design.\nCode: ${btn.dataset.code}`
       );
-
-      window.location.href =
-        `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
-    });
+      location.href = `https://wa.me/918144991041?text=${msg}`;
+    };
   });
 </script>
