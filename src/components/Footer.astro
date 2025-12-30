@@ -3,9 +3,11 @@ import { siteConfig } from "../config";
 
 const EMAIL = siteConfig.social?.email ?? "your-email@example.com";
 const SITE_NAME = siteConfig.name ?? "Portfolio";
-const SUBJECT = `${SITE_NAME} • Inquiry`;
-const BODY = `Hi ${siteConfig.name || "there"},%0D%0A%0D%0AI saw your portfolio and would like to talk about...`;
-const MAILTO = `mailto:${EMAIL}?subject=${encodeURIComponent(SUBJECT)}&body=${encodeURIComponent(BODY)}`;
+const SUBJECT = encodeURIComponent(`${SITE_NAME} • Inquiry`);
+const BODY = encodeURIComponent(`Hi ${siteConfig.name},
+
+I saw your portfolio and I want to talk about `);
+const MAILTO = `mailto:${EMAIL}?subject=${SUBJECT}&body=${BODY}`;
 
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
 const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
