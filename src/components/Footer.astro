@@ -4,7 +4,7 @@ import { siteConfig } from "../config";
 const EMAIL = siteConfig.social?.email ?? "your-email@example.com";
 const SITE_NAME = siteConfig.name ?? "Portfolio";
 const SUBJECT = encodeURIComponent(`${SITE_NAME} • Inquiry`);
-const BODY = encodeURIComponent(`Hi ${siteConfig.name},
+const BODY = encodeURIComponent(`dearlipu,
 
 I saw your portfolio and I want to talk about `);
 const MAILTO = `mailto:${EMAIL}?subject=${SUBJECT}&body=${BODY}`;
@@ -34,7 +34,7 @@ const hasCertifications = siteConfig.certifications && siteConfig.certifications
         <div class="flex gap-x-6">
           <a
             id="footerMailLink"
-            href={`mailto:${EMAIL}?subject=${SUBJECT}&body=${BODY}`}
+            href={MAILTO}
             data-email={EMAIL}
             data-mailto={MAILTO}
             aria-label="Email"
@@ -221,8 +221,6 @@ const hasCertifications = siteConfig.certifications && siteConfig.certifications
       </pattern>
       <rect width="100%" height="100%" fill="url(#footer-pattern)"></rect>
     </svg>
-  </div>
-
     <!-- Email Toast -->
     <div
       id="emailToast"
@@ -235,6 +233,7 @@ const hasCertifications = siteConfig.certifications && siteConfig.certifications
     >
       <span id="emailToastText">Email copied</span>
     </div>
+  </div>
 
 <style>
   .footer-name { cursor: pointer; }
