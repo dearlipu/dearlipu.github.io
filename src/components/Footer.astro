@@ -58,7 +58,6 @@ const hasCertifications = siteConfig.certifications && siteConfig.certifications
               <path d="M3 7l9 6l9 -6"></path>
             </svg>
           </a>
-        </div>
           <a
             href={siteConfig.social.instagram}
             target="_blank"
@@ -138,6 +137,7 @@ const hasCertifications = siteConfig.certifications && siteConfig.certifications
             </svg>
           </a>
         </div>
+      </div>
       </div>
 
       <!-- RIGHT SIDE -->
@@ -238,6 +238,19 @@ const hasCertifications = siteConfig.certifications && siteConfig.certifications
   #footerMailFallback .select-all { user-select:all; }
 </style>
 
+    <!-- Email Toast -->
+    <div
+      id="emailToast"
+      class="pointer-events-none fixed top-6 left-1/2 -translate-x-1/2 z-[999]
+             hidden items-center gap-3
+             rounded-full bg-gray-900 px-4 py-2
+             text-sm text-white shadow-lg"
+      role="status"
+      aria-live="polite"
+    >
+      <span id="emailToastText">Email copied</span>
+    </div>
+
 <script>
   (function () {
     const mailLink = document.getElementById("footerMailLink");
@@ -284,17 +297,4 @@ const hasCertifications = siteConfig.certifications && siteConfig.certifications
     });
   })();
 </script>
-
-    <!-- Email Toast -->
-    <div
-      id="emailToast"
-      class="pointer-events-none fixed top-6 left-1/2 -translate-x-1/2 z-[999]
-             hidden items-center gap-3
-             rounded-full bg-gray-900 px-4 py-2
-             text-sm text-white shadow-lg"
-      role="status"
-      aria-live="polite"
-    >
-      <span id="emailToastText">Email copied</span>
-    </div>
 </footer>
