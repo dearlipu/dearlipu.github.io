@@ -31,7 +31,10 @@ const hasCertifications = siteConfig.certifications && siteConfig.certifications
         </p>
         <div class="flex gap-x-6">
           <a
-            href={`mailto:${siteConfig.social.email}`}
+            id="footerMailLink"
+            href={`mailto:${EMAIL}?subject=${SUBJECT}&body=${BODY}`}
+            data-email={EMAIL}
+            data-mailto={MAILTO}
             aria-label="Email"
             class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
             style={`--accent-color: ${siteConfig.accentColor}`}
@@ -55,14 +58,6 @@ const hasCertifications = siteConfig.certifications && siteConfig.certifications
               <path d="M3 7l9 6l9 -6"></path>
             </svg>
           </a>
-          <!-- Fallback (hidden by default) -->
-        <div class="hidden md:flex flex-col md:items-end gap-1">
-          <div id="footerMailFallback" class="hidden mt-2 inline-flex items-center gap-3 bg-white border border-gray-200 rounded-full px-3 py-2 shadow-sm" aria-hidden="true">
-            <span class="text-sm text-gray-700">Email:</span>
-            <span id="footerMailText" class="font-medium text-sm select-all">{EMAIL}</span>
-            <button id="footerCopyBtn" class="ml-2 px-2 py-1 rounded-full bg-gray-100 text-sm">Copy</button>
-            <button id="footerFallbackClose" class="ml-2 text-sm text-gray-500">Close</button>
-          </div>
         </div>
           <a
             href={siteConfig.social.instagram}
@@ -153,6 +148,26 @@ const hasCertifications = siteConfig.certifications && siteConfig.certifications
             Resume
           </a>
         </div>
+      </div>
+
+      <!-- Fallback (hidden by default) -->
+      <div
+        id="footerMailFallback"
+        class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50
+               bg-white border border-gray-200 rounded-full px-4 py-2
+               shadow-lg flex items-center gap-3"
+        aria-hidden="true"
+      >
+        <span class="text-sm text-gray-700">Email:</span>
+        <span id="footerMailText" class="font-medium text-sm select-all">
+          {EMAIL}
+        </span>
+        <button id="footerCopyBtn" class="px-2 py-1 rounded-full bg-gray-100 text-sm">
+          Copy
+        </button>
+        <button id="footerFallbackClose" class="text-sm text-gray-500">
+          Close
+        </button>
       </div>
 
         <!-- PC Right ONLY -->
@@ -253,68 +268,46 @@ const hasCertifications = siteConfig.certifications && siteConfig.certifications
 
     if (!link || !fallback) return;
 
-    const to = link.dataset.email || mailText.textContent || "";
-    const mailto = link.dataset.mailto || link.getAttribute("href") || `mailto:${to}`;
+    const email = link.dataset.email;
+    const mailto = link.dataset.mailto;
 
-    const isMobile = () => /Mobi|Android|iPhone|iPad|Phone/i.test(navigator.userAgent);
+    const isMobile = () =>
+      /Mobi|Android|iPhone|iPad|Phone/i.test(navigator.userAgent);
 
-    let hideTimeout = null;
+    let timer = null;
 
     function showFallback() {
-      clearTimeout(hideTimeout);
       fallback.classList.remove("hidden");
-      fallback.classList.add("visible");
       fallback.setAttribute("aria-hidden", "false");
-      hideTimeout = setTimeout(hideFallback, 8000);
     }
 
     function hideFallback() {
-      clearTimeout(hideTimeout);
-      fallback.classList.remove("visible");
       fallback.classList.add("hidden");
       fallback.setAttribute("aria-hidden", "true");
     }
 
-    function tryMailtoOrFallback() {
-      // attempt to open mail client
+    link.addEventListener("click", (e) => {
+      if (isMobile()) return; // mobile = native mail app
+
+      e.preventDefault();
+      hideFallback();
+
+      // attempt mailto
       window.location.href = mailto;
 
-      // if page remains visible after short delay, show fallback
-      setTimeout(() => {
-        if (document.visibilityState === "visible") {
-          showFallback();
-        }
-      }, 700);
-    }
-
-    link.addEventListener("click", function (e) {
-      if (isMobile()) {
-        // mobile: let native mail app handle mailto
-        return;
-      }
-      e.preventDefault();
-      tryMailtoOrFallback();
+      // show fallback ONLY if nothing happened
+      timer = setTimeout(() => {
+        showFallback();
+      }, 1200);
     });
 
     copyBtn?.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(to);
-        copyBtn.textContent = "Copied";
-        setTimeout(() => (copyBtn.textContent = "Copy"), 1600);
-        hideFallback();
-      } catch (err) {
-        copyBtn.textContent = "Copy failed";
-        setTimeout(() => (copyBtn.textContent = "Copy"), 1600);
-      }
+      await navigator.clipboard.writeText(email);
+      copyBtn.textContent = "Copied";
+      setTimeout(() => (copyBtn.textContent = "Copy"), 1500);
     });
 
-    closeBtn?.addEventListener("click", () => hideFallback());
-
-    // hide if user clicks outside fallback
-    document.addEventListener("click", (ev) => {
-      if (fallback.classList.contains("hidden")) return;
-      if (!fallback.contains(ev.target) && !link.contains(ev.target)) hideFallback();
-    }, true);
+    closeBtn?.addEventListener("click", hideFallback);
   })();
 </script>
 </footer>
