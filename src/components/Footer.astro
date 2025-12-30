@@ -284,4 +284,17 @@ const hasCertifications = siteConfig.certifications && siteConfig.certifications
     });
   })();
 </script>
+
+    <!-- Email Toast -->
+    <div
+      id="emailToast"
+      class="pointer-events-none fixed top-6 left-1/2 -translate-x-1/2 z-[999]
+             hidden items-center gap-3
+             rounded-full bg-gray-900 px-4 py-2
+             text-sm text-white shadow-lg"
+      role="status"
+      aria-live="polite"
+    >
+      <span id="emailToastText">Email copied</span>
+    </div>
 </footer>
