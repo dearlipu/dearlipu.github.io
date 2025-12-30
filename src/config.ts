@@ -39,14 +39,14 @@ projects: [
       name: "Nature's Gifts (Iconography)",
       description:
         "A collection of 300 vector images of edible and medicinal plants, as well as some insect waste products.",
-      link: "https://www.behance.net/gallery/217277727/Natures-Gifts-(Iconography)?tracking_source=curated_tools_photoshop",
+      link: "/pagetwo",
       skills: ["Illustrator", "Photoshop", "Lightroom"],
     },
     {
       name: "OTRIEA - Brand Mark",
       description:
         "geometric abstraction! The brand mark is incredibly versatile and creates a memorable visual anchor.",
-      link: "https://www.behance.net/gallery/234333591/OTRIEA?tracking_source=curated_tools_indesign",
+      link: "/pagethree",
       skills: ["Premiere Pro", "InDesign", "Figma"],
     },
   ],
