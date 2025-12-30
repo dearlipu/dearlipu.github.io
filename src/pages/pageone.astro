@@ -1,0 +1,121 @@
+---
+import "../styles/global.css";
+---
+
+<section class="max-w-7xl mx-auto px-6 py-24">
+  <!-- Header -->
+  <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-20">
+    <div>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+        Pricing
+      </h1>
+      <p class="text-gray-600 max-w-2xl">
+        Fiverr-style transparent pricing. Choose the package that fits your needs.
+      </p>
+    </div>
+
+    <!-- Currency Toggle -->
+    <div class="flex gap-2">
+      <button data-currency="inr"
+        class="currency-btn px-4 py-2 rounded-full bg-black text-white text-sm font-medium">
+        ₹ INR
+      </button>
+      <button data-currency="usd"
+        class="currency-btn px-4 py-2 rounded-full border text-sm font-medium">
+        $ USD
+      </button>
+    </div>
+  </div>
+
+  <!-- SERVICE -->
+  <div class="mb-24">
+    <h2 class="text-3xl font-semibold mb-10">
+      📰 Magazine / Booklet Design
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- BASIC -->
+      <div class="border rounded-2xl p-8 flex flex-col">
+        <h3 class="text-xl font-semibold mb-2">Basic</h3>
+        <p class="price text-3xl font-bold mb-6"
+           data-inr="₹800–1,200"
+           data-usd="$10–15"></p>
+
+        <ul class="space-y-3 text-gray-600 flex-1">
+          <li>✔ Layout cleanup</li>
+          <li>✔ Text & image fixes</li>
+          <li>✔ Print-ready PDF</li>
+          <li>✖ Redesign</li>
+          <li>✖ Custom graphics</li>
+        </ul>
+
+        <a href="https://wa.me/91XXXXXXXXXX"
+           class="mt-8 text-center py-3 rounded-full border font-medium hover:bg-gray-50">
+          WhatsApp Me
+        </a>
+      </div>
+
+      <!-- STANDARD (POPULAR) -->
+      <div class="border-2 border-black rounded-2xl p-8 flex flex-col relative">
+        <span class="absolute -top-4 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-4 py-1 rounded-full">
+          Most Popular
+        </span>
+
+        <h3 class="text-xl font-semibold mb-2">Standard</h3>
+        <p class="price text-3xl font-bold mb-6"
+           data-inr="₹1,500–2,000"
+           data-usd="$18–25"></p>
+
+        <ul class="space-y-3 text-gray-600 flex-1">
+          <li>✔ Full redesign</li>
+          <li>✔ Typography improvement</li>
+          <li>✔ Image alignment</li>
+          <li>✔ 2 revision rounds</li>
+          <li>✖ Custom illustrations</li>
+        </ul>
+
+        <a href="https://wa.me/91XXXXXXXXXX"
+           class="mt-8 text-center py-3 rounded-full bg-black text-white font-medium hover:opacity-90">
+          WhatsApp Me
+        </a>
+      </div>
+
+      <!-- PREMIUM -->
+      <div class="border rounded-2xl p-8 flex flex-col">
+        <h3 class="text-xl font-semibold mb-2">Premium</h3>
+        <p class="price text-3xl font-bold mb-6"
+           data-inr="₹2,500–3,500"
+           data-usd="$30–45"></p>
+
+        <ul class="space-y-3 text-gray-600 flex-1">
+          <li>✔ Creative redesign</li>
+          <li>✔ Custom graphics</li>
+          <li>✔ Color correction</li>
+          <li>✔ Pre-press support</li>
+          <li>✔ Priority handling</li>
+        </ul>
+
+        <a href="https://wa.me/91XXXXXXXXXX"
+           class="mt-8 text-center py-3 rounded-full border font-medium hover:bg-gray-50">
+          WhatsApp Me
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const buttons = document.querySelectorAll(".currency-btn");
+  const prices = document.querySelectorAll(".price");
+
+  function setCurrency(type) {
+    prices.forEach(p => p.textContent = p.dataset[type]);
+    buttons.forEach(b => {
+      b.classList.toggle("bg-black", b.dataset.currency === type);
+      b.classList.toggle("text-white", b.dataset.currency === type);
+    });
+  }
+
+  buttons.forEach(b => b.onclick = () => setCurrency(b.dataset.currency));
+  setCurrency("inr");
+</script>
