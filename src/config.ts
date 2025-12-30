@@ -32,7 +32,7 @@ projects: [
       name: "Disney Nationality Archive",
       description:
         "A short animated promo made using Adobe After Effects, featuring text animation, shape transitions, and brand elements.",
-      link: "/pageone",
+      link: "https://www.fiverr.com/s/R7ZYK3V",
       skills: ["Illustrator", "Photoshop", "After Effects"],
     },
     {
