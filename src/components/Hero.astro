@@ -164,7 +164,10 @@ const MAILTO = `mailto:${EMAIL}?subject=${SUBJECT}&body=${BODY}`;
     {
       siteConfig.social?.email && (
         <a
-          href={`mailto:${siteConfig.social.email}`}
+          id="heroMailLink"
+          href={MAILTO}
+          data-email={EMAIL}
+          data-mailto={MAILTO}
           aria-label="Email"
           class="transition-colors duration-300 hover:text-[var(--accent-color)]"
         >
@@ -276,14 +279,18 @@ const MAILTO = `mailto:${EMAIL}?subject=${SUBJECT}&body=${BODY}`;
         </svg>
       </a>
     )}
-  </div>
-
-  <!-- HERO fallback popup (hidden by default) -->
-  <div id="heroMailFallback" class="hidden fixed bottom-24 left-1/2 -translate-x-1/2 z-50 bg-white border border-gray-200 rounded-lg shadow-lg px-4 py-3 flex items-center gap-3">
-    <div class="text-sm text-gray-700">My email:</div>
-    <div id="heroMailText" class="font-medium text-gray-900 select-all">{EMAIL}</div>
-    <button id="heroCopyBtn" class="ml-2 px-3 py-1 rounded-full bg-gray-100 text-sm">Copy</button>
-    <button id="heroFallbackClose" class="ml-2 text-sm text-gray-500">Close</button>
+    <!-- Global Email Toast -->
+    <div
+      id="emailToast"
+      class="pointer-events-none fixed top-6 left-1/2 -translate-x-1/2 z-[999]
+             hidden items-center gap-3
+             rounded-full bg-gray-900 px-4 py-2
+             text-sm text-white shadow-lg"
+      role="status"
+      aria-live="polite"
+    >
+      <span id="emailToastText">Email copied</span>
+    </div>
   </div>
 
 <style>
@@ -345,56 +352,46 @@ const MAILTO = `mailto:${EMAIL}?subject=${SUBJECT}&body=${BODY}`;
 <script>
   (function () {
     const link = document.getElementById("heroMailLink");
-    const fallback = document.getElementById("heroMailFallback");
-    const copyBtn = document.getElementById("heroCopyBtn");
-    const closeBtn = document.getElementById("heroFallbackClose");
+    const toast = document.getElementById("emailToast");
+    const toastText = document.getElementById("emailToastText");
 
-    if (!link) return;
+    if (!link || !toast) return;
 
-    const to = link.dataset?.email ?? ("${EMAIL}");
-    const mailto = link.dataset?.mailto ?? ("${MAILTO}");
+    const email = link.dataset.email;
+    const mailto = link.dataset.mailto;
 
-    // simple mobile detection
-    const isMobile = () => /Mobi|Android|iPhone|iPad|Phone/i.test(navigator.userAgent);
+    const isMobile = () =>
+      /Mobi|Android|iPhone|iPad|Phone/i.test(navigator.userAgent);
 
-    function showFallback() {
-      fallback.classList.remove("hidden");
-      // auto-hide after 8s
-      setTimeout(() => { fallback.classList.add("hidden"); }, 8000);
+    let hideTimer;
+
+    function showToast(message) {
+      clearTimeout(hideTimer);
+      toastText.textContent = message;
+      toast.classList.remove("hidden");
+      toast.classList.add("flex");
+
+      hideTimer = setTimeout(() => {
+        toast.classList.add("hidden");
+        toast.classList.remove("flex");
+      }, 1500);
     }
 
-    function tryMailtoOrFallback() {
-      // attempt mailto
+    link.addEventListener("click", async (e) => {
+      if (isMobile()) return; // mobile → native mail app
+
+      e.preventDefault();
+
+      // try opening mail client
       window.location.href = mailto;
 
-      // if page stays visible after delay, show fallback
-      setTimeout(() => {
-        if (document.visibilityState === "visible") showFallback();
-      }, 700);
-    }
-
-    link.addEventListener("click", function (e) {
-      if (isMobile()) {
-        // let native mail app handle mailto
-        return;
-      }
-      // desktop: prevent default navigation and attempt mailto with fallback
-      e.preventDefault();
-      tryMailtoOrFallback();
-    });
-
-    copyBtn?.addEventListener("click", async () => {
+      // copy email silently
       try {
-        await navigator.clipboard.writeText(to);
-        copyBtn.textContent = "Copied";
-        setTimeout(() => (copyBtn.textContent = "Copy"), 2000);
-      } catch (err) {
-        copyBtn.textContent = "Copy failed";
+        await navigator.clipboard.writeText(email);
+        showToast("Email copied to clipboard");
+      } catch {
+        showToast("Email: " + email);
       }
-    });
-
-    closeBtn?.addEventListener("click", () => {
-      fallback.classList.add("hidden");
     });
   })();
 </script>
