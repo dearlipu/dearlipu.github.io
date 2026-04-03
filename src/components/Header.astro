@@ -4,7 +4,6 @@ import { siteConfig } from "../config";
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
 const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
 const hasEducation = siteConfig.education && siteConfig.education.length > 0;
-const hasPricing = siteConfig.pricing && siteConfig.pricing.length > 0;
 ---
 
 <header
@@ -57,8 +56,6 @@ const hasPricing = siteConfig.pricing && siteConfig.pricing.length > 0;
           </li>
         )
       }
-      {
-        hasPricing && (
           <li>
               <a
                 href="#pricing"
@@ -67,8 +64,6 @@ const hasPricing = siteConfig.pricing && siteConfig.pricing.length > 0;
                 Pricing
               </a>
           </li>
-        )
-      }
     </ul>
   </nav>
 </header>
