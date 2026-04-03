@@ -4,6 +4,7 @@ import { siteConfig } from "../config";
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
 const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
 const hasEducation = siteConfig.education && siteConfig.education.length > 0;
+const hasBadges = siteConfig.badges && siteConfig.badges.length > 0;
 ---
 
 <header
@@ -52,6 +53,17 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
               class="text-gray-700 hover:text-black transition-colors font-medium"
             >
               Education
+            </a>
+          </li>
+        )
+      }
+        hasBadges && (
+          <li>
+            <a
+              href="/#badges"
+              class="text-gray-700 hover:text-black transition-colors font-medium"
+            >
+              Badges
             </a>
           </li>
         )
