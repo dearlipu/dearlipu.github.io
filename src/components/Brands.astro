@@ -1,0 +1,27 @@
+---
+const brands = [
+  { name: "YouTube", logo: "/brands/youtube.svg" },
+  { name: "Instagram", logo: "/brands/instagram.svg" },
+  { name: "Fiverr", logo: "/brands/fiverr.svg" },
+  { name: "Adobe", logo: "/brands/adobe.svg" },
+  { name: "Canva", logo: "/brands/canva.svg" },
+];
+---
+
+<section class="py-12 opacity-80">
+  <div class="text-center mb-6">
+    <p class="text-sm text-gray-500 uppercase tracking-wide">
+      Trusted by & tools I work with
+    </p>
+  </div>
+
+  <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+    {brands.map((brand) => (
+      <img
+        src={brand.logo}
+        alt={brand.name}
+        class="h-6 md:h-8 grayscale opacity-70 hover:opacity-100 transition"
+      />
+    ))}
+  </div>
+</section>
