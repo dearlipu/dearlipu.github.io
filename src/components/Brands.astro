@@ -13,29 +13,19 @@ const brands = [
     Trusted by & tools I work with
   </p>
 
-  <div class="relative w-full overflow-hidden">
+   <div class="overflow-hidden w-full">
   
-    <div class="scroll-track">
+    <div class="marquee">
   
-      <!-- group 1 -->
-      <div class="scroll-group">
+      <div class="marquee-content">
         {brands.map((brand) => (
-          <img
-            src={brand.logo}
-            alt={brand.name}
-            class="logo"
-          />
+          <img src={brand.logo} alt={brand.name} class="logo" />
         ))}
       </div>
   
-      <!-- group 2 (duplicate) -->
-      <div class="scroll-group">
+      <div class="marquee-content">
         {brands.map((brand) => (
-          <img
-            src={brand.logo}
-            alt={brand.name}
-            class="logo"
-          />
+          <img src={brand.logo} alt={brand.name} class="logo" />
         ))}
       </div>
   
@@ -45,16 +35,15 @@ const brands = [
 </section>
 
 <style>
-.scroll-track {
+.marquee {
   display: flex;
-  width: max-content;
-  will-change: transform;
-  animation: scroll 40s linear infinite;
+  width: fit-content;
+  animation: marquee 50s linear infinite;
 }
 
-.scroll-group {
+.marquee-content {
   display: flex;
-  gap: 9rem; /* same spacing */
+  gap: 4rem;
 }
 
 .logo {
@@ -62,12 +51,11 @@ const brands = [
   opacity: 0.3;
 }
 
-/* KEY FIX */
-@keyframes scroll {
-  0% {
+@keyframes marquee {
+  from {
     transform: translateX(0);
   }
-  100% {
+  to {
     transform: translateX(-50%);
   }
 }
