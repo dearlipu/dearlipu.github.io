@@ -98,55 +98,5 @@ export const siteConfig = {
         "Automation-ready structures"
       ],
     },
-  ],
-  Badges: [
-    {
-      name: "Digital Marketing",
-      provider: "HubSpot",
-      year: 2025,
-      url: "https://app-na2.hubspot.com/academy/achievements/1v45tlhb/en/1/saurav-panda/digital-marketing"
-    },
-    {
-      name: "AI-Powered Ads Performance",
-      provider: "Google",
-      year: 2025,
-      url: "https://skillshop.credential.net/5b6c62f2-4f8e-4f82-8bdb-8cd9aefeb3c7#acc.WX8Ff6bA"
-    },
-    {
-      name: "Social Media Marketing",
-      provider: "HubSpot",
-      year: 2025,
-      url: "https://app-na2.hubspot.com/academy/achievements/0f4y823h/en/1/saurav-panda/social-media-marketing"
-    },
-    {
-      name: "Google Analytics",
-      provider: "Google",
-      year: 2025,
-      url: "https://skillshop.credential.net/506ca29b-8c3f-4dea-b5ea-6c3027dac521#acc.i5mY2yI4"
-    },
-    {
-      name: "Ethical Hacking",
-      provider: "LinkedIn",
-      year: 2023,
-      url: "https://www.linkedin.com/learning/certificates/492f3d853428ab8c07aa823953ae13173cda54bc1ae4b8413a2e34eb21709737?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BHB4vaxhZTMWVLWrF%2F0dHqw%3D%3D"
-    },
-    {
-      name: "Graphic Designing",
-      provider: "LinkedIn",
-      year: 2023,
-      url: "https://www.linkedin.com/learning/certificates/59cc927bed1f46dfb9dbe7783abd1f17985dcfafa3f3c6caa3663ed236796357?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BHB4vaxhZTMWVLWrF%2F0dHqw%3D%3D" 
-    },
-    {
-      name: "Robotic Automation (RPA)",
-      provider: "LinkedIn",
-      year: 2023,
-      url: "https://www.linkedin.com/learning/certificates/ea160e3235ab9771c6cbd7ef00f5d0d19fd59edd3b3097ad33d46e06ba360974?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BHB4vaxhZTMWVLWrF%2F0dHqw%3D%3D" 
-    },
-    {
-      name: "Business Analysis (CBAP) Prep",
-      provider: "LinkedIn",
-      year: 2023,
-      url: "https://www.linkedin.com/learning/certificates/0a42aed187459f9f5a6f0a4d1a2340669b6df76da0f22f3385e69c5390c1b93d" 
-    },
   ]
 };
