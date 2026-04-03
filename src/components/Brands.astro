@@ -28,7 +28,7 @@ const brands = [
       </div>
   
       <!-- group 2 -->
-      <div class="marquee-group">
+      <div class="marquee-group ml-24 md:ml-32">
         {brands.map((brand) => (
           <img src={brand.logo} alt={brand.name} class="logo" />
         ))}
@@ -49,7 +49,7 @@ const brands = [
 .marquee-group {
   display: flex;
   align-items: center;
-  gap: 15rem; 
+  gap: 10rem; 
 }
 
 .logo {
