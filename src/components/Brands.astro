@@ -18,7 +18,7 @@ const brands = [
     <!-- SCROLL CONTAINER -->
     <div class="flex gap-12 items-center animate-scroll whitespace-nowrap">
       
-      {/* duplicate for infinite scroll */}
+      <!-- duplicate for infinite scroll -->
       {[...brands, ...brands].map((brand) => (
         <img
           src={brand.logo}
@@ -32,6 +32,7 @@ const brands = [
   </div>
 </section>
 
+<style>
 @keyframes scroll {
   0% {
     transform: translateX(0);
@@ -46,3 +47,4 @@ const brands = [
   width: max-content;
   animation: scroll 25s linear infinite;
 }
+</style>
