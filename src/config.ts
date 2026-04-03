@@ -37,56 +37,66 @@ export const siteConfig = {
   ],
   experience: [
     {
-      company: "Tech Company",
-      title: "Senior Software Engineer",
-      dateRange: "Jan 2022 - Present",
+      company: "YouTube Creator Project",
+      title: "Cinematic Video Editing",
+      dateRange: "2025",
       bullets: [
-        "Led development of microservices architecture serving 1M+ users",
-        "Reduced API response times by 40% through optimization",
-        "Mentored team of 5 junior developers",
+        "Created high-quality cinematic edits",
+        "Improved engagement and retention",
+        "Delivered social-ready formats"
       ],
     },
     {
-      company: "Startup Inc",
-      title: "Full Stack Developer",
-      dateRange: "Jun 2020 - Dec 2021",
+      company: "Instagram Reels Advertising",
+      title: "Engaging Reels Editing",
+      dateRange: "2024",
       bullets: [
-        "Built and launched MVP product from scratch using React and Node.js",
-        "Implemented CI/CD pipeline reducing deployment time by 60%",
-        "Collaborated with product team to define technical requirements",
+        "Designed full brand identity",
+        "Created visual consistency system",
+        "Delivered assets for social & print"
       ],
     },
     {
-      company: "Digital Agency",
-      title: "Frontend Developer",
-      dateRange: "Aug 2018 - May 2020",
+      company: "Brand Identity Work",
+      title: "Logo + Branding System",
+      dateRange: "2023",
       bullets: [
-        "Developed responsive web applications for 20+ clients",
-        "Improved site performance scores by 35% on average",
-        "Introduced modern JavaScript frameworks to legacy codebases",
+        "Designed full brand identity",
+        "Created visual consistency system",
+        "Delivered assets for social & print"
       ],
     },
-  ],
+  ]
   education: [
     {
-      school: "University Name",
-      degree: "Bachelor of Science in Computer Science",
-      dateRange: "2014 - 2018",
+      degree: "Graphic Design",
+      school: "Photoshop • Illustrator • InDesign",
+      dateRange: "",
       achievements: [
-        "Graduated Magna Cum Laude with 3.8 GPA",
-        "Dean's List all semesters",
-        "President of Computer Science Club",
+        "Magazine & book design",
+        "Poster & thumbnail creation",
+        "Photo manipulation"
       ],
     },
     {
-      school: "Online Platform",
-      degree: "Full Stack Development Certificate",
-      dateRange: "2019",
+      degree: "Video & Motion",
+      school: "Premiere Pro • After Effects",
+      dateRange: "",
       achievements: [
-        "Completed 500+ hours of coursework",
-        "Built 10+ portfolio projects",
-        "Specialized in React and Node.js",
+        "Cinematic editing",
+        "Motion graphics",
+        "YouTube & Instagram content"
       ],
     },
-  ],
+    {
+      degree: "Business Systems",
+      school: "Excel • Word • PowerPoint • Access",
+      dateRange: "",
+      achievements: [
+        "Data organization",
+        "Workflow systems",
+        "Automation-ready structures"
+      ],
+    },
+  ]
 };
