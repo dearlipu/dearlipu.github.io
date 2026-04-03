@@ -19,7 +19,7 @@ const brands = [
     <div class="flex gap-16 md:gap-20 items-center animate-scroll whitespace-nowrap">
       
       <!-- duplicate for infinite scroll -->
-      {[...brands, ...brands].map((brand) => (
+      {[...brands, ...brands, ...brands].map((brand) => (
         <img
           src={brand.logo}
           alt={brand.name}
