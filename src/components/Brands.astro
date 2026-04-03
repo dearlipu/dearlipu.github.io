@@ -13,17 +13,19 @@ const brands = [
     Trusted by & tools I work with
   </p>
 
-   <div class="overflow-hidden w-full">
+  <div class="overflow-hidden w-full">
   
     <div class="marquee">
   
-      <div class="marquee-content">
+      <!-- group 1 -->
+      <div class="marquee-group">
         {brands.map((brand) => (
           <img src={brand.logo} alt={brand.name} class="logo" />
         ))}
       </div>
   
-      <div class="marquee-content">
+      <!-- group 2 -->
+      <div class="marquee-group">
         {brands.map((brand) => (
           <img src={brand.logo} alt={brand.name} class="logo" />
         ))}
@@ -37,25 +39,27 @@ const brands = [
 <style>
 .marquee {
   display: flex;
-  width: fit-content;
+  width: max-content;
   animation: marquee 50s linear infinite;
 }
 
-.marquee-content {
+.marquee-group {
   display: flex;
-  gap: 10rem;
+  align-items: center;
+  gap: 15rem; 
 }
 
 .logo {
-  height: 10rem;
+  height: 10rem; 
   opacity: 0.3;
+  flex-shrink: 0;
 }
 
 @keyframes marquee {
-  from {
+  0% {
     transform: translateX(0);
   }
-  to {
+  100% {
     transform: translateX(-50%);
   }
 }
