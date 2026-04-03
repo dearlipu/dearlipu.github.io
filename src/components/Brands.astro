@@ -8,20 +8,41 @@ const brands = [
 ];
 ---
 
-<section class="py-12 opacity-80">
-  <div class="text-center mb-6">
-    <p class="text-sm text-gray-500 uppercase tracking-wide">
-      Trusted by & tools I work with
-    </p>
-  </div>
+<section class="py-16 overflow-hidden">
+  <p class="text-center text-sm text-gray-500 uppercase tracking-wider mb-8">
+    Trusted by & tools I work with
+  </p>
 
-  <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-    {brands.map((brand) => (
-      <img
-        src={brand.logo}
-        alt={brand.name}
-        class="h-6 md:h-8 grayscale opacity-70 hover:opacity-100 transition"
-      />
-    ))}
+  <div class="relative w-full overflow-hidden">
+    
+    <!-- SCROLL CONTAINER -->
+    <div class="flex gap-12 items-center animate-scroll whitespace-nowrap">
+      
+      {/* duplicate for infinite scroll */}
+      {[...brands, ...brands].map((brand) => (
+        <img
+          src={brand.logo}
+          alt={brand.name}
+          class="h-12 md:h-16 lg:h-20 opacity-70 hover:opacity-100 transition"
+        />
+      ))}
+
+    </div>
+
   </div>
 </section>
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  display: flex;
+  width: max-content;
+  animation: scroll 25s linear infinite;
+}
