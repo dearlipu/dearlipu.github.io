@@ -16,14 +16,14 @@ const brands = [
   <div class="relative w-full overflow-hidden">
     
     <!-- SCROLL CONTAINER -->
-    <div class="flex gap-12 items-center animate-scroll whitespace-nowrap">
+    <div class="flex gap-16 md:gap-20 items-center animate-scroll whitespace-nowrap">
       
       <!-- duplicate for infinite scroll -->
       {[...brands, ...brands].map((brand) => (
         <img
           src={brand.logo}
           alt={brand.name}
-          class="h-12 md:h-16 lg:h-20 opacity-70 hover:opacity-100 transition"
+          class="h-16 md:h-20 lg:h-24 opacity-30 blur-[0.3px]"
         />
       ))}
 
@@ -45,6 +45,6 @@ const brands = [
 .animate-scroll {
   display: flex;
   width: max-content;
-  animation: scroll 25s linear infinite;
+  animation: scroll 50s linear infinite;
 }
 </style>
