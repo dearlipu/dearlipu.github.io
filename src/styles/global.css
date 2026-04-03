@@ -1,13 +1,17 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Mr+De+Haviland&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mr+De+Haviland:wght@400;500;600;700&display=swap');
 
 body {
   font-family: 'Space Grotesk', sans-serif;
 }
 
-.hero-newfont {
+.hero-signature {
   font-family: 'Mr De Haviland', cursive;
   font-weight: 400;
-  letter-spacing: 0.02em;
+  font-size: 5rem;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
