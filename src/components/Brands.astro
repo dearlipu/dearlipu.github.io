@@ -13,50 +13,62 @@ const brands = [
     Trusted by & tools I work with
   </p>
 
-<div class="relative w-full overflow-hidden">
+  <div class="relative w-full overflow-hidden">
   
-  <div class="flex w-max animate-scroll">
-
-    <!-- group 1 -->
-    <div class="flex gap-16 md:gap-20 items-center">
-      {brands.map((brand) => (
-        <img
-          src={brand.logo}
-          alt={brand.name}
-          class="h-16 md:h-20 lg:h-24 opacity-30"
-        />
-      ))}
+    <div class="scroll-track">
+  
+      <!-- group 1 -->
+      <div class="scroll-group">
+        {brands.map((brand) => (
+          <img
+            src={brand.logo}
+            alt={brand.name}
+            class="logo"
+          />
+        ))}
+      </div>
+  
+      <!-- group 2 (duplicate) -->
+      <div class="scroll-group">
+        {brands.map((brand) => (
+          <img
+            src={brand.logo}
+            alt={brand.name}
+            class="logo"
+          />
+        ))}
+      </div>
+  
     </div>
-
-    <!-- group 2 (duplicate) -->
-    <div class="flex gap-16 md:gap-20 items-center ml-16 md:ml-20">
-      {brands.map((brand) => (
-        <img
-          src={brand.logo}
-          alt={brand.name}
-          class="h-16 md:h-20 lg:h-24 opacity-30"
-        />
-      ))}
-    </div>
-
+  
   </div>
-
-</div>
 </section>
 
 <style>
+.scroll-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: scroll 40s linear infinite;
+}
+
+.scroll-group {
+  display: flex;
+  gap: 5rem; /* same spacing */
+}
+
+.logo {
+  height: 4rem;
+  opacity: 0.3;
+}
+
+/* KEY FIX */
 @keyframes scroll {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-100%);
   }
-}
-
-.animate-scroll {
-  display: flex;
-  width: max-content;
-  animation: scroll 40s linear infinite;
 }
 </style>
