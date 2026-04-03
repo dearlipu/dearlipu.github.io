@@ -4,6 +4,7 @@ import { siteConfig } from "../config";
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
 const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
 const hasEducation = siteConfig.education && siteConfig.education.length > 0;
+const hasBadges = siteConfig.badges && siteConfig.badges.length > 0;
 ---
 
 <footer class="relative bg-gray-50 border-t border-gray-200">
@@ -12,8 +13,9 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
       class="flex flex-col md:flex-row md:items-center md:justify-between gap-8"
     >
       <div class="flex flex-col gap-4">
-        <h3 class="text-2xl font-bold text-gray-800">
-          {siteConfig.name}
+        <h3 class="footer-name text-2xl font-bold text-gray-800 relative inline-block footer-brand">
+          <span class="name-front">@dearlipu</span>
+          <span class="name-back">Saurav Panda</span>
         </h3>
         <p class="text-base text-gray-600">
           {siteConfig.title}
@@ -45,10 +47,10 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
             </svg>
           </a>
           <a
-            href={siteConfig.social.linkedin}
+            href={siteConfig.social.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="LinkedIn"
+            aria-label="Instagram"
             class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
             style={`--accent-color: ${siteConfig.accentColor}`}
           >
@@ -63,11 +65,11 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
               stroke-linecap="round"
               stroke-linejoin="round"
               class="h-6 w-6"
-              ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                d="M8 11v5"></path><path d="M8 8v.01"></path><path d="M12 16v-5"
-              ></path><path d="M16 16v-3a2 2 0 1 0 -4 0"></path><path
-                d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z"
-              ></path></svg
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
+                <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                <path d="M16.5 7.5v.01" /></svg
             >
           </a>
           <a
@@ -95,10 +97,10 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
             >
           </a>
           <a
-            href={siteConfig.social.github}
+            href={siteConfig.social.youtube}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="GitHub"
+            aria-label="YouTube"
             class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
             style={`--accent-color: ${siteConfig.accentColor}`}
           >
@@ -113,9 +115,10 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
               stroke-linecap="round"
               stroke-linejoin="round"
               class="h-6 w-6"
-              ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
-              ></path></svg
+              >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z" />
+              <path d="M10 9l5 3l-5 3z" /></svg
             >
           </a>
         </div>
@@ -158,6 +161,12 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
               </a>
             )
           }
+              <a
+                href="#pricing"
+                class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
+              >
+                Pricing
+              </a>
         </nav>
         <p class="text-sm text-gray-500">
           © {new Date().getFullYear()}
