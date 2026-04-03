@@ -13,23 +13,35 @@ const brands = [
     Trusted by & tools I work with
   </p>
 
-  <div class="relative w-full overflow-hidden">
-    
-    <!-- SCROLL CONTAINER -->
-    <div class="flex gap-16 md:gap-20 items-center animate-scroll whitespace-nowrap">
-      
-      <!-- duplicate for infinite scroll -->
-      {[...brands, ...brands, ...brands].map((brand) => (
+<div class="relative w-full overflow-hidden">
+  
+  <div class="flex w-max animate-scroll">
+
+    <!-- group 1 -->
+    <div class="flex gap-16 md:gap-20 items-center">
+      {brands.map((brand) => (
         <img
           src={brand.logo}
           alt={brand.name}
-          class="h-16 md:h-20 lg:h-24 opacity-30 blur-[0.3px]"
+          class="h-16 md:h-20 lg:h-24 opacity-30"
         />
       ))}
+    </div>
 
+    <!-- group 2 (duplicate) -->
+    <div class="flex gap-16 md:gap-20 items-center ml-16 md:ml-20">
+      {brands.map((brand) => (
+        <img
+          src={brand.logo}
+          alt={brand.name}
+          class="h-16 md:h-20 lg:h-24 opacity-30"
+        />
+      ))}
     </div>
 
   </div>
+
+</div>
 </section>
 
 <style>
@@ -45,6 +57,6 @@ const brands = [
 .animate-scroll {
   display: flex;
   width: max-content;
-  animation: scroll 50s linear infinite;
+  animation: scroll 40s linear infinite;
 }
 </style>
