@@ -1,0 +1,124 @@
+---
+import { siteConfig } from "../config";
+
+const PHONE = "918144991049"; // ⚠️ replace with your WhatsApp number (country code + number, no +)
+
+const createWhatsApp = (plan) => {
+  const message = encodeURIComponent(
+`Hi Saurav,
+
+I’m interested in your ${plan} plan.
+Please share more details.`
+  );
+
+  return `https://wa.me/${PHONE}?text=${message}`;
+};
+---
+
+<section id="pricing" class="p-8 sm:p-12 md:p-16 lg:p-24">
+  <div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+
+      <!-- LEFT TITLE -->
+      <div class="lg:col-span-4">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+          Pricing
+        </h2>
+        <div
+          class="w-[75px] h-[5px] mt-2 rounded-full"
+          style={`background-color: ${siteConfig.accentColor}`}
+        />
+      </div>
+
+      <!-- RIGHT CARDS -->
+      <div class="lg:col-span-8">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- BASIC -->
+          <div class="group bg-gray-50 rounded-xl border border-gray-200 p-5 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+            <h3 class="text-xl font-bold text-gray-900">Basic</h3>
+            <p class="text-xl font-bold mt-2 text-gray-800">₹999+</p>
+          
+            <ul class="mt-4 space-y-2 text-sm text-gray-600">
+              <li>• Simple design / edit</li>
+              <li>• 1 revision</li>
+              <li>• 1–2 days delivery</li>
+            </ul>
+          
+            <a
+              href={createWhatsApp("Basic")}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-6 inline-block text-center w-full px-4 py-2 rounded-md bg-[#101828] text-white font-medium transition hover:bg-slate-800"
+            >
+              Chat on WhatsApp
+            </a>
+          </div>
+          
+          
+          <!-- STANDARD -->
+          <div
+            class="group relative bg-gray-50 rounded-xl border-2 p-5 pt-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+            style={`border-color: ${siteConfig.accentColor}`}
+          >
+          
+            <!-- BADGE -->
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+              <span
+                class="text-xs px-3 py-1 rounded-full text-white font-medium shadow"
+                style={`background-color: ${siteConfig.accentColor}`}
+              >
+                Most Popular
+              </span>
+            </div>
+          
+            <h3 class="text-xl font-bold text-gray-900">Standard</h3>
+            <p class="text-xl font-bold mt-2 text-gray-800">₹2,999+</p>
+          
+            <ul class="mt-4 space-y-2 text-sm text-gray-600">
+              <li>• Professional quality</li>
+              <li>• 3 revisions</li>
+              <li>• Priority delivery</li>
+            </ul>
+          
+            <a
+              href={createWhatsApp("Standard")}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-6 inline-block text-center w-full px-4 py-2 rounded-md bg-[#101828] text-white font-medium transition hover:bg-slate-800"
+            >
+              Chat on WhatsApp
+            </a>
+          </div>
+          
+          
+          <!-- PREMIUM -->
+          <div class="group bg-gray-50 rounded-xl border border-gray-200 p-5 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+            <h3 class="text-xl font-bold text-gray-900">Premium</h3>
+            <p class="text-xl font-bold mt-2 text-gray-800">₹7,999+</p>
+          
+            <ul class="mt-4 space-y-2 text-sm text-gray-600">
+              <li>• Full custom solution</li>
+              <li>• Unlimited revisions</li>
+              <li>• Fast delivery</li>
+            </ul>
+          
+            <a
+              href={createWhatsApp("Premium")}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-6 inline-block text-center w-full px-4 py-2 rounded-md bg-[#101828] text-white font-medium transition hover:bg-slate-800"
+            >
+              Chat on WhatsApp
+            </a>
+          </div>
+
+        <!-- NOTE -->
+        <p class="mt-6 text-sm text-gray-500">
+          Final pricing depends on project scope. Custom quotes available.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
