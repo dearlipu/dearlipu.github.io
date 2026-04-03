@@ -1,11 +1,9 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap');
 
 body {
   font-family: 'Space Grotesk', sans-serif;
 }
 
 .hero-newfont {
-  font-family: 'Inconsolata', monospace;
-   font-weight: 700;
+  font-family: 'Kaushan Script', handwritten;
 }
