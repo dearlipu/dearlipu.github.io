@@ -4,7 +4,9 @@ body {
   font-family: 'Space Grotesk', sans-serif;
 }
 
-.hero-newfont {
-  font-family: 'Playfair Display', sans-serif;
+.hero-title {
+  font-family: 'Playfair Display', serif;
   font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
 }
