@@ -201,3 +201,12 @@ const hasBadges = siteConfig.badges && siteConfig.badges.length > 0;
     </svg>
   </div>
 </footer>
+
+
+<style>
+  .footer-name { cursor: pointer; }
+  .footer-name .name-front, .footer-name .name-back { display: block; transition: opacity .25s, transform .25s; }
+  .name-back { opacity:0; transform: translateY(6px); position:absolute; left:0; top:0; }
+  .footer-name:hover .name-front { opacity:0; transform: translateY(-6px); }
+  .footer-name:hover .name-back { opacity:1; transform: translateY(0); }
+</style>
