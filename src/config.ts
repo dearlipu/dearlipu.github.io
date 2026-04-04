@@ -10,7 +10,7 @@ export const siteConfig = {
     youtube: "https://www.youtube.com/@dearlipu",
   },
   aboutMe:
-    "I’m a creative professional specializing in graphic design, video editing, and practical digital development. I help individuals and businesses turn ideas into clear, engaging visuals and functional digital solutions built for real-world use. My focus is simple-deliver work that looks strong, feels professional, and drives reliable results.",
+    "I’m a creative professional specializing in graphic design, video editing, and practical digital development. I help individuals and businesses turn ideas into clear, engaging visuals and functional digital solutions built for real-world use. My focus is simple-deliver work that looks strong, feels professional, and drives reliable results. Trusted by creators and businesses.",
   skills: ["Publishing", "Graphic Design", "Video & Motion", "Creative Media", "Business Systems"],
   projects: [
     {
