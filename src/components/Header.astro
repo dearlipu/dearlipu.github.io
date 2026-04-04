@@ -6,14 +6,14 @@ const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
 const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 ---
 
-<header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+<header id="header" class="fixed top-0 left-0 right-0 z-50">
 
-  <!-- MOBILE HEADER -->
-  <div class="flex md:hidden justify-end items-center px-6 py-4">
+  <!-- FLOATING MENU BUTTON -->
+  <div class="flex md:hidden justify-end px-6 py-4">
 
     <button id="menuBtn"
-      class="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium 
-      bg-gray-900 text-white shadow-sm">
+      class="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium 
+      bg-[#0f172a] text-white shadow-lg">
 
       Menu
 
@@ -30,68 +30,60 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   </div>
 
 
-  <!-- FLOATING MENU (FIXED VERSION) -->
+  <!-- FLOATING MENU CARD -->
   <div id="menuPanel"
-    class="fixed top-20 right-4 w-[90%] max-w-sm bg-black text-white rounded-3xl p-6 shadow-2xl border border-gray-800 hidden z-50">
+    class="fixed top-20 right-4 w-[90%] max-w-sm bg-[#0f172a] text-white rounded-3xl p-6 shadow-2xl border border-gray-700 hidden z-50">
 
-    <!-- CLOSE BUTTON -->
-    <div class="flex justify-end mb-4">
-      <button id="closeMenu" class="text-white text-lg">✕</button>
-    </div>
+    <ul class="text-lg">
 
-    <ul class="space-y-5 text-lg">
+      <li class="py-3 border-b border-gray-700">
+        <a href="#about" class="menu-link">Home</a>
+      </li>
 
-      <li><a href="#about" class="menu-link">Home</a></li>
-      <li><a href="#projects" class="menu-link">Services</a></li>
-      <li><a href="#experience" class="menu-link">Benefits</a></li>
-      <li><a href="#education" class="menu-link">Work</a></li>
-      <li><a href="#pricing" class="menu-link">Pricing</a></li>
-      <li><a href="#cta" class="menu-link">Contact</a></li>
+      <li class="py-3 border-b border-gray-700">
+        <a href="#projects" class="menu-link">Services</a>
+      </li>
+
+      <li class="py-3 border-b border-gray-700">
+        <a href="#experience" class="menu-link">Benefits</a>
+      </li>
+
+      <li class="py-3 border-b border-gray-700">
+        <a href="#education" class="menu-link">Work</a>
+      </li>
+
+      <li class="py-3 border-b border-gray-700">
+        <a href="#pricing" class="menu-link">Pricing</a>
+      </li>
+
+      <li class="py-3">
+        <a href="#cta" class="menu-link">Contact</a>
+      </li>
 
     </ul>
 
   </div>
 
 
-  <!-- DESKTOP HEADER -->
+  <!-- DESKTOP NAV -->
   <nav class="hidden md:block max-w-7xl mx-auto px-8 py-4">
     <ul class="flex items-center gap-8 justify-center">
       
-      <li>
-        <a href="#about" class="text-gray-700 hover:text-black transition-colors font-medium">
-          About
-        </a>
-      </li>
+      <li><a href="#about" class="text-gray-700 hover:text-black font-medium">About</a></li>
 
       {hasProjects && (
-        <li>
-          <a href="#projects" class="text-gray-700 hover:text-black transition-colors font-medium">
-            Projects
-          </a>
-        </li>
+        <li><a href="#projects" class="text-gray-700 hover:text-black font-medium">Projects</a></li>
       )}
 
       {hasExperience && (
-        <li>
-          <a href="#experience" class="text-gray-700 hover:text-black transition-colors font-medium">
-            Client Work
-          </a>
-        </li>
+        <li><a href="#experience" class="text-gray-700 hover:text-black font-medium">Client Work</a></li>
       )}
 
       {hasEducation && (
-        <li>
-          <a href="#education" class="text-gray-700 hover:text-black transition-colors font-medium">
-            Expertise
-          </a>
-        </li>
+        <li><a href="#education" class="text-gray-700 hover:text-black font-medium">Expertise</a></li>
       )}
 
-      <li>
-        <a href="#pricing" class="text-gray-700 hover:text-black transition-colors font-medium">
-          Pricing
-        </a>
-      </li>
+      <li><a href="#pricing" class="text-gray-700 hover:text-black font-medium">Pricing</a></li>
 
     </ul>
   </nav>
@@ -100,22 +92,8 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
 
 <script>
-  // scroll effect
-  window.addEventListener("scroll", () => {
-    const header = document.getElementById("header");
-
-    if (window.scrollY > 100) {
-      header?.classList.add("bg-white/80", "backdrop-blur-sm");
-    } else {
-      header?.classList.remove("bg-white/80", "backdrop-blur-sm");
-    }
-  });
-
-
-  // menu logic
   const btn = document.getElementById("menuBtn");
   const panel = document.getElementById("menuPanel");
-  const closeBtn = document.getElementById("closeMenu");
   const icon = document.getElementById("menuIcon");
 
   let open = false;
@@ -130,15 +108,18 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
       : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14M5 12h14" />';
   });
 
-  closeBtn.addEventListener("click", () => {
-    panel.classList.add("hidden");
-    open = false;
+  //  AUTO CLOSE ON SCROLL
+  window.addEventListener("scroll", () => {
+    if (open) {
+      panel.classList.add("hidden");
+      open = false;
 
-    icon.innerHTML =
-      '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14M5 12h14" />';
+      icon.innerHTML =
+        '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14M5 12h14" />';
+    }
   });
 
-  // close when clicking links (fix your bug)
+  //  CLOSE WHEN CLICK LINK
   document.querySelectorAll(".menu-link").forEach(link => {
     link.addEventListener("click", () => {
       panel.classList.add("hidden");
