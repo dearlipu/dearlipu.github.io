@@ -85,3 +85,26 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
     </section>
   )
 }
+
+<style>
+.image-full {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  /* smooth cut shape */
+  clip-path: polygon(
+    20% 0,
+    100% 0,
+    100% 100%,
+    0% 100%,
+    0% 25%
+  );
+}
+
+.image-full img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ensures cropping */
+}
+</style>
