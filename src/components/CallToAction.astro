@@ -1,144 +1,130 @@
 ---
 import { siteConfig } from "../config";
-
-const PHONE = "918144991049";
-const reviewLink = `https://wa.me/${PHONE}?text=Hi, I want to leave a review.`;
 ---
 
 <section class="p-8 sm:p-12 md:p-16 lg:p-24 bg-gray-50">
 
-  <!-- HEADER -->
-  <div class="mb-12">
+  <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
 
-    <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
-      Success Stories
-    </h2>
+    <div class="lg:col-span-4">
 
-    <!-- BLUE LINE -->
-    <div
-      class="w-[75px] h-[5px] mt-2 rounded-full"
-      style={`background-color: ${siteConfig.accentColor}`}
-    ></div>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+        Success Stories
+      </h2>
 
-    <!-- SUBTEXT BELOW (LIKE PRICING) -->
-    <p class="text-gray-500 mt-4 max-w-md">
-      Discover how our design subscription helps innovative brands grow smarter and faster.
-    </p>
+      <div
+        class="w-[75px] h-[5px] mt-2 rounded-full"
+        style={`background-color: ${siteConfig.accentColor}`}
+      ></div>
 
-  </div>
+      <p class="text-gray-500 mt-4 max-w-md">
+        Discover how our design subscription helps innovative brands grow smarter and faster.
+      </p>
+
+    </div>
 
 
-  <!-- GRID -->
-  <div class="grid lg:grid-cols-3 gap-6">
+    <!-- RIGHT SIDE -->
+    <div class="lg:col-span-8 grid sm:grid-cols-2 gap-6">
 
-    <!-- CARD 1 (WHITE VERSION OF BLACK STYLE) -->
-    <div class="bg-white border border-gray-200 rounded-3xl p-8 flex flex-col justify-between shadow-sm">
+      <!-- 1️⃣ REVIEW SUMMARY CARD -->
+      <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm flex flex-col justify-between">
 
-      <div>
-        <h3 class="text-4xl font-bold text-gray-900">4.9/5</h3>
+        <div>
+          <h3 class="text-3xl font-bold text-gray-900">4.9/5</h3>
 
-        <p class="text-gray-500 mt-3 text-sm">
-          100+ successful projects delivered with consistent results.
-        </p>
-      </div>
+          <p class="text-gray-500 mt-2 text-sm">
+            100+ successful projects delivered with consistent results.
+          </p>
+        </div>
 
-      <!-- STARS -->
-      <div class="mt-6">
-
-        <div class="flex gap-1 text-red-500 mb-2">
+        <!-- STARS -->
+        <div class="mt-4 flex gap-1 text-red-500">
           {Array(5).fill(0).map(() => (
             <svg xmlns="http://www.w3.org/2000/svg"
-              width="18" height="18"
+              width="16" height="16"
               viewBox="0 0 24 24"
               fill="currentColor">
-              <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z"/>
+              <path d="M8.243 7.34l-6.38 .925..." />
             </svg>
           ))}
         </div>
 
-        <p class="text-sm text-gray-600">
+        <p class="text-sm text-gray-600 mt-2">
           Trusted by 100+ clients
         </p>
 
+        <a href={reviewLink}
+          class="mt-5 bg-[#0f172a] text-white rounded-full py-2.5 text-center text-sm font-medium">
+          Leave a review
+        </a>
+
       </div>
 
-      <a href={reviewLink}
-        class="mt-6 bg-gray-900 text-white rounded-full py-3 text-center font-medium">
-        Leave a review
-      </a>
 
-    </div>
+      <!-- 2️⃣ SINGLE REVIEW -->
+      <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm flex flex-col justify-between">
 
-
-    <!-- CARD 2 -->
-    <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm flex flex-col justify-between">
-
-      <div>
-        <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
-          <span class="font-semibold text-gray-900">4.9</span>
-
-          <svg xmlns="http://www.w3.org/2000/svg"
-            width="16" height="16"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            class="text-red-500">
-            <path d="M8.243 7.34l-6.38 .925l-.113 .023..." />
-          </svg>
-
-          <span>Rating</span>
-        </div>
-
-        <p class="text-gray-900 font-medium leading-relaxed">
-          "Proactive, precise, and easy to work with—no hand-holding needed."
-        </p>
-      </div>
-
-      <div class="flex items-center gap-3 mt-6">
-        <img src="/avatars/user1.jpg" class="w-10 h-10 rounded-full" />
         <div>
-          <p class="font-semibold text-gray-900 text-sm">Jared Kim</p>
-          <p class="text-xs text-gray-500 uppercase">Marketing Director</p>
-        </div>
-      </div>
+          <div class="flex items-center gap-2 text-sm text-gray-500 mb-2">
+            <span class="font-semibold text-gray-900">4.9</span>
+            <span class="text-red-500">★</span>
+            <span>Rating</span>
+          </div>
 
-    </div>
-
-
-    <!-- CARD 3 (SLIDER) -->
-    <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm overflow-hidden">
-
-      <div id="reviewSlider" class="flex transition-transform duration-500">
-
-        <!-- REVIEW 1 -->
-        <div class="min-w-full flex flex-col justify-between">
           <p class="text-gray-900 font-medium">
-            "Communication was clear and revisions landed perfectly."
+            "Proactive, precise, and easy to work with—no hand-holding needed."
           </p>
         </div>
 
-        <!-- REVIEW 2 -->
-        <div class="min-w-full flex flex-col justify-between">
-          <p class="text-gray-900 font-medium">
-            "Fast delivery and very clean professional design work."
-          </p>
-        </div>
-
-        <!-- REVIEW 3 -->
-        <div class="min-w-full flex flex-col justify-between">
-          <p class="text-gray-900 font-medium">
-            "Reliable, creative, and easy to collaborate with."
-          </p>
+        <div class="flex items-center gap-3 mt-6">
+          <img src="/avatars/user1.jpg" class="w-10 h-10 rounded-full" />
+          <div>
+            <p class="font-semibold text-gray-900 text-sm">Jared Kim</p>
+            <p class="text-xs text-gray-500 uppercase">Marketing Director</p>
+          </div>
         </div>
 
       </div>
 
-      <!-- USER -->
-      <div class="flex items-center gap-3 mt-6">
-        <img src="/avatars/user2.jpg" class="w-10 h-10 rounded-full" />
-        <div>
-          <p class="font-semibold text-gray-900 text-sm">Maya Collins</p>
-          <p class="text-xs text-gray-500 uppercase">Head of Product</p>
+
+      <!-- 3️⃣ SLIDER REVIEW (FULL WIDTH) -->
+      <div class="sm:col-span-2 bg-white rounded-2xl p-6 border border-gray-200 shadow-sm overflow-hidden">
+
+        <div id="slider" class="flex transition-transform duration-500">
+
+          <!-- REVIEW 1 -->
+          <div class="min-w-full">
+            <p class="text-gray-900 font-medium">
+              "Fast delivery and very clean professional design work."
+            </p>
+          </div>
+
+          <!-- REVIEW 2 -->
+          <div class="min-w-full">
+            <p class="text-gray-900 font-medium">
+              "Reliable, creative, and easy to collaborate with."
+            </p>
+          </div>
+
+          <!-- REVIEW 3 -->
+          <div class="min-w-full">
+            <p class="text-gray-900 font-medium">
+              "Great communication and strong attention to detail."
+            </p>
+          </div>
+
         </div>
+
+        <!-- USER -->
+        <div class="flex items-center gap-3 mt-6">
+          <img src="/avatars/user2.jpg" class="w-10 h-10 rounded-full" />
+          <div>
+            <p class="font-semibold text-gray-900 text-sm">Maya Collins</p>
+            <p class="text-xs text-gray-500 uppercase">Head of Product</p>
+          </div>
+        </div>
+
       </div>
 
     </div>
@@ -150,7 +136,7 @@ const reviewLink = `https://wa.me/${PHONE}?text=Hi, I want to leave a review.`;
 
 <script>
   let index = 0;
-  const slider = document.getElementById("reviewSlider");
+  const slider = document.getElementById("slider");
   const total = slider.children.length;
 
   setInterval(() => {
