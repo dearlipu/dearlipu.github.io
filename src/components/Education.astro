@@ -11,12 +11,12 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
           <!-- LEFT SIDE -->
           <div class="lg:col-span-4">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900">
               What we do.
             </h2>
 
             <div
-              class="w-[75px] h-[5px] mt-2 rounded-full"
+              class="w-[60px] h-[4px] mt-3 rounded-full"
               style={`background-color: ${siteConfig.accentColor}`}
             />
 
@@ -29,13 +29,13 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
           <div class="lg:col-span-8 space-y-8">
 
             {siteConfig.education.map((edu, index) => (
-              
+
               <div class="bg-gray-50 rounded-xl border border-gray-200 
-                          p-5 md:p-6 flex flex-col md:flex-row items-stretch overflow-hidden gap-6 
-                          items-center transition-all duration-300 hover:shadow-md">
+                          flex flex-col md:flex-row items-stretch overflow-hidden 
+                          transition-all duration-300 hover:shadow-md">
 
                 <!-- TEXT -->
-                <div class="flex-1">
+                <div class="flex-1 p-5 md:p-6">
 
                   <div class="mb-4">
                     <h3 class="text-lg sm:text-xl font-semibold text-gray-900">
@@ -64,12 +64,13 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
                 </div>
 
                 <!-- IMAGE -->
-                  <div class="relative md:w-[280px] w-full h-[160px] md:h-auto flex-shrink-0">
-                  
-                    <div class="image-full">
-                      <img src={`/images/edu-${index + 1}.jpg`} alt={edu.degree} />
-                    </div>
-                  
+                <div class="relative md:w-[300px] w-full h-[180px] md:h-auto flex-shrink-0">
+
+                  <div class="image-full">
+                    <img 
+                      src={`/images/edu-${index + 1}.jpg`} 
+                      alt={edu.degree} 
+                    />
                   </div>
 
                 </div>
@@ -84,26 +85,3 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
     </section>
   )
 }
-
-<style>
-.image-full {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-
-  /* full-side clipped shape */
-  clip-path: polygon(
-    15% 0,
-    100% 0,
-    100% 100%,
-    0% 100%,
-    0% 20%
-  );
-}
-
-.image-full img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-</style>
