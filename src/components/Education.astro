@@ -31,7 +31,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
             {siteConfig.education.map((edu, index) => (
               
               <div class="bg-gray-50 rounded-xl border border-gray-200 
-                          p-5 md:p-6 flex flex-col md:flex-row gap-6 
+                          p-5 md:p-6 flex flex-col md:flex-row items-stretch overflow-hidden gap-6 
                           items-center transition-all duration-300 hover:shadow-md">
 
                 <!-- TEXT -->
@@ -64,13 +64,12 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
                 </div>
 
                 <!-- IMAGE -->
-                <div class="w-full md:w-[200px] h-[140px] flex-shrink-0">
-
-                  <div class="image-cut">
-                    <img 
-                      src={`/images/edu-${index + 1}.jpg`} 
-                      alt={edu.degree} 
-                    />
+                  <div class="relative md:w-[280px] w-full h-[160px] md:h-auto flex-shrink-0">
+                  
+                    <div class="image-full">
+                      <img src={`/images/edu-${index + 1}.jpg`} alt={edu.degree} />
+                    </div>
+                  
                   </div>
 
                 </div>
@@ -87,23 +86,22 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 }
 
 <style>
-.image-cut {
+.image-full {
   width: 100%;
   height: 100%;
-  border-radius: 14px;
   overflow: hidden;
 
-  /* clean cut corner */
+  /* full-side clipped shape */
   clip-path: polygon(
-    12% 0,
+    15% 0,
     100% 0,
     100% 100%,
     0% 100%,
-    0% 12%
+    0% 20%
   );
 }
 
-.image-cut img {
+.image-full img {
   width: 100%;
   height: 100%;
   object-fit: cover;
