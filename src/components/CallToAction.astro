@@ -5,42 +5,56 @@ const PHONE = "918144991049";
 const reviewLink = `https://wa.me/${PHONE}?text=Hi, I want to leave a review.`;
 ---
 
-<section class="p-6 sm:p-10 md:p-16 lg:p-24 bg-gray-50">
+<section class="p-8 sm:p-12 md:p-16 lg:p-24 bg-gray-50">
 
-  <!-- HEADER -->
-  <div class="mb-12">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
 
-    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 relative inline-block">
-      Success Stories
-      <span class="block w-16 h-1 mt-3 rounded bg-blue-600"></span>
-    </h2>
+    <!-- LEFT TITLE -->
+    <div class="lg:col-span-4">
 
-    <p class="text-gray-500 mt-4 max-w-md">
-      Discover how my design work helps brands grow smarter and faster.
-    </p>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+        Success Stories
+      </h2>
+
+      <!-- SAME BLUE LINE AS ABOUT -->
+      <div
+        class="w-[75px] h-[5px] mt-2 rounded-full"
+        style={`background-color: ${siteConfig.accentColor}`}
+      ></div>
+
+    </div>
+
+
+    <!-- RIGHT SUBTEXT -->
+    <div class="lg:col-span-8">
+
+      <p class="text-lg sm:text-xl text-gray-600 max-w-md">
+        Discover how my design work helps brands grow smarter and faster.
+      </p>
+
+    </div>
 
   </div>
 
 
   <!-- MAIN GRID -->
-  <div class="grid lg:grid-cols-12 gap-8">
+  <div class="grid lg:grid-cols-12 gap-6 lg:gap-8 mt-10">
 
-    <!-- LEFT CARD -->
+    <!-- LEFT DARK CARD -->
     <div class="lg:col-span-4">
 
-      <div class="bg-gray-900 text-white rounded-3xl p-8 h-full flex flex-col justify-between">
+      <div class="bg-[#0f172a] text-white rounded-3xl p-8 h-full flex flex-col justify-between">
 
-        <!-- TOP -->
         <div>
           <h3 class="text-4xl font-bold">4.9/5</h3>
 
-          <p class="text-gray-400 mt-4 text-sm">
+          <p class="text-gray-400 mt-3 text-sm">
             100+ successful projects delivered with consistent results.
           </p>
         </div>
 
         <!-- STARS -->
-        <div class="mt-8">
+        <div class="mt-6">
 
           <div class="flex gap-1 text-red-500 mb-2">
             {Array(5).fill(0).map(() => (
@@ -61,7 +75,7 @@ const reviewLink = `https://wa.me/${PHONE}?text=Hi, I want to leave a review.`;
 
         <!-- BUTTON -->
         <a href={reviewLink}
-          class="mt-8 bg-white text-black rounded-full py-3 text-center font-medium hover:opacity-90 transition">
+          class="mt-6 bg-white text-black rounded-full py-3 text-center font-medium hover:opacity-90 transition">
           Leave a review
         </a>
 
@@ -70,32 +84,33 @@ const reviewLink = `https://wa.me/${PHONE}?text=Hi, I want to leave a review.`;
     </div>
 
 
-    <!-- TESTIMONIAL GRID -->
+    <!-- TESTIMONIALS -->
     <div class="lg:col-span-8 grid sm:grid-cols-2 gap-6">
 
       <!-- CARD -->
-      <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+      <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm h-full flex flex-col justify-between">
 
-        <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
-          <span class="font-semibold text-gray-900">4.9</span>
+        <div>
+          <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
+            <span class="font-semibold text-gray-900">4.9</span>
 
-          <!-- SVG STAR -->
-          <svg xmlns="http://www.w3.org/2000/svg"
-            width="16" height="16"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            class="text-red-500">
-            <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z"/>
-          </svg>
+            <svg xmlns="http://www.w3.org/2000/svg"
+              width="16" height="16"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="text-red-500">
+              <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z"/>
+            </svg>
 
-          <span>Rating</span>
+            <span>Rating</span>
+          </div>
+
+          <p class="text-gray-900 font-medium leading-relaxed">
+            "Proactive, precise, and easy to work with—no hand-holding needed."
+          </p>
         </div>
 
-        <p class="text-gray-900 font-medium leading-relaxed">
-          "Proactive, precise, and easy to work with—no hand-holding needed."
-        </p>
-
-        <div class="flex items-center gap-3 mt-5">
+        <div class="flex items-center gap-3 mt-6">
           <img src="/avatars/user1.jpg" class="w-10 h-10 rounded-full" />
           <div>
             <p class="font-semibold text-gray-900 text-sm">Jared Kim</p>
@@ -107,27 +122,29 @@ const reviewLink = `https://wa.me/${PHONE}?text=Hi, I want to leave a review.`;
 
 
       <!-- CARD -->
-      <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+      <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm h-full flex flex-col justify-between">
 
-        <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
-          <span class="font-semibold text-gray-900">5.0</span>
+        <div>
+          <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
+            <span class="font-semibold text-gray-900">5.0</span>
 
-          <svg xmlns="http://www.w3.org/2000/svg"
-            width="16" height="16"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            class="text-red-500">
-            <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z"/>
-          </svg>
+            <svg xmlns="http://www.w3.org/2000/svg"
+              width="16" height="16"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="text-red-500">
+              <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z"/>
+            </svg>
 
-          <span>Rating</span>
+            <span>Rating</span>
+          </div>
+
+          <p class="text-gray-900 font-medium leading-relaxed">
+            "Communication was clear and revisions landed perfectly."
+          </p>
         </div>
 
-        <p class="text-gray-900 font-medium leading-relaxed">
-          "Communication was clear and revisions landed perfectly on the first go."
-        </p>
-
-        <div class="flex items-center gap-3 mt-5">
+        <div class="flex items-center gap-3 mt-6">
           <img src="/avatars/user2.jpg" class="w-10 h-10 rounded-full" />
           <div>
             <p class="font-semibold text-gray-900 text-sm">Maya Collins</p>
