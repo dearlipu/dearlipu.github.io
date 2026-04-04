@@ -6,16 +6,16 @@ const whatsappLink = `https://wa.me/${PHONE}?text=Hi Saurav, I want to work with
 ---
 
 <section id="cta" class="p-8 sm:p-12 md:p-16 lg:p-24 bg-gray-50">
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
     <!-- LEFT -->
-    <div class="lg:col-span-4">
+    <div class="lg:col-span-5">
 
       <!-- Rating -->
       <div class="flex items-center gap-2 mb-4 text-sm text-gray-600 font-medium">
         <span class="text-lg font-semibold text-gray-900">4.9</span>
 
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-red-500" viewBox="0 0 24 24" fill="currentColor">
+        <svg class="w-4 h-4 text-red-500" viewBox="0 0 24 24" fill="currentColor">
           <path d="M8.243 7.34l-6.38 .925a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3a1 1 0 0 0 1.452 -1.054l-1.091 -6.355l4.624 -4.5a1 1 0 0 0 -.555 -1.705l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z"/>
         </svg>
 
@@ -23,7 +23,7 @@ const whatsappLink = `https://wa.me/${PHONE}?text=Hi Saurav, I want to work with
       </div>
 
       <!-- Heading -->
-      <h2 class="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
+      <h2 class="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight max-w-md">
         Let’s work together
       </h2>
 
@@ -35,70 +35,96 @@ const whatsappLink = `https://wa.me/${PHONE}?text=Hi Saurav, I want to work with
         Chat on WhatsApp
       </a>
 
-      <!-- Trust -->
       <p class="text-sm text-gray-500 mt-4">
         Trusted by 100+ clients
       </p>
 
     </div>
 
-    <!-- RIGHT -->
-    <div class="lg:col-span-8">
 
-      <div class="relative overflow-hidden">
+    <!-- RIGHT -->
+    <div class="lg:col-span-7 flex items-center">
+
+      <div class="relative w-full max-w-2xl mx-auto overflow-hidden">
 
         <!-- SLIDER -->
         <div id="slider" class="flex transition-transform duration-500 ease-in-out">
 
-          <!-- CARD -->
-          {[
-            {
-              name: "Amit Sharma",
-              role: "Startup Founder",
-              text: "Great work, fast delivery and very clean design.",
-              img: "/avatars/user1.jpg"
-            },
-            {
-              name: "Riya Patel",
-              role: "Content Creator",
-              text: "Professional and easy to work with. Highly recommended.",
-              img: "/avatars/user2.jpg"
-            },
-            {
-              name: "Rahul Verma",
-              role: "Business Owner",
-              text: "Good communication and quality work.",
-              img: "/avatars/user3.jpg"
-            }
-          ].map((item) => (
-            <div class="min-w-full px-2">
-              <div class="bg-white border border-gray-200 rounded-2xl p-6 pt-12 text-center relative shadow-sm">
+          <!-- CARD 1 -->
+          <div class="min-w-full px-2">
+            <div class="bg-white border border-gray-200 rounded-2xl p-8 pt-14 text-center shadow-sm">
 
-                <!-- Avatar -->
-                <img src={item.img}
-                  class="w-16 h-16 rounded-full object-cover mx-auto -mt-10 border-4 border-white shadow-md" />
+              <img src="/avatars/user1.jpg"
+                class="w-16 h-16 rounded-full object-cover mx-auto -mt-12 border-4 border-white shadow-md" />
 
-                <!-- Stars -->
-                <div class="flex justify-center gap-1 mt-3 mb-3 text-yellow-400">
-                  {Array(5).fill(0).map(() => (
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M8.243 7.34l-6.38 .925a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3a1 1 0 0 0 1.452 -1.054l-1.091 -6.355l4.624 -4.5a1 1 0 0 0 -.555 -1.705l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z"/>
-                    </svg>
-                  ))}
-                </div>
-
-                <!-- Text -->
-                <p class="text-gray-700 text-sm leading-relaxed">
-                  “{item.text}”
-                </p>
-
-                <!-- Name -->
-                <p class="mt-4 font-semibold text-gray-900">{item.name}</p>
-                <p class="text-xs text-gray-500">{item.role}</p>
-
+              <!-- Stars -->
+              <div class="flex justify-center gap-1 mt-3 mb-4 text-yellow-400">
+                {Array(5).fill(0).map(() => (
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8.243 7.34l-6.38 .925a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3a1 1 0 0 0 1.452 -1.054l-1.091 -6.355l4.624 -4.5a1 1 0 0 0 -.555 -1.705l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z"/>
+                  </svg>
+                ))}
               </div>
+
+              <p class="text-gray-700 text-base leading-relaxed max-w-md mx-auto">
+                “Great work, fast delivery and very clean design.”
+              </p>
+
+              <p class="mt-5 font-semibold text-gray-900">Amit Sharma</p>
+              <p class="text-sm text-gray-500">Startup Founder</p>
+
             </div>
-          ))}
+          </div>
+
+          <!-- CARD 2 -->
+          <div class="min-w-full px-2">
+            <div class="bg-white border border-gray-200 rounded-2xl p-8 pt-14 text-center shadow-sm">
+
+              <img src="/avatars/user2.jpg"
+                class="w-16 h-16 rounded-full object-cover mx-auto -mt-12 border-4 border-white shadow-md" />
+
+              <div class="flex justify-center gap-1 mt-3 mb-4 text-yellow-400">
+                {Array(5).fill(0).map(() => (
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8.243 7.34l-6.38 .925..." />
+                  </svg>
+                ))}
+              </div>
+
+              <p class="text-gray-700 text-base leading-relaxed max-w-md mx-auto">
+                “Professional and easy to work with. Highly recommended.”
+              </p>
+
+              <p class="mt-5 font-semibold text-gray-900">Riya Patel</p>
+              <p class="text-sm text-gray-500">Content Creator</p>
+
+            </div>
+          </div>
+
+          <!-- CARD 3 -->
+          <div class="min-w-full px-2">
+            <div class="bg-white border border-gray-200 rounded-2xl p-8 pt-14 text-center shadow-sm">
+
+              <img src="/avatars/user3.jpg"
+                class="w-16 h-16 rounded-full object-cover mx-auto -mt-12 border-4 border-white shadow-md" />
+
+              <div class="flex justify-center gap-1 mt-3 mb-4 text-yellow-400">
+                {Array(5).fill(0).map(() => (
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8.243 7.34l-6.38 .925..." />
+                  </svg>
+                ))}
+              </div>
+
+              <p class="text-gray-700 text-base leading-relaxed max-w-md mx-auto">
+                “Good communication and quality work.”
+              </p>
+
+              <p class="mt-5 font-semibold text-gray-900">Rahul Verma</p>
+              <p class="text-sm text-gray-500">Business Owner</p>
+
+            </div>
+          </div>
 
         </div>
 
@@ -110,11 +136,10 @@ const whatsappLink = `https://wa.me/${PHONE}?text=Hi Saurav, I want to work with
         </div>
 
       </div>
-
     </div>
+
   </div>
 </section>
-
 
 <script>
   let index = 0;
