@@ -11,7 +11,6 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
   <!-- MOBILE BUTTON -->
   <div class="flex md:hidden justify-end px-6 py-4">
-
     <button id="menuBtn"
       class="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium 
       bg-[#0f172a] text-white shadow-lg">
@@ -25,15 +24,15 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
         
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" />
       </svg>
-
     </button>
-
   </div>
 
 
   <!-- FLOATING MENU -->
   <div id="menuPanel"
-    class="fixed top-20 right-4 w-[90%] max-w-sm bg-[#101828] text-white rounded-3xl p-6 shadow-2xl border border-gray-700 hidden z-50">
+    class="fixed top-20 right-4 w-[90%] max-w-sm bg-[#0f172a] text-white rounded-3xl p-6 shadow-2xl border border-gray-700 z-50
+    opacity-0 scale-95 pointer-events-none origin-top-right
+    transition-all duration-300 ease-out">
 
     <ul class="text-lg">
 
@@ -62,7 +61,6 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
       </li>
 
     </ul>
-
   </div>
 
 
@@ -100,28 +98,33 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
   let open = false;
 
-  // MENU TOGGLE
-  btn.addEventListener("click", () => {
-    open = !open;
-    panel.classList.toggle("hidden");
+  function openMenu() {
+    panel.classList.remove("opacity-0", "scale-95", "pointer-events-none");
+    panel.classList.add("opacity-100", "scale-100");
+    open = true;
 
-    icon.innerHTML = open
-      ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 6l12 12M6 18L18 6" />'
-      : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14M5 12h14" />';
+    icon.innerHTML =
+      '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 6l12 12M6 18L18 6" />';
+  }
+
+  function closeMenu() {
+    panel.classList.add("opacity-0", "scale-95", "pointer-events-none");
+    panel.classList.remove("opacity-100", "scale-100");
+    open = false;
+
+    icon.innerHTML =
+      '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14M5 12h14" />';
+  }
+
+  btn.addEventListener("click", () => {
+    open ? closeMenu() : openMenu();
   });
 
-  // SCROLL EFFECT (BRING BACK BLUR)
+  // scroll behavior
   window.addEventListener("scroll", () => {
 
-    // close menu on scroll
-    if (open) {
-      panel.classList.add("hidden");
-      open = false;
-      icon.innerHTML =
-        '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14M5 12h14" />';
-    }
+    if (open) closeMenu();
 
-    // blur header
     if (window.scrollY > 100) {
       header.classList.remove("bg-transparent");
       header.classList.add("bg-white/80", "backdrop-blur-sm");
@@ -131,14 +134,9 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
     }
   });
 
-  // CLOSE ON LINK CLICK
+  // link click close
   document.querySelectorAll(".menu-link").forEach(link => {
-    link.addEventListener("click", () => {
-      panel.classList.add("hidden");
-      open = false;
-      icon.innerHTML =
-        '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14M5 12h14" />';
-    });
+    link.addEventListener("click", closeMenu);
   });
 </script>
 
@@ -150,7 +148,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
   .menu-link {
     display: block;
-    transition: 0.2s;
+    transition: opacity 0.2s ease;
   }
 
   .menu-link:hover {
