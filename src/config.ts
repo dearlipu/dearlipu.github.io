@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Saurav Panda",
-  title: "your Designer & Developer",
+  title: "I design visuals that make brands impossible to ignore.",
   description: "A full-service creative agency delivering impactful design, cinematic video, motion graphics, branding, and digital solutions. From magazines and posters to social media content and business systems — we help ideas stand out.",
   accentColor: "#1d4ed8",
   social: {
