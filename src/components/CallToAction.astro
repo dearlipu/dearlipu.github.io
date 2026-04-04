@@ -7,17 +7,10 @@ const whatsappLink = `https://wa.me/${PHONE}?text=Hi Saurav, I want to work with
 
 <section class="p-6 sm:p-10 md:p-16 lg:p-24 bg-gray-50">
 
-  <div class="grid lg:grid-cols-12 gap-10">
+  <div class="grid lg:grid-cols-12 gap-10 items-start">
 
     <!-- LEFT -->
     <div class="lg:col-span-4">
-
-      <!-- rating -->
-      <div class="flex items-center gap-2 mb-4 text-sm text-gray-600 font-medium">
-        <span class="text-lg font-semibold text-gray-900">4.9</span>
-        <span class="text-red-500">★</span>
-        <span class="uppercase tracking-wide">Rating</span>
-      </div>
 
       <h2 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
         Let’s work together
@@ -43,63 +36,86 @@ const whatsappLink = `https://wa.me/${PHONE}?text=Hi Saurav, I want to work with
         What clients say
       </h3>
 
-      <div class="space-y-6">
+      <div class="overflow-hidden relative">
 
-        <!-- CARD -->
-        <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-200">
+        <div id="slider" class="flex transition-transform duration-500 ease-in-out">
 
-          <div class="flex items-center gap-2 text-sm text-gray-600 mb-3">
-            <span class="font-semibold text-gray-900">4.9</span>
-            <span class="text-red-500">★</span>
-            <span>Rating</span>
-          </div>
+          <!-- CARD 1 -->
+          <div class="min-w-full px-1">
+            <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-200 min-h-[260px] flex flex-col justify-between">
 
-          <p class="text-gray-900 text-lg leading-relaxed font-medium">
-            "Proactive, precise, and easy to work with—no hand-holding needed, just smooth collaboration from start to finish."
-          </p>
+              <!-- RATING -->
+              <div class="flex items-center gap-2 text-sm text-gray-600 mb-3">
+                <span class="font-semibold text-gray-900">4.9</span>
 
-          <div class="flex items-center gap-4 mt-6">
+                <div class="flex gap-1 text-yellow-400">
+                  {Array(5).fill(0).map(() => (
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                      width="16" height="16"
+                      viewBox="0 0 24 24"
+                      fill="currentColor">
+                      <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z"/>
+                    </svg>
+                  ))}
+                </div>
+              </div>
 
-            <img src="/avatars/user1.jpg"
-              class="w-12 h-12 rounded-full object-cover" />
-
-            <div>
-              <p class="font-semibold text-gray-900">Jared Kim</p>
-              <p class="text-sm text-gray-500 uppercase">
-                Marketing Director
+              <p class="text-gray-900 text-lg leading-relaxed font-medium">
+                "Proactive, precise, and easy to work with—no hand-holding needed, just smooth collaboration from start to finish."
               </p>
+
+              <div class="flex items-center gap-4 mt-6">
+                <img src="/avatars/user1.jpg"
+                  class="w-12 h-12 rounded-full object-cover" />
+
+                <div>
+                  <p class="font-semibold text-gray-900">Jared Kim</p>
+                  <p class="text-sm text-gray-500 uppercase">
+                    Marketing Director
+                  </p>
+                </div>
+              </div>
+
             </div>
-
           </div>
 
-        </div>
 
+          <!-- CARD 2 -->
+          <div class="min-w-full px-1">
+            <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-200 min-h-[260px] flex flex-col justify-between">
 
-        <!-- CARD -->
-        <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-200">
+              <div class="flex items-center gap-2 text-sm text-gray-600 mb-3">
+                <span class="font-semibold text-gray-900">5.0</span>
 
-          <div class="flex items-center gap-2 text-sm text-gray-600 mb-3">
-            <span class="font-semibold text-gray-900">5.0</span>
-            <span class="text-red-500">★</span>
-            <span>Rating</span>
-          </div>
+                <div class="flex gap-1 text-yellow-400">
+                  {Array(5).fill(0).map(() => (
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                      width="16" height="16"
+                      viewBox="0 0 24 24"
+                      fill="currentColor">
+                      <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z"/>
+                    </svg>
+                  ))}
+                </div>
+              </div>
 
-          <p class="text-gray-900 text-lg leading-relaxed font-medium">
-            "Felt like an embedded team with zero friction; communication was clear, and revisions landed perfectly on the first go."
-          </p>
-
-          <div class="flex items-center gap-4 mt-6">
-
-            <img src="/avatars/user2.jpg"
-              class="w-12 h-12 rounded-full object-cover" />
-
-            <div>
-              <p class="font-semibold text-gray-900">Maya Collins</p>
-              <p class="text-sm text-gray-500 uppercase">
-                Head of Product
+              <p class="text-gray-900 text-lg leading-relaxed font-medium">
+                "Felt like an embedded team with zero friction; communication was clear, and revisions landed perfectly on the first go."
               </p>
-            </div>
 
+              <div class="flex items-center gap-4 mt-6">
+                <img src="/avatars/user2.jpg"
+                  class="w-12 h-12 rounded-full object-cover" />
+
+                <div>
+                  <p class="font-semibold text-gray-900">Maya Collins</p>
+                  <p class="text-sm text-gray-500 uppercase">
+                    Head of Product
+                  </p>
+                </div>
+              </div>
+
+            </div>
           </div>
 
         </div>
@@ -149,6 +165,16 @@ const whatsappLink = `https://wa.me/${PHONE}?text=Hi Saurav, I want to work with
 
 
 <script>
+  // AUTO SLIDE
+  let index = 0;
+  const slider = document.getElementById("slider");
+  const total = slider.children.length;
+
+  setInterval(() => {
+    index = (index + 1) % total;
+    slider.style.transform = `translateX(-${index * 100}%)`;
+  }, 4000);
+
   // FAQ toggle
   document.querySelectorAll(".faq").forEach(item => {
     item.addEventListener("click", () => {
