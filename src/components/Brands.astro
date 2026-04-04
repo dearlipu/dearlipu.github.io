@@ -8,29 +8,40 @@ const brands = [
 ];
 ---
 
-<section class="py-16">
+<section class="py-16 bg-gray-50 border-t border-gray-200">
 
-  <p class="text-center text-sm text-gray-500 uppercase tracking-wider mb-10">
-    Trusted by
-  </p>
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-8">
 
-  <div class="marquee-wrapper">
+    <!-- LEFT SIDE -->
+    <div class="md:w-1/4 w-full">
+      <p class="text-sm text-gray-500 uppercase tracking-wider">
+        Worked with
+      </p>
+    </div>
 
-    <!-- fade left -->
-    <div class="fade-left"></div>
+    <!-- RIGHT SIDE -->
+    <div class="md:w-3/4 w-full relative overflow-hidden">
 
-    <!-- fade right -->
-    <div class="fade-right"></div>
+      <!-- fade left -->
+      <div class="fade-left"></div>
 
-    <div class="marquee-track" id="track">
-      {brands.map((brand) => (
-        <img src={brand.logo} alt={brand.name} class="logo" />
-      ))}
+      <!-- fade right -->
+      <div class="fade-right"></div>
 
-      <!-- duplicate dynamically -->
-      {brands.map((brand) => (
-        <img src={brand.logo} alt={brand.name} class="logo" />
-      ))}
+      <div class="marquee-track">
+
+        <!-- logos -->
+        {brands.map((brand) => (
+          <img src={brand.logo} alt={brand.name} class="logo" />
+        ))}
+
+        <!-- duplicate for infinite loop -->
+        {brands.map((brand) => (
+          <img src={brand.logo} alt={brand.name} class="logo" />
+        ))}
+
+      </div>
+
     </div>
 
   </div>
@@ -38,40 +49,43 @@ const brands = [
 </section>
 
 <style>
-.marquee-wrapper {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-}
-
+/* TRACK */
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: scroll 40s linear infinite;
+  animation: scroll 20s linear infinite alternate;
 }
 
+/* LOGO */
 .logo {
-  height: 6rem;
-  margin-right: 8rem;
-  opacity: 0.2;
+  height: 3rem;
+  margin-right: 4rem;
+  opacity: 0.5;
   flex-shrink: 0;
+  transition: 0.3s ease;
 }
 
+.logo:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* ANIMATION */
 @keyframes scroll {
-  from {
-    transform: translateX(0);
+  0% {
+    transform: translateX(0%);
   }
-  to {
+  100% {
     transform: translateX(-50%);
   }
 }
 
-/* fade edges */
+/* FADE EFFECT */
 .fade-left {
   position: absolute;
   left: 0;
   top: 0;
-  width: 6rem;
+  width: 5rem;
   height: 100%;
   background: linear-gradient(to right, #f9fafb, transparent);
   z-index: 10;
@@ -81,7 +95,7 @@ const brands = [
   position: absolute;
   right: 0;
   top: 0;
-  width: 6rem;
+  width: 5rem;
   height: 100%;
   background: linear-gradient(to left, #f9fafb, transparent);
   z-index: 10;
