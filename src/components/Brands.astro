@@ -15,17 +15,17 @@ const brands = [
 
   <div class="overflow-hidden w-full">
   
-    <div class="marquee">
+    <div class="slider">
   
       <!-- group 1 -->
-      <div class="marquee-group">
+      <div class="slide-track">
         {brands.map((brand) => (
           <img src={brand.logo} alt={brand.name} class="logo" />
         ))}
       </div>
   
       <!-- group 2 -->
-      <div class="marquee-group ml-24 md:ml-32">
+      <div class="slide-track">
         {brands.map((brand) => (
           <img src={brand.logo} alt={brand.name} class="logo" />
         ))}
@@ -37,25 +37,23 @@ const brands = [
 </section>
 
 <style>
-.marquee {
+.slider {
+  overflow: hidden;
+  width: 100%;
+}
+
+.slide-track {
   display: flex;
-  width: max-content;
-  animation: marquee 40s linear infinite;
+  width: calc(200%); /* because duplicated */
+  animation: scroll 20s linear infinite;
 }
 
-.marquee-group {
-  display: flex;
-  align-items: center;
-  gap: 6rem; 
+.slide-track img {
+  width: 120px; /* adjust */
+  margin: 0 20px;
 }
 
-.logo {
-  height: 5rem; 
-  opacity: 0.3;
-  flex-shrink: 0;
-}
-
-@keyframes marquee {
+@keyframes scroll {
   0% {
     transform: translateX(0);
   }
