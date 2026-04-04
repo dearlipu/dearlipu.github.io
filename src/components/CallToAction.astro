@@ -6,28 +6,30 @@ const whatsappLink = `https://wa.me/${PHONE}?text=Hi Saurav, I want to work with
 ---
 
 <section class="p-6 sm:p-10 md:p-16 lg:p-24 bg-gray-50">
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+  <div class="grid lg:grid-cols-12 gap-10">
 
     <!-- LEFT -->
     <div class="lg:col-span-4">
 
+      <!-- rating -->
       <div class="flex items-center gap-2 mb-4 text-sm text-gray-600 font-medium">
         <span class="text-lg font-semibold text-gray-900">4.9</span>
         <span class="text-red-500">★</span>
         <span class="uppercase tracking-wide">Rating</span>
       </div>
 
-      <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
         Let’s work together
       </h2>
 
       <a href={whatsappLink}
-        class="inline-block mt-5 px-5 py-2.5 rounded-lg text-white font-medium shadow-sm"
+        class="inline-block mt-6 px-6 py-3 rounded-lg text-white font-medium shadow-sm"
         style={`background-color: ${siteConfig.accentColor}`}>
         Chat on WhatsApp
       </a>
 
-      <p class="text-sm text-gray-500 mt-3">
+      <p class="text-sm text-gray-500 mt-4">
         Trusted by 100+ clients
       </p>
 
@@ -37,52 +39,69 @@ const whatsappLink = `https://wa.me/${PHONE}?text=Hi Saurav, I want to work with
     <!-- TESTIMONIAL -->
     <div class="lg:col-span-5">
 
-      <h3 class="text-base font-semibold text-gray-900 mb-3">
+      <h3 class="text-base font-semibold text-gray-900 mb-4">
         What clients say
       </h3>
 
-      <div class="relative overflow-hidden">
+      <div class="space-y-6">
 
-        <div id="slider" class="flex transition-transform duration-500 ease-in-out">
+        <!-- CARD -->
+        <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-200">
 
-          <!-- CARD -->
-          <div class="min-w-full px-1">
-            <div class="bg-white border border-gray-200 rounded-2xl p-6 pt-12 text-center shadow-sm min-h-[260px] flex flex-col justify-between">
+          <div class="flex items-center gap-2 text-sm text-gray-600 mb-3">
+            <span class="font-semibold text-gray-900">4.9</span>
+            <span class="text-red-500">★</span>
+            <span>Rating</span>
+          </div>
 
-              <img src="/avatars/user1.jpg"
-                class="w-14 h-14 rounded-full object-cover mx-auto -mt-10 border-4 border-white shadow-md" />
+          <p class="text-gray-900 text-lg leading-relaxed font-medium">
+            "Proactive, precise, and easy to work with—no hand-holding needed, just smooth collaboration from start to finish."
+          </p>
 
-              <!-- ⭐ FIXED SVG STARS -->
-              <div class="flex justify-center gap-1 mt-3 text-yellow-400">
-                {Array(5).fill(0).map(() => (
-                  <svg xmlns="http://www.w3.org/2000/svg"
-                    class="w-4 h-4"
-                    viewBox="0 0 24 24"
-                    fill="currentColor">
-                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-                  </svg>
-                ))}
-              </div>
+          <div class="flex items-center gap-4 mt-6">
 
-              <p class="text-gray-700 text-sm mt-3">
-                “Professional and easy to work with. Highly recommended.”
+            <img src="/avatars/user1.jpg"
+              class="w-12 h-12 rounded-full object-cover" />
+
+            <div>
+              <p class="font-semibold text-gray-900">Jared Kim</p>
+              <p class="text-sm text-gray-500 uppercase">
+                Marketing Director
               </p>
-
-              <div class="mt-4">
-                <p class="font-semibold text-gray-900">Riya Patel</p>
-                <p class="text-xs text-gray-500">Content Creator</p>
-              </div>
-
             </div>
+
           </div>
 
         </div>
 
-        <!-- DOTS -->
-        <div class="flex justify-center gap-2 mt-4">
-          <button class="dot w-2 h-2 rounded-full bg-gray-300"></button>
-          <button class="dot w-2 h-2 rounded-full bg-gray-300"></button>
-          <button class="dot w-2 h-2 rounded-full bg-gray-300"></button>
+
+        <!-- CARD -->
+        <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-200">
+
+          <div class="flex items-center gap-2 text-sm text-gray-600 mb-3">
+            <span class="font-semibold text-gray-900">5.0</span>
+            <span class="text-red-500">★</span>
+            <span>Rating</span>
+          </div>
+
+          <p class="text-gray-900 text-lg leading-relaxed font-medium">
+            "Felt like an embedded team with zero friction; communication was clear, and revisions landed perfectly on the first go."
+          </p>
+
+          <div class="flex items-center gap-4 mt-6">
+
+            <img src="/avatars/user2.jpg"
+              class="w-12 h-12 rounded-full object-cover" />
+
+            <div>
+              <p class="font-semibold text-gray-900">Maya Collins</p>
+              <p class="text-sm text-gray-500 uppercase">
+                Head of Product
+              </p>
+            </div>
+
+          </div>
+
         </div>
 
       </div>
@@ -93,37 +112,30 @@ const whatsappLink = `https://wa.me/${PHONE}?text=Hi Saurav, I want to work with
     <!-- FAQ -->
     <div class="lg:col-span-3">
 
-      <h3 class="text-base font-semibold text-gray-900 mb-3">
+      <h3 class="text-base font-semibold text-gray-900 mb-4">
         FAQs
       </h3>
 
       <div class="space-y-3">
 
-        <!-- FAQ ITEM -->
-        <div class="faq border border-gray-200 rounded-xl p-4">
-          <button class="faq-btn w-full text-left font-medium">
-            What services do you offer?
-          </button>
+        <div class="faq border border-gray-200 rounded-xl p-4 cursor-pointer">
+          <p class="font-medium">What services do you offer?</p>
           <p class="faq-content text-sm text-gray-600 mt-2 hidden">
-            I provide graphic design, video editing, branding, and digital content services.
+            Graphic design, video editing, branding, and digital content solutions.
           </p>
         </div>
 
-        <div class="faq border border-gray-200 rounded-xl p-4">
-          <button class="faq-btn w-full text-left font-medium">
-            How fast is delivery?
-          </button>
+        <div class="faq border border-gray-200 rounded-xl p-4 cursor-pointer">
+          <p class="font-medium">How fast is delivery?</p>
           <p class="faq-content text-sm text-gray-600 mt-2 hidden">
-            Most work is delivered within 1–3 days depending on complexity.
+            Most projects are delivered within 1–3 days.
           </p>
         </div>
 
-        <div class="faq border border-gray-200 rounded-xl p-4">
-          <button class="faq-btn w-full text-left font-medium">
-            Do you offer revisions?
-          </button>
+        <div class="faq border border-gray-200 rounded-xl p-4 cursor-pointer">
+          <p class="font-medium">Do you offer revisions?</p>
           <p class="faq-content text-sm text-gray-600 mt-2 hidden">
-            Yes, revisions depend on the plan you choose.
+            Yes, revisions depend on your selected plan.
           </p>
         </div>
 
@@ -132,43 +144,15 @@ const whatsappLink = `https://wa.me/${PHONE}?text=Hi Saurav, I want to work with
     </div>
 
   </div>
+
 </section>
 
 
 <script>
-  // SLIDER
-  let index = 0;
-  const slider = document.getElementById("slider");
-  const dots = document.querySelectorAll(".dot");
-  const total = slider.children.length;
-
-  function updateSlider() {
-    slider.style.transform = `translateX(-${index * 100}%)`;
-
-    dots.forEach((d, i) => {
-      d.classList.toggle("bg-blue-600", i === index);
-      d.classList.toggle("bg-gray-300", i !== index);
-    });
-  }
-
-  setInterval(() => {
-    index = (index + 1) % total;
-    updateSlider();
-  }, 4000);
-
-  dots.forEach((dot, i) => {
-    dot.addEventListener("click", () => {
-      index = i;
-      updateSlider();
-    });
-  });
-
-  updateSlider();
-
-  // FAQ CLICK (NOT HOVER)
-  document.querySelectorAll(".faq-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const content = btn.nextElementSibling;
+  // FAQ toggle
+  document.querySelectorAll(".faq").forEach(item => {
+    item.addEventListener("click", () => {
+      const content = item.querySelector(".faq-content");
       content.classList.toggle("hidden");
     });
   });
