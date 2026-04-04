@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Saurav Panda",
-  title: "We design visuals that make brands impossible to ignore.",
+  title: "I design visuals that make brands impossible to ignore.",
   description: "A full-service creative agency delivering impactful design, cinematic video, motion graphics, branding, and digital solutions. From magazines and posters to social media content and business systems — we help ideas stand out.",
   accentColor: "#1d4ed8",
   social: {
@@ -10,7 +10,7 @@ export const siteConfig = {
     youtube: "https://www.youtube.com/@dearlipu",
   },
   aboutMe:
-    "we specialize in transforming ideas into powerful visuals and systems. We craft designs for magazines, books, posters, thumbnails, and social media posts. Our expertise extends to photo manipulation, motion graphics, cinematic video production, and content tailored for platforms like YouTube and Instagram. Beyond creative media, we also support businesses with data management, brand creation, and system development — from Excel and Word to PowerPoint and Access. With mastery in tools like Photoshop, Illustrator, Procreate, InDesign, Figma, Premiere Pro, After Effects, Blender, and many more we deliver professional results that blend creativity with precision. Whether you need a striking brand identity, engaging social content, or streamlined business solutions, we’re here to make it happen.",
+    "I’m a creative professional specializing in graphic design, video editing, and practical digital development. I help individuals and businesses turn ideas into clear, engaging visuals and functional digital solutions built for real-world use.<br><br>From eye-catching designs to impactful video content and clean, ready-to-use websites and apps, my focus is simple—deliver work that looks strong, feels professional, and drives reliable results.",
   skills: ["Publishing", "Graphic Design", "Video & Motion", "Social Media", "Creative Media", "Business Systems", "Branding"],
   projects: [
     {
