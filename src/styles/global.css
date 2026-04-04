@@ -1,5 +1,10 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
 
 body {
   font-family: 'Space Grotesk', sans-serif;
+}
+
+.hero-newfont {
+  font-family: 'Kaushan Script', monospace;
 }
