@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Saurav Panda",
-  title: "Designer & Developer",
+  title: "Your Designer & Developer",
   description: "A full-service creative agency delivering impactful design, cinematic video, motion graphics, branding, and digital solutions. From magazines and posters to social media content and business systems — we help ideas stand out.",
   accentColor: "#1d4ed8",
   social: {
@@ -10,7 +10,7 @@ export const siteConfig = {
     youtube: "https://www.youtube.com/@dearlipu",
   },
   aboutMe:
-    "I’m a creative professional specializing in graphic design, video editing, and practical digital development. I help individuals and businesses turn ideas into clear, engaging visuals and functional digital solutions built for real-world use.\n\n My focus is simple-deliver work that looks strong, feels professional, and drives reliable results.",
+    "I’m a creative professional specializing in graphic design, video editing, and practical digital development. I help individuals and businesses turn ideas into clear, engaging visuals and functional digital solutions built for real-world use. My focus is simple-deliver work that looks strong, feels professional, and drives reliable results.",
   skills: ["Publishing", "Graphic Design", "Video & Motion", "Creative Media", "Business Systems"],
   projects: [
     {
