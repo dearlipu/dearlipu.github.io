@@ -8,57 +8,84 @@ const brands = [
 ];
 ---
 
-<section class="py-16 overflow-hidden">
-  <p class="text-center text-sm text-gray-500 uppercase tracking-wider mb-8">
+<section class="py-16">
+
+  <p class="text-center text-sm text-gray-500 uppercase tracking-wider mb-10">
     Trusted by
   </p>
 
-  <div class="overflow-hidden w-full">
-  
-    <div class="slider">
-  
-      <!-- group 1 -->
-      <div class="slide-track">
-        {brands.map((brand) => (
-          <img src={brand.logo} alt={brand.name} class="logo" />
-        ))}
-      </div>
-  
-      <!-- group 2 -->
-      <div class="slide-track">
-        {brands.map((brand) => (
-          <img src={brand.logo} alt={brand.name} class="logo" />
-        ))}
-      </div>
-  
+  <div class="marquee-wrapper">
+
+    <!-- fade left -->
+    <div class="fade-left"></div>
+
+    <!-- fade right -->
+    <div class="fade-right"></div>
+
+    <div class="marquee-track" id="track">
+      {brands.map((brand) => (
+        <img src={brand.logo} alt={brand.name} class="logo" />
+      ))}
+
+      <!-- duplicate dynamically -->
+      {brands.map((brand) => (
+        <img src={brand.logo} alt={brand.name} class="logo" />
+      ))}
     </div>
-  
+
   </div>
+
 </section>
 
 <style>
-.slider {
+.marquee-wrapper {
+  position: relative;
   overflow: hidden;
   width: 100%;
 }
 
-.slide-track {
+.marquee-track {
   display: flex;
-  width: calc(200%); /* because duplicated */
-  animation: scroll 20s linear infinite;
+  width: max-content;
+  animation: scroll 30s linear infinite;
 }
 
-.slide-track img {
-  width: 120px; /* adjust */
-  margin: 0 20px;
+/* 🔥 IMPORTANT: NO flex gap */
+.logo {
+  height: 4rem;
+  margin-right: 8rem; /* spacing instead of gap */
+  opacity: 0.3;
+  flex-shrink: 0;
 }
 
+/* 🔥 PERFECT LOOP */
 @keyframes scroll {
-  0% {
+  from {
     transform: translateX(0);
   }
-  100% {
+  to {
     transform: translateX(-50%);
   }
+}
+
+/* 🎯 fade edges */
+.fade-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6rem;
+  height: 100%;
+  background: linear-gradient(to right, #f9fafb, transparent);
+  z-index: 10;
+}
+
+.fade-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 6rem;
+  height: 100%;
+  background: linear-gradient(to left, #f9fafb, transparent);
+  z-index: 10;
 }
 </style>
