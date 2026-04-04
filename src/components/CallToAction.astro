@@ -78,21 +78,22 @@ import { siteConfig } from "../config";
     <div class="lg:col-span-4 overflow-hidden">
     
       <div id="reviewSlider" class="flex transition-transform duration-500 h-full">
-    
+
         <!-- CARD 1 -->
-        <div class="min-w-full h-full">
+        <div class="min-w-full px-2 h-full">
           <div class="group bg-gray-50 border border-gray-200 rounded-xl p-5 h-full 
-                      transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col justify-between">
-    
+                      transition-all duration-300 hover:-translate-y-2 hover:shadow-xl 
+                      flex flex-col justify-between relative">
+        
+            <!-- TOP -->
             <div>
-    
-              <!-- RATING (LIKE YOUR IMAGE 2) -->
+        
+              <!-- RATING (NEW STYLE) -->
               <div class="flex items-center gap-2 text-sm mb-2">
-    
-                <span class="font-semibold text-gray-900">4.8</span>
-    
+                <span class="font-semibold text-gray-900">4.9</span>
+        
                 <div class="flex text-red-500">
-                  {Array(5).fill(0).map(() => (
+                  {Array(1).fill(0).map(() => (
                     <svg xmlns="http://www.w3.org/2000/svg"
                       width="14" height="14"
                       viewBox="0 0 24 24"
@@ -102,41 +103,46 @@ import { siteConfig } from "../config";
                     </svg>
                   ))}
                 </div>
-    
+        
                 <span class="text-gray-500">Rating</span>
-    
               </div>
-    
-              <p class="text-sm text-gray-900 leading-relaxed">
-                "Communication was smooth and everything delivered on time."
+        
+              <!-- TEXT -->
+              <p class="text-sm text-gray-700 leading-relaxed">
+                “Great work, fast delivery and very clean design.”
               </p>
-    
+        
             </div>
-    
+        
             <!-- USER -->
-            <div class="flex items-center gap-3 mt-5">
-              <img src="/avatars/user3.jpg" class="w-9 h-9 rounded-full" />
+            <div class="flex items-center gap-3 mt-6">
+              <img src="/avatars/user1.jpg"
+                   class="w-10 h-10 rounded-full object-cover border border-white shadow" />
+        
               <div>
-                <p class="text-sm font-semibold text-gray-900">Amit Sharma</p>
-                <p class="text-xs text-gray-500 uppercase">Founder</p>
+                <p class="text-sm font-medium text-gray-900">Amit Sharma</p>
+                <p class="text-xs text-gray-500">Startup Founder</p>
               </div>
             </div>
-    
+        
           </div>
         </div>
-    
-    
+
         <!-- CARD 2 -->
-        <div class="min-w-full h-full">
+        <div class="min-w-full px-2 h-full">
           <div class="group bg-gray-50 border border-gray-200 rounded-xl p-5 h-full 
-                      transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col justify-between">
-    
+                      transition-all duration-300 hover:-translate-y-2 hover:shadow-xl 
+                      flex flex-col justify-between relative">
+        
+            <!-- TOP -->
             <div>
+        
+              <!-- RATING (NEW STYLE) -->
               <div class="flex items-center gap-2 text-sm mb-2">
-                <span class="font-semibold text-gray-900">5.0</span>
-    
+                <span class="font-semibold text-gray-900">4.9</span>
+        
                 <div class="flex text-red-500">
-                  {Array(5).fill(0).map(() => (
+                  {Array(1).fill(0).map(() => (
                     <svg xmlns="http://www.w3.org/2000/svg"
                       width="14" height="14"
                       viewBox="0 0 24 24"
@@ -146,15 +152,77 @@ import { siteConfig } from "../config";
                     </svg>
                   ))}
                 </div>
-    
+        
                 <span class="text-gray-500">Rating</span>
               </div>
-    
-              <p class="text-sm text-gray-900">
-                "Fast delivery and very clean professional design work."
+        
+              <!-- TEXT -->
+              <p class="text-sm text-gray-700 leading-relaxed">
+                “Great work, fast delivery and very clean design.”
               </p>
+        
             </div>
-    
+        
+            <!-- USER -->
+            <div class="flex items-center gap-3 mt-6">
+              <img src="/avatars/user1.jpg"
+                   class="w-10 h-10 rounded-full object-cover border border-white shadow" />
+        
+              <div>
+                <p class="text-sm font-medium text-gray-900">Amit Sharma</p>
+                <p class="text-xs text-gray-500">Startup Founder</p>
+              </div>
+            </div>
+        
+          </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="min-w-full px-2 h-full">
+          <div class="group bg-gray-50 border border-gray-200 rounded-xl p-5 h-full 
+                      transition-all duration-300 hover:-translate-y-2 hover:shadow-xl 
+                      flex flex-col justify-between relative">
+        
+            <!-- TOP -->
+            <div>
+        
+              <!-- RATING (NEW STYLE) -->
+              <div class="flex items-center gap-2 text-sm mb-2">
+                <span class="font-semibold text-gray-900">4.9</span>
+        
+                <div class="flex text-red-500">
+                  {Array(1).fill(0).map(() => (
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                      width="14" height="14"
+                      viewBox="0 0 24 24"
+                      fill="currentColor">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z"/>
+                    </svg>
+                  ))}
+                </div>
+        
+                <span class="text-gray-500">Rating</span>
+              </div>
+        
+              <!-- TEXT -->
+              <p class="text-sm text-gray-700 leading-relaxed">
+                “Great work, fast delivery and very clean design.”
+              </p>
+        
+            </div>
+        
+            <!-- USER -->
+            <div class="flex items-center gap-3 mt-6">
+              <img src="/avatars/user1.jpg"
+                   class="w-10 h-10 rounded-full object-cover border border-white shadow" />
+        
+              <div>
+                <p class="text-sm font-medium text-gray-900">Amit Sharma</p>
+                <p class="text-xs text-gray-500">Startup Founder</p>
+              </div>
+            </div>
+        
           </div>
         </div>
     
