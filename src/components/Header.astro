@@ -7,9 +7,9 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 ---
 
 <header id="header"
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
 
-  <!-- FLOATING MENU BUTTON -->
+  <!-- MOBILE BUTTON -->
   <div class="flex md:hidden justify-end px-6 py-4">
 
     <button id="menuBtn"
@@ -31,7 +31,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   </div>
 
 
-  <!-- FLOATING MENU CARD -->
+  <!-- FLOATING MENU -->
   <div id="menuPanel"
     class="fixed top-20 right-4 w-[90%] max-w-sm bg-[#0f172a] text-white rounded-3xl p-6 shadow-2xl border border-gray-700 hidden z-50">
 
@@ -93,15 +93,16 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
 
 <script>
+  const header = document.getElementById("header");
   const btn = document.getElementById("menuBtn");
   const panel = document.getElementById("menuPanel");
   const icon = document.getElementById("menuIcon");
 
   let open = false;
 
+  // MENU TOGGLE
   btn.addEventListener("click", () => {
     open = !open;
-
     panel.classList.toggle("hidden");
 
     icon.innerHTML = open
@@ -109,23 +110,32 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
       : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14M5 12h14" />';
   });
 
-  //  AUTO CLOSE ON SCROLL
+  // SCROLL EFFECT (BRING BACK BLUR)
   window.addEventListener("scroll", () => {
+
+    // close menu on scroll
     if (open) {
       panel.classList.add("hidden");
       open = false;
-
       icon.innerHTML =
         '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14M5 12h14" />';
     }
+
+    // blur header
+    if (window.scrollY > 100) {
+      header.classList.remove("bg-transparent");
+      header.classList.add("bg-white/80", "backdrop-blur-sm");
+    } else {
+      header.classList.remove("bg-white/80", "backdrop-blur-sm");
+      header.classList.add("bg-transparent");
+    }
   });
 
-  //  CLOSE WHEN CLICK LINK
+  // CLOSE ON LINK CLICK
   document.querySelectorAll(".menu-link").forEach(link => {
     link.addEventListener("click", () => {
       panel.classList.add("hidden");
       open = false;
-
       icon.innerHTML =
         '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14M5 12h14" />';
     });
