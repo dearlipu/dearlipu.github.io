@@ -8,32 +8,42 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
 <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
 
-  <!-- MOBILE HEADER -->
-  <div class="flex md:hidden justify-between items-center px-6 py-4">
-
-    <!-- Logo -->
-    <h1 class="text-lg font-bold text-gray-900">
-      @dearlipu
-    </h1>
-
-    <!-- Menu Button -->
-    <button
-      class="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium 
-      bg-white border border-gray-200 text-gray-900 shadow-sm 
-      hover:shadow-md transition-all duration-200">
-
-      Menu
-
-      <svg xmlns="http://www.w3.org/2000/svg"
-        class="w-4 h-4"
-        fill="none" viewBox="0 0 24 24"
-        stroke="currentColor" stroke-width="2">
-        
-        <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" />
-      </svg>
-
-    </button>
+  <div id="menuPanel"
+    class="fixed inset-0 bg-black text-white p-6 hidden z-50">
+  
+    <ul class="space-y-6 text-2xl mt-10">
+  
+      <li><a href="#about">Home</a></li>
+      <li><a href="#projects">Services</a></li>
+      <li><a href="#experience">Benefits</a></li>
+      <li><a href="#education">Work</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#cta">Contact</a></li>
+  
+    </ul>
+  
   </div>
+
+<div class="flex md:hidden justify-end items-center px-6 py-4">
+
+  <!-- MENU BUTTON -->
+  <button id="menuBtn"
+    class="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium 
+    bg-gray-900 text-white shadow-sm">
+
+    Menu
+
+    <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg"
+      class="w-4 h-4"
+      fill="none" viewBox="0 0 24 24"
+      stroke="currentColor" stroke-width="2">
+      
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" />
+    </svg>
+
+  </button>
+
+</div>
 
 
   <!-- DESKTOP HEADER (unchanged) -->
@@ -83,6 +93,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
 
 <script>
+
   window.addEventListener("scroll", () => {
     const header = document.getElementById("header");
 
@@ -92,6 +103,24 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
       header?.classList.remove("bg-white/80", "backdrop-blur-sm");
     }
   });
+
+  const btn = document.getElementById("menuBtn");
+  const panel = document.getElementById("menuPanel");
+  const icon = document.getElementById("menuIcon");
+
+  let open = false;
+
+  btn.addEventListener("click", () => {
+    open = !open;
+
+    panel.classList.toggle("hidden");
+
+    // change + to X
+    icon.innerHTML = open
+      ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 6l12 12M6 18L18 6" />'
+      : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14M5 12h14" />';
+  });
+
 </script>
 
 
