@@ -7,34 +7,36 @@ const reviewLink = `https://wa.me/${PHONE}?text=Hi, I want to leave a review.`;
 
 <section class="p-8 sm:p-12 md:p-16 lg:p-24 bg-gray-50">
 
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-16 items-start mb-12">
 
-    <!-- LEFT TITLE -->
-    <div class="lg:col-span-4">
+  <!-- LEFT -->
+  <div class="lg:col-span-6">
 
-      <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
-        Success Stories
-      </h2>
-
-      <!-- SAME BLUE LINE AS ABOUT -->
-      <div
-        class="w-[75px] h-[5px] mt-2 rounded-full"
-        style={`background-color: ${siteConfig.accentColor}`}
-      ></div>
-
+    <!-- SMALL BADGE -->
+    <div class="inline-block px-4 py-1 rounded-full bg-black text-white text-xs font-medium mb-4">
+      <span class="text-red-500">//</span>
+      REVIEWS
+      <span class="text-red-500">//</span>
     </div>
 
-
-    <!-- RIGHT SUBTEXT -->
-    <div class="lg:col-span-8">
-
-      <p class="text-lg sm:text-xl text-gray-600 max-w-md">
-        Discover how my design work helps brands grow smarter and faster.
-      </p>
-
-    </div>
+    <!-- TITLE -->
+    <h2 class="text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+      Success Stories.
+    </h2>
 
   </div>
+
+
+  <!-- RIGHT (TOP-ALIGNED TEXT) -->
+  <div class="lg:col-span-6 flex lg:justify-end">
+
+    <p class="text-gray-500 text-sm sm:text-base max-w-sm text-left lg:text-right">
+      Discover how our design subscription helps innovative brands grow smarter and faster.
+    </p>
+
+  </div>
+
+</div>
 
 
   <!-- MAIN GRID -->
