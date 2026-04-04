@@ -8,34 +8,31 @@ const brands = [
 ];
 ---
 
-<section class="py-16 bg-gray-50 border-t border-gray-200">
+<section class="py-14 bg-gray-50 border-t border-gray-200">
 
-  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-8">
+  <!-- FULL WIDTH -->
+  <div class="w-full flex items-center gap-6 px-6 md:px-16">
 
-    <!-- LEFT SIDE -->
-    <div class="md:w-1/4 w-full">
-      <p class="text-sm text-gray-500 uppercase tracking-wider">
-        Worked with
+    <!-- LEFT TEXT (fixed width so it never jumps up) -->
+    <div class="flex-shrink-0 min-w-[110px]">
+      <p class="text-sm text-gray-600 uppercase tracking-wider">
+        Worked with:
       </p>
     </div>
 
-    <!-- RIGHT SIDE -->
-    <div class="md:w-3/4 w-full relative overflow-hidden">
+    <!-- RIGHT LOGOS -->
+    <div class="relative flex-1 overflow-hidden">
 
-      <!-- fade left -->
+      <!-- fade edges -->
       <div class="fade-left"></div>
-
-      <!-- fade right -->
       <div class="fade-right"></div>
 
       <div class="marquee-track">
 
-        <!-- logos -->
         {brands.map((brand) => (
           <img src={brand.logo} alt={brand.name} class="logo" />
         ))}
 
-        <!-- duplicate for infinite loop -->
         {brands.map((brand) => (
           <img src={brand.logo} alt={brand.name} class="logo" />
         ))}
@@ -53,21 +50,23 @@ const brands = [
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: scroll 20s linear infinite alternate;
+  animation: scroll 18s linear infinite alternate;
 }
 
-/* LOGO */
+/* LOGOS */
 .logo {
-  height: 3rem;
-  margin-right: 4rem;
-  opacity: 0.5;
+  height: 2.5rem;
+  margin-right: 3rem;
+  opacity: 0.6;
   flex-shrink: 0;
-  transition: 0.3s ease;
+  transition: all 0.3s ease;
+  filter: grayscale(100%);
 }
 
 .logo:hover {
   opacity: 1;
-  transform: scale(1.05);
+  filter: grayscale(0%);
+  transform: scale(1.08);
 }
 
 /* ANIMATION */
@@ -80,12 +79,12 @@ const brands = [
   }
 }
 
-/* FADE EFFECT */
+/* FADE */
 .fade-left {
   position: absolute;
   left: 0;
   top: 0;
-  width: 5rem;
+  width: 4rem;
   height: 100%;
   background: linear-gradient(to right, #f9fafb, transparent);
   z-index: 10;
@@ -95,9 +94,22 @@ const brands = [
   position: absolute;
   right: 0;
   top: 0;
-  width: 5rem;
+  width: 4rem;
   height: 100%;
   background: linear-gradient(to left, #f9fafb, transparent);
   z-index: 10;
+}
+
+/* MOBILE IMPROVEMENT */
+@media (max-width: 640px) {
+  .logo {
+    height: 2rem;
+    margin-right: 2rem;
+  }
+
+  .fade-left,
+  .fade-right {
+    width: 2.5rem;
+  }
 }
 </style>
