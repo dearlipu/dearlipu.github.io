@@ -47,13 +47,13 @@ const brands = [
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: scroll 30s linear infinite;
+  animation: scroll 40s linear infinite;
 }
 
 .logo {
-  height: 4rem;
-  margin-right: 8rem; /* spacing instead of gap */
-  opacity: 0.3;
+  height: 6rem;
+  margin-right: 8rem;
+  opacity: 0.2;
   flex-shrink: 0;
 }
 
@@ -66,14 +66,14 @@ const brands = [
   }
 }
 
-/*  fade edges */
+/* fade edges */
 .fade-left {
   position: absolute;
   left: 0;
   top: 0;
   width: 6rem;
   height: 100%;
-  background: linear-gradient(to right, #f9fafb, transparent);
+  background: linear-gradient(to right, #000000, transparent);
   z-index: 10;
 }
 
@@ -83,7 +83,7 @@ const brands = [
   top: 0;
   width: 6rem;
   height: 100%;
-  background: linear-gradient(to left, #f9fafb, transparent);
+  background: linear-gradient(to left, #000000, transparent);
   z-index: 10;
 }
 </style>
