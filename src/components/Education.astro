@@ -9,14 +9,14 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
       <div>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
-          <!-- LEFT SIDE -->
+          <!-- LEFT -->
           <div class="lg:col-span-4">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
               What we do.
             </h2>
 
             <div
-              class="w-[60px] h-[4px] mt-3 rounded-full"
+              class="w-[75px] h-[5px] mt-2 rounded-full"
               style={`background-color: ${siteConfig.accentColor}`}
             />
 
@@ -25,13 +25,13 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
             </p>
           </div>
 
-          <!-- RIGHT SIDE -->
+          <!-- RIGHT -->
           <div class="lg:col-span-8 space-y-8">
 
             {siteConfig.education.map((edu, index) => (
 
               <div class="bg-gray-50 rounded-xl border border-gray-200 
-                          flex flex-col md:flex-row items-stretch overflow-hidden 
+                          flex flex-col md:flex-row overflow-hidden 
                           transition-all duration-300 hover:shadow-md">
 
                 <!-- TEXT -->
@@ -53,8 +53,8 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
                   <ul class="space-y-2">
                     {edu.achievements.map((achievement) => (
                       <li class="flex items-start">
-                        <span class="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span class="text-sm sm:text-base text-gray-600 leading-relaxed">
+                        <span class="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 mr-3"></span>
+                        <span class="text-sm sm:text-base text-gray-600">
                           {achievement}
                         </span>
                       </li>
@@ -64,7 +64,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
                 </div>
 
                 <!-- IMAGE -->
-                <div class="relative md:w-[300px] w-full h-[180px] md:h-full flex-shrink-0">
+                <div class="md:w-[320px] w-full aspect-[4/3] md:aspect-auto flex-shrink-0">
 
                   <div class="image-full">
                     <img 
@@ -92,7 +92,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   height: 100%;
   overflow: hidden;
 
-  /* smooth cut shape */
+  /* clean angled cut */
   clip-path: polygon(
     20% 0,
     100% 0,
@@ -105,6 +105,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 .image-full img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* ensures cropping */
+  object-fit: cover; /* ensures crop ALWAYS */
+  display: block;
 }
 </style>
