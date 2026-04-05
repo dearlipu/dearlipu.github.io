@@ -89,9 +89,19 @@ export const siteConfig = {
       ],
     },
     {
+      degree: "Fast Delivery System",
+      school: "Fast Turnarounds",
+      dateRange: "2022",
+      achievements: [
+        "Quick delivery without compromising quality",
+        "Optimized workflow system",
+        "Consistent turnaround time"
+      ],
+    },
+    {
       degree: "Business Systems",
       school: "Excel • Word • PowerPoint • Access",
-      dateRange: "",
+      dateRange: "2025",
       achievements: [
         "Data organization",
         "Workflow systems",
