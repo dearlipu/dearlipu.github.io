@@ -28,117 +28,141 @@ const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
           <!-- RIGHT -->
           <div class="lg:col-span-8">
             <div class="relative">
-
+          
               <!-- CENTER LINE -->
               <div class="absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 bg-gray-300"></div>
-
-              {siteConfig.experience.map((exp, index) => (
-
-                <div class="relative mb-12">
-
-                  <!-- ICON -->
-                  <div class="absolute left-1/2 top-2 -translate-x-1/2 z-20">
-                    <div class="w-7 h-7 flex items-center justify-center rounded-full bg-white shadow">
-
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                        viewBox="0 0 24 24" fill="currentColor"
-                        style={`color: ${siteConfig.accentColor}`}
-                      >
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M4.929 4.929a10 10 0 1 1 14.141 14.141a10 10 0 0 1 -14.14 -14.14m8.071 4.071a1 1 0 1 0 -2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 1 0 2 0v-2h2a1 1 0 1 0 0 -2h-2v-2z"/>
-                      </svg>
-
+          
+              {
+                Array.from({ length: Math.ceil(siteConfig.experience.length / 2) }).map((_, rowIndex) => {
+                  const left = siteConfig.experience[rowIndex * 2];
+                  const right = siteConfig.experience[rowIndex * 2 + 1];
+          
+                  return (
+                    <div class="relative mb-12">
+          
+                      <!-- ICON -->
+                      <div class="absolute left-1/2 top-0 -translate-x-1/2 z-20">
+                        <div class="w-7 h-7 flex items-center justify-center rounded-full bg-white shadow">
+          
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="currentColor"
+                            style={`color: ${siteConfig.accentColor}`}
+                          >
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M4.929 4.929a10 10 0 1 1 14.141 14.141a10 10 0 0 1 -14.14 -14.14m8.071 4.071a1 1 0 1 0 -2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 1 0 2 0v-2h2a1 1 0 1 0 0 -2h-2v-2z"/>
+                          </svg>
+          
+                        </div>
+                      </div>
+          
+                      <!-- GRID -->
+                      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+          
+                        <!-- LEFT CARD -->
+                        {left && (
+                          <div class="md:pr-6 relative">
+                            <div class="card">
+          
+                              <!-- MOBILE ICON (overlay) -->
+                              <div class="md:hidden absolute left-1/2 -top-3 -translate-x-1/2 z-20">
+                                <div class="w-7 h-7 flex items-center justify-center rounded-full bg-white shadow">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                    viewBox="0 0 24 24" fill="currentColor"
+                                    style={`color: ${siteConfig.accentColor}`}
+                                  >
+                                    <path d="M4.929 4.929a10 10 0 1 1 14.141 14.141a10 10 0 0 1 -14.14 -14.14m8.071 4.071a1 1 0 1 0 -2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 1 0 2 0v-2h2a1 1 0 1 0 0 -2h-2v-2z"/>
+                                  </svg>
+                                </div>
+                              </div>
+          
+                              <div class="bg-white rounded-xl border border-gray-100 
+                                          p-5 md:p-6 shadow-sm hover:shadow-md transition-all duration-300">
+          
+                                <div class="flex justify-between items-start mb-3">
+                                  <div>
+                                    <h3 class="text-lg font-semibold text-gray-900">
+                                      {left.title}
+                                    </h3>
+                                    <p class="text-sm" style={`color: ${siteConfig.accentColor}`}>
+                                      {left.company}
+                                    </p>
+                                  </div>
+          
+                                  <span class="text-xs text-gray-400">
+                                    {left.dateRange}
+                                  </span>
+                                </div>
+          
+                                <ul class="space-y-2">
+                                  {left.bullets.map((b) => (
+                                    <li class="flex items-start">
+                                      <span class="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 mr-3"></span>
+                                      <span class="text-sm text-gray-600">{b}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+          
+                              </div>
+                            </div>
+                          </div>
+                        )}
+          
+                        <!-- RIGHT CARD -->
+                        {right && (
+                          <div class="md:pl-6 relative">
+                            <div class="card">
+          
+                              <!-- MOBILE ICON -->
+                              <div class="md:hidden absolute left-1/2 -top-3 -translate-x-1/2 z-20">
+                                <div class="w-7 h-7 flex items-center justify-center rounded-full bg-white shadow">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                    viewBox="0 0 24 24" fill="currentColor"
+                                    style={`color: ${siteConfig.accentColor}`}
+                                  >
+                                    <path d="M4.929 4.929a10 10 0 1 1 14.141 14.141a10 10 0 0 1 -14.14 -14.14m8.071 4.071a1 1 0 1 0 -2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 1 0 2 0v-2h2a1 1 0 1 0 0 -2h-2v-2z"/>
+                                  </svg>
+                                </div>
+                              </div>
+          
+                              <div class="bg-white rounded-xl border border-gray-100 
+                                          p-5 md:p-6 shadow-sm hover:shadow-md transition-all duration-300">
+          
+                                <div class="flex justify-between items-start mb-3">
+                                  <div>
+                                    <h3 class="text-lg font-semibold text-gray-900">
+                                      {right.title}
+                                    </h3>
+                                    <p class="text-sm" style={`color: ${siteConfig.accentColor}`}>
+                                      {right.company}
+                                    </p>
+                                  </div>
+          
+                                  <span class="text-xs text-gray-400">
+                                    {right.dateRange}
+                                  </span>
+                                </div>
+          
+                                <ul class="space-y-2">
+                                  {right.bullets.map((b) => (
+                                    <li class="flex items-start">
+                                      <span class="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 mr-3"></span>
+                                      <span class="text-sm text-gray-600">{b}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+          
+                              </div>
+                            </div>
+                          </div>
+                        )}
+          
+                      </div>
+          
                     </div>
-                  </div>
-
-                  <!-- GRID (key part) -->
-                  <div class="grid grid-cols-1 md:grid-cols-2 items-start">
-
-                    {/* LEFT CARD */}
-                    {index % 2 === 0 ? (
-                      <>
-                        <div class="md:pr-8">
-                          <div class="card">
-                            <div class="bg-white rounded-xl border border-gray-100 
-                                        p-5 md:p-6 shadow-sm hover:shadow-md transition-all duration-300">
-
-                              <div class="flex justify-between items-start mb-3">
-                                <div>
-                                  <h3 class="text-lg font-semibold text-gray-900">
-                                    {exp.title}
-                                  </h3>
-                                  <p class="text-sm" style={`color: ${siteConfig.accentColor}`}>
-                                    {exp.company}
-                                  </p>
-                                </div>
-
-                                <span class="text-xs text-gray-400">
-                                  {exp.dateRange}
-                                </span>
-                              </div>
-
-                              <ul class="space-y-2">
-                                {exp.bullets.map((bullet) => (
-                                  <li class="flex items-start">
-                                    <span class="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 mr-3"></span>
-                                    <span class="text-sm text-gray-600">
-                                      {bullet}
-                                    </span>
-                                  </li>
-                                ))}
-                              </ul>
-
-                            </div>
-                          </div>
-                        </div>
-                        <div></div>
-                      </>
-                    ) : (
-                      <>
-                        <div></div>
-                        <div class="md:pl-8">
-                          <div class="card">
-                            <div class="bg-white rounded-xl border border-gray-100 
-                                        p-5 md:p-6 shadow-sm hover:shadow-md transition-all duration-300">
-
-                              <div class="flex justify-between items-start mb-3">
-                                <div>
-                                  <h3 class="text-lg font-semibold text-gray-900">
-                                    {exp.title}
-                                  </h3>
-                                  <p class="text-sm" style={`color: ${siteConfig.accentColor}`}>
-                                    {exp.company}
-                                  </p>
-                                </div>
-
-                                <span class="text-xs text-gray-400">
-                                  {exp.dateRange}
-                                </span>
-                              </div>
-
-                              <ul class="space-y-2">
-                                {exp.bullets.map((bullet) => (
-                                  <li class="flex items-start">
-                                    <span class="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 mr-3"></span>
-                                    <span class="text-sm text-gray-600">
-                                      {bullet}
-                                    </span>
-                                  </li>
-                                ))}
-                              </ul>
-
-                            </div>
-                          </div>
-                        </div>
-                      </>
-                    )}
-
-                  </div>
-
-                </div>
-
-              ))}
-
+                  );
+                })
+              }
+          
             </div>
           </div>
 
