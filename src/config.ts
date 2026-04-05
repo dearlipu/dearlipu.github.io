@@ -57,6 +57,16 @@ export const siteConfig = {
       ],
     },
     {
+      company: "Fast Delivery System",
+      title: "Fast Turnarounds",
+      dateRange: "2022",
+      bullets: [
+        "Quick delivery without compromising quality",
+        "Optimized workflow system",
+        "Consistent turnaround time"
+      ],
+    },
+    {
       company: "Brand Identity Work",
       title: "Logo + Branding System",
       dateRange: "2023",
@@ -89,19 +99,9 @@ export const siteConfig = {
       ],
     },
     {
-      degree: "Fast Delivery System",
-      school: "Fast Turnarounds",
-      dateRange: "2022",
-      achievements: [
-        "Quick delivery without compromising quality",
-        "Optimized workflow system",
-        "Consistent turnaround time"
-      ],
-    },
-    {
       degree: "Business Systems",
       school: "Excel • Word • PowerPoint • Access",
-      dateRange: "2025",
+      dateRange: "",
       achievements: [
         "Data organization",
         "Workflow systems",
