@@ -2,7 +2,7 @@
 import { siteConfig } from "../config";
 const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
 
-// group items into pairs (2 per row)
+// group into pairs
 const grouped = [];
 for (let i = 0; i < siteConfig.experience.length; i += 2) {
   grouped.push(siteConfig.experience.slice(i, i + 2));
@@ -35,22 +35,20 @@ for (let i = 0; i < siteConfig.experience.length; i += 2) {
           <div class="lg:col-span-8">
             <div class="relative">
 
+              <!-- CONTINUOUS LINE -->
+              <div class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gray-300 -translate-x-1/2"></div>
+
               {grouped.map((pair, index) => (
 
                 <div class="relative mb-12 last:mb-0">
 
                   <!-- DOT -->
                   <div
-                    class="absolute left-1/2 -top-2 w-4 h-4 bg-white border-2 rounded-full -translate-x-1/2 z-20"
-                    style={`border-color: ${siteConfig.accentColor}; background-color: ${siteConfig.accentColor}`}
+                    class="absolute left-1/2 top-0 w-4 h-4 rounded-full -translate-x-1/2 z-20"
+                    style={`background-color: ${siteConfig.accentColor}`}
                   />
 
-                  <!-- LINE -->
-                  {index < grouped.length - 1 && (
-                    <div class="absolute left-1/2 bottom-0 w-0.5 h-12 bg-gray-300 -translate-x-1/2 translate-y-full z-10" />
-                  )}
-
-                  <!-- TWO CARDS GRID -->
+                  <!-- TWO CARDS -->
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
                     {pair.map((exp) => (
@@ -89,6 +87,11 @@ for (let i = 0; i < siteConfig.experience.length; i += 2) {
                       </div>
 
                     ))}
+
+                    {/* FIX LAST SINGLE CARD ALIGNMENT */}
+                    {pair.length === 1 && (
+                      <div class="hidden md:block"></div>
+                    )}
 
                   </div>
 
