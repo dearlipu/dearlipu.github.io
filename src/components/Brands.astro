@@ -14,29 +14,27 @@ const brands = [
 
 <section class="p-8 sm:p-12 md:p-16 lg:p-24 bg-gray-50 border-t border-gray-200">
 
-  <!-- FIXED CONTAINER (same as other sections) -->
-  <div class="max-w-7xl mx-auto flex items-center gap-8">
+  <!-- SAME CONTAINER SYSTEM -->
+  <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-6 lg:gap-10">
 
-    <!-- TEXT -->
+    <!-- TEXT (PERFECT LEFT ALIGN) -->
     <div class="flex-shrink-0 min-w-[160px]">
-      <p class="text-base md:text-lg text-gray-800 font-bold">
+      <p class="text-base md:text-lg text-gray-900 font-semibold">
         Worked with:
       </p>
-      <div class="w-[60px] h-[4px] mt-2 bg-blue-600 rounded-full"></div>
     </div>
 
     <!-- LOGOS -->
     <div class="relative flex-1 overflow-hidden">
 
+      <!-- FADE -->
       <div class="fade-left"></div>
       <div class="fade-right"></div>
 
+      <!-- TRACK -->
       <div class="marquee-track">
-
-        {brands.map((b) => <img src={b.logo} class="logo" />)}
-        {brands.map((b) => <img src={b.logo} class="logo" />)}
-        {brands.map((b) => <img src={b.logo} class="logo" />)}
-
+        {brands.map((b) => <img src={b.logo} alt={b.name} class="logo" />)}
+        {brands.map((b) => <img src={b.logo} alt={b.name} class="logo" />)}
       </div>
 
     </div>
@@ -50,14 +48,14 @@ const brands = [
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: scroll 28s linear infinite;
+  animation: scroll 26s linear infinite;
 }
 
 /* LOGO */
 .logo {
-  height: 3rem;
-  margin-right: 3rem;
-  opacity: 0.7;
+  height: 2.8rem;
+  margin-right: 2.8rem;
+  opacity: 0.65;
   flex-shrink: 0;
   filter: grayscale(100%);
   transition: all 0.3s ease;
@@ -72,10 +70,10 @@ const brands = [
 /* ANIMATION */
 @keyframes scroll {
   from { transform: translateX(0); }
-  to { transform: translateX(-30%); }
+  to { transform: translateX(-50%); }
 }
 
-/* FADE */
+/* FADE EDGES */
 .fade-left,
 .fade-right {
   position: absolute;
@@ -83,6 +81,7 @@ const brands = [
   width: 4rem;
   height: 100%;
   z-index: 10;
+  pointer-events: none;
 }
 
 .fade-left {
@@ -100,12 +99,6 @@ const brands = [
   .logo {
     height: 2rem;
     margin-right: 2rem;
-  }
-
-  .max-w-7xl {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
   }
 }
 </style>
