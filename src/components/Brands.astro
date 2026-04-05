@@ -16,7 +16,7 @@ const brands = [
 
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
 
-    <!-- LEFT TITLE (ALIGNED WITH OTHER SECTIONS) -->
+    <!-- LEFT -->
     <div class="lg:col-span-4">
       <h2 class="text-2xl sm:text-3xl font-semibold text-gray-900">
         Worked with
@@ -24,22 +24,29 @@ const brands = [
       <div class="w-[60px] h-[4px] mt-2 bg-blue-600 rounded-full"></div>
     </div>
 
-    <!-- RIGHT LOGOS -->
-    <div class="lg:col-span-8 relative overflow-hidden">
+    <!-- RIGHT -->
+    <div class="lg:col-span-8">
 
-      <!-- fade edges -->
-      <div class="fade-left"></div>
-      <div class="fade-right"></div>
+      <!-- DESKTOP MARQUEE -->
+      <div class="hidden sm:block relative overflow-hidden">
 
-      <!-- track -->
-      <div class="marquee-track">
+        <div class="fade-left"></div>
+        <div class="fade-right"></div>
 
-        {brands.map((b) => (
-          <img src={b.logo} alt={b.name} class="logo" />
-        ))}
+        <div class="marquee-track">
+          {brands.map((b) => <img src={b.logo} class="logo" />)}
+          {brands.map((b) => <img src={b.logo} class="logo" />)}
+        </div>
 
-        {brands.map((b) => (
-          <img src={b.logo} alt={b.name} class="logo" />
+      </div>
+
+      <!-- MOBILE GRID (LIKE YOUR OLD STYLE) -->
+      <div class="grid grid-cols-4 gap-6 sm:hidden mt-6">
+
+        {brands.slice(0, 8).map((b) => (
+          <div class="flex justify-center">
+            <img src={b.logo} class="logo-mobile" />
+          </div>
         ))}
 
       </div>
@@ -51,42 +58,40 @@ const brands = [
 </section>
 
 <style>
-/* TRACK */
+/* DESKTOP SCROLL */
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: scroll 40s linear infinite;
+  animation: scroll 25s linear infinite;
 }
 
-/* LOGO */
 .logo {
   height: 3rem;
   margin-right: 3rem;
-  flex-shrink: 0;
-
-  opacity: 0.7;
+  opacity: 0.6;
   filter: grayscale(100%);
   transition: all 0.3s ease;
 }
 
-/* HOVER EFFECT */
 .logo:hover {
   opacity: 1;
   filter: grayscale(0%);
   transform: scale(1.1);
 }
 
-/* ANIMATION */
 @keyframes scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
-/* FADE EDGES */
+/* MOBILE STYLE */
+.logo-mobile {
+  height: 2.2rem;
+  opacity: 0.7;
+  filter: grayscale(100%);
+}
+
+/* FADE */
 .fade-left,
 .fade-right {
   position: absolute;
@@ -94,7 +99,6 @@ const brands = [
   width: 4rem;
   height: 100%;
   z-index: 10;
-  pointer-events: none;
 }
 
 .fade-left {
@@ -105,13 +109,5 @@ const brands = [
 .fade-right {
   right: 0;
   background: linear-gradient(to left, #f9fafb, transparent);
-}
-
-/* MOBILE */
-@media (max-width: 640px) {
-  .logo {
-    height: 2rem;
-    margin-right: 2rem;
-  }
 }
 </style>
