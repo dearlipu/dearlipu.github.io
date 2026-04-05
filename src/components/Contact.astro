@@ -1,0 +1,112 @@
+---
+import { siteConfig } from "../config";
+---
+
+<section id="contact" class="p-8 sm:p-12 md:p-16 lg:p-24">
+  <div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+
+      <!-- LEFT SIDE -->
+      <div class="lg:col-span-4">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+          Let’s Talk.
+        </h2>
+
+        <p class="mt-4 text-gray-600 text-sm sm:text-base">
+          Got questions or ready to start your project? Let’s bring your ideas to life.
+        </p>
+
+        <!-- CONTACT CARDS -->
+        <div class="mt-8 space-y-4">
+
+          <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 shadow-sm">
+            <p class="text-xs text-gray-500 mb-1">/CHAT TO SALES</p>
+            <p class="text-gray-900 font-medium">
+              {siteConfig.social.email}
+            </p>
+          </div>
+
+          <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 shadow-sm">
+            <p class="text-xs text-gray-500 mb-1">/CALL US</p>
+            <p class="text-gray-900 font-medium">
+              +91 8144991049
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE FORM -->
+      <div class="lg:col-span-8">
+        <form class="bg-[#0b0b0b] text-white rounded-2xl p-6 sm:p-8 space-y-5 shadow-xl">
+
+          <!-- NAME -->
+          <div>
+            <label class="text-sm text-gray-400">Your name*</label>
+            <input
+              type="text"
+              placeholder="Your name"
+              class="w-full mt-2 px-4 py-3 rounded-lg bg-[#111] border border-gray-800 focus:outline-none focus:border-[var(--accent-color)]"
+            />
+          </div>
+
+          <!-- EMAIL -->
+          <div>
+            <label class="text-sm text-gray-400">E-mail*</label>
+            <input
+              type="email"
+              placeholder="Your Email"
+              class="w-full mt-2 px-4 py-3 rounded-lg bg-[#111] border border-gray-800 focus:outline-none focus:border-[var(--accent-color)]"
+            />
+          </div>
+
+          <!-- WEBSITE -->
+          <div>
+            <label class="text-sm text-gray-400">Website</label>
+            <input
+              type="text"
+              placeholder="Your Website"
+              class="w-full mt-2 px-4 py-3 rounded-lg bg-[#111] border border-gray-800 focus:outline-none focus:border-[var(--accent-color)]"
+            />
+          </div>
+
+          <!-- PRICING -->
+          <div>
+            <label class="text-sm text-gray-400">Pricing model</label>
+
+            <div class="grid grid-cols-2 gap-3 mt-2">
+              <button type="button" class="py-3 rounded-lg bg-[#111] border border-gray-800 hover:border-[var(--accent-color)] transition">
+                DESIGN RETAINER
+              </button>
+
+              <button type="button" class="py-3 rounded-lg bg-[#111] border border-gray-800 hover:border-[var(--accent-color)] transition">
+                SINGLE PROJECT
+              </button>
+            </div>
+          </div>
+
+          <!-- MESSAGE -->
+          <div>
+            <label class="text-sm text-gray-400">Message</label>
+            <textarea
+              rows="4"
+              placeholder="Your Message"
+              class="w-full mt-2 px-4 py-3 rounded-lg bg-[#111] border border-gray-800 focus:outline-none focus:border-[var(--accent-color)]"
+            ></textarea>
+          </div>
+
+          <!-- BUTTON -->
+          <button
+            type="submit"
+            class="w-full py-4 rounded-full font-medium text-black transition"
+            style={`background-color: ${siteConfig.accentColor}`}
+          >
+            Get in touch
+          </button>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
