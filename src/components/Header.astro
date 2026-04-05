@@ -10,10 +10,10 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
 
   <!-- MOBILE BUTTON -->
-  <div class="flex md:hidden justify-end px-6 py-4 relative z-[9999]">
+  <div class="flex md:hidden justify-end px-6 py-4">
     <button id="menuBtn"
       class="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium 
-      bg-[#101828] text-white shadow-lg active:scale-95 transition-all duration-300">
+      bg-[#0f172a] text-white shadow-lg transition active:scale-95">
 
       Menu
 
@@ -31,41 +31,88 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   </div>
 
 
-  <!-- BACKDROP -->
-  <div id="menuBackdrop"
-    class="fixed inset-0 bg-black/30 backdrop-blur-sm opacity-0 pointer-events-none transition duration-300 z-40">
-  </div>
-
-
-  <!-- MENU -->
+  <!-- FLOATING MENU -->
   <div id="menuPanel"
     class="fixed top-20 right-4 w-[90%] max-w-sm bg-[#04060a] text-white rounded-3xl p-6 shadow-2xl border border-gray-700 z-50
     
-    opacity-0 scale-90 translate-y-4 pointer-events-none
-    transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] origin-top-right">
+    opacity-0 scale-95 translate-y-4 pointer-events-none origin-top-right
+    transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]">
 
-    <ul class="text-lg space-y-1">
+    <ul class="text-lg">
 
       <!-- ITEM -->
-      <li><a href="#about" class="menu-link">Home {arrow}</a></li>
-      <li><a href="#projects" class="menu-link">Services {arrow}</a></li>
-      <li><a href="#experience" class="menu-link">Benefits {arrow}</a></li>
-      <li><a href="#education" class="menu-link">Work {arrow}</a></li>
-      <li><a href="#pricing" class="menu-link">Pricing {arrow}</a></li>
-      <li><a href="#cta" class="menu-link">Contact {arrow}</a></li>
+      <li class="menu-item">
+        <a href="#about" class="menu-link">
+          Home
+          <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M17 7l-10 10" />
+            <path d="M8 7l9 0l0 9" />
+          </svg>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a href="#projects" class="menu-link">
+          Services
+          <svg class="arrow-icon" viewBox="0 0 24 24">
+            <path d="M17 7l-10 10" />
+            <path d="M8 7l9 0l0 9" />
+          </svg>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a href="#experience" class="menu-link">
+          Benefits
+          <svg class="arrow-icon" viewBox="0 0 24 24">
+            <path d="M17 7l-10 10" />
+            <path d="M8 7l9 0l0 9" />
+          </svg>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a href="#education" class="menu-link">
+          Work
+          <svg class="arrow-icon" viewBox="0 0 24 24">
+            <path d="M17 7l-10 10" />
+            <path d="M8 7l9 0l0 9" />
+          </svg>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a href="#pricing" class="menu-link">
+          Pricing
+          <svg class="arrow-icon" viewBox="0 0 24 24">
+            <path d="M17 7l-10 10" />
+            <path d="M8 7l9 0l0 9" />
+          </svg>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a href="#cta" class="menu-link">
+          Contact
+          <svg class="arrow-icon" viewBox="0 0 24 24">
+            <path d="M17 7l-10 10" />
+            <path d="M8 7l9 0l0 9" />
+          </svg>
+        </a>
+      </li>
 
     </ul>
   </div>
 
 
-  <!-- DESKTOP -->
+  <!-- DESKTOP NAV -->
   <nav class="hidden md:block max-w-7xl mx-auto px-8 py-4">
     <ul class="flex items-center gap-8 justify-center">
-      <li><a href="#about">About</a></li>
-      {hasProjects && <li><a href="#projects">Projects</a></li>}
-      {hasExperience && <li><a href="#experience">Client Work</a></li>}
-      {hasEducation && <li><a href="#education">Expertise</a></li>}
-      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#about" class="text-gray-700 hover:text-black font-medium">About</a></li>
+      {hasProjects && <li><a href="#projects" class="text-gray-700 hover:text-black font-medium">Projects</a></li>}
+      {hasExperience && <li><a href="#experience" class="text-gray-700 hover:text-black font-medium">Client Work</a></li>}
+      {hasEducation && <li><a href="#education" class="text-gray-700 hover:text-black font-medium">Expertise</a></li>}
+      <li><a href="#pricing" class="text-gray-700 hover:text-black font-medium">Pricing</a></li>
     </ul>
   </nav>
 
@@ -76,44 +123,27 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   const header = document.getElementById("header");
   const btn = document.getElementById("menuBtn");
   const panel = document.getElementById("menuPanel");
-  const backdrop = document.getElementById("menuBackdrop");
   const icon = document.getElementById("menuIcon");
   const path = document.getElementById("iconPath");
 
   let open = false;
 
   function openMenu() {
-    panel.classList.remove("opacity-0","scale-90","translate-y-4","pointer-events-none");
-    panel.classList.add("opacity-100","scale-100","translate-y-0");
-
-    backdrop.classList.remove("opacity-0","pointer-events-none");
-    backdrop.classList.add("opacity-100");
+    panel.classList.remove("opacity-0", "scale-95", "translate-y-4", "pointer-events-none");
+    panel.classList.add("opacity-100", "scale-100", "translate-y-0");
 
     icon.style.transform = "rotate(180deg)";
     path.setAttribute("d","M6 6l12 12M6 18L18 6");
-
-    btn.classList.remove("bg-[#101828]", "text-white");
-    btn.classList.add("bg-white", "text-black");
-
-    document.body.style.overflow = "hidden";
 
     open = true;
   }
 
   function closeMenu() {
-    panel.classList.add("opacity-0","scale-90","translate-y-4","pointer-events-none");
-    panel.classList.remove("opacity-100","scale-100","translate-y-0");
-
-    backdrop.classList.add("opacity-0","pointer-events-none");
-    backdrop.classList.remove("opacity-100");
+    panel.classList.add("opacity-0", "scale-95", "translate-y-4", "pointer-events-none");
+    panel.classList.remove("opacity-100", "scale-100", "translate-y-0");
 
     icon.style.transform = "rotate(0deg)";
     path.setAttribute("d","M12 5v14M5 12h14");
-
-    btn.classList.add("bg-[#101828]", "text-white");
-    btn.classList.remove("bg-white", "text-black");
-
-    document.body.style.overflow = "";
 
     open = false;
   }
@@ -122,22 +152,22 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
     open ? closeMenu() : openMenu();
   });
 
-  backdrop.addEventListener("click", closeMenu);
-
-  // CLOSE ON LINK CLICK
-  document.querySelectorAll(".menu-link").forEach(link => {
-    link.addEventListener("click", closeMenu);
-  });
-
-  // HEADER BLUR ON SCROLL
+  // scroll behavior (KEEPED)
   window.addEventListener("scroll", () => {
+    if (open) closeMenu();
+
     if (window.scrollY > 100) {
-      header.classList.add("bg-white/80", "backdrop-blur-sm");
       header.classList.remove("bg-transparent");
+      header.classList.add("bg-white/80", "backdrop-blur-sm");
     } else {
       header.classList.remove("bg-white/80", "backdrop-blur-sm");
       header.classList.add("bg-transparent");
     }
+  });
+
+  // close on click (KEEPED)
+  document.querySelectorAll(".menu-link").forEach(link => {
+    link.addEventListener("click", closeMenu);
   });
 </script>
 
@@ -157,21 +187,38 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   transform: translateX(4px);
 }
 
-/* YOUR EXACT SVG STYLE */
-.menu-link::after {
-  content: "";
-}
-
-/* Arrow */
-.menu-link svg {
+/* ARROW */
+.arrow-icon {
   width: 22px;
   height: 22px;
   stroke: white;
   stroke-width: 2;
-  margin-left: 10px;
+  opacity: 0.9;
+  transition: transform 0.25s ease;
 }
 
-.menu-link:hover svg {
+.menu-link:hover .arrow-icon {
   transform: translate(3px, -3px);
+}
+
+/* stagger animation */
+.menu-item {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeUp 0.4s ease forwards;
+}
+
+.menu-item:nth-child(1) { animation-delay: 0.05s; }
+.menu-item:nth-child(2) { animation-delay: 0.1s; }
+.menu-item:nth-child(3) { animation-delay: 0.15s; }
+.menu-item:nth-child(4) { animation-delay: 0.2s; }
+.menu-item:nth-child(5) { animation-delay: 0.25s; }
+.menu-item:nth-child(6) { animation-delay: 0.3s; }
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>
