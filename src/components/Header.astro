@@ -7,13 +7,20 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 ---
 
 <header id="header"
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+  class="fixed top-0 left-0 right-0 z-[900] transition-all duration-300 bg-transparent">
 
-  <!-- MOBILE BUTTON -->
-  <div class="flex md:hidden justify-end px-6 py-4">
+  <!-- TOP BAR -->
+  <div class="flex md:hidden justify-between items-center px-6 py-4">
+
+    <!-- LEFT BRAND -->
+    <div class="text-sm font-medium text-white/80">
+      @dearlipu
+    </div>
+
+    <!-- MENU BUTTON -->
     <button id="menuBtn"
       class="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium 
-      bg-[#101828] text-white shadow-lg active:scale-95 transition">
+      bg-[#101828] text-white shadow-lg active:scale-95 transition z-[999]">
 
       Menu
 
@@ -33,25 +40,61 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
   <!-- BACKDROP -->
   <div id="menuBackdrop"
-    class="fixed inset-0 bg-black/30 backdrop-blur-sm opacity-0 pointer-events-none transition duration-300">
+    class="fixed inset-0 bg-black/30 backdrop-blur-sm opacity-0 pointer-events-none transition duration-300 z-[800]">
   </div>
 
 
   <!-- FLOATING MENU -->
   <div id="menuPanel"
-    class="fixed top-20 right-4 w-[90%] max-w-sm bg-[#04060a] text-white rounded-3xl p-6 shadow-2xl border border-gray-700 z-50
+    class="fixed top-20 right-4 w-[90%] max-w-sm bg-[#04060a] text-white rounded-3xl p-6 shadow-2xl border border-gray-700 z-[900]
     
     opacity-0 scale-90 translate-y-4 pointer-events-none
     transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] origin-top-right">
 
     <ul class="text-lg space-y-1">
 
-      <li class="menu-item"><a href="#about" class="menu-link">Home</a></li>
-      <li class="menu-item"><a href="#projects" class="menu-link">Services</a></li>
-      <li class="menu-item"><a href="#experience" class="menu-link">Benefits</a></li>
-      <li class="menu-item"><a href="#education" class="menu-link">Work</a></li>
-      <li class="menu-item"><a href="#pricing" class="menu-link">Pricing</a></li>
-      <li class="menu-item"><a href="#cta" class="menu-link">Contact</a></li>
+      <!-- ITEM -->
+      <li class="menu-item">
+        <a href="#about" class="menu-link flex justify-between items-center">
+          Home
+          <span class="arrow">↗</span>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a href="#projects" class="menu-link flex justify-between items-center">
+          Services
+          <span class="arrow">↗</span>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a href="#experience" class="menu-link flex justify-between items-center">
+          Benefits
+          <span class="arrow">↗</span>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a href="#education" class="menu-link flex justify-between items-center">
+          Work
+          <span class="arrow">↗</span>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a href="#pricing" class="menu-link flex justify-between items-center">
+          Pricing
+          <span class="arrow">↗</span>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a href="#cta" class="menu-link flex justify-between items-center">
+          Contact
+          <span class="arrow">↗</span>
+        </a>
+      </li>
 
     </ul>
   </div>
@@ -105,8 +148,13 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
     backdrop.classList.add("opacity-100");
 
     icon.style.transform = "rotate(180deg)";
-
     path.setAttribute("d", "M6 6l12 12M6 18L18 6");
+
+    // invert button
+    btn.classList.remove("bg-[#101828]", "text-white");
+    btn.classList.add("bg-white", "text-black");
+
+    document.body.style.overflow = "hidden";
 
     animateItems(true);
     open = true;
@@ -120,8 +168,13 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
     backdrop.classList.remove("opacity-100");
 
     icon.style.transform = "rotate(0deg)";
-
     path.setAttribute("d", "M12 5v14M5 12h14");
+
+    // revert button
+    btn.classList.add("bg-[#101828]", "text-white");
+    btn.classList.remove("bg-white", "text-black");
+
+    document.body.style.overflow = "";
 
     animateItems(false);
     open = false;
@@ -133,23 +186,10 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
   backdrop.addEventListener("click", closeMenu);
 
-  window.addEventListener("scroll", () => {
-    if (open) closeMenu();
-
-    if (window.scrollY > 100) {
-      header.classList.add("bg-white/80", "backdrop-blur-sm");
-      header.classList.remove("bg-transparent");
-    } else {
-      header.classList.remove("bg-white/80", "backdrop-blur-sm");
-      header.classList.add("bg-transparent");
-    }
-  });
-
   document.querySelectorAll(".menu-link").forEach(link => {
     link.addEventListener("click", closeMenu);
   });
 
-  // init hidden state
   animateItems(false);
 </script>
 
@@ -160,15 +200,23 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   }
 
   .menu-link {
-    display: block;
-    padding: 12px 0;
+    padding: 14px 0;
     border-bottom: 1px solid rgba(255,255,255,0.08);
     transition: all 0.25s ease;
   }
 
   .menu-link:hover {
+    opacity: 0.7;
+  }
+
+  .arrow {
+    font-size: 14px;
     opacity: 0.6;
-    transform: translateX(4px);
+    transition: transform 0.25s ease;
+  }
+
+  .menu-link:hover .arrow {
+    transform: translate(3px, -3px);
   }
 
   .menu-item {
