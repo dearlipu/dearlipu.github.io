@@ -43,7 +43,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
       <!-- ITEM -->
       <li class="menu-item">
         <a href="#about" class="menu-link">
-          About Me.
+          About
           <svg
             class="arrow-icon"
             fill="none"
@@ -62,7 +62,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
       <li class="menu-item">
         <a href="#projects" class="menu-link">
-          Selected work.
+          Projects
           <svg
             class="arrow-icon"
             fill="none"
@@ -100,7 +100,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
       <li class="menu-item">
         <a href="#education" class="menu-link">
-          What i do.
+          Services
           <svg
             class="arrow-icon"
             fill="none"
@@ -119,7 +119,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
       <li class="menu-item">
         <a href="#pricing" class="menu-link">
-          Flexible Pricing.
+          Pricing
           <svg
             class="arrow-icon"
             fill="none"
@@ -187,7 +187,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
     open ? closeMenu() : openMenu();
   });
 
-  // scroll behavior (KEEPED)
+  // scroll behavior
   window.addEventListener("scroll", () => {
     if (open) closeMenu();
 
@@ -200,7 +200,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
     }
   });
 
-  // close on click (KEEPED)
+  // close on click
   document.querySelectorAll(".menu-link").forEach(link => {
     link.addEventListener("click", closeMenu);
   });
