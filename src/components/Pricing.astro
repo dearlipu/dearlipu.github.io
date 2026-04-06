@@ -38,7 +38,7 @@ Please share more details.`
 
             <!-- SLIDER -->
             <div id="toggleSlider"
-              class="absolute top-1 left-1 w-[calc(50%-4px)] h-[calc(100%-8px)]
+              class="absolute top-1 left-[4px] w-1/2 h-[calc(100%-8px)]
                      bg-white rounded-full shadow transition-all duration-300">
             </div>
 
@@ -91,8 +91,10 @@ Please share more details.`
           </div>
 
           <!-- STANDARD -->
-          <div class="group relative bg-gray-50 rounded-xl border-2 p-5 pt-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
-               style={`border-color: ${siteConfig.accentColor}`}>
+          <div
+            class="group relative bg-gray-50 rounded-xl border-2 p-5 pt-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+            style={`border-color: ${siteConfig.accentColor}`}
+          >
 
             <div class="absolute -top-3 left-1/2 -translate-x-1/2">
               <span class="text-xs px-3 py-1 rounded-full text-white font-medium shadow"
@@ -196,8 +198,8 @@ Please share more details.`
             stroke="currentColor" stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-            <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/>
+            <path stroke="none" d="M0 0h24v24H0z"/>
+            <path d="M3 12a9 9 0 1 0 18 0"/>
             <path d="M9 12h6"/>
             <path d="M12 9v6"/>
           </svg>
@@ -207,9 +209,9 @@ Please share more details.`
     });
 
     if (mode === "monthly") {
-      slider.style.transform = "translateX(calc(100% + 4px))";
+      slider.style.left = "50%";
     } else {
-      slider.style.transform = "translateX(0)";
+      slider.style.left = "4px";
     }
   }
 
