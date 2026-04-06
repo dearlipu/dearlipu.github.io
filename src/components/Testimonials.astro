@@ -28,7 +28,31 @@ import { siteConfig } from "../config";
     <!-- MIDDLE (BLACK SUMMARY CARD) -->
     <div class="lg:col-span-4">
 
-      <div class="bg-[#101828] text-white rounded-xl p-5 h-full flex flex-col justify-between">
+      <div class="relative bg-[#101828] text-white rounded-xl p-5 h-full flex flex-col justify-between overflow-hidden">
+
+        <!-- BIG BACKGROUND SVG -->
+        <div class="absolute right-[-40px] bottom-[-40px] opacity-10 pointer-events-none">
+        
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-[180px] h-[180px]"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M20.985 12.528a9 9 0 1 0 -8.45 8.456" />
+            <path d="M16 19h6" />
+            <path d="M19 16v6" />
+            <path d="M9 10h.01" />
+            <path d="M15 10h.01" />
+            <path d="M9.5 15c.658 .64 1.56 1 2.5 1s1.842 -.36 2.5 -1" />
+          </svg>
+        
+        </div>
 
         <div>
           <h3 class="text-xl font-bold">4.9/5</h3>
@@ -39,7 +63,7 @@ import { siteConfig } from "../config";
         </div>
 
         <!-- AVATARS -->
-        <div class="flex -space-x-5 mt-4">
+        <div class="flex -space-x-5 mt-6">
           <img src="/avatars/user1.png" class="w-10 h-10 rounded-full border-2 border-white" />
           <img src="/avatars/user2.png" class="w-10 h-10 rounded-full border-2 border-white" />
           <img src="/avatars/user3.png" class="w-10 h-10 rounded-full border-2 border-white" />
@@ -47,10 +71,9 @@ import { siteConfig } from "../config";
 
           <!-- ICON AVATAR -->
             <div class="w-10 h-10 rounded-full border-2 border-white bg-black/40 backdrop-blur-sm flex items-center justify-center">
-          
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="w-8 h-8 text-white"
+                class="w-5 h-5 text-white"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -59,11 +82,10 @@ import { siteConfig } from "../config";
                 stroke-linejoin="round"
               >
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
-                <path d="M9 12h6" />
-                <path d="M12 9v6" />
+                <path d="M12 5l0 14" />
+                <path d="M5 12l14 0" />
               </svg>
-          </div>
+            </div>
 
         </div>
 
