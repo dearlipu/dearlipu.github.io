@@ -1,8 +1,6 @@
----
 import { siteConfig } from "../config";
 
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
-// const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
 const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 ---
 
@@ -13,7 +11,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   <div class="flex md:hidden justify-end px-6 py-4">
     <button id="menuBtn"
       class="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium 
-      bg-[#101828] text-white shadow-lg transition active:scale-95">
+      bg-[#101828] text-white shadow-lg transition active:scale-90">
 
       Menu
 
@@ -30,142 +28,67 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
     </button>
   </div>
 
+  <!-- OVERLAY -->
+  <div id="menuOverlay"
+    class="fixed inset-0 bg-black/20 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300 z-40">
+  </div>
 
-  <!-- FLOATING MENU -->
+  <!-- MENU -->
   <div id="menuPanel"
     class="fixed top-20 right-4 w-[90%] max-w-sm bg-[#101828] text-white rounded-3xl p-6 shadow-2xl border border-gray-700 z-50
     
-    opacity-0 scale-95 translate-y-4 pointer-events-none origin-top-right
-    transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]">
+    opacity-0 scale-90 translate-y-6 pointer-events-none origin-[90%_-10px]
+    transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]">
 
     <ul class="text-lg">
 
-      <!-- ITEM -->
       <li class="menu-item">
-        <a href="#about" class="menu-link">
-          About
-          <svg
-            class="arrow-icon"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M7 17L17 7M17 7H7M17 7V17"
-            />
-          </svg>
-        </a>
+        <a href="#about" class="menu-link">About <span>↗</span></a>
       </li>
 
       <li class="menu-item">
-        <a href="#projects" class="menu-link">
-          Projects
-          <svg
-            class="arrow-icon"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M7 17L17 7M17 7H7M17 7V17"
-            />
-          </svg>
-        </a>
-      </li>
-
-      <!--<li class="menu-item">
-        <a href="#experience" class="menu-link">
-          Benefits
-          <svg
-            class="arrow-icon"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M7 17L17 7M17 7H7M17 7V17"
-            />
-          </svg>
-        </a>
-      </li>-->
-
-      <li class="menu-item">
-        <a href="#education" class="menu-link">
-          Services
-          <svg
-            class="arrow-icon"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M7 17L17 7M17 7H7M17 7V17"
-            />
-          </svg>
-        </a>
+        <a href="#projects" class="menu-link">Projects <span>↗</span></a>
       </li>
 
       <li class="menu-item">
-        <a href="#pricing" class="menu-link">
-          Pricing
-          <svg
-            class="arrow-icon"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M7 17L17 7M17 7H7M17 7V17"
-            />
-          </svg>
-        </a>
+        <a href="#education" class="menu-link">Services <span>↗</span></a>
+      </li>
+
+      <li class="menu-item">
+        <a href="#pricing" class="menu-link">Pricing <span>↗</span></a>
       </li>
 
     </ul>
   </div>
 
-
   <!-- DESKTOP NAV -->
   <nav class="hidden md:block max-w-7xl mx-auto px-8 py-4">
     <ul class="flex items-center gap-8 justify-center">
-      <li><a href="#about" class="text-gray-700 hover:text-black font-medium">About</a></li>
-      {hasProjects && <li><a href="#projects" class="text-gray-700 hover:text-black font-medium">Projects</a></li>}
-      <!--{hasExperience && <li><a href="#experience" class="text-gray-700 hover:text-black font-medium">Client Work</a></li>}-->
-      {hasEducation && <li><a href="#education" class="text-gray-700 hover:text-black font-medium">Services</a></li>}
-      <li><a href="#pricing" class="text-gray-700 hover:text-black font-medium">Pricing</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      {hasProjects && <li><a href="#projects" class="nav-link">Projects</a></li>}
+      {hasEducation && <li><a href="#education" class="nav-link">Services</a></li>}
+      <li><a href="#pricing" class="nav-link">Pricing</a></li>
     </ul>
   </nav>
 
 </header>
 
-
 <script>
   const header = document.getElementById("header");
   const btn = document.getElementById("menuBtn");
   const panel = document.getElementById("menuPanel");
+  const overlay = document.getElementById("menuOverlay");
   const icon = document.getElementById("menuIcon");
   const path = document.getElementById("iconPath");
 
   let open = false;
 
   function openMenu() {
-    panel.classList.remove("opacity-0", "scale-95", "translate-y-4", "pointer-events-none");
-    panel.classList.add("opacity-100", "scale-100", "translate-y-0");
+    panel.classList.remove("opacity-0","scale-90","translate-y-6","pointer-events-none");
+    panel.classList.add("opacity-100","scale-100","translate-y-0");
+
+    overlay.classList.remove("opacity-0","pointer-events-none");
+    overlay.classList.add("opacity-100");
 
     icon.style.transform = "rotate(180deg)";
     path.setAttribute("d","M6 6l12 12M6 18L18 6");
@@ -174,8 +97,14 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   }
 
   function closeMenu() {
-    panel.classList.add("opacity-0", "scale-95", "translate-y-4", "pointer-events-none");
-    panel.classList.remove("opacity-100", "scale-100", "translate-y-0");
+    panel.classList.add("scale-95","translate-y-4");
+    panel.classList.remove("scale-100","translate-y-0");
+
+    overlay.classList.add("opacity-0","pointer-events-none");
+
+    setTimeout(() => {
+      panel.classList.add("opacity-0","pointer-events-none");
+    }, 120);
 
     icon.style.transform = "rotate(0deg)";
     path.setAttribute("d","M12 5v14M5 12h14");
@@ -187,31 +116,44 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
     open ? closeMenu() : openMenu();
   });
 
-  // scroll behavior
+  overlay.addEventListener("click", closeMenu);
+
+  // smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener("click", function(e) {
+      e.preventDefault();
+
+      const target = document.querySelector(this.getAttribute("href"));
+
+      if (target) {
+        const y = target.getBoundingClientRect().top + window.scrollY - 80;
+
+        window.scrollTo({
+          top: y,
+          behavior: "smooth"
+        });
+      }
+
+      closeMenu();
+    });
+  });
+
+  // header scroll effect
   window.addEventListener("scroll", () => {
     if (open) closeMenu();
 
     if (window.scrollY > 100) {
-      header.classList.remove("bg-transparent");
       header.classList.add("bg-white/80", "backdrop-blur-sm");
     } else {
       header.classList.remove("bg-white/80", "backdrop-blur-sm");
-      header.classList.add("bg-transparent");
     }
   });
-
-  // close on click
-  document.querySelectorAll(".menu-link").forEach(link => {
-    link.addEventListener("click", closeMenu);
-  });
 </script>
-
 
 <style>
 .menu-link {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 14px 0;
   border-bottom: 1px solid rgba(255,255,255,0.08);
   transition: all 0.25s ease;
@@ -219,27 +161,23 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
 .menu-link:hover {
   opacity: 0.7;
-  transform: translateX(4px);
+  transform: translateX(6px);
 }
 
-/* ARROW */
-.arrow-icon {
-  width: 22px;
-  height: 22px;
-  stroke: white;
-  stroke-width: 2;
-  opacity: 0.9;
-  transition: transform 0.25s ease;
+.nav-link {
+  color: #4b5563;
+  font-weight: 500;
+  transition: 0.25s;
 }
 
-.menu-link:hover .arrow-icon {
-  transform: translate(3px, -3px);
+.nav-link:hover {
+  color: black;
 }
 
 /* stagger animation */
 .menu-item {
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(12px);
   animation: fadeUp 0.4s ease forwards;
 }
 
@@ -247,8 +185,6 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 .menu-item:nth-child(2) { animation-delay: 0.1s; }
 .menu-item:nth-child(3) { animation-delay: 0.15s; }
 .menu-item:nth-child(4) { animation-delay: 0.2s; }
-.menu-item:nth-child(5) { animation-delay: 0.25s; }
-.menu-item:nth-child(6) { animation-delay: 0.3s; }
 
 @keyframes fadeUp {
   to {
