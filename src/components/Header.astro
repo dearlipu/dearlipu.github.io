@@ -172,8 +172,13 @@ html {
   justify-content: space-between;
   align-items: center;
   padding: 14px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
   transition: all 0.25s ease;
+}
+
+/* only first item gets top border */
+.menu-item:first-child .menu-link {
+  border-top: 1px solid rgba(255,255,255,0.06);
 }
 
 .menu-link:hover {
