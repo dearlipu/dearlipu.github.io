@@ -36,7 +36,7 @@ export const siteConfig = {
       skills: ["React", "Node.js", "AWS"],
     },
   ],
-  experience: [
+  /*experience: [
     {
       company: "YouTube Creator Project",
       title: "Cinematic Video Editing",
@@ -77,7 +77,7 @@ export const siteConfig = {
         "Delivered assets for social & print"
       ],
     },
-  ],
+  ],*/
   education: [
     {
       degree: "Graphic Design",
