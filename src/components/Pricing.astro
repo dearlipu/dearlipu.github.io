@@ -73,8 +73,8 @@ Please share more details.`
             <ul class="features mt-4 space-y-3 text-sm text-gray-600"></ul>
 
             <button
-              onclick="handleClick('Basic')"
-              class="btn-primary mt-6 w-full px-4 py-2 rounded-md font-medium text-center"
+              data-plan="Basic"
+              class="whatsapp-btn btn-primary mt-6 w-full px-4 py-2 rounded-md font-medium text-center"
               style={`--accent: ${siteConfig.accentColor}`}>
               Get Started
             </button>
@@ -99,12 +99,12 @@ Please share more details.`
 
             <ul class="features mt-4 space-y-3 text-sm text-gray-600"></ul>
 
-            <a href="#"
-              onclick="handleClick('Standard')"
-              class="btn-primary mt-6 inline-block w-full text-center px-4 py-2 rounded-md font-medium"
+            <button
+              data-plan="Standard"
+              class="whatsapp-btn btn-primary mt-6 w-full px-4 py-2 rounded-md font-medium text-center"
               style={`--accent: ${siteConfig.accentColor}`}>
               Get Started
-            </a>
+            </button>
           </div>
 
           <!-- PREMIUM -->
@@ -117,12 +117,12 @@ Please share more details.`
 
             <ul class="features mt-4 space-y-3 text-sm text-gray-600"></ul>
 
-            <a href="#"
-              onclick="handleClick('Premium')"
-              class="btn-primary mt-6 inline-block w-full text-center px-4 py-2 rounded-md font-medium"
+            <button
+              data-plan="Premium"
+              class="whatsapp-btn btn-primary mt-6 w-full px-4 py-2 rounded-md font-medium text-center"
               style={`--accent: ${siteConfig.accentColor}`}>
               Get Started
-            </a>
+            </button>
           </div>
 
         </div>
@@ -206,13 +206,22 @@ Please share more details.`
   }
 
   function handleClick(plan) {
-    const url = `https://wa.me/918144991049?text=${encodeURIComponent(
-`Hi Saurav,
-
-I’m interested in your ${plan} (${currentMode === "monthly" ? "Monthly" : "Per Project"}) plan.
-Please share more details.`)}`;
-
-    window.open(url, "_blank");
+    const buttons = document.querySelectorAll(".whatsapp-btn");
+    
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const plan = btn.dataset.plan;
+    
+        const message = `Hi Saurav,
+    
+    I’m interested in your ${plan} (${currentMode === "monthly" ? "Monthly" : "Per Project"}) plan.
+    Please share more details.`;
+    
+        const url = `https://wa.me/918144991049?text=${encodeURIComponent(message)}`;
+    
+        window.open(url, "_blank");
+      });
+    });
   }
 
   perBtn.onclick = () => setMode("project");
