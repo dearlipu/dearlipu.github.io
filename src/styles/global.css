@@ -3,3 +3,11 @@
 body {
   font-family: 'Josefin Sans', sans-serif;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-top: 100px;
+}
