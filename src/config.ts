@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Saurav Panda",
-  title: "Developer & Designer",
-  description: "A full-service creative agency delivering impactful design, cinematic video, motion graphics, branding, and digital solutions. From magazines and posters to social media content and business systems — we help ideas stand out.",
+  title: "Senior Visual Designer",
+  description: "I create impactful design, video, and motion content for brands and creators. Focused on clarity, quality, and visuals that actually perform.",
   accentColor: "#1d4ed8",
   social: {
     email: "sauravpanda34+web@gmail.com",
@@ -10,8 +10,9 @@ export const siteConfig = {
     youtube: "https://www.youtube.com/@dearlipu",
   },
   aboutMe:
-    "I’m a creative professional specializing in graphic design, video editing, and practical digital development. I help individuals and businesses turn ideas into clear, engaging visuals and functional digital solutions built for real-world use. My focus is simple-deliver work that looks strong, feels professional, and drives reliable results. Trusted by creators and businesses.",
-  skills: ["Publishing", "Graphic Design", "Video & Motion", "Creative Media", "Business Systems"],
+    "I’m Saurav Panda, a visual designer and video editor focused on creating clear, engaging digital content. I help businesses and creators turn ideas into visuals and videos that look professional and communicate effectively. I enjoy working on practical, real-world projects — from social media content and motion graphics to editorial design — always focused on clarity, quality, and results.",
+  
+  skills: ["Graphic Design", "Photo & Video Editing", "Motion Graphics", "Print Design"],
   projects: [
     {
       name: "AI Dev Roundup Newsletter",
