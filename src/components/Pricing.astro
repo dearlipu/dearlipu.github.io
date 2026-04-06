@@ -34,7 +34,7 @@ Please share more details.`
 
         <!-- PERFECT TOGGLE -->
         <div class="mt-6 flex justify-center lg:justify-start">
-          <div class="relative grid grid-cols-2 bg-gray-200 rounded-full p-1 w-full max-w-[300px] h-[44px]">
+          <div class="relative grid grid-cols-2 bg-gray-50 rounded-full p-1 w-full max-w-[300px] h-[44px]">
 
             <!-- SLIDER -->
             <div id="toggleSlider"
@@ -74,7 +74,8 @@ Please share more details.`
             <ul class="features mt-4 space-y-3 text-sm text-gray-600"></ul>
 
             <a href={createWhatsApp("Basic")}
-              class="mt-6 inline-block w-full text-center px-4 py-2 rounded-md bg-[#101828] text-white font-medium hover:bg-black transition">
+              class="btn-primary mt-6 inline-block w-full text-center px-4 py-2 rounded-md font-medium"
+              style={`--accent: ${siteConfig.accentColor}`}>
               Get Started
             </a>
           </div>
@@ -101,9 +102,11 @@ Please share more details.`
             <ul class="features mt-4 space-y-3 text-sm text-gray-600"></ul>
 
             <a href={createWhatsApp("Standard")}
-              class="mt-6 inline-block w-full text-center px-4 py-2 rounded-md bg-[#101828] text-white font-medium hover:bg-black transition">
+              class="btn-primary mt-6 inline-block w-full text-center px-4 py-2 rounded-md font-medium"
+              style={`--accent: ${siteConfig.accentColor}`}>
               Get Started
             </a>
+
           </div>
 
           <!-- PREMIUM -->
@@ -119,7 +122,8 @@ Please share more details.`
             <ul class="features mt-4 space-y-3 text-sm text-gray-600"></ul>
 
             <a href={createWhatsApp("Premium")}
-              class="mt-6 inline-block w-full text-center px-4 py-2 rounded-md bg-[#101828] text-white font-medium hover:bg-black transition">
+              class="btn-primary mt-6 inline-block w-full text-center px-4 py-2 rounded-md font-medium"
+              style={`--accent: ${siteConfig.accentColor}`}>
               Get Started
             </a>
           </div>
