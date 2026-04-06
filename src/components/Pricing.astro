@@ -25,21 +25,20 @@ Please share more details.`
           Flexible Pricing.
         </h2>
 
-        <div class="w-[75px] h-[5px] mt-2 rounded-full"
-          style={`background-color: ${siteConfig.accentColor}`} />
+        <div
+          class="w-[75px] h-[5px] mt-2 rounded-full"
+          style={`background-color: ${siteConfig.accentColor}`}
+        />
 
         <p class="text-gray-500 mt-5 text-sm max-w-sm leading-relaxed">
           100+ projects delivered • Fast turnaround • Clear communication
         </p>
-      </div>
 
-      <!-- RIGHT -->
-      <div class="lg:col-span-8">
-
-        <!--  TOGGLE -->
-        <div class="flex justify-center mb-10">
+        <!-- TOGGLE (MOVED HERE) -->
+        <div class="mt-6">
           <div class="relative flex bg-gray-100 rounded-full p-1 w-[260px]">
 
+            <!-- SLIDER -->
             <div id="toggleSlider"
               class="absolute top-1 left-1 w-1/2 h-[calc(100%-8px)] bg-white rounded-full shadow transition-all duration-300">
             </div>
@@ -56,8 +55,11 @@ Please share more details.`
 
           </div>
         </div>
+      </div>
 
-        <!-- CARDS -->
+      <!-- RIGHT -->
+      <div class="lg:col-span-8">
+
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
           <!-- BASIC -->
@@ -90,12 +92,16 @@ Please share more details.`
           </div>
 
           <!-- STANDARD -->
-          <div class="group relative bg-gray-50 rounded-xl border-2 p-5 pt-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
-               style={`border-color: ${siteConfig.accentColor}`}>
+          <div
+            class="group relative bg-gray-50 rounded-xl border-2 p-5 pt-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+            style={`border-color: ${siteConfig.accentColor}`}
+          >
 
             <div class="absolute -top-3 left-1/2 -translate-x-1/2">
-              <span class="text-xs px-3 py-1 rounded-full text-white font-medium shadow"
-                style={`background-color: ${siteConfig.accentColor}`}>
+              <span
+                class="text-xs px-3 py-1 rounded-full text-white font-medium shadow"
+                style={`background-color: ${siteConfig.accentColor}`}
+              >
                 Most Popular
               </span>
             </div>
@@ -167,7 +173,7 @@ Please share more details.`
   </div>
 </section>
 
-<!--  SCRIPT -->
+<!-- SCRIPT -->
 <script>
   const perBtn = document.getElementById("perProjectBtn");
   const monthlyBtn = document.getElementById("monthlyBtn");
@@ -188,24 +194,35 @@ Please share more details.`
         ? JSON.parse(f.dataset.monthly)
         : JSON.parse(f.dataset.project);
 
-      f.innerHTML = data.map(item => `<li>✔ ${item}</li>`).join("");
+      f.innerHTML = data.map(item => `
+        <li class="flex items-center gap-3 leading-none">
+          <svg xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5 text-gray-400 flex-shrink-0"
+            fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/>
+            <path d="M9 12h6"/>
+            <path d="M12 9v6"/>
+          </svg>
+          ${item}
+        </li>
+      `).join("");
     });
 
     // slider animation
     if (mode === "monthly") {
       slider.style.transform = "translateX(100%)";
-      monthlyBtn.classList.add("text-gray-900");
-      perBtn.classList.remove("text-gray-900");
     } else {
       slider.style.transform = "translateX(0%)";
-      perBtn.classList.add("text-gray-900");
-      monthlyBtn.classList.remove("text-gray-900");
     }
   }
 
   perBtn.addEventListener("click", () => setMode("project"));
   monthlyBtn.addEventListener("click", () => setMode("monthly"));
 
-  // DEFAULT MODE
+  // DEFAULT
   setMode("monthly");
 </script>
