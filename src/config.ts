@@ -10,11 +10,9 @@ export const siteConfig = {
     youtube: "https://www.youtube.com/@dearlipu",
   },
   aboutMe:
-    `I’m a visual designer and video editor focused on creating clear, engaging digital content.
-    I help businesses and creators turn ideas into visuals and videos that look professional and communicate effectively.
-  I enjoy working on practical, real-world projects — from social media content and motion graphics to editorial design — always focused on clarity, quality, and results.`,
+    `I’m a visual designer and video editor focused on creating clear, engaging digital content. I help businesses and creators turn ideas into visuals and videos that look professional and communicate effectively. I enjoy working on practical, real-world projects from social media content and motion graphics to editorial design — always focused on clarity, quality, and results.`,
   
-  skills: ["Graphic Design", "Photo & Video Editing", "Motion Graphics", "Print Design"],
+  skills: ["Graphic Design", "Motion Graphics", "Photo & Video Editing", "Print Design"],
   projects: [
     {
       name: "AI Dev Roundup Newsletter",
