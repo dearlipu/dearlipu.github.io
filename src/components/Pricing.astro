@@ -3,11 +3,13 @@ import { siteConfig } from "../config";
 
 const PHONE = "918144991049";
 
-const createWhatsApp = (plan) => {
+const createWhatsApp = (plan, mode) => {
+  const type = mode === "monthly" ? "Monthly" : "Per Project";
+
   const message = encodeURIComponent(
 `Hi Saurav,
 
-I’m interested in your ${plan} plan.
+I’m interested in your ${plan} (${type}) plan.
 Please share more details.`
   );
 
@@ -32,14 +34,13 @@ Please share more details.`
           100+ projects delivered • Fast turnaround • Clear communication
         </p>
 
-        <!-- PERFECT TOGGLE -->
+        <!-- 🔥 TOGGLE (FINAL FIXED) -->
         <div class="mt-6 flex justify-center lg:justify-start">
-          <div class="relative grid grid-cols-2 bg-gray-50 rounded-full p-1 w-full max-w-[300px] h-[44px]">
+          <div class="relative grid grid-cols-2 bg-gray-200 rounded-full p-1 w-full max-w-[320px] h-[44px]">
 
-            <!-- SLIDER -->
             <div id="toggleSlider"
               class="absolute top-1 left-1 w-[calc(50%-4px)] h-[calc(100%-8px)]
-                     bg-white rounded-full shadow-sm transition-all duration-300">
+                     bg-white rounded-full shadow-sm transition-transform duration-300">
             </div>
 
             <button id="perProjectBtn"
@@ -67,13 +68,12 @@ Please share more details.`
 
             <p class="price text-xl font-bold mt-2 text-gray-800 transition-all duration-300"
                data-project="₹999+"
-               data-monthly="₹8,999/mo">
-              ₹999+
-            </p>
+               data-monthly="₹8,999/mo">₹999+</p>
 
             <ul class="features mt-4 space-y-3 text-sm text-gray-600"></ul>
 
-            <a href={createWhatsApp("Basic")}
+            <a href="#"
+              onclick="handleClick('Basic')"
               class="btn-primary mt-6 inline-block w-full text-center px-4 py-2 rounded-md font-medium"
               style={`--accent: ${siteConfig.accentColor}`}>
               Get Started
@@ -95,18 +95,16 @@ Please share more details.`
 
             <p class="price text-xl font-bold mt-2 text-gray-800 transition-all duration-300"
                data-project="₹2,999+"
-               data-monthly="₹19,999/mo">
-              ₹2,999+
-            </p>
+               data-monthly="₹19,999/mo">₹2,999+</p>
 
             <ul class="features mt-4 space-y-3 text-sm text-gray-600"></ul>
 
-            <a href={createWhatsApp("Standard")}
+            <a href="#"
+              onclick="handleClick('Standard')"
               class="btn-primary mt-6 inline-block w-full text-center px-4 py-2 rounded-md font-medium"
               style={`--accent: ${siteConfig.accentColor}`}>
               Get Started
             </a>
-
           </div>
 
           <!-- PREMIUM -->
@@ -115,13 +113,12 @@ Please share more details.`
 
             <p class="price text-xl font-bold mt-2 text-gray-800 transition-all duration-300"
                data-project="₹7,999+"
-               data-monthly="₹39,999/mo">
-              ₹7,999+
-            </p>
+               data-monthly="₹39,999/mo">₹7,999+</p>
 
             <ul class="features mt-4 space-y-3 text-sm text-gray-600"></ul>
 
-            <a href={createWhatsApp("Premium")}
+            <a href="#"
+              onclick="handleClick('Premium')"
               class="btn-primary mt-6 inline-block w-full text-center px-4 py-2 rounded-md font-medium"
               style={`--accent: ${siteConfig.accentColor}`}>
               Get Started
@@ -139,7 +136,20 @@ Please share more details.`
   </div>
 </section>
 
+<style>
+.btn-primary {
+  background-color: #101828;
+  color: white;
+  transition: all 0.3s ease;
+}
+.btn-primary:hover {
+  background-color: var(--accent);
+}
+</style>
+
 <script>
+  let currentMode = "monthly";
+
   const perBtn = document.getElementById("perProjectBtn");
   const monthlyBtn = document.getElementById("monthlyBtn");
   const slider = document.getElementById("toggleSlider");
@@ -161,13 +171,12 @@ Please share more details.`
   };
 
   function setMode(mode) {
+    currentMode = mode;
+
     prices.forEach((p, i) => {
       p.style.opacity = "0";
-
       setTimeout(() => {
-        p.textContent = mode === "monthly"
-          ? p.dataset.monthly
-          : p.dataset.project;
+        p.textContent = mode === "monthly" ? p.dataset.monthly : p.dataset.project;
         p.style.opacity = "1";
       }, 150);
 
@@ -175,7 +184,7 @@ Please share more details.`
       features[i].innerHTML = list.map(item => `
         <li class="flex items-center gap-3">
           <svg xmlns="http://www.w3.org/2000/svg"
-            class="w-4 h-4 text-gray-400"
+            class="w-5 h-5 text-gray-400"
             fill="none" viewBox="0 0 24 24"
             stroke="currentColor" stroke-width="2">
             <path d="M5 12l5 5l10 -10" />
@@ -194,6 +203,16 @@ Please share more details.`
       perBtn.classList.replace("text-gray-500","text-gray-900");
       monthlyBtn.classList.replace("text-gray-900","text-gray-500");
     }
+  }
+
+  function handleClick(plan) {
+    const url = `https://wa.me/918144991049?text=${encodeURIComponent(
+`Hi Saurav,
+
+I’m interested in your ${plan} (${currentMode === "monthly" ? "Monthly" : "Per Project"}) plan.
+Please share more details.`)}`;
+
+    window.open(url, "_blank");
   }
 
   perBtn.onclick = () => setMode("project");
