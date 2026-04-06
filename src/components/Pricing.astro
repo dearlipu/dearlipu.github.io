@@ -32,23 +32,23 @@ Please share more details.`
           100+ projects delivered • Fast turnaround • Clear communication
         </p>
 
-        <!-- TOGGLE -->
+        <!-- PERFECT TOGGLE -->
         <div class="mt-6 flex justify-center lg:justify-start">
-          <div class="relative flex bg-gray-200 rounded-full p-1 w-full max-w-[260px] h-[42px]">
+          <div class="relative grid grid-cols-2 bg-gray-200 rounded-full p-1 w-full max-w-[300px] h-[44px]">
 
             <!-- SLIDER -->
             <div id="toggleSlider"
-              class="absolute top-1 left-1 w-1/2 h-[calc(100%-8px)]
+              class="absolute top-1 left-1 w-[calc(50%-4px)] h-[calc(100%-8px)]
                      bg-white rounded-full shadow-sm transition-all duration-300">
             </div>
 
             <button id="perProjectBtn"
-              class="relative z-10 flex-1 flex items-center justify-center text-sm font-semibold text-gray-900 transition">
+              class="flex items-center justify-center text-sm font-semibold text-gray-900 z-10">
               Per Project
             </button>
 
             <button id="monthlyBtn"
-              class="relative z-10 flex-1 flex items-center justify-center text-sm font-semibold text-gray-500 transition">
+              class="flex items-center justify-center text-sm font-semibold text-gray-500 z-10">
               Monthly
             </button>
 
@@ -169,26 +169,26 @@ Please share more details.`
 
       const list = featureData[mode][i];
       features[i].innerHTML = list.map(item => `
-        <li class="flex items-center gap-2">
-          <span class="text-gray-400">✓</span>
+        <li class="flex items-center gap-3">
+          <svg xmlns="http://www.w3.org/2000/svg"
+            class="w-4 h-4 text-gray-400"
+            fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2">
+            <path d="M5 12l5 5l10 -10" />
+          </svg>
           ${item}
         </li>
       `).join("");
     });
 
-    // toggle UI
     if (mode === "monthly") {
-      slider.style.left = "50%";
-      monthlyBtn.classList.remove("text-gray-500");
-      monthlyBtn.classList.add("text-gray-900");
-      perBtn.classList.remove("text-gray-900");
-      perBtn.classList.add("text-gray-500");
+      slider.style.transform = "translateX(100%)";
+      monthlyBtn.classList.replace("text-gray-500","text-gray-900");
+      perBtn.classList.replace("text-gray-900","text-gray-500");
     } else {
-      slider.style.left = "4px";
-      perBtn.classList.remove("text-gray-500");
-      perBtn.classList.add("text-gray-900");
-      monthlyBtn.classList.remove("text-gray-900");
-      monthlyBtn.classList.add("text-gray-500");
+      slider.style.transform = "translateX(0)";
+      perBtn.classList.replace("text-gray-500","text-gray-900");
+      monthlyBtn.classList.replace("text-gray-900","text-gray-500");
     }
   }
 
