@@ -2,7 +2,6 @@
 import { siteConfig } from "../config";
 
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
-const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
 const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 ---
 
@@ -33,7 +32,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
   <!-- FLOATING MENU -->
   <div id="menuPanel"
-    class="fixed top-20 right-4 w-[90%] max-w-sm bg-[#04060a] text-white rounded-3xl p-6 shadow-2xl border border-gray-700 z-50
+    class="fixed top-20 right-4 w-[90%] max-w-sm bg-[#101828] text-white rounded-3xl p-6 shadow-2xl border border-gray-700 z-50
     
     opacity-0 scale-95 translate-y-4 pointer-events-none origin-top-right
     transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]">
@@ -43,7 +42,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
       <!-- ITEM -->
       <li class="menu-item">
         <a href="#about" class="menu-link">
-          Home
+          About Me.
           <svg
             class="arrow-icon"
             fill="none"
@@ -62,7 +61,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
       <li class="menu-item">
         <a href="#projects" class="menu-link">
-          Services
+          Selected work.
           <svg
             class="arrow-icon"
             fill="none"
@@ -79,7 +78,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
         </a>
       </li>
 
-      <li class="menu-item">
+      <!--<li class="menu-item">
         <a href="#experience" class="menu-link">
           Benefits
           <svg
@@ -96,11 +95,11 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
             />
           </svg>
         </a>
-      </li>
+      </li>-->
 
       <li class="menu-item">
         <a href="#education" class="menu-link">
-          Work
+          What i do.
           <svg
             class="arrow-icon"
             fill="none"
@@ -119,7 +118,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
       <li class="menu-item">
         <a href="#pricing" class="menu-link">
-          Pricing
+          Flexible Pricing.
           <svg
             class="arrow-icon"
             fill="none"
@@ -145,8 +144,8 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
     <ul class="flex items-center gap-8 justify-center">
       <li><a href="#about" class="text-gray-700 hover:text-black font-medium">About</a></li>
       {hasProjects && <li><a href="#projects" class="text-gray-700 hover:text-black font-medium">Projects</a></li>}
-      {hasExperience && <li><a href="#experience" class="text-gray-700 hover:text-black font-medium">Client Work</a></li>}
-      {hasEducation && <li><a href="#education" class="text-gray-700 hover:text-black font-medium">Expertise</a></li>}
+      <!--{hasExperience && <li><a href="#experience" class="text-gray-700 hover:text-black font-medium">Client Work</a></li>}-->
+      {hasEducation && <li><a href="#education" class="text-gray-700 hover:text-black font-medium">Services</a></li>}
       <li><a href="#pricing" class="text-gray-700 hover:text-black font-medium">Pricing</a></li>
     </ul>
   </nav>
