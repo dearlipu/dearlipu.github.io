@@ -15,17 +15,17 @@ Please share more details.`
 };
 ---
 
-<section id="pricing" class="p-8 sm:p-12 md:p-16 lg:p-24">
+<section id="pricing" class="p-6 sm:p-10 md:p-14 lg:p-20">
   <div>
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
       <!-- LEFT -->
       <div class="lg:col-span-4">
-        <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900">
           Flexible Pricing.
         </h2>
 
-        <div class="w-[75px] h-[5px] mt-2 rounded-full"
+        <div class="w-[70px] h-[4px] mt-2 rounded-full"
           style={`background-color: ${siteConfig.accentColor}`} />
 
         <p class="text-gray-500 mt-5 text-sm max-w-sm leading-relaxed">
@@ -34,20 +34,21 @@ Please share more details.`
 
         <!-- TOGGLE -->
         <div class="mt-6 flex justify-center lg:justify-start">
-          <div class="relative flex bg-gray-100 rounded-full p-1 w-full max-w-[260px]">
+          <div class="relative flex bg-gray-200 rounded-full p-1 w-full max-w-[260px] h-[42px]">
 
             <!-- SLIDER -->
             <div id="toggleSlider"
-              class="absolute top-1 left-[4px] w-[calc(50%-4px)] h-[calc(100%-8px)] bg-white rounded-full shadow transition-all duration-300"">
+              class="absolute top-1 left-1 w-1/2 h-[calc(100%-8px)]
+                     bg-white rounded-full shadow-sm transition-all duration-300">
             </div>
 
             <button id="perProjectBtn"
-              class="relative z-10 flex-1 py-2 text-sm font-medium text-gray-900 text-center">
+              class="relative z-10 flex-1 flex items-center justify-center text-sm font-semibold text-gray-900 transition">
               Per Project
             </button>
 
             <button id="monthlyBtn"
-              class="relative z-10 flex-1 py-2 text-sm font-medium text-gray-600 text-center">
+              class="relative z-10 flex-1 flex items-center justify-center text-sm font-semibold text-gray-500 transition">
               Monthly
             </button>
 
@@ -61,39 +62,26 @@ Please share more details.`
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
           <!-- BASIC -->
-          <div class="group bg-gray-50 rounded-xl border border-gray-200 p-5 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-            <h3 class="text-xl font-bold text-gray-900">Basic</h3>
+          <div class="bg-gray-50 rounded-xl border border-gray-200 p-5 hover:shadow-lg transition">
+            <h3 class="text-lg font-bold text-gray-900">Basic</h3>
 
-            <p class="price text-xl font-bold mt-2 text-gray-800"
+            <p class="price text-xl font-bold mt-2 text-gray-800 transition-all duration-300"
                data-project="₹999+"
                data-monthly="₹8,999/mo">
               ₹999+
             </p>
 
-            <ul class="features mt-4 space-y-3 text-sm text-gray-600"
-                data-project='[
-                  "1 design (poster / thumbnail / simple edit)",
-                  "1 revision",
-                  "1–2 days delivery"
-                ]'
-                data-monthly='[
-                  "Unlimited designs",
-                  "Priority delivery",
-                  "Pause anytime"
-                ]'>
-            </ul>
+            <ul class="features mt-4 space-y-3 text-sm text-gray-600"></ul>
 
             <a href={createWhatsApp("Basic")}
-              class="mt-6 inline-block text-center w-full px-4 py-2 rounded-md bg-[#101828] text-white font-medium transition hover:bg-slate-800">
+              class="mt-6 inline-block w-full text-center px-4 py-2 rounded-md bg-[#101828] text-white font-medium hover:bg-black transition">
               Get Started
             </a>
           </div>
 
           <!-- STANDARD -->
-          <div
-            class="group relative bg-gray-50 rounded-xl border-2 p-5 pt-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
-            style={`border-color: ${siteConfig.accentColor}`}
-          >
+          <div class="relative bg-gray-50 rounded-xl border-2 p-5 pt-7 hover:shadow-xl transition"
+               style={`border-color: ${siteConfig.accentColor}`}>
 
             <div class="absolute -top-3 left-1/2 -translate-x-1/2">
               <span class="text-xs px-3 py-1 rounded-full text-white font-medium shadow"
@@ -102,58 +90,36 @@ Please share more details.`
               </span>
             </div>
 
-            <h3 class="text-xl font-bold text-gray-900">Standard</h3>
+            <h3 class="text-lg font-bold text-gray-900">Standard</h3>
 
-            <p class="price text-xl font-bold mt-2 text-gray-800"
+            <p class="price text-xl font-bold mt-2 text-gray-800 transition-all duration-300"
                data-project="₹2,999+"
                data-monthly="₹19,999/mo">
               ₹2,999+
             </p>
 
-            <ul class="features mt-4 space-y-3 text-sm text-gray-600"
-                data-project='[
-                  "3–5 designs OR 1 video edit",
-                  "2–3 revisions",
-                  "Priority delivery (24–48 hrs)"
-                ]'
-                data-monthly='[
-                  "Unlimited requests",
-                  "Faster priority queue",
-                  "Multi-format delivery"
-                ]'>
-            </ul>
+            <ul class="features mt-4 space-y-3 text-sm text-gray-600"></ul>
 
             <a href={createWhatsApp("Standard")}
-              class="mt-6 inline-block text-center w-full px-4 py-2 rounded-md bg-[#101828] text-white font-medium transition hover:bg-slate-800">
+              class="mt-6 inline-block w-full text-center px-4 py-2 rounded-md bg-[#101828] text-white font-medium hover:bg-black transition">
               Get Started
             </a>
           </div>
 
           <!-- PREMIUM -->
-          <div class="group bg-gray-50 rounded-xl border border-gray-200 p-5 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-            <h3 class="text-xl font-bold text-gray-900">Premium</h3>
+          <div class="bg-gray-50 rounded-xl border border-gray-200 p-5 hover:shadow-lg transition">
+            <h3 class="text-lg font-bold text-gray-900">Premium</h3>
 
-            <p class="price text-xl font-bold mt-2 text-gray-800"
+            <p class="price text-xl font-bold mt-2 text-gray-800 transition-all duration-300"
                data-project="₹7,999+"
                data-monthly="₹39,999/mo">
               ₹7,999+
             </p>
 
-            <ul class="features mt-4 space-y-3 text-sm text-gray-600"
-                data-project='[
-                  "Unlimited requests (or 8–10 tasks)",
-                  "Unlimited revisions",
-                  "Fast delivery (24 hrs priority queue)"
-                ]'
-                data-monthly='[
-                  "Unlimited everything",
-                  "Top priority delivery",
-                  "Dedicated support"
-                ]'>
-            </ul>
+            <ul class="features mt-4 space-y-3 text-sm text-gray-600"></ul>
 
             <a href={createWhatsApp("Premium")}
-              class="mt-6 inline-block text-center w-full px-4 py-2 rounded-md bg-[#101828] text-white font-medium transition hover:bg-slate-800">
+              class="mt-6 inline-block w-full text-center px-4 py-2 rounded-md bg-[#101828] text-white font-medium hover:bg-black transition">
               Get Started
             </a>
           </div>
@@ -177,46 +143,57 @@ Please share more details.`
   const prices = document.querySelectorAll(".price");
   const features = document.querySelectorAll(".features");
 
+  const featureData = {
+    project: [
+      ["1 design","1 revision","1–2 days delivery"],
+      ["3–5 designs / 1 video","2–3 revisions","Priority delivery"],
+      ["Unlimited requests","Unlimited revisions","Fast delivery"]
+    ],
+    monthly: [
+      ["Unlimited designs","Priority delivery","Pause anytime"],
+      ["Unlimited requests","Priority queue","Multi-format"],
+      ["Unlimited everything","Top priority","Dedicated support"]
+    ]
+  };
+
   function setMode(mode) {
-    prices.forEach(p => {
-      p.textContent = mode === "monthly"
-        ? p.dataset.monthly
-        : p.dataset.project;
-    });
+    prices.forEach((p, i) => {
+      p.style.opacity = "0";
 
-    features.forEach(f => {
-      const data = mode === "monthly"
-        ? JSON.parse(f.dataset.monthly)
-        : JSON.parse(f.dataset.project);
+      setTimeout(() => {
+        p.textContent = mode === "monthly"
+          ? p.dataset.monthly
+          : p.dataset.project;
+        p.style.opacity = "1";
+      }, 150);
 
-      f.innerHTML = data.map(item => `
-        <li class="flex items-center gap-3 leading-none">
-          <svg xmlns="http://www.w3.org/2000/svg"
-            class="w-5 h-5 text-gray-400 flex-shrink-0"
-            fill="none" viewBox="0 0 24 24"
-            stroke="currentColor" stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z"/>
-            <path d="M3 12a9 9 0 1 0 18 0"/>
-            <path d="M9 12h6"/>
-            <path d="M12 9v6"/>
-          </svg>
+      const list = featureData[mode][i];
+      features[i].innerHTML = list.map(item => `
+        <li class="flex items-center gap-2">
+          <span class="text-gray-400">✓</span>
           ${item}
         </li>
       `).join("");
     });
 
+    // toggle UI
     if (mode === "monthly") {
-      slider.style.left = "calc(50% + 2px)";
+      slider.style.left = "50%";
+      monthlyBtn.classList.remove("text-gray-500");
+      monthlyBtn.classList.add("text-gray-900");
+      perBtn.classList.remove("text-gray-900");
+      perBtn.classList.add("text-gray-500");
     } else {
       slider.style.left = "4px";
+      perBtn.classList.remove("text-gray-500");
+      perBtn.classList.add("text-gray-900");
+      monthlyBtn.classList.remove("text-gray-900");
+      monthlyBtn.classList.add("text-gray-500");
     }
   }
 
-  perBtn.addEventListener("click", () => setMode("project"));
-  monthlyBtn.addEventListener("click", () => setMode("monthly"));
+  perBtn.onclick = () => setMode("project");
+  monthlyBtn.onclick = () => setMode("monthly");
 
-  // DEFAULT
   setMode("monthly");
 </script>
