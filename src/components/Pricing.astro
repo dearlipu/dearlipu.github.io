@@ -38,8 +38,7 @@ Please share more details.`
 
             <!-- SLIDER -->
             <div id="toggleSlider"
-              class="absolute top-1 left-[4px] w-1/2 h-[calc(100%-8px)]
-                     bg-white rounded-full shadow transition-all duration-300">
+              class="absolute top-1 left-[4px] w-[calc(50%-4px)] h-[calc(100%-8px)] bg-white rounded-full shadow transition-all duration-300"">
             </div>
 
             <button id="perProjectBtn"
@@ -209,7 +208,7 @@ Please share more details.`
     });
 
     if (mode === "monthly") {
-      slider.style.left = "50%";
+      slider.style.left = "calc(50% + 2px)";
     } else {
       slider.style.left = "4px";
     }
