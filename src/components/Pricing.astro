@@ -1,7 +1,7 @@
 ---
 import { siteConfig } from "../config";
 
-const PHONE = "918144991049"; // ⚠️ replace with your WhatsApp number (country code + number, no +)
+const PHONE = "918144991049";
 
 const createWhatsApp = (plan) => {
   const message = encodeURIComponent(
@@ -19,238 +19,193 @@ Please share more details.`
   <div>
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
 
-      <!-- LEFT TITLE -->
+      <!-- LEFT -->
       <div class="lg:col-span-4">
         <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
           Flexible Pricing.
         </h2>
-        <div
-          class="w-[75px] h-[5px] mt-2 rounded-full"
-          style={`background-color: ${siteConfig.accentColor}`}
-        />
-            <p class="text-gray-500 mt-5 text-sm max-w-sm leading-relaxed">
-              100+ projects delivered • Fast turnaround • Clear communication
-            </p>
+
+        <div class="w-[75px] h-[5px] mt-2 rounded-full"
+          style={`background-color: ${siteConfig.accentColor}`} />
+
+        <p class="text-gray-500 mt-5 text-sm max-w-sm leading-relaxed">
+          100+ projects delivered • Fast turnaround • Clear communication
+        </p>
       </div>
 
-      <!-- RIGHT CARDS -->
+      <!-- RIGHT -->
       <div class="lg:col-span-8">
+
+        <!--  TOGGLE -->
+        <div class="flex justify-center mb-10">
+          <div class="relative flex bg-gray-100 rounded-full p-1 w-[260px]">
+
+            <div id="toggleSlider"
+              class="absolute top-1 left-1 w-1/2 h-[calc(100%-8px)] bg-white rounded-full shadow transition-all duration-300">
+            </div>
+
+            <button id="perProjectBtn"
+              class="relative z-10 w-1/2 py-2 text-sm font-medium text-gray-900">
+              Per Project
+            </button>
+
+            <button id="monthlyBtn"
+              class="relative z-10 w-1/2 py-2 text-sm font-medium text-gray-600">
+              Monthly
+            </button>
+
+          </div>
+        </div>
+
+        <!-- CARDS -->
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
           <!-- BASIC -->
           <div class="group bg-gray-50 rounded-xl border border-gray-200 p-5 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
             <h3 class="text-xl font-bold text-gray-900">Basic</h3>
-            <p class="text-xl font-bold mt-2 text-gray-800">₹999+</p>
-          
-            <ul class="mt-4 space-y-3 text-sm text-gray-600">
-            
-              <li class="flex items-center gap-3 leading-none">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5 text-gray-400 flex-shrink-0"
-                  fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
-                  <path d="M9 12h6" />
-                  <path d="M12 9v6" />
-                </svg>
-                1 design (poster / thumbnail / simple edit)
-              </li>
-            
-              <li class="flex items-center gap-3 leading-none">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5 text-gray-400 flex-shrink-0"
-                  fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
-                  <path d="M9 12h6" />
-                  <path d="M12 9v6" />
-                </svg>
-                1 revision
-              </li>
-            
-              <li class="flex items-center gap-3 leading-none">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5 text-gray-400 flex-shrink-0"
-                  fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
-                  <path d="M9 12h6" />
-                  <path d="M12 9v6" />
-                </svg>
-                1–2 days delivery
-              </li>
-            
+
+            <p class="price text-xl font-bold mt-2 text-gray-800"
+               data-project="₹999+"
+               data-monthly="₹8,999/mo">
+              ₹999+
+            </p>
+
+            <ul class="features mt-4 space-y-3 text-sm text-gray-600"
+                data-project='[
+                  "1 design (poster / thumbnail / simple edit)",
+                  "1 revision",
+                  "1–2 days delivery"
+                ]'
+                data-monthly='[
+                  "Unlimited designs",
+                  "Priority delivery",
+                  "Pause anytime"
+                ]'>
             </ul>
-          
-            <a
-              href={createWhatsApp("Basic")}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="mt-6 inline-block text-center w-full px-4 py-2 rounded-md bg-[#101828] text-white font-medium transition hover:bg-slate-800"
-            >
+
+            <a href={createWhatsApp("Basic")}
+              class="mt-6 inline-block text-center w-full px-4 py-2 rounded-md bg-[#101828] text-white font-medium transition hover:bg-slate-800">
               Get Started
             </a>
           </div>
-          
-          
+
           <!-- STANDARD -->
-          <div
-            class="group relative bg-gray-50 rounded-xl border-2 p-5 pt-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
-            style={`border-color: ${siteConfig.accentColor}`}
-          >
-          
-            <!-- BADGE -->
+          <div class="group relative bg-gray-50 rounded-xl border-2 p-5 pt-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+               style={`border-color: ${siteConfig.accentColor}`}>
+
             <div class="absolute -top-3 left-1/2 -translate-x-1/2">
-              <span
-                class="text-xs px-3 py-1 rounded-full text-white font-medium shadow"
-                style={`background-color: ${siteConfig.accentColor}`}
-              >
+              <span class="text-xs px-3 py-1 rounded-full text-white font-medium shadow"
+                style={`background-color: ${siteConfig.accentColor}`}>
                 Most Popular
               </span>
             </div>
-          
+
             <h3 class="text-xl font-bold text-gray-900">Standard</h3>
-            <p class="text-xl font-bold mt-2 text-gray-800">₹2,999+</p>
-          
-            <ul class="mt-4 space-y-3 text-sm text-gray-600">
-            
-              <li class="flex items-center gap-3 leading-none">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5 text-gray-400 flex-shrink-0"
-                  fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
-                  <path d="M9 12h6" />
-                  <path d="M12 9v6" />
-                </svg>
-                3–5 designs OR 1 video edit
-              </li>
-            
-              <li class="flex items-center gap-3 leading-none">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5 text-gray-400 flex-shrink-0"
-                  fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
-                  <path d="M9 12h6" />
-                  <path d="M12 9v6" />
-                </svg>
-                2–3 revisions
-              </li>
-            
-              <li class="flex items-center gap-3 leading-none">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5 text-gray-400 flex-shrink-0"
-                  fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
-                  <path d="M9 12h6" />
-                  <path d="M12 9v6" />
-                </svg>
-                Priority delivery (24–48 hrs)
-              </li>
-            
+
+            <p class="price text-xl font-bold mt-2 text-gray-800"
+               data-project="₹2,999+"
+               data-monthly="₹19,999/mo">
+              ₹2,999+
+            </p>
+
+            <ul class="features mt-4 space-y-3 text-sm text-gray-600"
+                data-project='[
+                  "3–5 designs OR 1 video edit",
+                  "2–3 revisions",
+                  "Priority delivery (24–48 hrs)"
+                ]'
+                data-monthly='[
+                  "Unlimited requests",
+                  "Faster priority queue",
+                  "Multi-format delivery"
+                ]'>
             </ul>
-          
-            <a
-              href={createWhatsApp("Standard")}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="mt-6 inline-block text-center w-full px-4 py-2 rounded-md bg-[#101828] text-white font-medium transition hover:bg-slate-800"
-            >
+
+            <a href={createWhatsApp("Standard")}
+              class="mt-6 inline-block text-center w-full px-4 py-2 rounded-md bg-[#101828] text-white font-medium transition hover:bg-slate-800">
               Get Started
             </a>
           </div>
-          
-          
+
           <!-- PREMIUM -->
           <div class="group bg-gray-50 rounded-xl border border-gray-200 p-5 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
             <h3 class="text-xl font-bold text-gray-900">Premium</h3>
-            <p class="text-xl font-bold mt-2 text-gray-800">₹7,999+</p>
-          
-            <ul class="mt-4 space-y-3 text-sm text-gray-600">
-            
-              <li class="flex items-center gap-3 leading-none">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5 text-gray-400 flex-shrink-0"
-                  fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
-                  <path d="M9 12h6" />
-                  <path d="M12 9v6" />
-                </svg>
-                Unlimited requests (or 8–10 tasks)
-              </li>
-            
-              <li class="flex items-center gap-3 leading-none">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5 text-gray-400 flex-shrink-0"
-                  fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
-                  <path d="M9 12h6" />
-                  <path d="M12 9v6" />
-                </svg>
-                Unlimited revisions
-              </li>
-            
-              <li class="flex items-center gap-3 leading-none">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5 text-gray-400 flex-shrink-0"
-                  fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
-                  <path d="M9 12h6" />
-                  <path d="M12 9v6" />
-                </svg>
-                Fast delivery (24 hrs priority queue)
-              </li>
-            
+
+            <p class="price text-xl font-bold mt-2 text-gray-800"
+               data-project="₹7,999+"
+               data-monthly="₹39,999/mo">
+              ₹7,999+
+            </p>
+
+            <ul class="features mt-4 space-y-3 text-sm text-gray-600"
+                data-project='[
+                  "Unlimited requests (or 8–10 tasks)",
+                  "Unlimited revisions",
+                  "Fast delivery (24 hrs priority queue)"
+                ]'
+                data-monthly='[
+                  "Unlimited everything",
+                  "Top priority delivery",
+                  "Dedicated support"
+                ]'>
             </ul>
-          
-            <a
-              href={createWhatsApp("Premium")}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="mt-6 inline-block text-center w-full px-4 py-2 rounded-md bg-[#101828] text-white font-medium transition hover:bg-slate-800"
-            >
+
+            <a href={createWhatsApp("Premium")}
+              class="mt-6 inline-block text-center w-full px-4 py-2 rounded-md bg-[#101828] text-white font-medium transition hover:bg-slate-800">
               Get Started
             </a>
           </div>
 
-        <!-- NOTE -->
+        </div>
+
         <p class="mt-6 text-sm text-gray-500">
           Final pricing depends on project scope. Custom quotes available.
         </p>
-      </div>
 
+      </div>
     </div>
   </div>
 </section>
+
+<!--  SCRIPT -->
+<script>
+  const perBtn = document.getElementById("perProjectBtn");
+  const monthlyBtn = document.getElementById("monthlyBtn");
+  const slider = document.getElementById("toggleSlider");
+
+  const prices = document.querySelectorAll(".price");
+  const features = document.querySelectorAll(".features");
+
+  function setMode(mode) {
+    prices.forEach(p => {
+      p.textContent = mode === "monthly"
+        ? p.dataset.monthly
+        : p.dataset.project;
+    });
+
+    features.forEach(f => {
+      const data = mode === "monthly"
+        ? JSON.parse(f.dataset.monthly)
+        : JSON.parse(f.dataset.project);
+
+      f.innerHTML = data.map(item => `<li>✔ ${item}</li>`).join("");
+    });
+
+    // slider animation
+    if (mode === "monthly") {
+      slider.style.transform = "translateX(100%)";
+      monthlyBtn.classList.add("text-gray-900");
+      perBtn.classList.remove("text-gray-900");
+    } else {
+      slider.style.transform = "translateX(0%)";
+      perBtn.classList.add("text-gray-900");
+      monthlyBtn.classList.remove("text-gray-900");
+    }
+  }
+
+  perBtn.addEventListener("click", () => setMode("project"));
+  monthlyBtn.addEventListener("click", () => setMode("monthly"));
+
+  // DEFAULT MODE
+  setMode("monthly");
+</script>
