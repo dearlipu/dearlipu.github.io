@@ -95,19 +95,8 @@ Please share more details.`
         </div>
         
         <!-- STANDARD -->
-        <div class="relative z-10 bg-gray-50 rounded-xl border-2 p-5 pt-7 hover:shadow-xl transition" style={`border-color: ${siteConfig.accentColor}`}>
-        
-          <!-- ICON -->
-          <div class="absolute right-[-30px] top-[-30px] opacity-10 pointer-events-none">
-            <svg xmlns="http://www.w3.org/2000/svg"
-              class="w-[140px] h-[140px]"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5">
-              <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"/>
-            </svg>
-          </div>
+        <div class="relative z-10 rounded-xl border-2 hover:shadow-xl transition"
+             style={`border-color: ${siteConfig.accentColor}`}>
         
           <!-- BADGE -->
           <div class="absolute -top-3 left-1/2 -translate-x-1/2 z-20">
@@ -117,20 +106,37 @@ Please share more details.`
             </span>
           </div>
         
-          <h3 class="text-lg font-bold text-gray-900">Standard</h3>
+          <!-- INNER BOX -->
+          <div class="relative bg-gray-50 rounded-xl p-5 pt-7 overflow-hidden">
         
-          <p class="price text-xl font-bold mt-2 text-gray-800 transition-all duration-300"
-             data-project="₹2,999+"
-             data-monthly="₹19,999/mo">₹2,999+</p>
+            <!-- SVG -->
+            <div class="absolute right-[-30px] top-[-30px] opacity-10 pointer-events-none">
+              <svg xmlns="http://www.w3.org/2000/svg"
+                class="w-[140px] h-[140px]"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5">
+                <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"/>
+              </svg>
+            </div>
         
-          <ul class="features mt-4 space-y-3 text-sm text-gray-600"></ul>
+            <h3 class="text-lg font-bold text-gray-900">Standard</h3>
         
-          <button
-            data-plan="Standard"
-            class="whatsapp-btn btn-primary mt-6 w-full px-4 py-2 rounded-md font-medium text-center"
-            style={`--accent: ${siteConfig.accentColor}`}>
-            Get Started
-          </button>
+            <p class="price text-xl font-bold mt-2 text-gray-800 transition-all duration-300"
+               data-project="₹2,999+"
+               data-monthly="₹19,999/mo">₹2,999+</p>
+        
+            <ul class="features mt-4 space-y-3 text-sm text-gray-600"></ul>
+        
+            <button
+              data-plan="Standard"
+              class="whatsapp-btn btn-primary mt-6 w-full px-4 py-2 rounded-md font-medium text-center"
+              style={`--accent: ${siteConfig.accentColor}`}>
+              Get Started
+            </button>
+        
+          </div>
         </div>
         
         <!-- PREMIUM -->
@@ -183,6 +189,9 @@ Please share more details.`
 }
 .btn-primary:hover {
   background-color: var(--accent);
+}
+.z-10:hover {
+  transform: translateY(-4px);
 }
 </style>
 
