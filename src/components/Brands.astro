@@ -56,11 +56,6 @@ const brands = [
   opacity: 0.9;
   flex-shrink: 0;
   filter: grayscale(100%);
-  transition: opacity 0.3s;
-}
-
-.logo:hover {
-  opacity: 1;
 }
 
 /* ANIMATION */
@@ -90,16 +85,11 @@ const brands = [
   z-index: 10;
 }
 
-/* MOBILE — ONLY SIZE CHANGE (NO LAYOUT CHANGE) */
+/* MOBILE */
 @media (max-width: 640px) {
   .logo {
     height: 2rem;
     margin-right: 2rem;
-  }
-  .fade-left,
-  .fade-right {
-    width: 1rem;
-    opacity: 0.5;
   }
 }
 </style>
