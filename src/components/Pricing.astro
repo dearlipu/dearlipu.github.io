@@ -25,31 +25,30 @@ Please share more details.`
           Flexible Pricing.
         </h2>
 
-        <div
-          class="w-[75px] h-[5px] mt-2 rounded-full"
-          style={`background-color: ${siteConfig.accentColor}`}
-        />
+        <div class="w-[75px] h-[5px] mt-2 rounded-full"
+          style={`background-color: ${siteConfig.accentColor}`} />
 
         <p class="text-gray-500 mt-5 text-sm max-w-sm leading-relaxed">
           100+ projects delivered • Fast turnaround • Clear communication
         </p>
 
-        <!-- TOGGLE (MOVED HERE) -->
-        <div class="mt-6">
-          <div class="relative flex bg-gray-100 rounded-full p-1 w-[260px]">
+        <!-- TOGGLE -->
+        <div class="mt-6 flex justify-center lg:justify-start">
+          <div class="relative flex bg-gray-100 rounded-full p-1 w-full max-w-[260px]">
 
             <!-- SLIDER -->
             <div id="toggleSlider"
-              class="absolute top-1 left-1 w-1/2 h-[calc(100%-8px)] bg-white rounded-full shadow transition-all duration-300">
+              class="absolute top-1 left-1 w-[calc(50%-4px)] h-[calc(100%-8px)]
+                     bg-white rounded-full shadow transition-all duration-300">
             </div>
 
             <button id="perProjectBtn"
-              class="relative z-10 w-1/2 py-2 text-sm font-medium text-gray-900">
+              class="relative z-10 flex-1 py-2 text-sm font-medium text-gray-900 text-center">
               Per Project
             </button>
 
             <button id="monthlyBtn"
-              class="relative z-10 w-1/2 py-2 text-sm font-medium text-gray-600">
+              class="relative z-10 flex-1 py-2 text-sm font-medium text-gray-600 text-center">
               Monthly
             </button>
 
@@ -92,16 +91,12 @@ Please share more details.`
           </div>
 
           <!-- STANDARD -->
-          <div
-            class="group relative bg-gray-50 rounded-xl border-2 p-5 pt-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
-            style={`border-color: ${siteConfig.accentColor}`}
-          >
+          <div class="group relative bg-gray-50 rounded-xl border-2 p-5 pt-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+               style={`border-color: ${siteConfig.accentColor}`}>
 
             <div class="absolute -top-3 left-1/2 -translate-x-1/2">
-              <span
-                class="text-xs px-3 py-1 rounded-full text-white font-medium shadow"
-                style={`background-color: ${siteConfig.accentColor}`}
-              >
+              <span class="text-xs px-3 py-1 rounded-full text-white font-medium shadow"
+                style={`background-color: ${siteConfig.accentColor}`}>
                 Most Popular
               </span>
             </div>
@@ -173,7 +168,6 @@ Please share more details.`
   </div>
 </section>
 
-<!-- SCRIPT -->
 <script>
   const perBtn = document.getElementById("perProjectBtn");
   const monthlyBtn = document.getElementById("monthlyBtn");
@@ -212,11 +206,10 @@ Please share more details.`
       `).join("");
     });
 
-    // slider animation
     if (mode === "monthly") {
-      slider.style.transform = "translateX(100%)";
+      slider.style.transform = "translateX(calc(100% + 4px))";
     } else {
-      slider.style.transform = "translateX(0%)";
+      slider.style.transform = "translateX(0)";
     }
   }
 
