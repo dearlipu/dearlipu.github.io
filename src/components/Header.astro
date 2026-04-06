@@ -42,20 +42,45 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
     <ul class="text-lg">
 
+      <!-- ITEM -->
       <li class="menu-item">
-        <a href="#about" class="menu-link">About <span>↗</span></a>
+        <a href="#about" class="menu-link">
+          <span>About</span>
+          <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+        </a>
       </li>
 
       <li class="menu-item">
-        <a href="#projects" class="menu-link">Projects <span>↗</span></a>
+        <a href="#projects" class="menu-link">
+          <span>Projects</span>
+          <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+        </a>
       </li>
 
       <li class="menu-item">
-        <a href="#education" class="menu-link">Services <span>↗</span></a>
+        <a href="#education" class="menu-link">
+          <span>Services</span>
+          <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+        </a>
       </li>
 
       <li class="menu-item">
-        <a href="#pricing" class="menu-link">Pricing <span>↗</span></a>
+        <a href="#pricing" class="menu-link">
+          <span>Pricing</span>
+          <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+        </a>
       </li>
 
     </ul>
@@ -65,8 +90,15 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   <nav class="hidden md:block max-w-7xl mx-auto px-8 py-4">
     <ul class="flex items-center gap-8 justify-center">
       <li><a href="#about" class="nav-link">About</a></li>
-      {hasProjects && <li><a href="#projects" class="nav-link">Projects</a></li>}
-      {hasEducation && <li><a href="#education" class="nav-link">Services</a></li>}
+
+      {hasProjects ? (
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+      ) : null}
+
+      {hasEducation ? (
+        <li><a href="#education" class="nav-link">Services</a></li>
+      ) : null}
+
       <li><a href="#pricing" class="nav-link">Pricing</a></li>
     </ul>
   </nav>
@@ -74,12 +106,16 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 </header>
 
 <script>
+document.addEventListener("DOMContentLoaded", () => {
+
   const header = document.getElementById("header");
   const btn = document.getElementById("menuBtn");
   const panel = document.getElementById("menuPanel");
   const overlay = document.getElementById("menuOverlay");
   const icon = document.getElementById("menuIcon");
   const path = document.getElementById("iconPath");
+
+  if (!btn || !panel) return;
 
   let open = false;
 
@@ -138,7 +174,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
     });
   });
 
-  // header scroll effect
+  // header background on scroll
   window.addEventListener("scroll", () => {
     if (open) closeMenu();
 
@@ -148,12 +184,15 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
       header.classList.remove("bg-white/80", "backdrop-blur-sm");
     }
   });
+
+});
 </script>
 
 <style>
 .menu-link {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 14px 0;
   border-bottom: 1px solid rgba(255,255,255,0.08);
   transition: all 0.25s ease;
@@ -162,6 +201,20 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 .menu-link:hover {
   opacity: 0.7;
   transform: translateX(6px);
+}
+
+/* SVG arrow */
+.arrow-icon {
+  width: 22px;
+  height: 22px;
+  stroke: white;
+  stroke-width: 2;
+  opacity: 0.9;
+  transition: transform 0.25s ease;
+}
+
+.menu-link:hover .arrow-icon {
+  transform: translate(3px, -3px);
 }
 
 .nav-link {
