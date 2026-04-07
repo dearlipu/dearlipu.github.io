@@ -58,12 +58,3 @@ section {
   font-size: 11px;
   cursor: pointer;
 }
-
-.faq-item {
-  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
-}
-
-.faq-item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-}
