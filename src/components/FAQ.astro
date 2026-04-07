@@ -6,60 +6,68 @@ const faqs = [
   },
   {
     q: "What kind of design tasks can I request?",
-    a: "You can request UI design, branding, social media graphics, thumbnails, landing pages, and more."
+    a: "UI design, branding, social media graphics, thumbnails, landing pages and more."
   },
   {
     q: "How fast will I receive my designs?",
     a: "Most requests are delivered within 24–48 hours depending on complexity."
   },
   {
-    q: "What tools do you use to manage work?",
-    a: "I use Notion, Figma, and email for communication and task tracking."
+    q: "What tools do you use?",
+    a: "Figma, Notion, and modern async workflows for fast delivery."
   },
   {
-    q: "Is there a limit to how many requests I can make?",
-    a: "No limit — you can add as many requests as you want, I complete them one by one."
+    q: "Is there a limit to requests?",
+    a: "No limit — I complete them one by one with priority."
   },
   {
-    q: "Can I cancel or pause anytime?",
-    a: "Yes, you can pause or cancel your subscription anytime."
+    q: "Can I cancel anytime?",
+    a: "Yes, you can pause or cancel anytime without lock-in."
   }
 ];
 ---
 
-<section class="py-16 md:py-24">
-  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-start">
+<section class="py-20 md:py-28 bg-[#F9FAFB]">
+  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-start">
 
-    <!-- LEFT -->
+    <!-- LEFT (About-style heading) -->
     <div>
-      <span class="text-xs font-bold tracking-wide bg-gray-100 px-3 py-1 rounded-full">
-        // FAQS
-      </span>
-
-      <h2 class="mt-4 text-4xl md:text-6xl font-bold text-gray-900">
+      <h2 class="text-4xl md:text-6xl font-bold text-gray-900">
         FAQs<span class="text-gray-400">.</span>
       </h2>
 
-      <p class="mt-4 text-gray-500 max-w-sm">
-        Everything you need to know about my design subscription service.
+      <div class="w-[70px] h-[4px] mt-3 rounded-full bg-gray-900"></div>
+
+      <p class="mt-6 text-gray-500 max-w-sm text-sm">
+        Everything you need to know about how I work, deliver, and collaborate.
       </p>
     </div>
 
-    <!-- RIGHT -->
+    <!-- RIGHT (Accordion) -->
     <div class="space-y-4">
       {faqs.map((item, i) => (
-        <div class="faq-item border border-gray-200 rounded-2xl bg-white shadow-sm transition">
-          
+        <div class="faq-item group border border-gray-200 rounded-2xl bg-white transition-all duration-300">
+
           <button
-            class="w-full flex items-center justify-between p-5 text-left font-medium text-gray-800"
-            onclick={`toggleFAQ(${i})`}
+            class="faq-btn w-full flex items-center justify-between p-5 text-left"
+            data-index={i}
           >
-            <span>{item.q}</span>
-            <span class="faq-icon">+</span>
+            <span class="text-gray-800 font-medium">
+              {item.q}
+            </span>
+
+            <span class="faq-icon transition-transform duration-300">
+              +
+            </span>
           </button>
 
-          <div id={`faq-${i}`} class="faq-content hidden px-5 pb-5 text-sm text-gray-600">
-            {item.a}
+          <div
+            class="faq-content px-5 text-sm text-gray-600 overflow-hidden max-h-0 transition-all duration-300"
+            id={`faq-${i}`}
+          >
+            <div class="pb-5 pt-1">
+              {item.a}
+            </div>
           </div>
 
         </div>
@@ -70,16 +78,34 @@ const faqs = [
 </section>
 
 <script>
-  function toggleFAQ(index) {
-    const el = document.getElementById(`faq-${index}`);
-    const icon = el.previousElementSibling.querySelector(".faq-icon");
+  let activeIndex = null;
 
-    if (el.classList.contains("hidden")) {
-      el.classList.remove("hidden");
-      icon.innerText = "–";
-    } else {
-      el.classList.add("hidden");
-      icon.innerText = "+";
-    }
-  }
+  document.querySelectorAll(".faq-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const index = btn.dataset.index;
+      const content = document.getElementById(`faq-${index}`);
+      const icon = btn.querySelector(".faq-icon");
+
+      // close previous
+      if (activeIndex !== null && activeIndex !== index) {
+        const prevContent = document.getElementById(`faq-${activeIndex}`);
+        const prevBtn = document.querySelector(`[data-index="${activeIndex}"]`);
+        const prevIcon = prevBtn.querySelector(".faq-icon");
+
+        prevContent.style.maxHeight = null;
+        prevIcon.style.transform = "rotate(0deg)";
+      }
+
+      // toggle current
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+        icon.style.transform = "rotate(0deg)";
+        activeIndex = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        icon.style.transform = "rotate(45deg)";
+        activeIndex = index;
+      }
+    });
+  });
 </script>
