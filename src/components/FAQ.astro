@@ -1,4 +1,6 @@
 ---
+import { siteConfig } from "../config";
+
 const faqs = [
   {
     q: "How does the subscription model work?",
@@ -27,32 +29,37 @@ const faqs = [
 ];
 ---
 
-<section class="py-20 md:py-28 bg-[#F9FAFB]">
-  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-start">
+<section id="faq" class="p-8 sm:p-12 md:p-16 lg:p-24 bg-[#F9FAFB]">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
 
-    <!-- LEFT (About-style heading) -->
-    <div>
-      <h2 class="text-4xl md:text-6xl font-bold text-gray-900">
-        FAQs<span class="text-gray-400">.</span>
+    <!-- LEFT (same as About) -->
+    <div class="lg:col-span-4">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+        FAQs.
       </h2>
 
-      <div class="w-[70px] h-[4px] mt-3 rounded-full bg-gray-900"></div>
+      <!-- BLUE BAR (same style) -->
+      <div
+        class="w-[75px] h-[5px] mt-2 rounded-full"
+        style={`background-color: ${siteConfig.accentColor}`}
+      ></div>
 
-      <p class="mt-6 text-gray-500 max-w-sm text-sm">
-        Everything you need to know about how I work, deliver, and collaborate.
+      <p class="text-gray-500 mt-5 text-sm max-w-sm leading-relaxed">
+        Everything you need to know before working with me.
       </p>
     </div>
 
-    <!-- RIGHT (Accordion) -->
-    <div class="space-y-4">
+    <!-- RIGHT (FAQ GRID) -->
+    <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+
       {faqs.map((item, i) => (
-        <div class="faq-item group border border-gray-200 rounded-2xl bg-white transition-all duration-300">
+        <div class="faq-item border border-gray-200 rounded-2xl bg-white transition-all duration-300">
 
           <button
             class="faq-btn w-full flex items-center justify-between p-5 text-left"
             data-index={i}
           >
-            <span class="text-gray-800 font-medium">
+            <span class="text-gray-800 font-medium text-sm sm:text-base">
               {item.q}
             </span>
 
@@ -62,8 +69,8 @@ const faqs = [
           </button>
 
           <div
-            class="faq-content px-5 text-sm text-gray-600 overflow-hidden max-h-0 transition-all duration-300"
             id={`faq-${i}`}
+            class="faq-content overflow-hidden max-h-0 transition-all duration-300 px-5 text-sm text-gray-600"
           >
             <div class="pb-5 pt-1">
               {item.a}
@@ -72,40 +79,40 @@ const faqs = [
 
         </div>
       ))}
-    </div>
 
+    </div>
   </div>
 </section>
 
 <script>
-  let activeIndex = null;
+let activeIndex = null;
 
-  document.querySelectorAll(".faq-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const index = btn.dataset.index;
-      const content = document.getElementById(`faq-${index}`);
-      const icon = btn.querySelector(".faq-icon");
+document.querySelectorAll(".faq-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const index = btn.dataset.index;
+    const content = document.getElementById(`faq-${index}`);
+    const icon = btn.querySelector(".faq-icon");
 
-      // close previous
-      if (activeIndex !== null && activeIndex !== index) {
-        const prevContent = document.getElementById(`faq-${activeIndex}`);
-        const prevBtn = document.querySelector(`[data-index="${activeIndex}"]`);
-        const prevIcon = prevBtn.querySelector(".faq-icon");
+    // close previous
+    if (activeIndex !== null && activeIndex !== index) {
+      const prevContent = document.getElementById(`faq-${activeIndex}`);
+      const prevBtn = document.querySelector(`[data-index="${activeIndex}"]`);
+      const prevIcon = prevBtn.querySelector(".faq-icon");
 
-        prevContent.style.maxHeight = null;
-        prevIcon.style.transform = "rotate(0deg)";
-      }
+      prevContent.style.maxHeight = null;
+      prevIcon.style.transform = "rotate(0deg)";
+    }
 
-      // toggle current
-      if (content.style.maxHeight) {
-        content.style.maxHeight = null;
-        icon.style.transform = "rotate(0deg)";
-        activeIndex = null;
-      } else {
-        content.style.maxHeight = content.scrollHeight + "px";
-        icon.style.transform = "rotate(45deg)";
-        activeIndex = index;
-      }
-    });
+    // toggle current
+    if (content.style.maxHeight) {
+      content.style.maxHeight = null;
+      icon.style.transform = "rotate(0deg)";
+      activeIndex = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+      icon.style.transform = "rotate(45deg)";
+      activeIndex = index;
+    }
   });
+});
 </script>
