@@ -5,10 +5,8 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  export default {
   site: 'https://dearlipu.github.io',
   integrations: [sitemap()],
-};
   vite: {
     plugins: [tailwindcss()],
   },
