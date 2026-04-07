@@ -87,8 +87,8 @@ import "../styles/global.css";
               const rect = trigger.getBoundingClientRect();
 
               // centered under icon
-              popup.style.left = rect.left + rect.width / 2 + "px";
-              popup.style.transform = "translateX(-50%)";
+              popup.style.left = rect.left - 10 + "px";
+              popup.style.transform = "none";
 
               const isFooter = trigger.closest("footer");
 
