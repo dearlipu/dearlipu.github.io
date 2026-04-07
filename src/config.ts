@@ -13,12 +13,13 @@ export const siteConfig = {
     `I’m a visual designer and video editor focused on creating clear, engaging digital content. I help businesses and creators turn ideas into visuals and videos that look professional and communicate effectively. I enjoy working on practical, real-world projects from social media content and motion graphics to editorial design — always focused on clarity, quality, and results.`,
   
   skills: ["Graphic Design", "Motion Graphics", "Photo & Video Editing", "Print Design"],
+  
   projects: [
     {
       name: "Newsletter Design & Layout System",
       description:
         "Designed a clean, structured email layout focused on readability and content clarity.",
-      link: "#",
+      link: "https://www.behance.net/gallery/239908611/Portfolio-2025",
       skills: ["Content Design", "Motion Graphics", "Video Editing"],
     },
     {
@@ -36,6 +37,7 @@ export const siteConfig = {
       skills: ["Visual Design", "UI Design", "Video Editing"],
     },
   ],
+  
   /*experience: [
     {
       company: "YouTube Creator Project",
@@ -78,6 +80,7 @@ export const siteConfig = {
       ],
     },
   ],*/
+  
   education: [
     {
       degree: "Visual Design",
