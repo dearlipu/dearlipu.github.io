@@ -20,110 +20,124 @@ import "../styles/global.css";
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={siteConfig.description} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap"
       rel="stylesheet"
     />
-    <title>{siteConfig.name} - aka @dearlipu</title>
-    <meta name="title" content={siteConfig.title} />
-    <meta name="keywords" content="Saurav Panda, dearlipu, Graphic Designer, Developer, Portfolio, UI Design, Video Editing, Branding, Creative Designer" />
 
+    <title>{siteConfig.name} - aka @dearlipu</title>
   </head>
+
   <body>
     <Header />
+
     <section>
       <Hero />
       <About />
       <Projects />
-      <!--<Experience />-->
+  <!--<Experience />-->
       <Education />
       <Pricing />
       <Testimonials />
       <Brands />
     </section>
+
     <Footer />
 
-      <!-- EMAIL POPUP -->
-      <div id="emailPopup" class="email-popup hidden">
-        <div class="email-box">
-          <span id="emailText"></span>
-          <button id="copyBtn">Copy</button>
-        </div>
+    <!-- EMAIL POPUP -->
+    <div id="emailPopup" class="email-popup hidden">
+      <div class="email-box">
+        <span id="emailText"></span>
+        <button id="copyBtn">Copy</button>
       </div>
+    </div>
 
     <script>
-    if (typeof window !== "undefined") {
-      const isDesktop = window.innerWidth >= 1024;
-    
-      window.addEventListener("DOMContentLoaded", () => {
-        const triggers = document.querySelectorAll(".email-trigger");
-        const popup = document.getElementById("emailPopup");
-        const copyBtn = document.getElementById("copyBtn");
-        const emailText = document.getElementById("emailText");
-    
-        let currentEmail = "";
-    
-        triggers.forEach(trigger => {
-          trigger.addEventListener("click", (e) => {
-    
-            if (!isDesktop) return;
-    
-            e.preventDefault();
-    
-            currentEmail = trigger.dataset.email;
-            emailText.innerText = currentEmail;
-    
-            const rect = trigger.getBoundingClientRect();
-    
-            // positioning
-            popup.style.left = rect.left + rect.width / 2 + "px";
-            popup.style.transform = "translateX(-50%)";
-    
-            const isFooter = trigger.closest("footer");
-    
-            if (isFooter) {
-              popup.style.top = rect.bottom + 10 + "px";
-            } else {
-              const isTop = rect.top < window.innerHeight / 2;
-    
-              popup.style.top = isTop
-                ? rect.bottom + 10 + "px"
-                : rect.top - 45 + "px";
-            }
-    
-            popup.classList.remove("hidden");
-            setTimeout(() => popup.classList.add("show"), 10);
+      if (typeof window !== "undefined") {
+        window.addEventListener("DOMContentLoaded", () => {
+
+          const isDesktop = window.innerWidth >= 1024;
+
+          const triggers = document.querySelectorAll(".email-trigger");
+          const popup = document.getElementById("emailPopup");
+          const copyBtn = document.getElementById("copyBtn");
+          const emailText = document.getElementById("emailText");
+
+          //  safety check
+          if (!triggers.length || !popup || !copyBtn || !emailText) {
+            console.warn("Email popup not initialized properly");
+            return;
+          }
+
+          let currentEmail = "";
+
+          triggers.forEach(trigger => {
+            trigger.addEventListener("click", (e) => {
+
+              if (!isDesktop) return;
+
+              e.preventDefault();
+
+              currentEmail = trigger.dataset.email;
+              emailText.innerText = currentEmail;
+
+              const rect = trigger.getBoundingClientRect();
+
+              // centered under icon
+              popup.style.left = rect.left + rect.width / 2 + "px";
+              popup.style.transform = "translateX(-50%)";
+
+              const isFooter = trigger.closest("footer");
+
+              if (isFooter) {
+                popup.style.top = rect.bottom + 10 + "px";
+              } else {
+                const isTop = rect.top < window.innerHeight / 2;
+
+                popup.style.top = isTop
+                  ? rect.bottom + 10 + "px"
+                  : rect.top - 45 + "px";
+              }
+
+              popup.classList.remove("hidden");
+              setTimeout(() => popup.classList.add("show"), 10);
+            });
           });
-        });
-    
-        copyBtn.addEventListener("click", () => {
-          navigator.clipboard.writeText(currentEmail);
-    
-          copyBtn.innerText = "Copied ✓";
-    
-          setTimeout(() => {
+
+          copyBtn.addEventListener("click", () => {
+            if (!currentEmail) return;
+
+            navigator.clipboard.writeText(currentEmail);
+
+            copyBtn.innerText = "Copied ✓";
+
+            setTimeout(() => {
+              popup.classList.remove("show");
+
+              setTimeout(() => {
+                popup.classList.add("hidden");
+                copyBtn.innerText = "Copy";
+              }, 250);
+
+            }, 800);
+          });
+
+          // hide on scroll
+          window.addEventListener("scroll", () => {
+            if (!popup.classList.contains("show")) return;
+
             popup.classList.remove("show");
-    
+
             setTimeout(() => {
               popup.classList.add("hidden");
-              copyBtn.innerText = "Copy";
-            }, 300);
-          }, 900);
+            }, 200);
+          });
+
         });
-    
-        // scroll hide
-        window.addEventListener("scroll", () => {
-          popup.classList.remove("show");
-    
-          setTimeout(() => {
-            popup.classList.add("hidden");
-          }, 200);
-        });
-    
-      });
-    }
+      }
     </script>
   </body>
 </html>
