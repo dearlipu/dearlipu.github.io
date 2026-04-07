@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Saurav Panda",
-  title: "Senior Visual Designer",
+  title: "I design visuals that make brands impossible to ignore.",
   description: "I create impactful design, video, and motion content for brands and creators. Focused on clarity, quality, and visuals that actually perform.",
   accentColor: "#1d4ed8",
   social: {
