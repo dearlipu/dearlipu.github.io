@@ -7,34 +7,56 @@ body {
 .email-popup {
   position: fixed;
   z-index: 999;
-  transform: translate(-50%, 20px);
   opacity: 0;
-  transition: all 0.3s ease;
+  transform: translateY(10px) scale(0.95);
+  transition: all 0.25s ease;
 }
 
 .email-popup.show {
   opacity: 1;
-  transform: translate(-50%, 0);
+  transform: translateY(0) scale(1);
 }
 
 .email-box {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-  background: #101828;
-  color: white;
-  padding: 10px 14px;
+  gap: 8px;
+
+  background: #f3f4f6;
+  color: #111827;
+
+  padding: 6px 10px;
   border-radius: 999px;
-  font-size: 13px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+
+  font-size: 12px;
+  font-weight: 500;
+
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
+/* email text */
+#emailText {
+  font-size: 12px;
+}
+
+/* copy button */
 #copyBtn {
   background: white;
-  color: black;
-  border: none;
-  padding: 4px 10px;
+  border: 1px solid #e5e7eb;
+  padding: 2px 8px;
   border-radius: 999px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+/* close button */
+#closeBtn {
   font-size: 12px;
   cursor: pointer;
+  opacity: 0.6;
+}
+
+#closeBtn:hover {
+  opacity: 1;
 }
