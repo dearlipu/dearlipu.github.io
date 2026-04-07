@@ -8,7 +8,7 @@ body {
   position: fixed;
   z-index: 999;
   opacity: 0;
-  transform: translateY(10px) scale(0.95);
+  transform: translateY(-6px) scale(0.95);
   transform-origin: left center;
   transition: all 0.25s ease;
 }
@@ -49,15 +49,4 @@ body {
   border-radius: 999px;
   font-size: 11px;
   cursor: pointer;
-}
-
-/* close button */
-#closeBtn {
-  font-size: 12px;
-  cursor: pointer;
-  opacity: 0.6;
-}
-
-#closeBtn:hover {
-  opacity: 1;
 }
