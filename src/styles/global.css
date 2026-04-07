@@ -51,6 +51,11 @@ body {
   cursor: pointer;
 }
 
-.faq-content {
-  transition: all 0.25s ease;
+.faq-item {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+}
+
+.faq-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
