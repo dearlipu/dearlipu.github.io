@@ -77,7 +77,10 @@ if (typeof window !== "undefined") {
         const rect = trigger.getBoundingClientRect();
         const isTop = rect.top < window.innerHeight / 2;
 
-        popup.style.left = rect.left + rect.width / 2 + "px";
+        popup.style.left = rect.left + "px";
+        popup.style.top = isTop
+          ? rect.bottom + 8 + "px"
+          : rect.top - 40 + "px";
 
         if (isTop) {
           popup.style.top = rect.bottom + 12 + "px";
@@ -94,7 +97,7 @@ if (typeof window !== "undefined") {
     copyBtn.addEventListener("click", () => {
       navigator.clipboard.writeText(currentEmail);
 
-      copyBtn.innerText = "Copied ✓";
+      copyBtn.innerText = "Copied";
 
       setTimeout(() => {
         popup.classList.remove("show");
@@ -107,6 +110,15 @@ if (typeof window !== "undefined") {
       }, 900);
     });
   });
+const closeBtn = document.getElementById("closeBtn");
+
+closeBtn.addEventListener("click", () => {
+  popup.classList.remove("show");
+
+  setTimeout(() => {
+    popup.classList.add("hidden");
+  }, 250);
+});
 }
 </script>
   </body>
