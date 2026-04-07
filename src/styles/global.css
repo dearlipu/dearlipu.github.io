@@ -50,3 +50,7 @@ body {
   font-size: 11px;
   cursor: pointer;
 }
+
+.faq-content {
+  transition: all 0.25s ease;
+}
