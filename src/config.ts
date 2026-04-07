@@ -15,25 +15,25 @@ export const siteConfig = {
   skills: ["Graphic Design", "Motion Graphics", "Photo & Video Editing", "Print Design"],
   projects: [
     {
-      name: "AI Dev Roundup Newsletter",
+      name: "Newsletter Design & Layout System",
       description:
-        "One concise email. Five minutes. Every Tuesday. Essential AI news & trends, production-ready libraries, powerful AI tools, and real-world code examples",
-      link: "https://aidevroundup.com/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+        "Designed a clean, structured email layout focused on readability and content clarity.",
+      link: "#",
+      skills: ["Content Design", "Motion Graphics", "Video Editing"],
     },
     {
-      name: "Chrome Extension Mastery: Build Full-Stack Extensions with React & Node.js",
+      name: "Landing Page & Content Design",
       description:
-        "Master the art of building production-ready, full-stack Chrome Extensions using modern web technologies and best practices",
-      link: "https://fullstackextensions.com/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+        "Designed a conversion-focused layout for a technical product, improving clarity and user flow.",
+      link: "#",
+      skills: ["UI Design", "Motion Graphics", "Content Design"],
     },
     {
-      name: "ExtensionKit",
+      name: "Product UI & Visual System",
       description:
-        "Kit to jump-start your Chrome extension projects with a variety of battle-tested starter templates & examples",
-      link: "https://extensionkit.io/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+        "Created a clean interface and visual system for a developer-focused toolkit.",
+      link: "#",
+      skills: ["Visual Design", "UI Design", "Video Editing"],
     },
   ],
   /*experience: [
@@ -80,33 +80,33 @@ export const siteConfig = {
   ],*/
   education: [
     {
-      degree: "Graphic Design",
-      school: "Photoshop • Illustrator • InDesign",
-      dateRange: "",
+      degree: "Visual Design",
+      school: "Branding, graphics, and image editing that stand out.",
+      //dateRange: "",
       achievements: [
-        "Magazine & book design",
-        "Poster & thumbnail creation",
-        "Photo manipulation"
+        "Social media & marketing creatives",
+        "Photo editing & manipulation",
+        "Thumbnails, posters & ads"
       ],
     },
     {
       degree: "Video & Motion",
-      school: "Premiere Pro • After Effects",
-      dateRange: "",
+      school: "High-quality video editing and motion content.",
+      //dateRange: "",
       achievements: [
-        "Cinematic editing",
-        "Motion graphics",
-        "YouTube & Instagram content"
+        "Video editing (YouTube, reels, ads)",
+        "Motion graphics & animations",
+        "Cinematic edits & storytelling"
       ],
     },
     {
-      degree: "Business Systems",
-      school: "Excel • Word • PowerPoint • Access",
-      dateRange: "",
+      degree: "Print & Editorial",
+      school: "Professional layouts for print and publishing.",
+      //dateRange: "",
       achievements: [
-        "Data organization",
-        "Workflow systems",
-        "Automation-ready structures"
+        "Book & magazine design",
+        "Brochures & print materials",
+        "Print-ready file preparation"
       ],
     },
   ]
