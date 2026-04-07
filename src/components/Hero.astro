@@ -157,10 +157,9 @@ import { siteConfig } from "../config";
   >
     {
       siteConfig.social?.email && (
-        <button
-          type="button"
+        <a
+          href={`mailto:${siteConfig.social.email}`}
           data-email={siteConfig.social.email}
-          aria-label="Email"
           class="email-trigger transition-colors duration-300 hover:text-[var(--accent-color)]"
         >
           <svg
