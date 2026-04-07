@@ -50,5 +50,56 @@ import "../styles/global.css";
             <button id="copyBtn">Copy</button>
           </div>
         </div>
+
+<script>
+const isDesktop = window.innerWidth >= 1024;
+
+if (isDesktop) {
+  const triggers = document.querySelectorAll(".email-trigger");
+  const popup = document.getElementById("emailPopup");
+  const copyBtn = document.getElementById("copyBtn");
+  const emailText = document.getElementById("emailText");
+
+  let currentEmail = "";
+
+  triggers.forEach(trigger => {
+    trigger.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      currentEmail = trigger.dataset.email;
+      emailText.innerText = currentEmail;
+
+      const rect = trigger.getBoundingClientRect();
+      const isTop = rect.top < window.innerHeight / 2;
+
+      popup.style.left = rect.left + rect.width / 2 + "px";
+
+      if (isTop) {
+        popup.style.top = rect.bottom + 10 + "px";
+      } else {
+        popup.style.top = rect.top - 50 + "px";
+      }
+
+      popup.classList.remove("hidden");
+      setTimeout(() => popup.classList.add("show"), 10);
+    });
+  });
+
+  copyBtn.addEventListener("click", () => {
+    navigator.clipboard.writeText(currentEmail);
+
+    copyBtn.innerText = "Copied";
+
+    setTimeout(() => {
+      popup.classList.remove("show");
+
+      setTimeout(() => {
+        popup.classList.add("hidden");
+        copyBtn.innerText = "Copy";
+      }, 300);
+    }, 800);
+  });
+}
+</script>
   </body>
 </html>
