@@ -1,0 +1,85 @@
+---
+const faqs = [
+  {
+    q: "How does the subscription model work?",
+    a: "You subscribe to a plan and can request unlimited designs. I work on one request at a time and deliver them quickly."
+  },
+  {
+    q: "What kind of design tasks can I request?",
+    a: "You can request UI design, branding, social media graphics, thumbnails, landing pages, and more."
+  },
+  {
+    q: "How fast will I receive my designs?",
+    a: "Most requests are delivered within 24–48 hours depending on complexity."
+  },
+  {
+    q: "What tools do you use to manage work?",
+    a: "I use Notion, Figma, and email for communication and task tracking."
+  },
+  {
+    q: "Is there a limit to how many requests I can make?",
+    a: "No limit — you can add as many requests as you want, I complete them one by one."
+  },
+  {
+    q: "Can I cancel or pause anytime?",
+    a: "Yes, you can pause or cancel your subscription anytime."
+  }
+];
+---
+
+<section class="py-16 md:py-24">
+  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-start">
+
+    <!-- LEFT -->
+    <div>
+      <span class="text-xs font-bold tracking-wide bg-gray-100 px-3 py-1 rounded-full">
+        // FAQS
+      </span>
+
+      <h2 class="mt-4 text-4xl md:text-6xl font-bold text-gray-900">
+        FAQs<span class="text-gray-400">.</span>
+      </h2>
+
+      <p class="mt-4 text-gray-500 max-w-sm">
+        Everything you need to know about my design subscription service.
+      </p>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="space-y-4">
+      {faqs.map((item, i) => (
+        <div class="faq-item border border-gray-200 rounded-2xl bg-white shadow-sm transition">
+          
+          <button
+            class="w-full flex items-center justify-between p-5 text-left font-medium text-gray-800"
+            onclick={`toggleFAQ(${i})`}
+          >
+            <span>{item.q}</span>
+            <span class="faq-icon">+</span>
+          </button>
+
+          <div id={`faq-${i}`} class="faq-content hidden px-5 pb-5 text-sm text-gray-600">
+            {item.a}
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function toggleFAQ(index) {
+    const el = document.getElementById(`faq-${index}`);
+    const icon = el.previousElementSibling.querySelector(".faq-icon");
+
+    if (el.classList.contains("hidden")) {
+      el.classList.remove("hidden");
+      icon.innerText = "–";
+    } else {
+      el.classList.add("hidden");
+      icon.innerText = "+";
+    }
+  }
+</script>
