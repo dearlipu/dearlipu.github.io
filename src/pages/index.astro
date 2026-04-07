@@ -53,61 +53,61 @@ import "../styles/global.css";
 </div>
 
 <script>
-const isDesktop = window.innerWidth >= 1024;
+if (typeof window !== "undefined") {
+  const isDesktop = window.innerWidth >= 1024;
 
-const triggers = document.querySelectorAll(".email-trigger");
-const popup = document.getElementById("emailPopup");
-const copyBtn = document.getElementById("copyBtn");
-const emailText = document.getElementById("emailText");
+  window.addEventListener("DOMContentLoaded", () => {
+    const triggers = document.querySelectorAll(".email-trigger");
+    const popup = document.getElementById("emailPopup");
+    const copyBtn = document.getElementById("copyBtn");
+    const emailText = document.getElementById("emailText");
 
-let currentEmail = "";
+    let currentEmail = "";
 
-triggers.forEach(trigger => {
-  trigger.addEventListener("click", (e) => {
+    triggers.forEach(trigger => {
+      trigger.addEventListener("click", (e) => {
 
-    // 👉 MOBILE = normal mail open
-    if (!isDesktop) return;
+        if (!isDesktop) return;
 
-    // 👉 DESKTOP = popup
-    e.preventDefault();
+        e.preventDefault();
 
-    currentEmail = trigger.dataset.email;
-    emailText.innerText = currentEmail;
+        currentEmail = trigger.dataset.email;
+        emailText.innerText = currentEmail;
 
-    const rect = trigger.getBoundingClientRect();
-    const isTop = rect.top < window.innerHeight / 2;
+        const rect = trigger.getBoundingClientRect();
+        const isTop = rect.top < window.innerHeight / 2;
 
-    popup.style.left = rect.left + rect.width / 2 + "px";
+        popup.style.left = rect.left + rect.width / 2 + "px";
 
-    if (isTop) {
-      popup.style.top = rect.bottom + 12 + "px";
-    } else {
-      popup.style.top = rect.top - 55 + "px";
-    }
+        if (isTop) {
+          popup.style.top = rect.bottom + 12 + "px";
+        } else {
+          popup.style.top = rect.top - 55 + "px";
+        }
 
-    popup.classList.remove("hidden");
+        popup.classList.remove("hidden");
 
-    setTimeout(() => {
-      popup.classList.add("show");
-    }, 10);
+        setTimeout(() => popup.classList.add("show"), 10);
+      });
+    });
+
+    copyBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText(currentEmail);
+
+      copyBtn.innerText = "Copied ✓";
+
+      setTimeout(() => {
+        popup.classList.remove("show");
+
+        setTimeout(() => {
+          popup.classList.add("hidden");
+          copyBtn.innerText = "Copy";
+        }, 300);
+
+      }, 900);
+    });
   });
-});
-
-copyBtn.addEventListener("click", () => {
-  navigator.clipboard.writeText(currentEmail);
-
-  copyBtn.innerText = "Copied ✓";
-
-  setTimeout(() => {
-    popup.classList.remove("show");
-
-    setTimeout(() => {
-      popup.classList.add("hidden");
-      copyBtn.innerText = "Copy";
-    }, 300);
-
-  }, 900);
-});
+}
 </script>
   </body>
 </html>
