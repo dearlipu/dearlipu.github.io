@@ -11,3 +11,38 @@ html {
 section {
   scroll-margin-top: 100px;
 }
+
+.email-popup {
+  position: fixed;
+  z-index: 999;
+  transform: translate(-50%, 20px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.email-popup.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.email-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #101828;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+#copyBtn {
+  background: white;
+  color: black;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  cursor: pointer;
+}
