@@ -10,7 +10,13 @@ const createWhatsApp = (plan, mode) => {
 `Hi Saurav,
 
 I’m interested in your ${plan} (${type}) plan.
-Please share more details.`
+
+Here are my requirements:
+[Briefly describe your project]
+
+Please share details on pricing and timeline.
+
+Thank you.`
   );
 
   return `https://wa.me/${PHONE}?text=${message}`;
@@ -89,7 +95,7 @@ Please share more details.`
             data-plan="Basic"
             class="whatsapp-btn btn-primary mt-6 w-full px-4 py-2 rounded-md font-medium text-center"
             style={`--accent: ${siteConfig.accentColor}`}>
-            Get Started
+            Request a Quote
           </button>
         </div>
         
@@ -132,7 +138,7 @@ Please share more details.`
               data-plan="Standard"
               class="whatsapp-btn btn-primary mt-6 w-full px-4 py-2 rounded-md font-medium text-center"
               style={`--accent: ${siteConfig.accentColor}`}>
-              Get Started
+              Request a Quote
             </button>
         
           </div>
@@ -166,7 +172,7 @@ Please share more details.`
             data-plan="Premium"
             class="whatsapp-btn btn-primary mt-6 w-full px-4 py-2 rounded-md font-medium text-center"
             style={`--accent: ${siteConfig.accentColor}`}>
-            Get Started
+            Request a Quote
           </button>
         </div>
 
