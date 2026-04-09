@@ -87,9 +87,12 @@ export const siteConfig = {
       school: "Branding, graphics, and image editing that stand out.",
       //dateRange: "",
       achievements: [
-        "Social media & marketing creatives",
-        "Photo editing & manipulation",
-        "Thumbnails, posters & ads"
+        "Social media creatives (posts, carousels, ads)",
+        "Thumbnails & banners",
+        "Brand identity & visual systems",
+        "Posters, campaigns & marketing creatives",
+        "Illustration & custom artwork",
+        "Professional photo editing, retouching & color grading"
       ],
     },
     {
@@ -97,9 +100,12 @@ export const siteConfig = {
       school: "High-quality video editing and motion content.",
       //dateRange: "",
       achievements: [
-        "Video editing (YouTube, reels, ads)",
-        "Motion graphics & animations",
-        "Cinematic edits & storytelling"
+        "YouTube & short-form content (Reels, Shorts)",
+        "Motion graphics & animated content",
+        "Cinematic edits & storytelling",
+        "Ads & promotional videos",
+        "VFX (basic to advanced depending on project)",
+        "2D / 3D animation"
       ],
     },
     {
@@ -107,9 +113,12 @@ export const siteConfig = {
       school: "Professional layouts for print and publishing.",
       //dateRange: "",
       achievements: [
-        "Book & magazine design",
-        "Brochures & print materials",
-        "Print-ready file preparation"
+        "Magazines & editorial layouts",
+        "Book design & formatting",
+        "Brochures & catalogs",
+        "Flyers, business cards & print assets",
+        "Print-ready production (CMYK, bleed, export setup)",
+        "And more..."
       ],
     },
   ]
