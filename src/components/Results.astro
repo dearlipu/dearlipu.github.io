@@ -1,4 +1,6 @@
 ---
+import { siteConfig } from "../config";
+
 const stats = [
   { value: 150, suffix: "+", title: "Project success", desc: "Delivered in 20+ countries." },
   { value: 100, suffix: "%", title: "Client efficiency", desc: "Clients report higher efficiency." },
@@ -15,7 +17,11 @@ const stats = [
         Our Results.
       </h2>
 
-      <div class="w-[75px] h-[5px] mt-2 rounded-full bg-blue-600"></div>
+      <!-- ACCENT BAR (your theme color) -->
+      <div
+        class="w-[75px] h-[5px] mt-2 rounded-full"
+        style={`background-color: ${siteConfig.accentColor}`}
+      />
 
       <p class="text-gray-500 mt-5 text-sm max-w-sm leading-relaxed">
         Real outcomes, not promises — we build systems that save time and scale work.
@@ -25,7 +31,7 @@ const stats = [
     <!-- RIGHT -->
     <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-      {stats.map((stat, i) => (
+      {stats.map((stat) => (
         <div class="result-card">
 
           <div class="result-number" data-target={stat.value}>
@@ -44,6 +50,7 @@ const stats = [
   </div>
 </section>
 
+<!-- COUNT ANIMATION -->
 <script>
   const counters = document.querySelectorAll(".result-number");
 
@@ -83,7 +90,7 @@ const stats = [
 </script>
 
 <style>
-/* CARD SAME AS YOUR SITE */
+/* CARD */
 .result-card {
   background: #f9fafb;
   border: 1px solid #e5e7eb;
@@ -104,9 +111,9 @@ const stats = [
   margin-bottom: 14px;
 }
 
-/* INNER BOX (same feel as your right cards) */
+/* INNER BOX */
 .result-content {
-  background: #ffffff;
+  background: #f3f4f6;
   border-radius: 10px;
   padding: 12px;
 }
