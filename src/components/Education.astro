@@ -52,7 +52,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
                   <ul class="space-y-2 achievements">
                     {edu.achievements.map((achievement, i) => (
-                      <li class={`flex items-start ${i > 2 ? "extra hidden" : ""}`}>
+                      <li class={`flex items-start extra ${i > 2 ? "collapsed" : ""}`}>
                         <span class="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 mr-3"></span>
                         <span class="text-sm sm:text-base text-gray-600">
                           {achievement}
@@ -116,12 +116,22 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 }
 
 .extra {
-  transition: all 0.3s ease;
+  max-height: 40px;
+  opacity: 1;
+  overflow: hidden;
+  transition: all 0.35s ease;
+}
+
+.extra.collapsed {
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
 }
 </style>
 
 <script>
   const cards = document.querySelectorAll(".bg-gray-50");
+  let activeCard = null;
 
   cards.forEach(card => {
     const btn = card.querySelector(".toggle-btn");
@@ -129,43 +139,35 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
     if (!btn) return;
 
-    let open = false;
+    function openCard() {
+      // close other card
+      if (activeCard && activeCard !== card) {
+        activeCard.close();
+      }
 
-    function openList() {
-      extras.forEach(el => el.classList.remove("hidden"));
+      extras.forEach(el => el.classList.remove("collapsed"));
       btn.textContent = "Show less";
-      open = true;
+
+      activeCard = {
+        el: card,
+        close: closeCard
+      };
     }
 
-    function closeList() {
-      extras.forEach(el => el.classList.add("hidden"));
-      btn.textContent = "Show more";
-      open = false;
+    function closeCard() {
+      extras.forEach(el => el.classList.add("collapsed"));
+      btn.textContent = "+ More details";
+
+      if (activeCard?.el === card) {
+        activeCard = null;
+      }
     }
 
-    // CLICK (mobile + desktop)
     btn.addEventListener("click", (e) => {
       e.stopPropagation();
-      open ? closeList() : openList();
-    });
 
-    // HOVER (desktop only)
-    card.addEventListener("mouseenter", () => {
-      if (window.innerWidth > 768) openList();
-    });
-
-    card.addEventListener("mouseleave", () => {
-      if (window.innerWidth > 768) closeList();
-    });
-
-    // CLICK OUTSIDE
-    document.addEventListener("click", (e) => {
-      if (!card.contains(e.target)) closeList();
-    });
-
-    // SCROLL AUTO CLOSE
-    window.addEventListener("scroll", () => {
-      closeList();
+      const isOpen = !extras[0].classList.contains("collapsed");
+      isOpen ? closeCard() : openCard();
     });
   });
 </script>
