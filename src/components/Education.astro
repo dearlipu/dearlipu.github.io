@@ -7,10 +7,10 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   hasEducation && (
     <section id="education" class="p-8 sm:p-12 md:p-16 lg:p-24 bg-white">
       <div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-stretch">
 
           <!-- LEFT -->
-          <div class="lg:col-span-4">
+          <div class="lg:col-span-4 flex flex-col">
           
             <!-- TITLE -->
             <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
@@ -21,9 +21,9 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
               class="w-[75px] h-[5px] mt-2 rounded-full"
               style={`background-color: ${siteConfig.accentColor}`}
             />
-          
+
             <!-- SCROLL BOX -->
-            <div class="mt-8 relative overflow-hidden rounded-2xl border border-gray-200 bg-gray-50">
+            <div class="mt-8 relative flex-1 overflow-hidden rounded-2xl border bg-gray-50">
           
               <!-- FADE TOP -->
               <div class="fade-top"></div>
@@ -31,17 +31,15 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
               <!-- TRACK -->
               <div class="vertical-track">
                 
-                <!-- LOOP 1 -->
-                {siteConfig.projects.map((p) => (
+                {[...siteConfig.projects, ...siteConfig.projects].map((p) => (
                   <div class="project-card">
-                    <img src="/images/sample.jpg" alt="project" />
-                  </div>
-                ))}
-          
-                <!-- LOOP 2 (duplicate for infinite scroll) -->
-                {siteConfig.projects.map((p) => (
-                  <div class="project-card">
-                    <img src="/images/sample.jpg" alt="project" />
+                    
+                    <div class="image-stack">
+                      {(p.images || []).map((img) => (
+                        <img src={img} alt={p.name} loading="lazy" />
+                      ))}
+                    </div>
+
                   </div>
                 ))}
           
@@ -99,6 +97,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
                     <img 
                       src={`/images/edu-${index + 1}.gif`} 
                       alt={edu.degree} 
+                      loading="lazy"
                     />
                   </div>
 
@@ -121,7 +120,6 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   height: 100%;
   overflow: hidden;
 
-  /* clean angled cut */
   clip-path: polygon(
     20% 0,
     100% 0,
@@ -134,14 +132,16 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 .image-full img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* ensures crop ALWAYS */
+  object-fit: cover;
   display: block;
 }
+
 /* TRACK */
 .vertical-track {
   display: flex;
   flex-direction: column;
-  animation: scrollY 20s linear infinite;
+  animation: scrollY 25s linear infinite;
+  will-change: transform;
 }
 
 /* CARD */
@@ -149,25 +149,37 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   padding: 10px;
 }
 
-.project-card img {
+/* MULTI IMAGE */
+.image-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.image-stack img {
   width: 100%;
-  height: 180px;
+  height: 160px;
   object-fit: cover;
   border-radius: 14px;
   display: block;
+  transition: transform 0.3s ease;
 }
 
-/* ANIMATION */
+.image-stack img:hover {
+  transform: scale(1.04);
+}
+
+/* ANIMATION (perfect loop) */
 @keyframes scrollY {
-  from {
+  0% {
     transform: translateY(0);
   }
-  to {
+  100% {
     transform: translateY(-50%);
   }
 }
 
-/* FADE EFFECT */
+/* FADE */
 .fade-top {
   position: absolute;
   top: 0;
@@ -186,5 +198,21 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   height: 60px;
   background: linear-gradient(to top, #f9fafb, transparent);
   z-index: 10;
+}
+
+/* PAUSE ON HOVER */
+.vertical-track:hover {
+  animation-play-state: paused;
+}
+
+/* MOBILE FIX */
+@media (max-width: 1024px) {
+  .vertical-track {
+    animation-duration: 35s;
+  }
+
+  .image-stack img {
+    height: 140px;
+  }
 }
 </style>
