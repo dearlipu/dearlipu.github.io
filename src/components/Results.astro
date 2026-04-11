@@ -8,31 +8,28 @@ const stats = [
 ];
 ---
 
-<section id="results" class="p-8 sm:p-12 md:p-16 lg:p-24 bg-white">
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+<section id="results" class="results-section">
+  <div class="results-container">
 
     <!-- LEFT -->
-    <div class="lg:col-span-4">
-      <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
-        Our Results.
-      </h2>
+    <div class="results-left">
+      <h2>My Results.</h2>
 
-      <!-- ACCENT BAR (your theme color) -->
       <div
-        class="w-[75px] h-[5px] mt-2 rounded-full"
+        class="accent-line"
         style={`background-color: ${siteConfig.accentColor}`}
       />
 
-      <p class="text-gray-500 mt-5 text-sm max-w-sm leading-relaxed">
+      <p>
         Real outcomes, not promises — we build systems that save time and scale work.
       </p>
     </div>
 
     <!-- RIGHT -->
-    <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="results-grid">
 
       {stats.map((stat) => (
-        <div class="result-card">
+        <div class="result-card reveal">
 
           <div class="result-number" data-target={stat.value}>
             0{stat.suffix}
@@ -47,22 +44,23 @@ const stats = [
       ))}
 
     </div>
+
   </div>
 </section>
 
-<!-- COUNT ANIMATION -->
+<!-- JS -->
 <script>
-  const counters = document.querySelectorAll(".result-number");
+  const cards = document.querySelectorAll(".result-card");
 
-  const animate = (el) => {
+  const animateNumber = (el) => {
     const target = +el.dataset.target;
     const suffix = el.innerText.replace(/[0-9]/g, "");
     let count = 0;
 
-    const speed = target / 50;
+    const step = target / 50;
 
     const update = () => {
-      count += speed;
+      count += step;
 
       if (count < target) {
         el.innerText = Math.floor(count) + suffix;
@@ -77,30 +75,117 @@ const stats = [
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      const el = entry.target;
+      const card = entry.target;
 
       if (entry.isIntersecting) {
-        el.innerText = "0" + el.innerText.replace(/[0-9]/g, "");
-        animate(el);
+        card.classList.add("active");
+
+        const num = card.querySelector(".result-number");
+
+        // reset every time visible
+        num.innerText = "0" + num.innerText.replace(/[0-9]/g, "");
+
+        animateNumber(num);
       }
     });
-  }, { threshold: 0.6 });
+  }, { threshold: 0.4 });
 
-  counters.forEach(el => observer.observe(el));
+  cards.forEach(card => observer.observe(card));
 </script>
 
 <style>
+/* SECTION SPACING */
+.results-section {
+  padding: 80px 24px;
+  background: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .results-section {
+    padding: 100px 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .results-section {
+    padding: 120px 80px;
+  }
+}
+
+/* LAYOUT */
+.results-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+@media (min-width: 1024px) {
+  .results-container {
+    grid-template-columns: 4fr 8fr;
+    gap: 60px;
+  }
+}
+
+/* LEFT */
+.results-left h2 {
+  font-size: 40px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.accent-line {
+  width: 70px;
+  height: 4px;
+  margin-top: 10px;
+  border-radius: 999px;
+}
+
+.results-left p {
+  margin-top: 16px;
+  font-size: 14px;
+  color: #6b7280;
+  max-width: 320px;
+}
+
+/* GRID */
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .results-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .results-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
 /* CARD */
 .result-card {
   background: #f9fafb;
   border: 1px solid #e5e7eb;
   border-radius: 14px;
   padding: 18px;
-  transition: 0.3s ease;
+
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+.result-card.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .result-card:hover {
-  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
 }
 
 /* NUMBER */
@@ -121,16 +206,20 @@ const stats = [
 .result-content h3 {
   font-size: 15px;
   font-weight: 600;
-  margin-bottom: 4px;
 }
 
 .result-content p {
   font-size: 13px;
   color: #6b7280;
+  margin-top: 4px;
 }
 
 /* MOBILE */
 @media (max-width: 640px) {
+  .results-left h2 {
+    font-size: 32px;
+  }
+
   .result-number {
     font-size: 26px;
   }
