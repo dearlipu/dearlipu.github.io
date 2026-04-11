@@ -38,7 +38,7 @@ export const siteConfig = {
     },
   ],
   
-  /*experience: [
+  experience: [
     {
       company: "YouTube Creator Project",
       title: "Cinematic Video Editing",
@@ -79,7 +79,7 @@ export const siteConfig = {
         "Delivered assets for social & print"
       ],
     },
-  ],*/
+  ],
   
   education: [
     {
