@@ -11,16 +11,14 @@ const showcaseImages = [
 ];
 ---
 
-{hasEducation && (
-  <section id="education" class="p-8 sm:p-12 md:p-16 lg:p-24 bg-white">
-    <div>
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-stretch">
+{
+  hasEducation && (
+    <section id="education" class="p-8 sm:p-12 md:p-16 lg:p-24 bg-white">
+      <div>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
-        <!-- LEFT -->
-        <div class="lg:col-span-4 flex flex-col min-h-0">
-          
-          <div class="left-inner">
-
+          <!-- LEFT -->
+          <div class="lg:col-span-4">
             <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
               What I Offer.
             </h2>
@@ -36,97 +34,95 @@ const showcaseImages = [
 
             <!-- SHOWCASE BOX -->
             <div class="mt-8 showcase-box">
-              
-              <div class="showcase-mask">
-
-                <div class="showcase-track">
-                  {[...showcaseImages, ...showcaseImages].map((img) => (
-                    <div class="showcase-card">
-                      <img src={img} alt="work" loading="lazy" />
-                    </div>
-                  ))}
-                </div>
-
+            
+              <div class="fade-top"></div>
+            
+              <div class="showcase-track">
+                {[...showcaseImages, ...showcaseImages].map((img) => (
+                  <div class="showcase-card">
+                    <img src={img} alt="work" loading="lazy" />
+                  </div>
+                ))}
               </div>
-
+            
+              <div class="fade-bottom"></div>
+            
             </div>
 
           </div>
 
-        </div>
+          <!-- RIGHT -->
+          <div class="lg:col-span-8 space-y-8">
 
-        <!-- RIGHT -->
-        <div class="lg:col-span-8 space-y-8">
+            {siteConfig.education.map((edu, index) => (
 
-          {siteConfig.education.map((edu, index) => (
+              <div class="bg-gray-50 rounded-xl border border-gray-200 
+                          flex flex-col md:flex-row overflow-hidden 
+                          transition-all duration-300 hover:shadow-md">
 
-            <div class="bg-gray-50 rounded-xl border border-gray-200 
-                        flex flex-col md:flex-row overflow-hidden 
-                        transition-all duration-300 hover:shadow-md">
+                <div class="flex-1 p-5 md:p-6">
 
-              <div class="flex-1 p-5 md:p-6">
+                  <div class="mb-4">
+                    <h3 class="text-lg sm:text-xl font-semibold text-gray-900">
+                      {edu.degree}
+                    </h3>
 
-                <div class="mb-4">
-                  <h3 class="text-lg sm:text-xl font-semibold text-gray-900">
-                    {edu.degree}
-                  </h3>
+                    <p
+                      class="text-base sm:text-lg"
+                      style={`color: ${siteConfig.accentColor}`}
+                    >
+                      {edu.school}
+                    </p>
+                  </div>
 
-                  <p
-                    class="text-base sm:text-lg"
-                    style={`color: ${siteConfig.accentColor}`}
-                  >
-                    {edu.school}
-                  </p>
+                  <ul class="space-y-2">
+                    {edu.achievements.map((achievement) => (
+                      <li class="flex items-start">
+                        <span class="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 mr-3"></span>
+                        <span class="text-sm sm:text-base text-gray-600">
+                          {achievement}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+
                 </div>
 
-                <ul class="space-y-2">
-                  {edu.achievements.map((achievement) => (
-                    <li class="flex items-start">
-                      <span class="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 mr-3"></span>
-                      <span class="text-sm sm:text-base text-gray-600">
-                        {achievement}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                <div class="md:w-[320px] w-full aspect-[4/3] md:aspect-auto flex-shrink-0">
+
+                  <div class="image-full">
+                    <img 
+                      src={`/images/edu-${index + 1}.gif`} 
+                      alt={edu.degree} 
+                    />
+                  </div>
+
+                </div>
 
               </div>
 
-              <div class="md:w-[320px] w-full aspect-[4/3] md:aspect-auto flex-shrink-0">
+            ))}
 
-                <div class="image-full">
-                  <img 
-                    src={`/images/edu-${index + 1}.gif`} 
-                    alt={edu.degree} 
-                  />
-                </div>
-
-              </div>
-
-            </div>
-
-          ))}
-
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-)}
-
-<style>
-.left-inner {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  min-height: 0;
+    </section>
+  )
 }
 
-/* RIGHT IMAGE */
+<style>
 .image-full {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%, 0% 25%);
+
+  clip-path: polygon(
+    20% 0,
+    100% 0,
+    100% 100%,
+    0% 100%,
+    0% 25%
+  );
 }
 
 .image-full img {
@@ -136,20 +132,10 @@ const showcaseImages = [
   display: block;
 }
 
-/* SHOWCASE */
+/* SHOWCASE BOX */
 .showcase-box {
-  background: #f9fafb;
-  border-radius: 16px;
-  padding: 10px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-
-  flex: 1;
-  min-height: 0;
-}
-
-/* MASK */
-.showcase-mask {
-  height: 100%;
+  position: relative;
+  height: 420px;
   overflow: hidden;
 }
 
@@ -157,20 +143,20 @@ const showcaseImages = [
 .showcase-track {
   display: flex;
   flex-direction: column;
-  animation: scrollY 30s linear infinite;
+  animation: scrollY 25s linear infinite;
   will-change: transform;
 }
 
 /* CARD */
 .showcase-card {
-  padding: 6px 0;
+  padding: 10px 0;
 }
 
 .showcase-card img {
   width: 100%;
-  max-height: 220px;
+  height: 180px;
   object-fit: cover;
-  border-radius: 14px;
+  border-radius: 16px;
   display: block;
   transition: transform 0.3s ease;
 }
@@ -179,13 +165,34 @@ const showcaseImages = [
   transform: scale(1.05);
 }
 
-/* PERFECT LOOP */
+/* LOOP FIX */
 @keyframes scrollY {
   0% { transform: translateY(0); }
-  100% { transform: translateY(-100%); }
+  100% { transform: translateY(-50%); }
 }
 
-/* PAUSE ON HOVER */
+/* FADE */
+.fade-top,
+.fade-bottom {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.fade-top {
+  top: 0;
+  background: linear-gradient(to bottom, white, transparent);
+}
+
+.fade-bottom {
+  bottom: 0;
+  background: linear-gradient(to top, white, transparent);
+}
+
+/* HOVER PAUSE */
 .showcase-track:hover {
   animation-play-state: paused;
 }
@@ -197,11 +204,11 @@ const showcaseImages = [
   }
 
   .showcase-card img {
-    max-height: 240px;
+    height: 140px;
   }
 
   .showcase-track {
-    animation-duration: 40s;
+    animation-duration: 35s;
   }
 }
 </style>
