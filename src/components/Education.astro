@@ -11,18 +11,47 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
           <!-- LEFT -->
           <div class="lg:col-span-4">
+          
+            <!-- TITLE -->
             <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
               What I Offer.
             </h2>
-
+          
             <div
               class="w-[75px] h-[5px] mt-2 rounded-full"
               style={`background-color: ${siteConfig.accentColor}`}
             />
-
-            <p class="text-gray-500 mt-5 text-sm max-w-sm leading-relaxed">
-              Creative work that looks professional and gets real results.
-            </p>
+          
+            <!-- SCROLL BOX -->
+            <div class="mt-8 relative overflow-hidden rounded-2xl border border-gray-200 bg-gray-50">
+          
+              <!-- FADE TOP -->
+              <div class="fade-top"></div>
+          
+              <!-- TRACK -->
+              <div class="vertical-track">
+                
+                <!-- LOOP 1 -->
+                {siteConfig.projects.map((p) => (
+                  <div class="project-card">
+                    <img src="/images/sample.jpg" alt="project" />
+                  </div>
+                ))}
+          
+                <!-- LOOP 2 (duplicate for infinite scroll) -->
+                {siteConfig.projects.map((p) => (
+                  <div class="project-card">
+                    <img src="/images/sample.jpg" alt="project" />
+                  </div>
+                ))}
+          
+              </div>
+          
+              <!-- FADE BOTTOM -->
+              <div class="fade-bottom"></div>
+          
+            </div>
+          
           </div>
 
           <!-- RIGHT -->
@@ -107,5 +136,55 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   height: 100%;
   object-fit: cover; /* ensures crop ALWAYS */
   display: block;
+}
+/* TRACK */
+.vertical-track {
+  display: flex;
+  flex-direction: column;
+  animation: scrollY 20s linear infinite;
+}
+
+/* CARD */
+.project-card {
+  padding: 10px;
+}
+
+.project-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+}
+
+/* ANIMATION */
+@keyframes scrollY {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+/* FADE EFFECT */
+.fade-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(to bottom, #f9fafb, transparent);
+  z-index: 10;
+}
+
+.fade-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(to top, #f9fafb, transparent);
+  z-index: 10;
 }
 </style>
