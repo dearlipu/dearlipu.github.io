@@ -15,10 +15,10 @@ const showcaseImages = [
   hasEducation && (
     <section id="education" class="p-8 sm:p-12 md:p-16 lg:p-24 bg-white">
       <div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-stretch">
 
           <!-- LEFT -->
-          <div class="lg:col-span-4">
+          <div class="lg:col-span-4 flex flex-col">
             <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
               What I Offer.
             </h2>
@@ -135,7 +135,7 @@ const showcaseImages = [
 /* SHOWCASE BOX */
 .showcase-box {
   position: relative;
-  height: 420px;
+  flex: 1;
   overflow: hidden;
 }
 
@@ -149,12 +149,12 @@ const showcaseImages = [
 
 /* CARD */
 .showcase-card {
-  padding: 10px 0;
+  padding: 12px 0;
 }
 
 .showcase-card img {
   width: 100%;
-  height: 180px;
+  height: auto;
   object-fit: cover;
   border-radius: 16px;
   display: block;
@@ -165,7 +165,7 @@ const showcaseImages = [
   transform: scale(1.05);
 }
 
-/* LOOP FIX */
+/* LOOP */
 @keyframes scrollY {
   0% { transform: translateY(0); }
   100% { transform: translateY(-50%); }
