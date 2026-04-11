@@ -14,43 +14,39 @@ const showcaseImages = [
 {hasEducation && (
   <section id="education" class="p-8 sm:p-12 md:p-16 lg:p-24 bg-white">
     <div>
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-stretch">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
         <!-- LEFT -->
-        <div class="lg:col-span-4 flex flex-col h-full min-h-0">
+        <div class="lg:col-span-4 flex flex-col min-h-0">
 
-          <!-- WRAPPER -->
-          <div class="left-wrapper">
+          <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+            What I Offer.
+          </h2>
 
-            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
-              What I Offer.
-            </h2>
+          <div
+            class="w-[75px] h-[5px] mt-2 rounded-full"
+            style={`background-color: ${siteConfig.accentColor}`}
+          />
 
-            <div
-              class="w-[75px] h-[5px] mt-2 rounded-full"
-              style={`background-color: ${siteConfig.accentColor}`}
-            />
+          <p class="text-gray-500 mt-5 text-sm max-w-sm leading-relaxed">
+            Creative work that looks professional and gets real results.
+          </p>
 
-            <p class="text-gray-500 mt-5 text-sm max-w-sm leading-relaxed">
-              Creative work that looks professional and gets real results.
-            </p>
-
-            <!-- SHOWCASE BOX -->
-            <div class="mt-8 showcase-box">
-              <div class="showcase-track">
-                {[...showcaseImages, ...showcaseImages].map((img) => (
-                  <div class="showcase-card">
-                    <img src={img} alt="work" loading="lazy" />
-                  </div>
-                ))}
-              </div>
+          <!-- SHOWCASE BOX -->
+          <div class="mt-8 showcase-box" id="showcaseBox">
+            <div class="showcase-track">
+              {[...showcaseImages, ...showcaseImages].map((img) => (
+                <div class="showcase-card">
+                  <img src={img} alt="work" loading="lazy" />
+                </div>
+              ))}
             </div>
-
           </div>
+
         </div>
 
         <!-- RIGHT -->
-        <div class="lg:col-span-8 space-y-8">
+        <div class="lg:col-span-8 space-y-8" id="rightColumn">
 
           {siteConfig.education.map((edu, index) => (
 
@@ -105,15 +101,34 @@ const showcaseImages = [
   </section>
 )}
 
-<style>
-/* LEFT WRAPPER */
-.left-wrapper {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  min-height: 0;
-}
+<!-- HEIGHT SYNC SCRIPT -->
+<script>
+  function syncHeights() {
+    const leftBox = document.getElementById("showcaseBox");
+    const rightCol = document.getElementById("rightColumn");
 
+    if (!leftBox || !rightCol) return;
+
+    // get full height of right column
+    const rightHeight = rightCol.offsetHeight;
+
+    // subtract top content height (title + text)
+    const leftTop = leftBox.getBoundingClientRect().top;
+    const rightTop = rightCol.getBoundingClientRect().top;
+
+    const offset = leftTop - rightTop;
+
+    leftBox.style.height = (rightHeight - offset) + "px";
+  }
+
+  // run after load
+  window.addEventListener("load", syncHeights);
+
+  // run on resize
+  window.addEventListener("resize", syncHeights);
+</script>
+
+<style>
 /* RIGHT IMAGE */
 .image-full {
   width: 100%;
@@ -131,15 +146,12 @@ const showcaseImages = [
 
 /* SHOWCASE BOX */
 .showcase-box {
-  flex: 1; 
-  min-height: 0;
   overflow: hidden;
 
   background: #f9fafb;
   border-radius: 12px;
   border: 1px solid #e5e7eb;
   padding: 12px;
-  max-height: 650px;
 }
 
 /* TRACK */
@@ -148,7 +160,6 @@ const showcaseImages = [
   flex-direction: column;
   gap: 10px;
   animation: scrollY 25s linear infinite;
-  will-change: transform;
 }
 
 .showcase-track:hover {
@@ -185,7 +196,7 @@ const showcaseImages = [
 /* MOBILE */
 @media (max-width: 1024px) {
   .showcase-box {
-    height: 300px;      /* fixed height for mobile */
+    height: 300px !important;
   }
 
   .showcase-card img {
