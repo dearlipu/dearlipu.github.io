@@ -1,4 +1,6 @@
 ---
+import { siteConfig } from "../config";
+
 const stats = [
   { value: 150, suffix: "+", title: "Project success", desc: "Delivered in 20+ countries." },
   { value: 100, suffix: "%", title: "Client efficiency", desc: "Clients report higher efficiency." },
@@ -6,58 +8,63 @@ const stats = [
 ];
 ---
 
-<section id="results" class="p-8 sm:p-12 md:p-16 lg:p-24">
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+<section id="results" class="p-6 sm:p-10 md:p-14 lg:p-20 bg-white">
+  <div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
-    <!-- LEFT -->
-    <div class="lg:col-span-4">
-      <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
-        My Results.
-      </h2>
+      <!-- LEFT -->
+      <div class="lg:col-span-4">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+          My Results.
+        </h2>
 
-      <div class="w-[75px] h-[5px] mt-2 rounded-full">
-        style={`background-color: ${siteConfig.accentColor}`}
+        <div
+          class="w-[75px] h-[5px] mt-2 rounded-full"
+          style={`background-color: ${siteConfig.accentColor}`}
+        />
+
+        <p class="text-gray-500 mt-5 text-sm max-w-sm leading-relaxed">
+          Real outcomes, not promises — we build systems that save time and scale work.
+        </p>
       </div>
 
-      <p class="text-gray-500 mt-5 text-sm max-w-sm leading-relaxed">
-        Real outcomes, not promises — we build systems that save time and scale work.
-      </p>
-    </div>
+      <!-- RIGHT -->
+      <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-    <!-- RIGHT -->
-    <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {stats.map((stat) => (
+          <div class="result-card">
 
-      {stats.map((stat, i) => (
-        <div class="result-card">
+            <div class="result-number" data-target={stat.value}>
+              0{stat.suffix}
+            </div>
 
-          <div class="result-number" data-target={stat.value}>
-            0{stat.suffix}
+            <div class="result-content">
+              <h3>{stat.title}</h3>
+              <p>{stat.desc}</p>
+            </div>
+
           </div>
+        ))}
 
-          <div class="result-content">
-            <h3>{stat.title}</h3>
-            <p>{stat.desc}</p>
-          </div>
-
-        </div>
-      ))}
+      </div>
 
     </div>
   </div>
 </section>
 
+<!-- JS -->
 <script>
-  const counters = document.querySelectorAll(".result-number");
+  const cards = document.querySelectorAll(".result-card");
 
-  const animate = (el) => {
+  const animateNumber = (el) => {
     const target = +el.dataset.target;
     const suffix = el.innerText.replace(/[0-9]/g, "");
     let count = 0;
 
-    const speed = target / 50;
+    const step = target / 50;
 
     const update = () => {
-      count += speed;
+      count += step;
 
       if (count < target) {
         el.innerText = Math.floor(count) + suffix;
@@ -72,19 +79,24 @@ const stats = [
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      const el = entry.target;
+      const card = entry.target;
 
       if (entry.isIntersecting) {
-        el.innerText = "0" + el.innerText.replace(/[0-9]/g, "");
-        animate(el);
+        const num = card.querySelector(".result-number");
+
+        // reset every time visible
+        num.innerText = "0" + num.innerText.replace(/[0-9]/g, "");
+
+        animateNumber(num);
       }
     });
-  }, { threshold: 0.6 });
+  }, { threshold: 0.4 });
 
-  counters.forEach(el => observer.observe(el));
+  cards.forEach(card => observer.observe(card));
 </script>
 
 <style>
+/* CARD (match your site) */
 .result-card {
   background: #f9fafb;
   border: 1px solid #e5e7eb;
@@ -94,7 +106,8 @@ const stats = [
 }
 
 .result-card:hover {
-  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
 }
 
 /* NUMBER */
@@ -105,9 +118,9 @@ const stats = [
   margin-bottom: 14px;
 }
 
-/* INNER BOX */
+/* INNER */
 .result-content {
-  background: #E0E1E1;
+  background: #f3f4f6;
   border-radius: 10px;
   padding: 12px;
 }
@@ -115,12 +128,12 @@ const stats = [
 .result-content h3 {
   font-size: 15px;
   font-weight: 600;
-  margin-bottom: 4px;
 }
 
 .result-content p {
   font-size: 13px;
   color: #6b7280;
+  margin-top: 4px;
 }
 
 /* MOBILE */
