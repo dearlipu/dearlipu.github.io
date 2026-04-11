@@ -50,9 +50,9 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
                     </p>
                   </div>
 
-                  <ul class="space-y-2">
-                    {edu.achievements.map((achievement) => (
-                      <li class="flex items-start">
+                  <ul class="space-y-2 achievements">
+                    {edu.achievements.map((achievement, i) => (
+                      <li class={`flex items-start ${i > 2 ? "extra hidden" : ""}`}>
                         <span class="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 mr-3"></span>
                         <span class="text-sm sm:text-base text-gray-600">
                           {achievement}
@@ -60,6 +60,12 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
                       </li>
                     ))}
                   </ul>
+                  
+                  <button class="toggle-btn mt-3 text-sm font-medium"
+                    style={`color: ${siteConfig.accentColor}`}
+                  >
+                    + More details
+                  </button>
 
                 </div>
 
@@ -108,4 +114,58 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   object-fit: cover;
   display: block;
 }
+
+.extra {
+  transition: all 0.3s ease;
+}
 </style>
+
+<script>
+  const cards = document.querySelectorAll(".bg-gray-50");
+
+  cards.forEach(card => {
+    const btn = card.querySelector(".toggle-btn");
+    const extras = card.querySelectorAll(".extra");
+
+    if (!btn) return;
+
+    let open = false;
+
+    function openList() {
+      extras.forEach(el => el.classList.remove("hidden"));
+      btn.textContent = "Show less";
+      open = true;
+    }
+
+    function closeList() {
+      extras.forEach(el => el.classList.add("hidden"));
+      btn.textContent = "Show more";
+      open = false;
+    }
+
+    // CLICK (mobile + desktop)
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      open ? closeList() : openList();
+    });
+
+    // HOVER (desktop only)
+    card.addEventListener("mouseenter", () => {
+      if (window.innerWidth > 768) openList();
+    });
+
+    card.addEventListener("mouseleave", () => {
+      if (window.innerWidth > 768) closeList();
+    });
+
+    // CLICK OUTSIDE
+    document.addEventListener("click", (e) => {
+      if (!card.contains(e.target)) closeList();
+    });
+
+    // SCROLL AUTO CLOSE
+    window.addEventListener("scroll", () => {
+      closeList();
+    });
+  });
+</script>
