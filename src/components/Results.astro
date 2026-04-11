@@ -6,18 +6,18 @@ const stats = [
 ];
 ---
 
-<section id="results" class="p-8 sm:p-12 md:p-16 lg:p-24 bg-black text-white">
+<section id="results" class="p-8 sm:p-12 md:p-16 lg:p-24 bg-white">
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
     <!-- LEFT -->
     <div class="lg:col-span-4">
-      <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold">
-        Our Results
+      <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+        Our Results.
       </h2>
 
-      <div class="w-[70px] h-[4px] mt-3 bg-white/80 rounded-full"></div>
+      <div class="w-[75px] h-[5px] mt-2 rounded-full bg-blue-600"></div>
 
-      <p class="text-gray-400 mt-5 text-sm max-w-sm leading-relaxed">
+      <p class="text-gray-500 mt-5 text-sm max-w-sm leading-relaxed">
         Real outcomes, not promises — we build systems that save time and scale work.
       </p>
     </div>
@@ -26,13 +26,13 @@ const stats = [
     <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
       {stats.map((stat, i) => (
-        <div class="stat-card">
+        <div class="result-card">
 
-          <div class="stat-number" data-target={stat.value}>
+          <div class="result-number" data-target={stat.value}>
             0{stat.suffix}
           </div>
 
-          <div class="stat-content">
+          <div class="result-content">
             <h3>{stat.title}</h3>
             <p>{stat.desc}</p>
           </div>
@@ -44,16 +44,15 @@ const stats = [
   </div>
 </section>
 
-<!-- COUNT ANIMATION -->
 <script>
-  const counters = document.querySelectorAll(".stat-number");
+  const counters = document.querySelectorAll(".result-number");
 
-  const animateCount = (el) => {
-    const target = +el.getAttribute("data-target");
+  const animate = (el) => {
+    const target = +el.dataset.target;
     const suffix = el.innerText.replace(/[0-9]/g, "");
     let count = 0;
 
-    const speed = target / 60;
+    const speed = target / 50;
 
     const update = () => {
       count += speed;
@@ -71,9 +70,11 @@ const stats = [
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
+      const el = entry.target;
+
       if (entry.isIntersecting) {
-        animateCount(entry.target);
-        observer.unobserve(entry.target);
+        el.innerText = "0" + el.innerText.replace(/[0-9]/g, "");
+        animate(el);
       }
     });
   }, { threshold: 0.6 });
@@ -82,50 +83,49 @@ const stats = [
 </script>
 
 <style>
-/* CARD */
-.stat-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 16px;
-  padding: 20px;
-  backdrop-filter: blur(10px);
+/* CARD SAME AS YOUR SITE */
+.result-card {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 18px;
   transition: 0.3s ease;
 }
 
-.stat-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(255,255,255,0.2);
+.result-card:hover {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
 }
 
 /* NUMBER */
-.stat-number {
-  font-size: 40px;
+.result-number {
+  font-size: 32px;
   font-weight: 700;
-  margin-bottom: 20px;
+  color: #111827;
+  margin-bottom: 14px;
 }
 
-/* CONTENT */
-.stat-content {
-  background: rgba(255,255,255,0.04);
-  padding: 14px;
-  border-radius: 12px;
+/* INNER BOX (same feel as your right cards) */
+.result-content {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 12px;
 }
 
-.stat-content h3 {
-  font-size: 16px;
+.result-content h3 {
+  font-size: 15px;
   font-weight: 600;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
-.stat-content p {
+.result-content p {
   font-size: 13px;
-  color: #9ca3af;
+  color: #6b7280;
 }
 
 /* MOBILE */
 @media (max-width: 640px) {
-  .stat-number {
-    font-size: 32px;
+  .result-number {
+    font-size: 26px;
   }
 }
 </style>
