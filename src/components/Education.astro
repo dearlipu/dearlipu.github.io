@@ -1,6 +1,14 @@
 ---
 import { siteConfig } from "../config";
 const hasEducation = siteConfig.education && siteConfig.education.length > 0;
+
+showcaseImages: [
+  "/showcase/1.jpg",
+  "/showcase/2.jpg",
+  "/showcase/3.jpg",
+  "/showcase/4.jpg",
+  "/showcase/5.jpg",
+],
 ---
 
 {
@@ -24,21 +32,21 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
               Creative work that looks professional and gets real results.
             </p>
 
-            <!-- NEW SCROLL BOX -->
+            <!-- SHOWCASE BOX -->
             <div class="mt-8 showcase-box">
-
+            
               <div class="fade-top"></div>
-
+            
               <div class="showcase-track">
-                {[...siteConfig.showcaseImages, ...siteConfig.showcaseImages].map((img) => (
+                {[...showcaseImages, ...showcaseImages].map((img) => (
                   <div class="showcase-card">
                     <img src={img} alt="work" loading="lazy" />
                   </div>
                 ))}
               </div>
-
+            
               <div class="fade-bottom"></div>
-
+            
             </div>
 
           </div>
