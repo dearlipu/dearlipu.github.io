@@ -14,35 +14,39 @@ const showcaseImages = [
 {hasEducation && (
   <section id="education" class="p-8 sm:p-12 md:p-16 lg:p-24 bg-white">
     <div>
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-stretch auto-rows-fr">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-stretch">
 
         <!-- LEFT -->
-        <div class="lg:col-span-4 flex flex-col h-full max-h-full min-h-0">
+        <div class="lg:col-span-4 flex flex-col h-full min-h-0">
 
-          <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
-            What I Offer.
-          </h2>
+          <!-- WRAPPER -->
+          <div class="left-wrapper">
 
-          <div
-            class="w-[75px] h-[5px] mt-2 rounded-full"
-            style={`background-color: ${siteConfig.accentColor}`}
-          />
+            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+              What I Offer.
+            </h2>
 
-          <p class="text-gray-500 mt-5 text-sm max-w-sm leading-relaxed">
-            Creative work that looks professional and gets real results.
-          </p>
+            <div
+              class="w-[75px] h-[5px] mt-2 rounded-full"
+              style={`background-color: ${siteConfig.accentColor}`}
+            />
 
-          <!-- SHOWCASE BOX -->
-          <div class="mt-8 showcase-box">
-            <div class="showcase-track">
-              {[...showcaseImages, ...showcaseImages].map((img) => (
-                <div class="showcase-card">
-                  <img src={img} alt="work" loading="lazy" />
-                </div>
-              ))}
+            <p class="text-gray-500 mt-5 text-sm max-w-sm leading-relaxed">
+              Creative work that looks professional and gets real results.
+            </p>
+
+            <!-- SHOWCASE BOX -->
+            <div class="mt-8 showcase-box">
+              <div class="showcase-track">
+                {[...showcaseImages, ...showcaseImages].map((img) => (
+                  <div class="showcase-card">
+                    <img src={img} alt="work" loading="lazy" />
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
 
+          </div>
         </div>
 
         <!-- RIGHT -->
@@ -102,6 +106,14 @@ const showcaseImages = [
 )}
 
 <style>
+/* LEFT WRAPPER */
+.left-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
 /* RIGHT IMAGE */
 .image-full {
   width: 100%;
@@ -119,15 +131,14 @@ const showcaseImages = [
 
 /* SHOWCASE BOX */
 .showcase-box {
+  flex: 1; 
+  min-height: 0;
+  overflow: hidden;
+
   background: #f9fafb;
   border-radius: 12px;
   border: 1px solid #e5e7eb;
   padding: 12px;
-
-  flex: 1;
-  min-height: 0;
-  max-height: 100%;
-  overflow: hidden;
 }
 
 /* TRACK */
@@ -137,7 +148,6 @@ const showcaseImages = [
   gap: 10px;
   animation: scrollY 25s linear infinite;
   will-change: transform;
-  height: max-content;
 }
 
 .showcase-track:hover {
@@ -174,8 +184,7 @@ const showcaseImages = [
 /* MOBILE */
 @media (max-width: 1024px) {
   .showcase-box {
-    height: 300px;
-    max-height: none;
+    height: 300px;      /* fixed height for mobile */
   }
 
   .showcase-card img {
