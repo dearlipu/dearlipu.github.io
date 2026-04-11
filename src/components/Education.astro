@@ -134,17 +134,19 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
   cards.forEach(card => {
     const btn = card.querySelector(".toggle-btn");
-    const extras = card.querySelectorAll(".extra");
+    const extras = Array.from(card.querySelectorAll(".extra"));
 
     if (!btn) return;
 
+    // ONLY items after first 3
+    const hiddenItems = extras.slice(3);
+
     function openCard() {
-      // close other card
       if (activeCard && activeCard !== card) {
         activeCard.close();
       }
 
-      extras.forEach(el => el.classList.remove("collapsed"));
+      hiddenItems.forEach(el => el.classList.remove("collapsed"));
       btn.textContent = "Show less";
 
       activeCard = {
@@ -154,7 +156,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
     }
 
     function closeCard() {
-      extras.forEach(el => el.classList.add("collapsed"));
+      hiddenItems.forEach(el => el.classList.add("collapsed"));
       btn.textContent = "+ More details";
 
       if (activeCard?.el === card) {
@@ -164,10 +166,8 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
     btn.addEventListener("click", (e) => {
       e.stopPropagation();
-    
-      const hiddenItems = Array.from(extras).filter((_, i) => i > 2);
+
       const isOpen = hiddenItems.some(el => !el.classList.contains("collapsed"));
-    
       isOpen ? closeCard() : openCard();
     });
   });
