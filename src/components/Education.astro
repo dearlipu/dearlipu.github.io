@@ -7,49 +7,40 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   hasEducation && (
     <section id="education" class="p-8 sm:p-12 md:p-16 lg:p-24 bg-white">
       <div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-stretch">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
           <!-- LEFT -->
-          <div class="lg:col-span-4 flex flex-col">
-          
-            <!-- TITLE -->
+          <div class="lg:col-span-4">
             <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
               What I Offer.
             </h2>
-          
+
             <div
               class="w-[75px] h-[5px] mt-2 rounded-full"
               style={`background-color: ${siteConfig.accentColor}`}
             />
 
-            <!-- SCROLL BOX -->
-            <div class="mt-8 relative flex-1 overflow-hidden rounded-2xl border bg-gray-50">
-          
-              <!-- FADE TOP -->
-              <div class="fade-top"></div>
-          
-              <!-- TRACK -->
-              <div class="vertical-track">
-                
-                {[...siteConfig.projects, ...siteConfig.projects].map((p) => (
-                  <div class="project-card">
-                    
-                    <div class="image-stack">
-                      {(p.images || []).map((img) => (
-                        <img src={img} alt={p.name} loading="lazy" />
-                      ))}
-                    </div>
+            <p class="text-gray-500 mt-5 text-sm max-w-sm leading-relaxed">
+              Creative work that looks professional and gets real results.
+            </p>
 
+            <!-- NEW SCROLL BOX -->
+            <div class="mt-8 showcase-box">
+
+              <div class="fade-top"></div>
+
+              <div class="showcase-track">
+                {[...siteConfig.showcaseImages, ...siteConfig.showcaseImages].map((img) => (
+                  <div class="showcase-card">
+                    <img src={img} alt="work" loading="lazy" />
                   </div>
                 ))}
-          
               </div>
-          
-              <!-- FADE BOTTOM -->
+
               <div class="fade-bottom"></div>
-          
+
             </div>
-          
+
           </div>
 
           <!-- RIGHT -->
@@ -61,7 +52,6 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
                           flex flex-col md:flex-row overflow-hidden 
                           transition-all duration-300 hover:shadow-md">
 
-                <!-- TEXT -->
                 <div class="flex-1 p-5 md:p-6">
 
                   <div class="mb-4">
@@ -90,14 +80,12 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
                 </div>
 
-                <!-- IMAGE -->
                 <div class="md:w-[320px] w-full aspect-[4/3] md:aspect-auto flex-shrink-0">
 
                   <div class="image-full">
                     <img 
                       src={`/images/edu-${index + 1}.gif`} 
                       alt={edu.degree} 
-                      loading="lazy"
                     />
                   </div>
 
@@ -136,8 +124,15 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   display: block;
 }
 
+/* SHOWCASE BOX */
+.showcase-box {
+  position: relative;
+  height: 420px;
+  overflow: hidden;
+}
+
 /* TRACK */
-.vertical-track {
+.showcase-track {
   display: flex;
   flex-direction: column;
   animation: scrollY 25s linear infinite;
@@ -145,74 +140,67 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 }
 
 /* CARD */
-.project-card {
-  padding: 10px;
+.showcase-card {
+  padding: 10px 0;
 }
 
-/* MULTI IMAGE */
-.image-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.image-stack img {
+.showcase-card img {
   width: 100%;
-  height: 160px;
+  height: 180px;
   object-fit: cover;
-  border-radius: 14px;
+  border-radius: 16px;
   display: block;
   transition: transform 0.3s ease;
 }
 
-.image-stack img:hover {
-  transform: scale(1.04);
+.showcase-card img:hover {
+  transform: scale(1.05);
 }
 
-/* ANIMATION (perfect loop) */
+/* LOOP FIX */
 @keyframes scrollY {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-50%);
-  }
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
 }
 
 /* FADE */
-.fade-top {
+.fade-top,
+.fade-bottom {
   position: absolute;
-  top: 0;
   left: 0;
   width: 100%;
   height: 60px;
-  background: linear-gradient(to bottom, #f9fafb, transparent);
   z-index: 10;
+  pointer-events: none;
+}
+
+.fade-top {
+  top: 0;
+  background: linear-gradient(to bottom, white, transparent);
 }
 
 .fade-bottom {
-  position: absolute;
   bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 60px;
-  background: linear-gradient(to top, #f9fafb, transparent);
-  z-index: 10;
+  background: linear-gradient(to top, white, transparent);
 }
 
-/* PAUSE ON HOVER */
-.vertical-track:hover {
+/* HOVER PAUSE */
+.showcase-track:hover {
   animation-play-state: paused;
 }
 
-/* MOBILE FIX */
+/* MOBILE */
 @media (max-width: 1024px) {
-  .vertical-track {
-    animation-duration: 35s;
+  .showcase-box {
+    height: 320px;
   }
 
-  .image-stack img {
+  .showcase-card img {
     height: 140px;
+  }
+
+  .showcase-track {
+    animation-duration: 35s;
   }
 }
 </style>
