@@ -61,10 +61,23 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
                     ))}
                   </ul>
                   
-                  <button class="toggle-btn mt-3 text-sm font-medium"
+                  <!-- BUTTON -->
+                  <button class="toggle-btn mt-3 flex items-center gap-2 text-sm sm:text-base font-medium"
                     style={`color: ${siteConfig.accentColor}`}
                   >
-                    + More details
+                    <span class="btn-text">More details</span>
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                      width="18" height="18" viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"
+                      class="toggle-icon"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M3 12a9 9 0 1 0 18 0"/>
+                      <path d="M9 12h6"/>
+                      <path d="M12 9v6"/>
+                    </svg>
                   </button>
 
                 </div>
@@ -98,7 +111,6 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   height: 100%;
   overflow: hidden;
 
-  /* clean angled cut */
   clip-path: polygon(
     20% 0,
     100% 0,
@@ -115,16 +127,42 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   display: block;
 }
 
+/* animation */
 .extra {
   max-height: 200px;
   opacity: 1;
   overflow: hidden;
-  transition: all 0.35s ease;
+  transform: translateY(0);
+  transition: 
+    max-height 0.35s ease,
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
 
 .extra.collapsed {
   max-height: 0;
   opacity: 0;
+  transform: translateY(-4px);
+}
+
+/* icon */
+.toggle-icon {
+  transition: transform 0.3s ease;
+}
+
+.toggle-btn.open .toggle-icon {
+  transform: rotate(45deg);
+}
+
+/* mobile tap */
+.toggle-btn {
+  padding: 6px 0;
+}
+
+@media (max-width: 640px) {
+  .toggle-btn {
+    padding: 10px 0;
+  }
 }
 </style>
 
@@ -138,7 +176,6 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
     if (!btn) return;
 
-    // ONLY items after first 3
     const hiddenItems = extras.slice(3);
 
     function openCard() {
@@ -147,7 +184,8 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
       }
 
       hiddenItems.forEach(el => el.classList.remove("collapsed"));
-      btn.textContent = "Show less";
+      btn.classList.add("open");
+      btn.querySelector(".btn-text").textContent = "Less details";
 
       activeCard = {
         el: card,
@@ -157,7 +195,8 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
     function closeCard() {
       hiddenItems.forEach(el => el.classList.add("collapsed"));
-      btn.textContent = "+ More details";
+      btn.classList.remove("open");
+      btn.querySelector(".btn-text").textContent = "More details";
 
       if (activeCard?.el === card) {
         activeCard = null;
