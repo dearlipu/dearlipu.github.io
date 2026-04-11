@@ -18,7 +18,7 @@ const showcaseImages = [
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-stretch">
 
           <!-- LEFT -->
-          <div class="lg:col-span-4 flex flex-col">
+          <div class="lg:col-span-4 flex flex-col min-h-0">
             <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
               What I Offer.
             </h2>
@@ -133,9 +133,14 @@ const showcaseImages = [
   background: #f9fafb;
   border-radius: 16px;
   padding: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+
   position: relative;
   flex: 1;
+
+  min-height: 0;
   overflow: hidden;
+
   display: flex;
 }
 
@@ -145,36 +150,26 @@ const showcaseImages = [
   flex-direction: column;
   animation: scrollY 25s linear infinite;
   will-change: transform;
-  min-height: 100%;
 }
 
 /* CARD */
 .showcase-card {
-  padding: 12px 0;
+  padding: 6px 0;
 }
 
 .showcase-card img {
   width: 100%;
-  max-height: 240px;
+  max-height: 220px;
   object-fit: cover;
   border-radius: 14px;
   display: block;
   transition: transform 0.3s ease;
 }
 
-.showcase-card img:hover {
-  transform: scale(1.05);
-}
-
 /* LOOP */
 @keyframes scrollY {
   0% { transform: translateY(0); }
   100% { transform: translateY(-50%); }
-}
-
-/* HOVER PAUSE */
-.showcase-track:hover {
-  animation-play-state: paused;
 }
 
 /* MOBILE */
@@ -184,7 +179,7 @@ const showcaseImages = [
   }
 
   .showcase-card img {
-    max-height: 260px;
+    max-height: 240px;
   }
 
   .showcase-track {
