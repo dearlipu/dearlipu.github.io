@@ -38,49 +38,6 @@ export const siteConfig = {
     },
   ],
   
-  experience: [
-    {
-      company: "YouTube Creator Project",
-      title: "Cinematic Video Editing",
-      dateRange: "2025",
-      bullets: [
-        "Created high-quality cinematic edits",
-        "Improved engagement and retention",
-        "Delivered social-ready formats"
-      ],
-    },
-    {
-      company: "Instagram Reels Advertising",
-      title: "Engaging Reels Editing",
-      dateRange: "2024",
-      bullets: [
-        "Designed full brand identity",
-        "Created visual consistency system",
-        "Delivered assets for social & print"
-      ],
-    },
-    {
-      company: "Fast Delivery System",
-      title: "Fast Turnarounds",
-      dateRange: "2022",
-      bullets: [
-        "Quick delivery without compromising quality",
-        "Optimized workflow system",
-        "Consistent turnaround time"
-      ],
-    },
-    {
-      company: "Brand Identity Work",
-      title: "Logo + Branding System",
-      dateRange: "2023",
-      bullets: [
-        "Designed full brand identity",
-        "Created visual consistency system",
-        "Delivered assets for social & print"
-      ],
-    },
-  ],
-  
   education: [
     {
       degree: "Visual Design",
