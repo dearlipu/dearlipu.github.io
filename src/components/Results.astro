@@ -1,0 +1,131 @@
+---
+const stats = [
+  { value: 150, suffix: "+", title: "Project success", desc: "Delivered in 20+ countries." },
+  { value: 100, suffix: "%", title: "Client efficiency", desc: "Clients report higher efficiency." },
+  { value: 300, suffix: "+", title: "AI innovation", desc: "Hours building smart workflows." },
+];
+---
+
+<section id="results" class="p-8 sm:p-12 md:p-16 lg:p-24 bg-black text-white">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+
+    <!-- LEFT -->
+    <div class="lg:col-span-4">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold">
+        Our Results
+      </h2>
+
+      <div class="w-[70px] h-[4px] mt-3 bg-white/80 rounded-full"></div>
+
+      <p class="text-gray-400 mt-5 text-sm max-w-sm leading-relaxed">
+        Real outcomes, not promises — we build systems that save time and scale work.
+      </p>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      {stats.map((stat, i) => (
+        <div class="stat-card">
+
+          <div class="stat-number" data-target={stat.value}>
+            0{stat.suffix}
+          </div>
+
+          <div class="stat-content">
+            <h3>{stat.title}</h3>
+            <p>{stat.desc}</p>
+          </div>
+
+        </div>
+      ))}
+
+    </div>
+  </div>
+</section>
+
+<!-- COUNT ANIMATION -->
+<script>
+  const counters = document.querySelectorAll(".stat-number");
+
+  const animateCount = (el) => {
+    const target = +el.getAttribute("data-target");
+    const suffix = el.innerText.replace(/[0-9]/g, "");
+    let count = 0;
+
+    const speed = target / 60;
+
+    const update = () => {
+      count += speed;
+
+      if (count < target) {
+        el.innerText = Math.floor(count) + suffix;
+        requestAnimationFrame(update);
+      } else {
+        el.innerText = target + suffix;
+      }
+    };
+
+    update();
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCount(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.6 });
+
+  counters.forEach(el => observer.observe(el));
+</script>
+
+<style>
+/* CARD */
+.stat-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  transition: 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.2);
+}
+
+/* NUMBER */
+.stat-number {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* CONTENT */
+.stat-content {
+  background: rgba(255,255,255,0.04);
+  padding: 14px;
+  border-radius: 12px;
+}
+
+.stat-content h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.stat-content p {
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+/* MOBILE */
+@media (max-width: 640px) {
+  .stat-number {
+    font-size: 32px;
+  }
+}
+</style>
