@@ -37,7 +37,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
                 <!-- TEXT -->
                 <div class="flex-1 p-5 md:p-6">
 
-                  <div class="mb-4">
+                  <div class="mb-3">
                     <h3 class="text-lg sm:text-xl font-semibold text-gray-900">
                       {edu.degree}
                     </h3>
@@ -50,25 +50,29 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
                     </p>
                   </div>
 
-                  <ul class="space-y-2 achievements">
+                  <!-- LIST -->
+                  <ul class="space-y-1.5 achievements">
                     {edu.achievements.map((achievement, i) => (
-                      <li class={`flex items-start extra ${i > 2 ? "collapsed" : ""}`}>
-                        <span class="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 mr-3"></span>
-                        <span class="text-sm sm:text-base text-gray-600">
+                      <li class={`flex items-start gap-2 extra ${i > 2 ? "collapsed" : ""}`}>
+                        
+                        <!-- bullet -->
+                        <span class="bullet"></span>
+
+                        <!-- text -->
+                        <span class="text-sm text-gray-600 leading-snug">
                           {achievement}
                         </span>
+
                       </li>
                     ))}
                   </ul>
                   
                   <!-- BUTTON -->
-                  <button class="toggle-btn mt-3 flex items-center gap-2 text-sm sm:text-base font-medium"
+                  <button class="toggle-btn mt-1.5 flex items-center gap-1.5 text-sm font-medium"
                     style={`color: ${siteConfig.accentColor}`}
                   >
-                    <span class="btn-text">More details</span>
-
                     <svg xmlns="http://www.w3.org/2000/svg"
-                      width="18" height="18" viewBox="0 0 24 24"
+                      width="14" height="14" viewBox="0 0 24 24"
                       fill="none" stroke="currentColor" stroke-width="2"
                       stroke-linecap="round" stroke-linejoin="round"
                       class="toggle-icon"
@@ -78,6 +82,8 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
                       <path d="M9 12h6"/>
                       <path d="M12 9v6"/>
                     </svg>
+
+                    <span class="btn-text">More details</span>
                   </button>
 
                 </div>
@@ -127,6 +133,16 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   display: block;
 }
 
+/* BULLET FIX (important) */
+.bullet {
+  width: 5px;
+  height: 5px;
+  background: #9ca3af;
+  border-radius: 999px;
+  margin-top: 7px;
+  flex-shrink: 0;
+}
+
 /* animation */
 .extra {
   max-height: 200px;
@@ -154,14 +170,26 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   transform: rotate(45deg);
 }
 
-/* mobile tap */
+/* button feel */
 .toggle-btn {
-  padding: 6px 0;
+  padding: 4px 0;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
+.toggle-btn:hover {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+/* MOBILE TEXT WRAP FIX */
 @media (max-width: 640px) {
-  .toggle-btn {
-    padding: 10px 0;
+  .bullet {
+    margin-top: 6px;
+  }
+
+  li span:last-child {
+    line-height: 1.4;
   }
 }
 </style>
