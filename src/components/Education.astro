@@ -37,7 +37,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
                 <!-- TEXT -->
                 <div class="flex-1 p-5 md:p-6">
 
-                  <div class="mb-3">
+                  <div class="mb-4">
                     <h3 class="text-lg sm:text-xl font-semibold text-gray-900">
                       {edu.degree}
                     </h3>
@@ -50,39 +50,16 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
                     </p>
                   </div>
 
-                  <!-- LIST -->
-                  <ul class="space-y-1.5 achievements">
-                    {edu.achievements.map((achievement, i) => (
-                      <li class={`flex items-start gap-2 extra ${i > 2 ? "collapsed" : ""}`}>
-                        
-                        <!-- bullet -->
-                        <span class="bullet"></span>
-
-                        <!-- text -->
-                        <span class="text-sm text-gray-600 leading-snug">
+                  <ul class="space-y-2">
+                    {edu.achievements.map((achievement) => (
+                      <li class="flex items-start">
+                        <span class="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 mr-3"></span>
+                        <span class="text-sm sm:text-base text-gray-600">
                           {achievement}
                         </span>
-
                       </li>
                     ))}
                   </ul>
-                  
-                  <!-- BUTTON -->
-                  <button class="toggle-btn mt-1.5 flex items-center gap-1.5 text-sm font-medium"
-                    style={`color: ${siteConfig.accentColor}`}
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                      width="14" height="14" viewBox="0 0 24 24"
-                      fill="none" stroke="currentColor" stroke-width="2"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                      <path d="M3 12a9 9 0 1 0 18 0"/>
-                      <path d="M9 12h6"/>
-                      <path d="M12 9v6"/>
-                    </svg>
-
-                    <span class="btn-text">More details</span>
-                  </button>
 
                 </div>
 
@@ -115,6 +92,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   height: 100%;
   overflow: hidden;
 
+  /* clean angled cut */
   clip-path: polygon(
     20% 0,
     100% 0,
@@ -130,110 +108,4 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   object-fit: cover;
   display: block;
 }
-
-/* BULLET FIX (important) */
-.bullet {
-  width: 5px;
-  height: 5px;
-  background: #9ca3af;
-  border-radius: 999px;
-  margin-top: 7px;
-  flex-shrink: 0;
-}
-
-/* animation */
-.extra {
-  max-height: 200px;
-  opacity: 1;
-  overflow: hidden;
-  transform: translateY(0);
-  transition: 
-    max-height 0.35s ease,
-    opacity 0.25s ease,
-    transform 0.25s ease;
-}
-
-.extra.collapsed {
-  max-height: 0;
-  opacity: 0;
-  transform: translateY(-4px);
-}
-
-/* icon */
-.toggle-icon {
-  transition: transform 0.3s ease;
-}
-
-.toggle-btn.open .toggle-icon {
-  transform: rotate(45deg);
-}
-
-/* button feel */
-.toggle-btn {
-  padding: 4px 0;
-  opacity: 0.85;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.toggle-btn:hover {
-  opacity: 1;
-  transform: translateX(2px);
-}
-
-/* MOBILE TEXT WRAP FIX */
-@media (max-width: 640px) {
-  .bullet {
-    margin-top: 6px;
-  }
-
-  li span:last-child {
-    line-height: 1.4;
-  }
-}
 </style>
-
-<script>
-  const cards = document.querySelectorAll(".bg-gray-50");
-  let activeCard = null;
-
-  cards.forEach(card => {
-    const btn = card.querySelector(".toggle-btn");
-    const extras = Array.from(card.querySelectorAll(".extra"));
-
-    if (!btn) return;
-
-    const hiddenItems = extras.slice(3);
-
-    function openCard() {
-      if (activeCard && activeCard !== card) {
-        activeCard.close();
-      }
-
-      hiddenItems.forEach(el => el.classList.remove("collapsed"));
-      btn.classList.add("open");
-      btn.querySelector(".btn-text").textContent = "Less details";
-
-      activeCard = {
-        el: card,
-        close: closeCard
-      };
-    }
-
-    function closeCard() {
-      hiddenItems.forEach(el => el.classList.add("collapsed"));
-      btn.classList.remove("open");
-      btn.querySelector(".btn-text").textContent = "More details";
-
-      if (activeCard?.el === card) {
-        activeCard = null;
-      }
-    }
-
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-
-      const isOpen = hiddenItems.some(el => !el.classList.contains("collapsed"));
-      isOpen ? closeCard() : openCard();
-    });
-  });
-</script>
