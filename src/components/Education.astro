@@ -164,8 +164,10 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
     btn.addEventListener("click", (e) => {
       e.stopPropagation();
-
-      const isOpen = !extras[0].classList.contains("collapsed");
+    
+      const hiddenItems = Array.from(extras).filter((_, i) => i > 2);
+      const isOpen = hiddenItems.some(el => !el.classList.contains("collapsed"));
+    
       isOpen ? closeCard() : openCard();
     });
   });
