@@ -18,7 +18,6 @@ import "../styles/global.css";
         class="flex items-center gap-2 text-sm text-gray-600 hover:text-black group transition"
       >
         <span class="flex items-center justify-center transition group-hover:-translate-x-1">
-      
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
             width="20" 
@@ -35,9 +34,7 @@ import "../styles/global.css";
             <path d="M5 12l4 4" />
             <path d="M5 12l4 -4" />
           </svg>
-      
         </span>
-      
         Back
       </button>
     </div>
@@ -65,79 +62,44 @@ import "../styles/global.css";
 
         <!-- RIGHT -->
         <div class="lg:col-span-8">
-        
-          <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 md:p-10 
-                      shadow-sm hover:shadow-md transition">
-        
-            <div class="space-y-6 text-sm md:text-base leading-relaxed text-gray-600">
-        
-              <p>
-                This Privacy Policy explains how your information is collected, used, and protected when you use this website and related services.
-              </p>
-        
-              <div>
-                <h2 class="text-base md:text-lg font-semibold text-gray-900 mb-2">
-                  1. Information We Collect
-                </h2>
-                <p>
-                  We may collect personal information such as your name, email address, and contact details when you reach out or use our services. This helps us communicate effectively and deliver work accurately.
-                </p>
-              </div>
-        
-              <div>
-                <h2 class="text-base md:text-lg font-semibold text-gray-900 mb-2">
-                  2. How We Use Information
-                </h2>
-                <p>
-                  Your information is used to communicate, deliver services, improve workflows, and provide a better experience. We do not sell, rent, or misuse your data.
-                </p>
-              </div>
-        
-              <div>
-                <h2 class="text-base md:text-lg font-semibold text-gray-900 mb-2">
-                  3. Cookies
-                </h2>
-                <p>
-                  We may use cookies or basic analytics tools to understand usage patterns and improve performance. These tools help enhance usability and design decisions.
-                </p>
-              </div>
-        
-              <div>
-                <h2 class="text-base md:text-lg font-semibold text-gray-900 mb-2">
-                  4. Third-Party Services
-                </h2>
-                <p>
-                  We may use external platforms such as social media or analytics services. These platforms operate under their own privacy policies, which we encourage you to review.
-                </p>
-              </div>
-        
-              <div>
-                <h2 class="text-base md:text-lg font-semibold text-gray-900 mb-2">
-                  5. Data Protection
-                </h2>
-                <p>
-                  We implement reasonable safeguards to protect your information. However, no digital system can guarantee complete security, and absolute protection cannot be ensured.
-                </p>
-              </div>
-        
-              <div>
-                <h2 class="text-base md:text-lg font-semibold text-gray-900 mb-2">
-                  6. Contact
-                </h2>
-                <p>
-                  If you have any questions regarding this policy, you can contact us at:
-                  <span class="text-gray-900 font-medium">
-                    {siteConfig.social.email}
-                  </span>
-                </p>
-              </div>
-        
-            </div>
-        
-          </div>
-        
-        </div>
 
+          <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 md:p-10 shadow-sm hover:shadow-md transition">
+
+            <!-- LETTER STYLE CONTENT -->
+            <div class="space-y-6 text-sm md:text-base leading-relaxed text-gray-600">
+
+              <p id="privacy-intro">
+                This Privacy Policy outlines how your information is collected, used, and protected when you interact with this website and related services.
+              </p>
+
+              <p id="privacy-collection">
+                We may collect personal information such as your name, email address, and contact details when you contact us, request services, or communicate with us. This information allows us to provide services efficiently and maintain clear communication.
+              </p>
+
+              <p id="privacy-usage">
+                The information collected is used strictly for communication, project delivery, and improving service quality. We do not sell, rent, or misuse your personal data.
+              </p>
+
+              <p id="privacy-cookies">
+                This website may use cookies or analytics tools to understand usage patterns and improve performance. Third-party platforms may collect data under their own policies.
+              </p>
+
+              <p id="privacy-security">
+                We take reasonable steps to protect your data; however, no system can guarantee complete security against all potential risks.
+              </p>
+
+              <p id="privacy-contact">
+                If you have any questions regarding this policy, you may contact us at 
+                <span class="text-gray-900 font-medium">
+                  {siteConfig.social.email}
+                </span>.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
 
       </div>
 
