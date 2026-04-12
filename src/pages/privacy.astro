@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from "../config";
+import "../styles/global.css";
 ---
 
 <html lang="en">
@@ -10,7 +11,7 @@ import { siteConfig } from "../config";
 
   <body class="bg-white text-gray-800">
 
-    <!-- BACK BUTTON -->
+    <!-- BACK -->
     <div class="p-8 sm:p-10 md:px-16 lg:px-24">
       <button 
         onclick="history.back()" 
@@ -21,7 +22,7 @@ import { siteConfig } from "../config";
       </button>
     </div>
 
-    <!-- MAIN SECTION (SAME AS ABOUT) -->
+    <!-- MAIN -->
     <section class="p-8 sm:p-12 md:p-16 lg:p-24 pt-0">
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
@@ -45,12 +46,11 @@ import { siteConfig } from "../config";
         <!-- RIGHT -->
         <div class="lg:col-span-8 space-y-6">
 
-          <!-- ITEM -->
           <div class="bg-gray-50 rounded-xl border border-gray-200 p-6 hover:shadow-md transition">
             <h2 class="text-lg font-semibold text-gray-900 mb-2">
               1. Information We Collect
             </h2>
-            <p class="text-sm text-gray-600 leading-relaxed">
+            <p class="text-sm text-gray-600">
               We may collect personal details such as your name, email address, and contact information when you reach out or use our services.
             </p>
           </div>
@@ -59,7 +59,7 @@ import { siteConfig } from "../config";
             <h2 class="text-lg font-semibold text-gray-900 mb-2">
               2. How We Use Information
             </h2>
-            <p class="text-sm text-gray-600 leading-relaxed">
+            <p class="text-sm text-gray-600">
               Your information is used to communicate, deliver services, improve workflows, and provide a better experience. We do not sell your data.
             </p>
           </div>
@@ -68,8 +68,8 @@ import { siteConfig } from "../config";
             <h2 class="text-lg font-semibold text-gray-900 mb-2">
               3. Cookies
             </h2>
-            <p class="text-sm text-gray-600 leading-relaxed">
-              We may use cookies or basic analytics tools to understand usage and improve performance.
+            <p class="text-sm text-gray-600">
+              We may use cookies or analytics tools to improve performance.
             </p>
           </div>
 
@@ -77,8 +77,8 @@ import { siteConfig } from "../config";
             <h2 class="text-lg font-semibold text-gray-900 mb-2">
               4. Third-Party Services
             </h2>
-            <p class="text-sm text-gray-600 leading-relaxed">
-              External platforms such as social media or analytics tools may collect data under their own policies.
+            <p class="text-sm text-gray-600">
+              External platforms may collect data under their own policies.
             </p>
           </div>
 
@@ -86,8 +86,8 @@ import { siteConfig } from "../config";
             <h2 class="text-lg font-semibold text-gray-900 mb-2">
               5. Data Protection
             </h2>
-            <p class="text-sm text-gray-600 leading-relaxed">
-              We apply reasonable security measures to protect your information, though absolute security cannot be guaranteed.
+            <p class="text-sm text-gray-600">
+              We apply reasonable security measures, though absolute protection cannot be guaranteed.
             </p>
           </div>
 
@@ -95,11 +95,8 @@ import { siteConfig } from "../config";
             <h2 class="text-lg font-semibold text-gray-900 mb-2">
               6. Contact
             </h2>
-            <p class="text-sm text-gray-600 leading-relaxed">
-              For any questions, contact:
-              <span class="text-gray-900 font-medium">
-                {siteConfig.social.email}
-              </span>
+            <p class="text-sm text-gray-600">
+              {siteConfig.social.email}
             </p>
           </div>
 
