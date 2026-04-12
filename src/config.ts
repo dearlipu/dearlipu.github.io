@@ -56,11 +56,11 @@ export const siteConfig = {
       school: "High-quality video editing and motion content.",
       //dateRange: "",
       achievements: [
-        "Social media content (Reels, Shorts, Longs)",
+        "Social media content (Reels, Shorts, Long-forms)",
         "Motion graphics & animated content",
         "Cinematic edits & storytelling",
         "Ads & promotional videos",
-        "2D / 3D animation"
+        "2D/3D character & scene animation"
       ],
     },
     {
@@ -72,7 +72,7 @@ export const siteConfig = {
         "Book design & formatting",
         "Brochures & catalogs",
         "Flyers, business cards & print assets",
-        "Print-ready production (CMYK, bleed, setup)"
+        "Print-ready production (CMYK, bleed, export setup)"
       ],
     },
   ]
