@@ -3,10 +3,6 @@ import "../styles/global.css";
 
 import Privacy from "../components/Privacy.astro";
 import Refund from "../components/Refund.astro";
-//import Service from "../components/Service.astro";
-//import Copyright from "../components/Copyright.astro";
-//import Disclaimer from "../components/Disclaimer.astro";
-//import Terms from "../components/Terms.astro";
 ---
 
 <html lang="en">
@@ -14,15 +10,7 @@ import Refund from "../components/Refund.astro";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- FONT -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <title>Terms & Policies</title>
+    <title>Policies</title>
 
     <!-- INLINE CSS -->
     <style>
@@ -30,60 +18,77 @@ import Refund from "../components/Refund.astro";
         scroll-behavior: smooth;
       }
 
+      /* NAV PILL */
       .nav-pill {
         padding: 6px 14px;
         font-size: 14px;
         border-radius: 999px;
         color: #555;
-        background: transparent;
         transition: all 0.25s ease;
       }
 
       .nav-pill:hover {
         background: rgba(0,0,0,0.05);
-        color: #000;
         transform: translateY(-2px);
       }
 
       .nav-pill.active {
-        background: #101828;
+        background: rgba(0,0,0,0.06);
         color: #111;
-        box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
+      }
+
+      /* FLOAT ANIMATION */
+      .float-ui {
+        transition: transform 0.35s ease, opacity 0.35s ease;
+      }
+
+      .hide-ui {
+        transform: translateY(120%);
+        opacity: 0;
+      }
+
+      /* BACK BUTTON */
+      .glass-btn {
+        background: rgba(255,255,255,0.6);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0,0,0,0.08);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      }
+
+      /* FIX OVERFLOW */
+      body {
+        overflow-x: hidden;
       }
     </style>
   </head>
 
   <body class="bg-white text-gray-800">
 
-    <!-- BACK -->
-    <div class="px-6 sm:px-10 md:px-16 lg:px-24 py-6">
+    <!-- BACK BUTTON -->
+    <div id="backBtn" class="fixed top-6 left-6 z-50 float-ui">
       <button 
         onclick="history.back()" 
-        class="flex items-center gap-2 text-sm text-gray-700 
-               px-4 py-2 rounded-full
-               bg-white/60 backdrop-blur-md border border-gray-200
-               shadow-sm hover:shadow-md hover:bg-white/80
-               transition duration-300 group"
+        class="glass-btn px-4 py-2 rounded-full flex items-center gap-2 text-sm text-gray-700 hover:bg-white/80 transition group"
       >
-        <span class="transition group-hover:-translate-x-1">←</span>
+        <span class="group-hover:-translate-x-1 transition">←</span>
         Back
       </button>
     </div>
 
-    <!-- FLOATING NAV -->
-    <div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
-      <div class="flex gap-2 sm:gap-3 px-3 py-2 sm:px-4 sm:py-3
+    <!-- FLOAT NAV -->
+    <div id="navBar" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 float-ui pointer-events-none">
+      <div class="pointer-events-auto flex gap-2 px-3 py-2
                   bg-white/70 backdrop-blur-xl border border-gray-200
                   rounded-full shadow-lg">
 
         <a href="#privacy" class="nav-pill">Privacy</a>
         <a href="#refund" class="nav-pill">Refund</a>
-        
+
       </div>
     </div>
 
     <!-- CONTENT -->
-    <main class="pb-28">
+    <main class="pb-32">
 
       <div id="privacy">
         <Privacy />
@@ -95,8 +100,9 @@ import Refund from "../components/Refund.astro";
 
     </main>
 
-    <!-- INLINE JS -->
+    <!-- SCRIPT -->
     <script>
+      // ACTIVE NAV
       const sections = document.querySelectorAll("section");
       const navLinks = document.querySelectorAll(".nav-pill");
 
@@ -104,20 +110,39 @@ import Refund from "../components/Refund.astro";
         let current = "";
 
         sections.forEach((section) => {
-          const sectionTop = section.offsetTop - 150;
-          const sectionHeight = section.clientHeight;
-
-          if (scrollY >= sectionTop) {
+          const top = section.offsetTop - 150;
+          if (scrollY >= top) {
             current = section.getAttribute("id");
           }
         });
 
-        navLinks.forEach((link) => {
+        navLinks.forEach(link => {
           link.classList.remove("active");
           if (link.getAttribute("href") === "#" + current) {
             link.classList.add("active");
           }
         });
+      });
+
+      // AUTO HIDE NAV + BACK
+      let lastScroll = 0;
+      const nav = document.getElementById("navBar");
+      const back = document.getElementById("backBtn");
+
+      window.addEventListener("scroll", () => {
+        const currentScroll = window.pageYOffset;
+
+        if (currentScroll > lastScroll && currentScroll > 100) {
+          // SCROLL DOWN → HIDE
+          nav.classList.add("hide-ui");
+          back.classList.add("hide-ui");
+        } else {
+          // SCROLL UP → SHOW
+          nav.classList.remove("hide-ui");
+          back.classList.remove("hide-ui");
+        }
+
+        lastScroll = currentScroll;
       });
     </script>
 
