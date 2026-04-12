@@ -1,180 +1,101 @@
 ---
-import { siteConfig } from "../config";
 import "../styles/global.css";
+
+import Privacy from "../components/policies/Privacy.astro";
+import Refund from "../components/policies/Refund.astro";
+import Service from "../components/policies/Service.astro";
+import Copyright from "../components/policies/Copyright.astro";
+import Disclaimer from "../components/policies/Disclaimer.astro";
+import Terms from "../components/policies/Terms.astro";
 ---
 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Terms & Policies - {siteConfig.name}</title>
+    <title>Terms & Policies</title>
   </head>
 
   <body class="bg-white text-gray-800">
 
-    <!-- BACK -->
+    <!-- BACK BUTTON -->
     <div class="p-8 sm:p-10 md:px-16 lg:px-24">
       <button 
         onclick="history.back()" 
         class="flex items-center gap-2 text-sm text-gray-600 hover:text-black group transition"
       >
-        <span class="group-hover:-translate-x-1 transition">
-          ←
+        <span class="flex items-center justify-center transition group-hover:-translate-x-1">
+
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            width="20" 
+            height="20" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            stroke-width="2" 
+            stroke-linecap="round" 
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M5 12l14 0" />
+            <path d="M5 12l4 4" />
+            <path d="M5 12l4 -4" />
+          </svg>
+
         </span>
+
         Back
       </button>
     </div>
 
-    <!-- ================= PRIVACY ================= -->
-    <section class="p-8 sm:p-12 md:p-16 lg:p-24 pt-0">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+    <!-- BUBBLE NAV -->
+    <div class="sticky top-0 z-50 backdrop-blur bg-white/70 border-b border-gray-200">
 
-        <div class="lg:col-span-4">
-          <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold">
-            Privacy Policy.
-          </h2>
-          <div class="w-[75px] h-[5px] mt-2 rounded-full"
-            style={`background-color: ${siteConfig.accentColor}`} />
-          <p class="text-gray-500 mt-5 text-sm max-w-sm">
-            How your data is collected and used.
-          </p>
-        </div>
+      <div class="px-6 sm:px-10 md:px-16 lg:px-24 py-4">
 
-        <div class="lg:col-span-8">
-          <div class="bg-gray-50 border rounded-2xl p-6 md:p-10">
-            <div class="space-y-6 text-sm md:text-base text-gray-600 leading-relaxed">
+        <div class="flex gap-2 overflow-x-auto no-scrollbar">
 
-              <p>
-                We respect your privacy and are committed to protecting your personal information when you use this website or our services.
-              </p>
+          <a href="#privacy" class="nav-pill">Privacy</a>
+          <a href="#service" class="nav-pill">Service</a>
+          <a href="#refund" class="nav-pill">Refund</a>
+          <a href="#copyright" class="nav-pill">Copyright</a>
+          <a href="#disclaimer" class="nav-pill">Disclaimer</a>
+          <a href="#terms" class="nav-pill">Terms</a>
 
-              <p><strong>Data Collection:</strong> We may collect your name, email, or contact details when you communicate with us.</p>
-              <p><strong>Usage:</strong> Used only for communication, project delivery, and service improvement.</p>
-              <p><strong>Security:</strong> We take reasonable steps to protect your data but cannot guarantee absolute security.</p>
-              <p><strong>Third Parties:</strong> Tools like analytics or social platforms may collect data under their policies.</p>
-
-            </div>
-          </div>
         </div>
 
       </div>
-    </section>
 
-    <!-- ================= SERVICE ================= -->
-    <section class="p-8 sm:p-12 md:p-16 lg:p-24 pt-0">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+    </div>
 
-        <div class="lg:col-span-4">
-          <h2 class="text-3xl md:text-5xl font-bold">Service Agreement.</h2>
-          <div class="w-[75px] h-[5px] mt-2 rounded-full"
-            style={`background-color: ${siteConfig.accentColor}`} />
-        </div>
+    <!-- CONTENT -->
+    <main>
 
-        <div class="lg:col-span-8">
-          <div class="bg-gray-50 border rounded-2xl p-6 md:p-10">
-            <div class="space-y-6 text-sm text-gray-600">
-
-              <p>
-                By working with us, you agree to the following terms related to creative and digital services.
-              </p>
-
-              <p><strong>Scope:</strong> Work is based on agreed deliverables (design, editing, motion, etc).</p>
-              <p><strong>Revisions:</strong> Limited based on selected plan.</p>
-              <p><strong>Timeline:</strong> Depends on feedback speed.</p>
-              <p><strong>Client Responsibility:</strong> Provide clear instructions and assets.</p>
-
-            </div>
-          </div>
-        </div>
-
+      <div id="privacy">
+        <Privacy />
       </div>
-    </section>
 
-    <!-- ================= REFUND ================= -->
-    <section class="p-8 sm:p-12 md:p-16 lg:p-24 pt-0">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
-
-        <div class="lg:col-span-4">
-          <h2 class="text-3xl md:text-5xl font-bold">Refund Policy.</h2>
-          <div class="w-[75px] h-[5px] mt-2 rounded-full"
-            style={`background-color: ${siteConfig.accentColor}`} />
-        </div>
-
-        <div class="lg:col-span-8">
-          <div class="bg-gray-50 border rounded-2xl p-6 md:p-10">
-            <div class="space-y-6 text-sm text-gray-600">
-
-              <p>
-                Due to the nature of creative services, refunds are limited.
-              </p>
-
-              <p><strong>No Refund:</strong> Once work has started.</p>
-              <p><strong>Exception:</strong> If project has not begun.</p>
-              <p><strong>Alternative:</strong> Revisions are provided instead of refunds.</p>
-
-            </div>
-          </div>
-        </div>
-
+      <div id="service">
+        <Service />
       </div>
-    </section>
 
-    <!-- ================= COPYRIGHT ================= -->
-    <section class="p-8 sm:p-12 md:p-16 lg:p-24 pt-0">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
-
-        <div class="lg:col-span-4">
-          <h2 class="text-3xl md:text-5xl font-bold">Copyright & Usage.</h2>
-          <div class="w-[75px] h-[5px] mt-2 rounded-full"
-            style={`background-color: ${siteConfig.accentColor}`} />
-        </div>
-
-        <div class="lg:col-span-8">
-          <div class="bg-gray-50 border rounded-2xl p-6 md:p-10">
-            <div class="space-y-6 text-sm text-gray-600">
-
-              <p>
-                Ownership and usage rights for all delivered work.
-              </p>
-
-              <p><strong>Ownership:</strong> Transfers after full payment.</p>
-              <p><strong>Portfolio:</strong> We may display work.</p>
-              <p><strong>Restrictions:</strong> Raw files cannot be resold.</p>
-
-            </div>
-          </div>
-        </div>
-
+      <div id="refund">
+        <Refund />
       </div>
-    </section>
 
-    <!-- ================= DISCLAIMER ================= -->
-    <section class="p-8 sm:p-12 md:p-16 lg:p-24 pt-0">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
-
-        <div class="lg:col-span-4">
-          <h2 class="text-3xl md:text-5xl font-bold">Disclaimer.</h2>
-          <div class="w-[75px] h-[5px] mt-2 rounded-full"
-            style={`background-color: ${siteConfig.accentColor}`} />
-        </div>
-
-        <div class="lg:col-span-8">
-          <div class="bg-gray-50 border rounded-2xl p-6 md:p-10">
-            <div class="space-y-6 text-sm text-gray-600">
-
-              <p>
-                We provide creative services without guaranteed business outcomes.
-              </p>
-
-              <p><strong>No Guarantee:</strong> Results vary.</p>
-              <p><strong>Liability:</strong> Not responsible for indirect losses.</p>
-              <p><strong>External Tools:</strong> Third-party platforms not controlled.</p>
-
-            </div>
-          </div>
-        </div>
-
+      <div id="copyright">
+        <Copyright />
       </div>
-    </section>
+
+      <div id="disclaimer">
+        <Disclaimer />
+      </div>
+
+      <div id="terms">
+        <Terms />
+      </div>
+
+    </main>
 
   </body>
 </html>
