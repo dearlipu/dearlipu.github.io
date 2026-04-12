@@ -180,7 +180,7 @@ import { siteConfig } from "../config";
 <script>
   let currentMode = "monthly";
 
-  const PHONE = "{siteConfig.whatsapp}";
+  const PHONE = "{siteConfig.social.whatsapp}";
 
   function createWhatsApp(plan, mode) {
     const type = mode === "monthly" ? "Monthly" : "Per Project";
