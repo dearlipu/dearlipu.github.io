@@ -1,7 +1,5 @@
 ---
 import { siteConfig } from "../config";
-
-const PHONE = siteConfig.social.whatsapp;
 ---
 
 <section id="pricing" class="p-6 sm:p-10 md:p-14 lg:p-20">
@@ -182,7 +180,7 @@ const PHONE = siteConfig.social.whatsapp;
 <script>
   let currentMode = "monthly";
 
-  const PHONE = "{PHONE}";
+  const PHONE = `${siteConfig.social.whatsapp}`;
 
   function createWhatsApp(plan, mode) {
     const type = mode === "monthly" ? "Monthly" : "Per Project";
