@@ -1,0 +1,142 @@
+---
+import { siteConfig } from "../config";
+import "../styles/global.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Terms & Policies - {siteConfig.name}</title>
+  </head>
+
+  <body class="bg-white text-gray-800">
+
+    <!-- BACK BUTTON -->
+    <div class="p-8 sm:p-10 md:px-16 lg:px-24">
+      <button 
+        onclick="history.back()" 
+        class="flex items-center gap-2 text-sm text-gray-600 hover:text-black group transition"
+      >
+        <span class="flex items-center group-hover:-translate-x-1 transition">
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M5 12l14 0" />
+            <path d="M5 12l4 4" />
+            <path d="M5 12l4 -4" />
+          </svg>
+
+        </span>
+        Back
+      </button>
+    </div>
+
+    <!-- MAIN SECTION -->
+    <section class="p-8 sm:p-12 md:p-16 lg:p-24 pt-0">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+
+        <!-- LEFT -->
+        <div class="lg:col-span-4">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+            Terms & Policies.
+          </h1>
+
+          <div
+            class="w-[75px] h-[5px] mt-2 rounded-full"
+            style={`background-color: ${siteConfig.accentColor}`}
+          />
+
+          <p class="text-gray-500 mt-5 text-sm max-w-sm leading-relaxed">
+            Everything you need to know about how we work, your rights, and how your data is handled.
+          </p>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="lg:col-span-8 space-y-10">
+
+          <!-- PRIVACY -->
+          <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 md:p-10">
+            <h2 class="text-xl font-semibold text-gray-900 mb-4">Privacy Policy</h2>
+
+            <div class="space-y-5 text-sm text-gray-600 leading-relaxed">
+              <p>
+                We respect your privacy. This policy explains how your data is collected, used, and protected.
+              </p>
+
+              <p><strong>Information:</strong> We may collect your name, email, and contact details.</p>
+              <p><strong>Usage:</strong> Used for communication and service delivery.</p>
+              <p><strong>Security:</strong> We take reasonable steps to protect your data.</p>
+            </div>
+          </div>
+
+          <!-- SERVICE AGREEMENT -->
+          <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 md:p-10">
+            <h2 class="text-xl font-semibold text-gray-900 mb-4">Service Agreement</h2>
+
+            <div class="space-y-5 text-sm text-gray-600 leading-relaxed">
+              <p>
+                By working with us, you agree to the following terms regarding services and delivery.
+              </p>
+
+              <p><strong>Scope:</strong> Work is based on agreed deliverables.</p>
+              <p><strong>Revisions:</strong> Limited based on plan.</p>
+              <p><strong>Payment:</strong> Final files after full payment.</p>
+            </div>
+          </div>
+
+          <!-- REFUND -->
+          <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 md:p-10">
+            <h2 class="text-xl font-semibold text-gray-900 mb-4">Refund Policy</h2>
+
+            <div class="space-y-5 text-sm text-gray-600 leading-relaxed">
+              <p>
+                Due to the nature of creative work, refunds are limited.
+              </p>
+
+              <p><strong>No Refund:</strong> After work starts.</p>
+              <p><strong>Exception:</strong> If work hasn’t started.</p>
+              <p><strong>Alternative:</strong> Revisions provided instead.</p>
+            </div>
+          </div>
+
+          <!-- COPYRIGHT -->
+          <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 md:p-10">
+            <h2 class="text-xl font-semibold text-gray-900 mb-4">Copyright & Usage</h2>
+
+            <div class="space-y-5 text-sm text-gray-600 leading-relaxed">
+              <p>
+                Ownership rules for all delivered work.
+              </p>
+
+              <p><strong>Transfer:</strong> After full payment.</p>
+              <p><strong>Portfolio:</strong> We may showcase work.</p>
+              <p><strong>Restrictions:</strong> No resale of raw files.</p>
+            </div>
+          </div>
+
+          <!-- DISCLAIMER -->
+          <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 md:p-10">
+            <h2 class="text-xl font-semibold text-gray-900 mb-4">Disclaimer</h2>
+
+            <div class="space-y-5 text-sm text-gray-600 leading-relaxed">
+              <p>
+                General limitations of service responsibility.
+              </p>
+
+              <p><strong>No Guarantee:</strong> Results may vary.</p>
+              <p><strong>Liability:</strong> Not responsible for indirect damages.</p>
+              <p><strong>External Tools:</strong> Third-party platforms not controlled.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </body>
+</html>
