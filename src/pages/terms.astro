@@ -7,21 +7,28 @@ import "../styles/global.css";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- FONT -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-
     <title>Terms & Conditions</title>
   </head>
 
   <body class="bg-white text-gray-800">
 
-    <section class="px-6 sm:px-10 md:px-16 lg:px-24 py-12 md:py-16 lg:py-20 overflow-x-hidden">
+    <!-- BACK BUTTON -->
+    <div class="fixed top-6 right-6 z-50">
+      <button 
+        onclick="history.length > 1 ? history.back() : window.location.href='/'"
+        class="group flex items-center gap-2 px-4 py-2 rounded-full
+               bg-white/70 backdrop-blur-md border border-gray-200
+               shadow-md hover:shadow-lg
+               text-sm text-gray-700 hover:text-black
+               transition-all duration-300"
+      >
+        <span class="transition group-hover:-translate-x-1">←</span>
+        Back
+      </button>
+    </div>
+
+    <!-- MAIN -->
+    <section class="px-6 sm:px-10 md:px-16 lg:px-24 py-12 md:py-16 lg:py-20">
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start">
 
@@ -38,7 +45,7 @@ import "../styles/global.css";
           ></div>
 
           <p class="text-gray-500 mt-5 text-sm sm:text-base max-w-sm leading-relaxed">
-            Terms for using this website and working with services.
+            Rules, agreements, and responsibilities when using services or working together.
           </p>
 
         </div>
@@ -48,165 +55,168 @@ import "../styles/global.css";
 
           <div class="bg-gray-50 border border-gray-200 rounded-2xl 
                       p-6 sm:p-8 md:p-10 lg:p-12
-                      shadow-sm hover:shadow-lg transition duration-300
-                      w-full max-w-full">
+                      shadow-sm hover:shadow-lg transition duration-300">
 
-            <p class="text-xs text-gray-400 mb-6">
-              Effective Date: April 2026
-            </p>
+            <div class="space-y-12 text-lg sm:text-xl md:text-xl leading-relaxed text-gray-600">
 
-            <div class="space-y-10 text-lg sm:text-xl md:text-xl leading-relaxed text-gray-600">
-
+              <!-- INTRO -->
               <p class="text-gray-700">
-                By accessing this website or working with me, you agree to the following terms.
+                By accessing this website or working with me, you agree to the following terms and conditions.
               </p>
 
               <!-- 1 -->
-              <div class="border-t pt-6">
-                <h2 class="font-semibold text-gray-900 mb-2">1. Services</h2>
-                <ul class="list-disc ml-6 space-y-1">
-                  <li>Graphic design</li>
-                  <li>Photo editing and retouching</li>
-                  <li>Video editing and motion graphics</li>
-                  <li>Social media and digital content design</li>
+              <div class="space-y-4">
+                <h2 class="text-xl md:text-2xl font-semibold text-gray-900">
+                  1. Services
+                </h2>
+                <ul class="space-y-2">
+                  <li>• Graphic design</li>
+                  <li>• Photo editing and retouching</li>
+                  <li>• Video editing and motion graphics</li>
+                  <li>• Social media and digital content</li>
                 </ul>
-                <p class="mt-3">All services are customized based on client requirements.</p>
+                <p class="text-gray-500 text-base sm:text-lg">
+                  All services are customized based on client requirements.
+                </p>
               </div>
+
+              <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
 
               <!-- 2 -->
-              <div class="border-t pt-6">
-                <h2 class="font-semibold text-gray-900 mb-2">2. Project Agreement</h2>
-                <ul class="list-disc ml-6 space-y-1">
-                  <li>Scope, pricing, and timeline will be agreed before starting</li>
-                  <li>Work begins only after confirmation</li>
+              <div class="space-y-3">
+                <h2 class="text-xl md:text-2xl font-semibold text-gray-900">
+                  2. Project Agreement
+                </h2>
+                <ul class="space-y-2">
+                  <li>• Scope, pricing, and timeline are discussed before starting</li>
+                  <li>• Work begins only after mutual confirmation</li>
                 </ul>
               </div>
+
+              <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
 
               <!-- 3 -->
-              <div class="border-t pt-6">
-                <h2 class="font-semibold text-gray-900 mb-2">3. Payments</h2>
-                <ul class="list-disc ml-6 space-y-1">
-                  <li>Advance payment may be required</li>
-                  <li>Final payment before delivery</li>
-                  <li>Payments are non-refundable unless agreed</li>
+              <div class="space-y-3">
+                <h2 class="text-xl md:text-2xl font-semibold text-gray-900">
+                  3. Payments
+                </h2>
+                <ul class="space-y-2">
+                  <li>• Advance payment may be required</li>
+                  <li>• Final payment before delivery</li>
+                  <li>• Payments are non-refundable unless agreed</li>
                 </ul>
               </div>
+
+              <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
 
               <!-- 4 -->
-              <div class="border-t pt-6">
-                <h2 class="font-semibold text-gray-900 mb-2">4. Revisions</h2>
-                <ul class="list-disc ml-6 space-y-1">
-                  <li>Limited revisions included</li>
-                  <li>Extra revisions may be charged</li>
-                  <li>Major changes = new project</li>
+              <div class="space-y-3">
+                <h2 class="text-xl md:text-2xl font-semibold text-gray-900">
+                  4. Revisions
+                </h2>
+                <ul class="space-y-2">
+                  <li>• Limited revisions included</li>
+                  <li>• Extra revisions may be charged</li>
+                  <li>• Major changes treated as new work</li>
                 </ul>
               </div>
+
+              <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
 
               <!-- 5 -->
-              <div class="border-t pt-6">
-                <h2 class="font-semibold text-gray-900 mb-2">5. Delivery</h2>
+              <div class="space-y-3">
+                <h2 class="text-xl md:text-2xl font-semibold text-gray-900">
+                  5. Delivery
+                </h2>
                 <p>
-                  Timelines are estimates. Delays due to client response are not my responsibility.
+                  Timelines are estimates and may vary. Delays due to client response or missing materials are not my responsibility.
                 </p>
               </div>
+
+              <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
 
               <!-- 6 -->
-              <div class="border-t pt-6">
-                <h2 class="font-semibold text-gray-900 mb-2">6. Client Responsibilities</h2>
-                <ul class="list-disc ml-6 space-y-1">
-                  <li>Provide clear instructions</li>
-                  <li>Respond on time</li>
-                  <li>Ensure rights to provided content</li>
+              <div class="space-y-3">
+                <h2 class="text-xl md:text-2xl font-semibold text-gray-900">
+                  6. Client Responsibilities
+                </h2>
+                <ul class="space-y-2">
+                  <li>• Provide clear instructions</li>
+                  <li>• Share required materials</li>
+                  <li>• Ensure rights to provided content</li>
                 </ul>
               </div>
+
+              <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
 
               <!-- 7 -->
-              <div class="border-t pt-6">
-                <h2 class="font-semibold text-gray-900 mb-2">7. Intellectual Property</h2>
-                <p>
-                  Rights transfer after full payment. I may showcase work unless agreed otherwise.
-                </p>
-              </div>
-
-              <!-- 8 -->
-              <div class="border-t pt-6">
-                <h2 class="font-semibold text-gray-900 mb-2">8. Prohibited Use</h2>
-                <ul class="list-disc ml-6 space-y-1">
-                  <li>No illegal use</li>
-                  <li>No claiming work before rights transfer</li>
+              <div class="space-y-3">
+                <h2 class="text-xl md:text-2xl font-semibold text-gray-900">
+                  7. Intellectual Property
+                </h2>
+                <ul class="space-y-2">
+                  <li>• Rights transferred after full payment</li>
+                  <li>• Work may be showcased in portfolio</li>
                 </ul>
               </div>
 
+              <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+
+              <!-- 8 -->
+              <div class="space-y-3">
+                <h2 class="text-xl md:text-2xl font-semibold text-gray-900">
+                  8. Prohibited Use
+                </h2>
+                <ul class="space-y-2">
+                  <li>• Illegal or harmful usage is not allowed</li>
+                  <li>• Cannot claim work before rights transfer</li>
+                </ul>
+              </div>
+
+              <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+
               <!-- 9 -->
-              <div class="border-t pt-6">
-                <h2 class="font-semibold text-gray-900 mb-2">9. Limitation of Liability</h2>
+              <div class="space-y-3">
+                <h2 class="text-xl md:text-2xl font-semibold text-gray-900">
+                  9. Limitation of Liability
+                </h2>
                 <p>
-                  I am not responsible for indirect or business losses.
+                  I am not responsible for indirect or business losses resulting from use of delivered work.
                 </p>
               </div>
+
+              <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
 
               <!-- 10 -->
-              <div class="border-t pt-6">
-                <h2 class="font-semibold text-gray-900 mb-2">10. Termination</h2>
+              <div class="space-y-3">
+                <h2 class="text-xl md:text-2xl font-semibold text-gray-900">
+                  10. Termination
+                </h2>
                 <p>
-                  Projects may be canceled if terms are violated or payments are not met.
+                  Projects may be cancelled if terms are violated or payments are not completed.
                 </p>
               </div>
+
+              <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
 
               <!-- 11 -->
-              <div class="border-t pt-6">
-                <h2 class="font-semibold text-gray-900 mb-2">11. Changes to Terms</h2>
+              <div class="space-y-3">
+                <h2 class="text-xl md:text-2xl font-semibold text-gray-900">
+                  11. Changes to Terms
+                </h2>
                 <p>
-                  Terms may be updated anytime. Continued use means acceptance.
+                  Terms may be updated anytime. Continued use means acceptance of updated terms.
                 </p>
               </div>
 
-              <!-- 12 -->
-              <div class="border-t pt-6">
-                <h2 class="font-semibold text-gray-900 mb-2">12. Contact</h2>
-                <p>{siteConfig.social.email}</p>
-              </div>
-
-              <!-- DISCLAIMER SECTION -->
-              <div class="border-t pt-10">
-                <h2 class="text-xl font-bold text-gray-900 mb-4">
-                  Disclaimer.
-                </h2>
-              </div>
-
-              <div class="border-t pt-6">
-                <h2 class="font-semibold text-gray-900 mb-2">1. General Information</h2>
-                <p>Content is for informational and portfolio purposes only.</p>
-              </div>
-
-              <div class="border-t pt-6">
-                <h2 class="font-semibold text-gray-900 mb-2">2. No Guarantees</h2>
-                <p>Results may vary. No guarantees on performance or outcomes.</p>
-              </div>
-
-              <div class="border-t pt-6">
-                <h2 class="font-semibold text-gray-900 mb-2">3. Third-Party Content</h2>
-                <p>Some work may include client or third-party materials.</p>
-              </div>
-
-              <div class="border-t pt-6">
-                <h2 class="font-semibold text-gray-900 mb-2">4. External Links</h2>
-                <p>I am not responsible for external websites.</p>
-              </div>
-
-              <div class="border-t pt-6">
-                <h2 class="font-semibold text-gray-900 mb-2">5. Professional Relationship</h2>
-                <p>No client relationship exists without agreement.</p>
-              </div>
-
-              <div class="border-t pt-6">
-                <h2 class="font-semibold text-gray-900 mb-2">6. Errors and Updates</h2>
-                <p>Content may change without notice.</p>
-              </div>
-
-              <div class="border-t pt-6">
-                <h2 class="font-semibold text-gray-900 mb-2">7. Contact</h2>
-                <p>{siteConfig.social.email}</p>
+              <!-- CONTACT -->
+              <div class="pt-8">
+                <p class="text-gray-500 text-base sm:text-lg">
+                  Questions or concerns?
+                </p>
+                <p class="text-gray-900 font-medium mt-1">
+                  {siteConfig.social.email}
+                </p>
               </div>
 
             </div>
