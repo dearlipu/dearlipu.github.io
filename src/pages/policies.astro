@@ -12,51 +12,77 @@ import Privacy from "../components/Privacy.astro";
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
     <title>Terms & Policies</title>
+
+    <!-- INLINE CSS -->
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      .nav-pill {
+        padding: 6px 14px;
+        font-size: 14px;
+        border-radius: 999px;
+        color: #555;
+        transition: all 0.25s ease;
+        white-space: nowrap;
+      }
+
+      .nav-pill:hover {
+        background: rgba(0,0,0,0.05);
+        color: #000;
+        transform: translateY(-2px);
+      }
+
+      .nav-pill.active {
+        background: black;
+        color: white;
+      }
+    </style>
   </head>
 
   <body class="bg-white text-gray-800">
 
-    <!-- BACK BUTTON -->
-    <div class="p-8 sm:p-10 md:px-16 lg:px-24">
+    <!-- BACK -->
+    <div class="px-6 sm:px-10 md:px-16 lg:px-24 py-6">
       <button 
         onclick="history.back()" 
         class="flex items-center gap-2 text-sm text-gray-600 hover:text-black group transition"
       >
-        <span class="flex items-center justify-center transition group-hover:-translate-x-1">
-
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            width="20" 
-            height="20" 
-            viewBox="0 0 24 24" 
-            fill="none" 
-            stroke="currentColor" 
-            stroke-width="2" 
-            stroke-linecap="round" 
-            stroke-linejoin="round"
-          >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M5 12l14 0" />
-            <path d="M5 12l4 4" />
-            <path d="M5 12l4 -4" />
-          </svg>
-
-        </span>
-
+        <span class="transition group-hover:-translate-x-1">←</span>
         Back
       </button>
     </div>
 
+    <!-- FLOATING NAV -->
+    <div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
+      <div class="flex gap-2 sm:gap-3 px-3 py-2 sm:px-4 sm:py-3
+                  bg-white/70 backdrop-blur-xl border border-gray-200
+                  rounded-full shadow-lg">
+
+        <a href="#privacy" class="nav-pill">Privacy</a>
+        <!--<a href="#service" class="nav-pill">Service</a>
+        <a href="#refund" class="nav-pill">Refund</a>
+        <a href="#terms" class="nav-pill">Terms</a>
+        <a href="#disclaimer" class="nav-pill">Disclaimer</a>
+        <a href="#copyright" class="nav-pill">Copyright</a>-->
+        
+      </div>
+    </div>
+
     <!-- CONTENT -->
-    <main>
+    <main class="pb-28">
 
       <div id="privacy">
         <Privacy />
@@ -83,6 +109,32 @@ import Privacy from "../components/Privacy.astro";
       </div>-->
 
     </main>
+
+    <!-- INLINE JS -->
+    <script>
+      const sections = document.querySelectorAll("section");
+      const navLinks = document.querySelectorAll(".nav-pill");
+
+      window.addEventListener("scroll", () => {
+        let current = "";
+
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop - 150;
+          const sectionHeight = section.clientHeight;
+
+          if (scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active");
+          }
+        });
+      });
+    </script>
 
   </body>
 </html>
