@@ -2,11 +2,14 @@
 import { siteConfig } from "../config";
 import "../styles/global.css";
 
-const message = encodeURIComponent(
-`Hi Saurav, I’m interested in starting a project. Can you share details?`
-);
-
-const whatsappUrl = `https://wa.me/${siteConfig.whatsapp}?text=${message}`;
+const message = `Hi Saurav,
+I’m interested in starting a project.
+Please share details.`;
+const whatsappUrl =
+  "https://wa.me/" +
+  siteConfig.social.whatsapp +
+  "?text=" +
+  encodeURIComponent(message);
 ---
 
 <html lang="en">
