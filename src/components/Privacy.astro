@@ -15,7 +15,7 @@ import "../styles/global.css";
     <div class="p-8 sm:p-10 md:px-16 lg:px-24">
       <button 
         onclick="history.back()" 
-        class="flex items-center gap-2 text-sm text-gray-600 hover:text-black group"
+        class="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 group transition active:scale-95"
       >
         <span class="group-hover:-translate-x-1 transition">←</span>
         Back
@@ -25,97 +25,104 @@ import "../styles/global.css";
     <!-- MAIN -->
     <section id="privacy" class="p-8 sm:p-12 md:p-16 lg:p-24 pt-0">
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start">
 
         <!-- LEFT -->
         <div class="lg:col-span-4">
-          <h1 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
             Privacy Policy.
           </h1>
 
           <div
-            class="w-[75px] h-[5px] mt-2 rounded-full"
+            class="w-[60px] h-[4px] mt-4 rounded-full"
             style={`background-color: ${siteConfig.accentColor}`}
           />
 
-          <p class="text-gray-500 mt-5 text-sm max-w-sm leading-relaxed">
+          <p class="text-gray-500 mt-6 text-sm max-w-sm leading-relaxed">
             How your data is collected, used, and protected when you use this website.
           </p>
         </div>
 
         <!-- RIGHT -->
         <div class="lg:col-span-8">
-        
-          <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 md:p-10 
-                      shadow-sm hover:shadow-md transition">
-        
-            <div class="space-y-6 text-sm md:text-base leading-relaxed text-gray-600">
-        
-              <p>
+
+          <div class="bg-gray-50 border border-gray-200 rounded-2xl 
+                      p-6 md:p-10 lg:p-12
+                      shadow-sm hover:shadow-lg transition duration-300">
+
+            <!-- META -->
+            <p class="text-xs text-gray-400 mb-6">
+              Last updated: April 2026
+            </p>
+
+            <div class="space-y-8 text-sm md:text-[15px] leading-relaxed text-gray-600">
+
+              <p class="text-gray-700">
                 This Privacy Policy explains how your information is collected, used, and protected when you use this website and related services.
               </p>
-        
-              <div>
-                <h2 class="text-base md:text-lg font-semibold text-gray-900 mb-2">
+
+              <!-- SECTION -->
+              <div class="border-t border-gray-200 pt-6">
+                <h2 class="font-semibold text-gray-900 mb-2">
                   1. Information We Collect
                 </h2>
                 <p>
-                  We may collect personal information such as your name, email address, and contact details when you reach out or use our services. This helps us communicate effectively and deliver work accurately.
+                  We may collect personal information such as your name, email address, and contact details when you reach out or use our services. This enables effective communication and accurate delivery of work.
                 </p>
               </div>
-        
-              <div>
-                <h2 class="text-base md:text-lg font-semibold text-gray-900 mb-2">
+
+              <div class="border-t border-gray-200 pt-6">
+                <h2 class="font-semibold text-gray-900 mb-2">
                   2. How We Use Information
                 </h2>
                 <p>
-                  Your information is used to communicate, deliver services, improve workflows, and provide a better experience. We do not sell, rent, or misuse your data.
+                  Your information is used to communicate, deliver services, improve workflows, and enhance user experience. We do not sell, rent, or misuse your data.
                 </p>
               </div>
-        
-              <div>
-                <h2 class="text-base md:text-lg font-semibold text-gray-900 mb-2">
+
+              <div class="border-t border-gray-200 pt-6">
+                <h2 class="font-semibold text-gray-900 mb-2">
                   3. Cookies
                 </h2>
                 <p>
-                  We may use cookies or basic analytics tools to understand usage patterns and improve performance. These tools help enhance usability and design decisions.
+                  This website may use cookies or basic analytics tools to understand usage patterns and improve performance and usability.
                 </p>
               </div>
-        
-              <div>
-                <h2 class="text-base md:text-lg font-semibold text-gray-900 mb-2">
+
+              <div class="border-t border-gray-200 pt-6">
+                <h2 class="font-semibold text-gray-900 mb-2">
                   4. Third-Party Services
                 </h2>
                 <p>
-                  We may use external platforms such as social media or analytics services. These platforms operate under their own privacy policies, which we encourage you to review.
+                  We may use external services such as analytics tools or social media platforms. These services operate under their own privacy policies.
                 </p>
               </div>
-        
-              <div>
-                <h2 class="text-base md:text-lg font-semibold text-gray-900 mb-2">
+
+              <div class="border-t border-gray-200 pt-6">
+                <h2 class="font-semibold text-gray-900 mb-2">
                   5. Data Protection
                 </h2>
                 <p>
-                  We implement reasonable safeguards to protect your information. However, no digital system can guarantee complete security, and absolute protection cannot be ensured.
+                  We implement reasonable safeguards to protect your information. However, no digital system can guarantee complete security.
                 </p>
               </div>
-        
-              <div>
-                <h2 class="text-base md:text-lg font-semibold text-gray-900 mb-2">
+
+              <div class="border-t border-gray-200 pt-6">
+                <h2 class="font-semibold text-gray-900 mb-2">
                   6. Contact
                 </h2>
                 <p>
-                  If you have any questions regarding this policy, you can contact us at:
+                  For any questions regarding this policy, contact:
                   <span class="text-gray-900 font-medium">
                     {siteConfig.social.email}
                   </span>
                 </p>
               </div>
-        
+
             </div>
-        
+
           </div>
-        
+
         </div>
 
       </div>
