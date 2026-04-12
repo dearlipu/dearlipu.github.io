@@ -9,16 +9,14 @@ import Refund from "../components/Refund.astro";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Policies</title>
 
-    <!-- INLINE CSS -->
     <style>
       html {
         scroll-behavior: smooth;
       }
 
-      /* NAV PILL */
+      /* NAV */
       .nav-pill {
         padding: 6px 14px;
         font-size: 14px;
@@ -55,7 +53,6 @@ import Refund from "../components/Refund.astro";
         box-shadow: 0 4px 20px rgba(0,0,0,0.06);
       }
 
-      /* FIX OVERFLOW */
       body {
         overflow-x: hidden;
       }
@@ -64,19 +61,19 @@ import Refund from "../components/Refund.astro";
 
   <body class="bg-white text-gray-800">
 
-    <!-- BACK BUTTON -->
-    <div id="backBtn" class="fixed top-6 left-6 z-50 float-ui">
+    <!-- BACK BUTTON (TOP RIGHT) -->
+    <div id="backBtn" class="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 float-ui">
       <button 
         onclick="history.back()" 
         class="glass-btn px-4 py-2 rounded-full flex items-center gap-2 text-sm text-gray-700 hover:bg-white/80 transition group"
       >
-        <span class="group-hover:-translate-x-1 transition">←</span>
         Back
+        <span class="group-hover:translate-x-1 transition">→</span>
       </button>
     </div>
 
-    <!-- FLOAT NAV -->
-    <div id="navBar" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 float-ui pointer-events-none">
+    <!-- FLOAT NAV (RAISED FOR MOBILE) -->
+    <div id="navBar" class="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-50 float-ui pointer-events-none">
       <div class="pointer-events-auto flex gap-2 px-3 py-2
                   bg-white/70 backdrop-blur-xl border border-gray-200
                   rounded-full shadow-lg">
@@ -88,7 +85,7 @@ import Refund from "../components/Refund.astro";
     </div>
 
     <!-- CONTENT -->
-    <main class="pb-32">
+    <main class="pb-28">
 
       <div id="privacy">
         <Privacy />
@@ -124,7 +121,7 @@ import Refund from "../components/Refund.astro";
         });
       });
 
-      // AUTO HIDE NAV + BACK
+      // AUTO HIDE
       let lastScroll = 0;
       const nav = document.getElementById("navBar");
       const back = document.getElementById("backBtn");
@@ -132,12 +129,10 @@ import Refund from "../components/Refund.astro";
       window.addEventListener("scroll", () => {
         const currentScroll = window.pageYOffset;
 
-        if (currentScroll > lastScroll && currentScroll > 100) {
-          // SCROLL DOWN → HIDE
+        if (currentScroll > lastScroll && currentScroll > 80) {
           nav.classList.add("hide-ui");
           back.classList.add("hide-ui");
         } else {
-          // SCROLL UP → SHOW
           nav.classList.remove("hide-ui");
           back.classList.remove("hide-ui");
         }
