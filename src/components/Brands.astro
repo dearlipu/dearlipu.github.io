@@ -12,7 +12,7 @@ const brands = [
 ];
 ---
 
-<section class="p-8 sm:p-12 md:p-16 lg:p-20 bg-gray-100 border-t border-gray-200">
+<section class="py-4 sm:py-5 md:py-6 px-6 md:px-16 bg-gray-100 border-t border-gray-200">
 
   <div>
     <div class="flex items-center gap-6 lg:gap-10">
@@ -31,8 +31,15 @@ const brands = [
         <div class="fade-right"></div>
 
         <div class="marquee-track">
-          {brands.map((b) => <img src={b.logo} class="logo" alt={b.name} />)}
-          {brands.map((b) => <img src={b.logo} class="logo" alt={b.name} />)}
+
+          <!-- DUPLICATE SET (seamless loop) -->
+          {brands.map((b) => (
+            <img src={b.logo} class="logo" alt={b.name} loading="eager" />
+          ))}
+          {brands.map((b) => (
+            <img src={b.logo} class="logo" alt={b.name} loading="eager" />
+          ))}
+
         </div>
 
       </div>
@@ -43,20 +50,23 @@ const brands = [
 </section>
 
 <style>
+
 /* TRACK */
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: scroll 28s linear infinite;
+  min-width: 200%; /* IMPORTANT for seamless loop */
+  animation: scroll 24s linear infinite;
+  will-change: transform;
 }
 
-/* LOGO FIX (same size always) */
+/* LOGO */
 .logo {
-  height: 32px;              /* FIXED HEIGHT */
+  height: 28px;
   width: auto;
   object-fit: contain;
 
-  margin-right: 40px;
+  margin-right: 36px;
   opacity: 0.5;
   flex-shrink: 0;
 
@@ -77,7 +87,7 @@ const brands = [
   to { transform: translateX(-50%); }
 }
 
-/* FADE (match footer bg) */
+/* FADE EDGES */
 .fade-left,
 .fade-right {
   position: absolute;
@@ -98,12 +108,12 @@ const brands = [
   background: linear-gradient(to left, #f3f4f6, transparent);
 }
 
-/* MOBILE OPTIMIZATION */
+/* MOBILE */
 @media (max-width: 640px) {
 
   .logo {
-    height: 22px;
-    margin-right: 24px;
+    height: 20px;
+    margin-right: 20px;
   }
 
   .fade-left,
@@ -112,4 +122,5 @@ const brands = [
   }
 
 }
+
 </style>
