@@ -39,8 +39,8 @@ import { siteConfig } from "../config";
               <input required type="text" placeholder="Your Name *" class="input" />
               <input required type="email" placeholder="Email *" class="input" />
 
-              <!-- SERVICE -->
-              <div class="custom-select" data-name="service">
+              <!-- PROJECT TYPE -->
+              <div class="custom-select">
                 <div class="select-trigger">Project Type *</div>
                 <div class="select-options">
                   <div data-value="Social Media Design">Social Media Design</div>
@@ -51,7 +51,7 @@ import { siteConfig } from "../config";
               </div>
 
               <!-- TIMELINE -->
-              <div class="custom-select" data-name="timeline">
+              <div class="custom-select">
                 <div class="select-trigger">Timeline (optional)</div>
                 <div class="select-options">
                   <div data-value="Urgent (1–3 days)">Urgent (1–3 days)</div>
@@ -61,7 +61,7 @@ import { siteConfig } from "../config";
               </div>
 
               <!-- BUDGET -->
-              <div class="custom-select" data-name="budget">
+              <div class="custom-select">
                 <div class="select-trigger">Budget (optional)</div>
                 <div class="select-options">
                   <div data-value="₹1k–₹5k">₹1k–₹5k</div>
@@ -81,8 +81,10 @@ import { siteConfig } from "../config";
                 I usually reply within a few hours.
               </p>
 
+              <!-- FIXED BUTTON -->
               <button type="submit"
-                class="btn-primary w-full py-2 rounded-md font-medium">
+                class="btn-primary w-full py-2 rounded-md font-medium"
+                style={`--accent: ${siteConfig.accentColor}`}>
                 Start Project
               </button>
             </div>
@@ -105,6 +107,9 @@ import { siteConfig } from "../config";
 
 <style>
 
+/* RESET SECTION GAP */
+section { margin: 0; }
+
 /* CARD */
 .contact-card {
   background: linear-gradient(145deg, #f9fafb, #f3f4f6);
@@ -124,48 +129,39 @@ import { siteConfig } from "../config";
   transition: all 0.25s ease;
 }
 
-.textarea {
-  border-radius: 16px;
-}
+.textarea { border-radius: 16px; }
 
-/* FOCUS */
+/* PREMIUM FOCUS */
 .input:focus,
 .select-trigger.active {
   outline: none;
   border: 1px solid var(--accent-color);
-  background: #eff6ff;
-  box-shadow: 0 0 0 3px rgba(29,78,216,0.15);
+  background: #e0ecff;
+  box-shadow: 0 0 0 2px rgba(29,78,216,0.25);
 }
 
-/* BUTTON FIX */
+/* BUTTON (MATCH PRICING EXACTLY) */
 .btn-primary {
   background-color: #101828;
   color: white;
   border: none;
-  transition: all 0.25s ease;
+  transition: all 0.3s ease;
 }
 
-.btn-primary:hover,
+.btn-primary:hover {
+  background-color: var(--accent);
+}
+
 .btn-primary:focus,
 .btn-primary:active {
-  background-color: var(--accent-color);
+  background-color: var(--accent);
   color: white;
   outline: none;
-}
-
-.btn-primary:active {
-  transform: scale(0.98);
-}
-
-.btn-primary:disabled {
-  background-color: var(--accent-color);
-  opacity: 0.7;
+  box-shadow: none;
 }
 
 /* SELECT */
-.custom-select {
-  position: relative;
-}
+.custom-select { position: relative; }
 
 .select-trigger {
   padding: 14px 16px;
@@ -175,17 +171,20 @@ import { siteConfig } from "../config";
   transition: all 0.25s ease;
 }
 
+/* PREMIUM DROPDOWN */
 .select-options {
   position: absolute;
-  top: 110%;
+  top: calc(100% + 6px);
   width: 100%;
-  background: #eff6ff;
+
+  background: #e0ecff;
   border-radius: 14px;
   border: 1px solid var(--accent-color);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
 
+  transform-origin: top;
   opacity: 0;
-  transform: translateY(10px) scale(0.98);
+  transform: scaleY(0.8) translateY(-5px);
   pointer-events: none;
 
   transition: all 0.25s ease;
@@ -194,22 +193,22 @@ import { siteConfig } from "../config";
 
 .custom-select.active .select-options {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: scaleY(1) translateY(0);
   pointer-events: auto;
 }
 
 .select-options div {
   padding: 12px 16px;
-  cursor: pointer;
+  border-radius: 8px;
   transition: all 0.2s ease;
 }
 
 .select-options div:hover {
-  background: rgba(29,78,216,0.1);
-  transform: translateX(4px);
+  background: rgba(29,78,216,0.15);
+  transform: translateX(6px);
 }
 
-/* IMAGE (NO HOVER, ONLY AUTO MOTION) */
+/* IMAGE */
 .image-box img {
   width: 100%;
   height: 100%;
@@ -218,18 +217,14 @@ import { siteConfig } from "../config";
 }
 
 @keyframes cinematicMove {
-  0%   { transform: scale(1.08) translate(0,0); }
-  25%  { transform: scale(1.1) translate(4px,-6px); }
-  50%  { transform: scale(1.12) translate(-4px,-10px); }
-  75%  { transform: scale(1.1) translate(3px,-5px); }
+  0% { transform: scale(1.08) translate(0,0); }
+  50% { transform: scale(1.12) translate(-4px,-10px); }
   100% { transform: scale(1.08) translate(0,0); }
 }
 
 /* MOBILE */
 @media (max-width: 768px) {
-  #contact .grid {
-    grid-template-columns: 1fr !important;
-  }
+  #contact .grid { grid-template-columns: 1fr !important; }
 
   #contactImage {
     height: 220px;
@@ -241,7 +236,7 @@ import { siteConfig } from "../config";
 
 <script>
 
-/* SELECT */
+/* SELECT (WITH OUTSIDE CLICK CLOSE) */
 document.querySelectorAll(".custom-select").forEach(select => {
   const trigger = select.querySelector(".select-trigger");
   const options = select.querySelectorAll(".select-options div");
@@ -271,7 +266,6 @@ document.querySelectorAll(".custom-select").forEach(select => {
   });
 });
 
-/* CLICK OUTSIDE */
 document.addEventListener("click", () => {
   document.querySelectorAll(".custom-select").forEach(select => {
     select.classList.remove("active");
