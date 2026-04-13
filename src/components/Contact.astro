@@ -6,7 +6,7 @@ import { siteConfig } from "../config";
   <div>
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
-      <!-- LEFT -->
+      <!-- LEFT (TEXT ONLY) -->
       <div class="lg:col-span-4">
 
         <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
@@ -20,14 +20,9 @@ import { siteConfig } from "../config";
           Let’s build something impactful — brand, website, or content.
         </p>
 
-        <!-- IMAGE -->
-        <div class="mt-6 rounded-xl overflow-hidden border border-gray-200 shadow-sm image-box">
-          <img src="/images/contact.jpg" class="w-full h-full object-cover" />
-        </div>
-
       </div>
 
-      <!-- RIGHT (NEW CARD GRID LIKE TESTIMONIAL) -->
+      <!-- RIGHT -->
       <div class="lg:col-span-8">
 
         <div class="grid md:grid-cols-2 gap-6">
@@ -68,6 +63,11 @@ import { siteConfig } from "../config";
                 placeholder="Tell me about your project *"
                 class="input textarea"></textarea>
 
+              <!-- RESPONSE TEXT -->
+              <p class="text-xs text-gray-400">
+                I usually reply within a few hours.
+              </p>
+
               <button type="submit"
                 class="btn-primary w-full py-2 rounded-md font-medium">
                 Start Project
@@ -77,31 +77,39 @@ import { siteConfig } from "../config";
 
           </div>
 
-          <!-- TRUST CARD (LIKE YOUR DARK TESTIMONIAL) -->
-          <div class="trust-card">
+          <!-- RIGHT SIDE (IMAGE + TRUST) -->
+          <div class="space-y-6">
 
-            <h3 class="text-white text-lg font-semibold">
-              Fast Response ⚡
-            </h3>
-
-            <p class="text-gray-300 text-sm mt-2">
-              I usually reply within a few hours.  
-              Clear communication. No delays.
-            </p>
-
-            <div class="mt-6">
-              <p class="text-white font-semibold text-sm">4.9/5 Rating</p>
-              <p class="text-gray-400 text-xs mt-1">
-                Trusted by 100+ clients
-              </p>
+            <!-- IMAGE -->
+            <div class="image-box rounded-xl overflow-hidden border border-gray-200 shadow-sm">
+              <img src="/images/contact.jpg" class="w-full h-full object-cover" />
             </div>
 
-            <!-- CTA -->
-            <a href="https://wa.me/918144991049"
-              target="_blank"
-              class="inline-block mt-6 bg-white text-black px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition">
-              Chat Directly
-            </a>
+            <!-- TRUST CARD -->
+            <div class="trust-card">
+
+              <h3 class="text-white text-lg font-semibold">
+                Fast Response ⚡
+              </h3>
+
+              <p class="text-gray-300 text-sm mt-2">
+                Clear communication. No delays.
+              </p>
+
+              <div class="mt-6">
+                <p class="text-white font-semibold text-sm">4.9/5 Rating</p>
+                <p class="text-gray-400 text-xs mt-1">
+                  Trusted by 100+ clients
+                </p>
+              </div>
+
+              <a href="https://wa.me/918144991049"
+                target="_blank"
+                class="inline-block mt-6 bg-white text-black px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition">
+                Chat Directly
+              </a>
+
+            </div>
 
           </div>
 
@@ -202,13 +210,13 @@ import { siteConfig } from "../config";
 
 /* IMAGE */
 .image-box {
-  height: 240px;
+  height: 200px;
   animation: float 8s ease-in-out infinite;
 }
 
 @keyframes float {
   0% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-8px); }
   100% { transform: translateY(0); }
 }
 
