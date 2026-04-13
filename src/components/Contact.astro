@@ -7,16 +7,14 @@ import { siteConfig } from "../config";
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
     <!-- LEFT -->
-    <div class="lg:col-span-4 flex flex-col h-full">
+    <div id="contactLeft" class="lg:col-span-4 flex flex-col h-full">
 
       <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
         Let’s Work Together.
       </h2>
 
-      <div
-        class="w-[75px] h-[5px] mt-2 rounded-full"
-        style={`background-color: ${siteConfig.accentColor}`}
-      ></div>
+      <div class="w-[75px] h-[5px] mt-2 rounded-full"
+        style={`background-color: ${siteConfig.accentColor}`}></div>
 
       <p class="text-gray-500 mt-5 text-sm max-w-sm leading-relaxed">
         Let’s build something impactful — brand, website, or content.
@@ -24,11 +22,9 @@ import { siteConfig } from "../config";
 
       <!-- IMAGE -->
       <div class="mt-6 rounded-xl overflow-hidden border border-gray-200 shadow-sm flex-1">
-
         <img src="/images/contact.jpg"
           class="w-full h-full object-cover"
           alt="contact" />
-
       </div>
 
     </div>
@@ -36,35 +32,47 @@ import { siteConfig } from "../config";
     <!-- RIGHT -->
     <div class="lg:col-span-8">
 
-      <form class="bg-gray-50 border border-gray-200 rounded-xl p-5 md:p-6 h-full flex flex-col justify-between">
+      <form id="contactForm"
+        class="bg-gray-50 border border-gray-200 rounded-xl p-5 md:p-6 flex flex-col justify-between">
 
         <div class="space-y-5">
 
           <!-- NAME + EMAIL -->
           <div class="grid sm:grid-cols-2 gap-4">
-
-            <input type="text" placeholder="Your Name" class="input" />
-            <input type="email" placeholder="Email" class="input" />
-
+            <input required type="text" placeholder="Your Name *" class="input" />
+            <input required type="email" placeholder="Email *" class="input" />
           </div>
 
+          <!-- PHONE -->
+          <input required type="tel" placeholder="Phone / WhatsApp *" class="input" />
+
           <!-- SERVICE -->
-          <select class="input">
-            <option>Select Service</option>
+          <select required class="input">
+            <option disabled selected>Select Service *</option>
             <option>Graphic Design</option>
             <option>Video Editing</option>
             <option>Motion Graphics</option>
             <option>Print Design</option>
           </select>
 
+          <!-- BUDGET -->
+          <select class="input">
+            <option disabled selected>Budget (optional)</option>
+            <option>₹1k–₹5k</option>
+            <option>₹5k–₹20k</option>
+            <option>₹20k+</option>
+          </select>
+
           <!-- MESSAGE -->
-          <textarea rows="4" placeholder="Tell me about your project..."
+          <textarea required rows="4"
+            placeholder="Tell me about your project *"
             class="input textarea"></textarea>
 
         </div>
 
         <!-- BUTTON -->
-        <button type="submit" class="btn-primary mt-6 w-fit px-6 py-2 rounded-md font-medium">
+        <button type="submit"
+          class="btn-primary mt-6 w-fit px-6 py-2 rounded-md font-medium">
           Start Project
         </button>
 
@@ -95,7 +103,8 @@ import { siteConfig } from "../config";
 .input:focus {
   outline: none;
   border-color: var(--accent-color);
-  background: white;
+  background: #f9fafb;
+  box-shadow: 0 0 0 2px rgba(29, 78, 216, 0.1);
 }
 
 /* BUTTON */
@@ -107,5 +116,76 @@ import { siteConfig } from "../config";
 
 .btn-primary:hover {
   background-color: var(--accent-color);
+  color: white;
 }
 </style>
+
+<script>
+/* HEIGHT MATCH */
+function matchHeight() {
+  const left = document.getElementById("contactLeft");
+  const form = document.getElementById("contactForm");
+
+  if (window.innerWidth >= 1024) {
+    form.style.height = left.offsetHeight + "px";
+  } else {
+    form.style.height = "auto";
+  }
+}
+
+window.addEventListener("load", matchHeight);
+window.addEventListener("resize", matchHeight);
+
+/* WHATSAPP FORM */
+const form = document.getElementById("contactForm");
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const btn = form.querySelector("button");
+  btn.disabled = true;
+  btn.textContent = "Opening WhatsApp...";
+
+  const name = form.querySelector('input[type="text"]').value.trim();
+  const email = form.querySelector('input[type="email"]').value.trim();
+  const phone = form.querySelector('input[type="tel"]').value.trim();
+  const service = form.querySelectorAll("select")[0].value;
+  const budget = form.querySelectorAll("select")[1].value;
+  const message = form.querySelector("textarea").value.trim();
+
+  // validation
+  if (!name || !email || !phone || service.includes("Select")) {
+    btn.textContent = "Fill required fields";
+    btn.disabled = false;
+    return;
+  }
+
+  const text = `Hi Saurav,
+
+New Project Inquiry 🚀
+
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Service: ${service}
+Budget: ${budget || "Not specified"}
+
+Project Details:
+${message}
+
+Let’s discuss further.`;
+
+  const url = `https://wa.me/918144991049?text=${encodeURIComponent(text)}`;
+
+  window.open(url, "_blank");
+
+  form.reset();
+
+  btn.textContent = "Message ready ✓";
+
+  setTimeout(() => {
+    btn.textContent = "Start Project";
+    btn.disabled = false;
+  }, 3000);
+});
+</script>
