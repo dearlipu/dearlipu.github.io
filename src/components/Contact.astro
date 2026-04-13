@@ -7,7 +7,7 @@ import { siteConfig } from "../config";
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
       <!-- LEFT -->
-      <div id="contactLeft" class="lg:col-span-4 flex flex-col">
+      <div id="contactLeft" class="lg:col-span-4">
 
         <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
           Let’s Work Together.
@@ -20,6 +20,7 @@ import { siteConfig } from "../config";
           Let’s build something impactful — brand, website, or content.
         </p>
 
+        <!-- IMAGE -->
         <div class="mt-6 image-box rounded-xl overflow-hidden border border-gray-200 shadow-sm">
           <img src="/images/contact.jpg" class="w-full h-full object-cover" />
         </div>
@@ -29,20 +30,20 @@ import { siteConfig } from "../config";
       <!-- RIGHT -->
       <div class="lg:col-span-8">
 
-        <form id="contactForm" class="contact-card flex flex-col">
+        <form id="contactForm" class="contact-card">
 
           <div class="mb-6">
             <h3 class="text-xl font-semibold text-gray-900">Start a Project</h3>
             <p class="text-sm text-gray-500 mt-1">Continue on WhatsApp</p>
           </div>
 
-          <!-- GRID -->
+          <!-- GRID LIKE PRICING -->
           <div class="grid sm:grid-cols-2 gap-4">
 
             <input required type="text" placeholder="Your Name *" class="input" />
             <input required type="email" placeholder="Email *" class="input" />
 
-            <!-- CUSTOM SELECT SERVICE -->
+            <!-- SERVICE -->
             <div class="custom-select" data-name="service">
               <div class="select-trigger">Project Type *</div>
               <div class="select-options">
@@ -53,7 +54,7 @@ import { siteConfig } from "../config";
               </div>
             </div>
 
-            <!-- CUSTOM SELECT TIMELINE -->
+            <!-- TIMELINE -->
             <div class="custom-select" data-name="timeline">
               <div class="select-trigger">Timeline</div>
               <div class="select-options">
@@ -63,7 +64,7 @@ import { siteConfig } from "../config";
               </div>
             </div>
 
-            <!-- CUSTOM SELECT BUDGET -->
+            <!-- BUDGET FULL WIDTH -->
             <div class="custom-select sm:col-span-2" data-name="budget">
               <div class="select-trigger">Budget</div>
               <div class="select-options">
@@ -75,16 +76,22 @@ import { siteConfig } from "../config";
 
           </div>
 
+          <!-- MESSAGE -->
           <textarea required rows="4"
             placeholder="Tell me about your project *"
             class="input textarea mt-4"></textarea>
 
-          <div class="mt-6 flex items-center justify-between">
-            <p class="text-xs text-gray-400">I usually reply within a few hours</p>
+          <!-- FOOTER -->
+          <div class="mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+
+            <p class="text-xs text-gray-400">
+              I usually reply within a few hours
+            </p>
 
             <button type="submit" class="btn-primary px-6 py-2 rounded-md font-medium">
               Start Project
             </button>
+
           </div>
 
         </form>
@@ -117,13 +124,14 @@ import { siteConfig } from "../config";
   transition: all 0.25s ease;
 }
 
+/* TEXTAREA */
 .textarea {
   border-radius: 16px;
 }
 
-/* FOCUS */
+/* FOCUS = SAME AS YOUR ACCENT */
 .input:focus,
-.select-trigger:focus {
+.select-trigger.active {
   outline: none;
   border: 1px solid var(--accent-color);
   background: #eff6ff;
@@ -140,7 +148,6 @@ import { siteConfig } from "../config";
 .btn-primary:hover {
   background-color: var(--accent-color);
   box-shadow: 0 6px 16px rgba(29,78,216,0.25);
-  transform: translateY(-1px);
 }
 
 /* CUSTOM SELECT */
@@ -153,15 +160,16 @@ import { siteConfig } from "../config";
   border-radius: 999px;
   background: #e5e7eb;
   cursor: pointer;
+  transition: all 0.2s;
 }
 
 .select-options {
   position: absolute;
   top: 110%;
   width: 100%;
-  background: white;
+  background: #eff6ff; /* SAME AS FOCUS */
   border-radius: 12px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--accent-color);
   box-shadow: 0 10px 25px rgba(0,0,0,0.08);
   display: none;
   z-index: 10;
@@ -173,29 +181,29 @@ import { siteConfig } from "../config";
 }
 
 .select-options div:hover {
-  background: #eff6ff;
+  background: rgba(29,78,216,0.1);
 }
 
 .custom-select.active .select-options {
   display: block;
 }
 
-/* IMAGE ANIMATION */
+/* IMAGE */
 .image-box {
-  height: 260px;
+  height: 240px;
   animation: floatPro 8s ease-in-out infinite;
 }
 
 @keyframes floatPro {
-  0% { transform: translateY(0px) scale(1); }
-  50% { transform: translateY(-10px) scale(1.02); }
-  100% { transform: translateY(0px) scale(1); }
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 
 </style>
 
 <script>
-/* CUSTOM SELECT */
+/* SELECT */
 document.querySelectorAll(".custom-select").forEach(select => {
   const trigger = select.querySelector(".select-trigger");
   const options = select.querySelectorAll(".select-options div");
@@ -203,6 +211,7 @@ document.querySelectorAll(".custom-select").forEach(select => {
   trigger.addEventListener("click", () => {
     document.querySelectorAll(".custom-select").forEach(s => s.classList.remove("active"));
     select.classList.toggle("active");
+    trigger.classList.add("active");
   });
 
   options.forEach(option => {
@@ -210,6 +219,7 @@ document.querySelectorAll(".custom-select").forEach(select => {
       trigger.textContent = option.textContent;
       select.dataset.value = option.dataset.value;
       select.classList.remove("active");
+      trigger.classList.remove("active");
     });
   });
 });
@@ -217,12 +227,12 @@ document.querySelectorAll(".custom-select").forEach(select => {
 /* HEIGHT MATCH */
 function matchHeight() {
   const left = document.getElementById("contactLeft");
-  const form = document.getElementById("contactForm");
+  const right = document.getElementById("contactForm");
 
   if (window.innerWidth >= 1024) {
-    form.style.minHeight = left.offsetHeight + "px";
+    right.style.minHeight = left.offsetHeight + "px";
   } else {
-    form.style.minHeight = "auto";
+    right.style.minHeight = "auto";
   }
 }
 window.addEventListener("load", matchHeight);
@@ -267,7 +277,7 @@ Budget: ${budget}
 Details:
 ${message}`;
 
-  window.open(`https://wa.me/918144991049?text=${encodeURIComponent(text)}`, "_blank");
+  window.open(`https://wa.me/918144991049?text=${encodeURIComponent(text)}`);
 
   form.reset();
 
