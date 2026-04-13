@@ -7,7 +7,7 @@ import { siteConfig } from "../config";
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
       <!-- LEFT -->
-      <div id="contactLeft" class="lg:col-span-4">
+      <div class="lg:col-span-4">
 
         <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
           Let’s Work Together.
@@ -21,80 +21,91 @@ import { siteConfig } from "../config";
         </p>
 
         <!-- IMAGE -->
-        <div class="mt-6 image-box rounded-xl overflow-hidden border border-gray-200 shadow-sm">
+        <div class="mt-6 rounded-xl overflow-hidden border border-gray-200 shadow-sm image-box">
           <img src="/images/contact.jpg" class="w-full h-full object-cover" />
         </div>
 
       </div>
 
-      <!-- RIGHT -->
+      <!-- RIGHT (NEW CARD GRID LIKE TESTIMONIAL) -->
       <div class="lg:col-span-8">
 
-        <form id="contactForm" class="contact-card">
+        <div class="grid md:grid-cols-2 gap-6">
 
-          <div class="mb-6">
-            <h3 class="text-xl font-semibold text-gray-900">Start a Project</h3>
-            <p class="text-sm text-gray-500 mt-1">Continue on WhatsApp</p>
+          <!-- FORM CARD -->
+          <div class="contact-card">
+
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">
+              Start a Project
+            </h3>
+
+            <form id="contactForm" class="space-y-4">
+
+              <input required type="text" placeholder="Your Name *" class="input" />
+              <input required type="email" placeholder="Email *" class="input" />
+
+              <!-- SELECT -->
+              <div class="custom-select" data-name="service">
+                <div class="select-trigger">Project Type *</div>
+                <div class="select-options">
+                  <div data-value="Social Media Design">Social Media Design</div>
+                  <div data-value="Video Editing">Video Editing</div>
+                  <div data-value="Branding">Branding</div>
+                  <div data-value="Print Design">Print Design</div>
+                </div>
+              </div>
+
+              <div class="custom-select" data-name="budget">
+                <div class="select-trigger">Budget</div>
+                <div class="select-options">
+                  <div data-value="₹1k–₹5k">₹1k–₹5k</div>
+                  <div data-value="₹5k–₹20k">₹5k–₹20k</div>
+                  <div data-value="₹20k+">₹20k+</div>
+                </div>
+              </div>
+
+              <textarea required rows="3"
+                placeholder="Tell me about your project *"
+                class="input textarea"></textarea>
+
+              <button type="submit"
+                class="btn-primary w-full py-2 rounded-md font-medium">
+                Start Project
+              </button>
+
+            </form>
+
           </div>
 
-          <!-- GRID LIKE PRICING -->
-          <div class="grid sm:grid-cols-2 gap-4">
+          <!-- TRUST CARD (LIKE YOUR DARK TESTIMONIAL) -->
+          <div class="trust-card">
 
-            <input required type="text" placeholder="Your Name *" class="input" />
-            <input required type="email" placeholder="Email *" class="input" />
+            <h3 class="text-white text-lg font-semibold">
+              Fast Response ⚡
+            </h3>
 
-            <!-- SERVICE -->
-            <div class="custom-select" data-name="service">
-              <div class="select-trigger">Project Type *</div>
-              <div class="select-options">
-                <div data-value="Social Media Design">Social Media Design</div>
-                <div data-value="Video Editing">Video Editing</div>
-                <div data-value="Branding">Branding</div>
-                <div data-value="Print Design">Print Design</div>
-              </div>
-            </div>
-
-            <!-- TIMELINE -->
-            <div class="custom-select" data-name="timeline">
-              <div class="select-trigger">Timeline</div>
-              <div class="select-options">
-                <div data-value="Urgent (1–3 days)">Urgent (1–3 days)</div>
-                <div data-value="1 Week">1 Week</div>
-                <div data-value="Flexible">Flexible</div>
-              </div>
-            </div>
-
-            <!-- BUDGET FULL WIDTH -->
-            <div class="custom-select sm:col-span-2" data-name="budget">
-              <div class="select-trigger">Budget</div>
-              <div class="select-options">
-                <div data-value="₹1k–₹5k">₹1k–₹5k</div>
-                <div data-value="₹5k–₹20k">₹5k–₹20k</div>
-                <div data-value="₹20k+">₹20k+</div>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- MESSAGE -->
-          <textarea required rows="4"
-            placeholder="Tell me about your project *"
-            class="input textarea mt-4"></textarea>
-
-          <!-- FOOTER -->
-          <div class="mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-
-            <p class="text-xs text-gray-400">
-              I usually reply within a few hours
+            <p class="text-gray-300 text-sm mt-2">
+              I usually reply within a few hours.  
+              Clear communication. No delays.
             </p>
 
-            <button type="submit" class="btn-primary px-6 py-2 rounded-md font-medium">
-              Start Project
-            </button>
+            <div class="mt-6">
+              <p class="text-white font-semibold text-sm">4.9/5 Rating</p>
+              <p class="text-gray-400 text-xs mt-1">
+                Trusted by 100+ clients
+              </p>
+            </div>
+
+            <!-- CTA -->
+            <a href="https://wa.me/918144991049"
+              target="_blank"
+              class="inline-block mt-6 bg-white text-black px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition">
+              Chat Directly
+            </a>
 
           </div>
 
-        </form>
+        </div>
 
       </div>
 
@@ -104,13 +115,19 @@ import { siteConfig } from "../config";
 
 <style>
 
-/* CARD */
+/* FORM CARD */
 .contact-card {
   background: linear-gradient(145deg, #f9fafb, #f3f4f6);
   border: 1px solid #e5e7eb;
   border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+  padding: 20px;
+}
+
+/* TRUST CARD */
+.trust-card {
+  background: #0f172a;
+  border-radius: 16px;
+  padding: 20px;
 }
 
 /* INPUT */
@@ -124,12 +141,11 @@ import { siteConfig } from "../config";
   transition: all 0.25s ease;
 }
 
-/* TEXTAREA */
 .textarea {
   border-radius: 16px;
 }
 
-/* FOCUS = SAME AS YOUR ACCENT */
+/* FOCUS */
 .input:focus,
 .select-trigger.active {
   outline: none;
@@ -147,10 +163,9 @@ import { siteConfig } from "../config";
 
 .btn-primary:hover {
   background-color: var(--accent-color);
-  box-shadow: 0 6px 16px rgba(29,78,216,0.25);
 }
 
-/* CUSTOM SELECT */
+/* SELECT */
 .custom-select {
   position: relative;
 }
@@ -160,24 +175,21 @@ import { siteConfig } from "../config";
   border-radius: 999px;
   background: #e5e7eb;
   cursor: pointer;
-  transition: all 0.2s;
 }
 
 .select-options {
   position: absolute;
   top: 110%;
   width: 100%;
-  background: #eff6ff; /* SAME AS FOCUS */
+  background: #eff6ff;
   border-radius: 12px;
   border: 1px solid var(--accent-color);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
   display: none;
   z-index: 10;
 }
 
 .select-options div {
   padding: 12px 16px;
-  cursor: pointer;
 }
 
 .select-options div:hover {
@@ -191,13 +203,13 @@ import { siteConfig } from "../config";
 /* IMAGE */
 .image-box {
   height: 240px;
-  animation: floatPro 8s ease-in-out infinite;
+  animation: float 8s ease-in-out infinite;
 }
 
-@keyframes floatPro {
-  0% { transform: translateY(0px); }
+@keyframes float {
+  0% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+  100% { transform: translateY(0); }
 }
 
 </style>
@@ -224,45 +236,19 @@ document.querySelectorAll(".custom-select").forEach(select => {
   });
 });
 
-/* HEIGHT MATCH */
-function matchHeight() {
-  const left = document.getElementById("contactLeft");
-  const right = document.getElementById("contactForm");
-
-  if (window.innerWidth >= 1024) {
-    right.style.minHeight = left.offsetHeight + "px";
-  } else {
-    right.style.minHeight = "auto";
-  }
-}
-window.addEventListener("load", matchHeight);
-window.addEventListener("resize", matchHeight);
-
 /* WHATSAPP */
 const form = document.getElementById("contactForm");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const btn = form.querySelector("button");
-  btn.disabled = true;
-  btn.textContent = "Opening WhatsApp...";
-
   const name = form.querySelector('input[type="text"]').value;
   const email = form.querySelector('input[type="email"]').value;
   const message = form.querySelector("textarea").value;
 
   const selects = document.querySelectorAll(".custom-select");
-
   const service = selects[0].dataset.value || "";
-  const timeline = selects[1].dataset.value || "";
-  const budget = selects[2].dataset.value || "";
-
-  if (!name || !email || !service) {
-    btn.textContent = "Fill required fields";
-    btn.disabled = false;
-    return;
-  }
+  const budget = selects[1].dataset.value || "";
 
   const text = `Hi Saurav,
 
@@ -271,21 +257,11 @@ New Project Inquiry
 Name: ${name}
 Email: ${email}
 Project: ${service}
-Timeline: ${timeline}
 Budget: ${budget}
 
 Details:
 ${message}`;
 
   window.open(`https://wa.me/918144991049?text=${encodeURIComponent(text)}`);
-
-  form.reset();
-
-  btn.textContent = "Message ready ✓";
-
-  setTimeout(() => {
-    btn.textContent = "Start Project";
-    btn.disabled = false;
-  }, 3000);
 });
 </script>
