@@ -2,10 +2,9 @@
 import { siteConfig } from "../config";
 ---
 
-<section id="contact" class="p-8 sm:p-12 md:p-16 lg:p-24 bg-white">
-
+<section id="contact" class="p-8 sm:p-12 md:p-16 lg:p-24">
   <div>
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
       <!-- LEFT -->
       <div class="lg:col-span-4">
@@ -26,21 +25,21 @@ import { siteConfig } from "../config";
       <!-- RIGHT -->
       <div class="lg:col-span-8">
 
-        <div class="grid md:grid-cols-2 gap-6 items-stretch">
+        <div class="grid md:grid-cols-2 gap-6">
 
           <!-- FORM -->
           <form id="contactForm" class="contact-card flex flex-col justify-between">
 
             <div class="space-y-5">
 
-              <h3 class="text-lg font-semibold text-gray-900">
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">
                 Start a Project
               </h3>
 
               <input required type="text" placeholder="Your Name *" class="input" />
               <input required type="email" placeholder="Email *" class="input" />
 
-              <!-- PROJECT -->
+              <!-- PROJECT TYPE -->
               <div class="custom-select">
                 <div class="select-trigger">Project Type *</div>
                 <div class="select-options">
@@ -82,6 +81,7 @@ import { siteConfig } from "../config";
                 I usually reply within a few hours.
               </p>
 
+              <!-- FIXED BUTTON -->
               <button type="submit"
                 class="btn-primary w-full py-2 rounded-md font-medium"
                 style={`--accent: ${siteConfig.accentColor}`}>
@@ -94,7 +94,7 @@ import { siteConfig } from "../config";
           <!-- IMAGE -->
           <div id="contactImage"
             class="image-box rounded-xl overflow-hidden border border-gray-200 shadow-sm">
-            <img src="/images/contact.jpg" alt="contact"/>
+            <img src="/images/contact.jpg" />
           </div>
 
         </div>
@@ -103,5 +103,218 @@ import { siteConfig } from "../config";
 
     </div>
   </div>
-
 </section>
+
+<style>
+
+/* RESET SECTION GAP */
+section { margin: 0; }
+
+/* CARD */
+.contact-card {
+  background: linear-gradient(145deg, #f9fafb, #f3f4f6);
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+/* INPUT */
+.input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  border: 1px solid transparent;
+  font-size: 14px;
+  transition: all 0.25s ease;
+}
+
+.textarea { border-radius: 16px; }
+
+/* PREMIUM FOCUS */
+.input:focus,
+.select-trigger.active {
+  outline: none;
+  border: 1px solid var(--accent-color);
+  background: #e0ecff;
+  box-shadow: 0 0 0 2px rgba(29,78,216,0.25);
+}
+
+/* BUTTON (MATCH PRICING EXACTLY) */
+.btn-primary {
+  background-color: #101828;
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent);
+}
+
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: var(--accent);
+  color: white;
+  outline: none;
+  box-shadow: none;
+}
+
+/* SELECT */
+.custom-select { position: relative; }
+
+.select-trigger {
+  padding: 14px 16px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* PREMIUM DROPDOWN */
+.select-options {
+  position: absolute;
+  top: calc(100% + 6px);
+  width: 100%;
+
+  background: #e0ecff;
+  border-radius: 14px;
+  border: 1px solid var(--accent-color);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+
+  transform-origin: top;
+  opacity: 0;
+  transform: scaleY(0.8) translateY(-5px);
+  pointer-events: none;
+
+  transition: all 0.25s ease;
+  z-index: 50;
+}
+
+.custom-select.active .select-options {
+  opacity: 1;
+  transform: scaleY(1) translateY(0);
+  pointer-events: auto;
+}
+
+.select-options div {
+  padding: 12px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.select-options div:hover {
+  background: rgba(29,78,216,0.15);
+  transform: translateX(6px);
+}
+
+/* IMAGE */
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: cinematicMove 14s ease-in-out infinite;
+}
+
+@keyframes cinematicMove {
+  0% { transform: scale(1.08) translate(0,0); }
+  50% { transform: scale(1.12) translate(-4px,-10px); }
+  100% { transform: scale(1.08) translate(0,0); }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  #contact .grid { grid-template-columns: 1fr !important; }
+
+  #contactImage {
+    height: 220px;
+    order: -1;
+  }
+}
+
+</style>
+
+<script>
+
+/* SELECT (WITH OUTSIDE CLICK CLOSE) */
+document.querySelectorAll(".custom-select").forEach(select => {
+  const trigger = select.querySelector(".select-trigger");
+  const options = select.querySelectorAll(".select-options div");
+
+  trigger.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    document.querySelectorAll(".custom-select").forEach(s => {
+      if (s !== select) {
+        s.classList.remove("active");
+        s.querySelector(".select-trigger").classList.remove("active");
+      }
+    });
+
+    select.classList.toggle("active");
+    trigger.classList.toggle("active");
+  });
+
+  options.forEach(option => {
+    option.addEventListener("click", () => {
+      trigger.textContent = option.textContent;
+      select.dataset.value = option.dataset.value;
+
+      select.classList.remove("active");
+      trigger.classList.remove("active");
+    });
+  });
+});
+
+document.addEventListener("click", () => {
+  document.querySelectorAll(".custom-select").forEach(select => {
+    select.classList.remove("active");
+    select.querySelector(".select-trigger").classList.remove("active");
+  });
+});
+
+/* HEIGHT MATCH */
+function matchHeight() {
+  const form = document.getElementById("contactForm");
+  const image = document.getElementById("contactImage");
+
+  if (window.innerWidth >= 768) {
+    image.style.height = form.offsetHeight + "px";
+  } else {
+    image.style.height = "220px";
+  }
+}
+
+window.addEventListener("load", matchHeight);
+window.addEventListener("resize", matchHeight);
+
+/* WHATSAPP */
+document.getElementById("contactForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const name = e.target.querySelector('input[type="text"]').value;
+  const email = e.target.querySelector('input[type="email"]').value;
+  const message = e.target.querySelector("textarea").value;
+
+  const selects = document.querySelectorAll(".custom-select");
+
+  const service = selects[0].dataset.value || "";
+  const timeline = selects[1].dataset.value || "";
+  const budget = selects[2].dataset.value || "";
+
+  const text = `Hi Saurav,
+
+New Project Inquiry
+
+Name: ${name}
+Email: ${email}
+Project: ${service}
+Timeline: ${timeline}
+Budget: ${budget}
+
+Details:
+${message}`;
+
+  window.open(`https://wa.me/918144991049?text=${encodeURIComponent(text)}`);
+});
+</script>
