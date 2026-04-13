@@ -32,49 +32,67 @@ import { siteConfig } from "../config";
     <!-- RIGHT -->
     <div class="lg:col-span-8">
 
-      <form id="contactForm"
-        class="bg-gray-50 border border-gray-200 rounded-xl p-5 md:p-6 flex flex-col justify-between">
+      <form id="contactForm" class="contact-card flex flex-col">
 
-        <div class="space-y-5">
+        <!-- HEADER -->
+        <div class="mb-6">
+          <h3 class="text-xl font-semibold text-gray-900">
+            Start a Project
+          </h3>
+          <p class="text-sm text-gray-500 mt-1">
+            Fill the details and continue on WhatsApp
+          </p>
+        </div>
 
-          <!-- NAME + EMAIL -->
+        <!-- FIELDS -->
+        <div class="space-y-5 flex-1">
+
           <div class="grid sm:grid-cols-2 gap-4">
             <input required type="text" placeholder="Your Name *" class="input" />
             <input required type="email" placeholder="Email *" class="input" />
           </div>
 
-          <!-- PHONE -->
           <input required type="tel" placeholder="Phone / WhatsApp *" class="input" />
 
-          <!-- SERVICE -->
-          <select required class="input">
-            <option disabled selected>Select Service *</option>
-            <option>Graphic Design</option>
-            <option>Video Editing</option>
-            <option>Motion Graphics</option>
-            <option>Print Design</option>
-          </select>
+          <!-- SELECT -->
+          <div class="relative">
+            <select required class="input select">
+              <option disabled selected>Select Service *</option>
+              <option>Graphic Design</option>
+              <option>Video Editing</option>
+              <option>Motion Graphics</option>
+              <option>Print Design</option>
+            </select>
+          </div>
 
-          <!-- BUDGET -->
-          <select class="input">
-            <option disabled selected>Budget (optional)</option>
-            <option>₹1k–₹5k</option>
-            <option>₹5k–₹20k</option>
-            <option>₹20k+</option>
-          </select>
+          <div class="relative">
+            <select class="input select">
+              <option disabled selected>Budget</option>
+              <option>₹1k–₹5k</option>
+              <option>₹5k–₹20k</option>
+              <option>₹20k+</option>
+            </select>
+          </div>
 
-          <!-- MESSAGE -->
           <textarea required rows="4"
             placeholder="Tell me about your project *"
             class="input textarea"></textarea>
 
         </div>
 
-        <!-- BUTTON -->
-        <button type="submit"
-          class="btn-primary mt-6 w-fit px-6 py-2 rounded-md font-medium">
-          Start Project
-        </button>
+        <!-- FOOTER -->
+        <div class="mt-6 flex items-center justify-between">
+
+          <p class="text-xs text-gray-400">
+            I usually reply within a few hours
+          </p>
+
+          <button type="submit"
+            class="btn-primary px-6 py-2 rounded-md font-medium">
+            Start Project
+          </button>
+
+        </div>
 
       </form>
 
@@ -85,6 +103,16 @@ import { siteConfig } from "../config";
 </section>
 
 <style>
+/* CARD */
+.contact-card {
+  background: linear-gradient(145deg, #f9fafb, #f3f4f6);
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+  height: 100%;
+}
+
 /* INPUT */
 .input {
   width: 100%;
@@ -100,11 +128,18 @@ import { siteConfig } from "../config";
   border-radius: 16px;
 }
 
+/* FOCUS */
 .input:focus {
   outline: none;
   border-color: var(--accent-color);
-  background: #f9fafb;
-  box-shadow: 0 0 0 2px rgba(29, 78, 216, 0.1);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.12);
+}
+
+/* SELECT FIX */
+.select {
+  appearance: none;
+  cursor: pointer;
 }
 
 /* BUTTON */
@@ -117,6 +152,8 @@ import { siteConfig } from "../config";
 .btn-primary:hover {
   background-color: var(--accent-color);
   color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(29, 78, 216, 0.25);
 }
 </style>
 
@@ -136,7 +173,7 @@ function matchHeight() {
 window.addEventListener("load", matchHeight);
 window.addEventListener("resize", matchHeight);
 
-/* WHATSAPP FORM */
+/* WHATSAPP */
 const form = document.getElementById("contactForm");
 
 form.addEventListener("submit", (e) => {
@@ -153,7 +190,6 @@ form.addEventListener("submit", (e) => {
   const budget = form.querySelectorAll("select")[1].value;
   const message = form.querySelector("textarea").value.trim();
 
-  // validation
   if (!name || !email || !phone || service.includes("Select")) {
     btn.textContent = "Fill required fields";
     btn.disabled = false;
@@ -162,7 +198,7 @@ form.addEventListener("submit", (e) => {
 
   const text = `Hi Saurav,
 
-New Project Inquiry 🚀
+New Project Inquiry
 
 Name: ${name}
 Email: ${email}
