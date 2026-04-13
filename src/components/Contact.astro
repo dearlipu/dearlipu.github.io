@@ -6,7 +6,7 @@ import { siteConfig } from "../config";
   <div>
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
-      <!-- LEFT (TEXT ONLY) -->
+      <!-- LEFT -->
       <div class="lg:col-span-4">
 
         <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
@@ -27,19 +27,19 @@ import { siteConfig } from "../config";
 
         <div class="grid md:grid-cols-2 gap-6">
 
-          <!-- FORM CARD -->
-          <div class="contact-card">
+          <!-- FORM -->
+          <form id="contactForm" class="contact-card flex flex-col justify-between">
 
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">
-              Start a Project
-            </h3>
+            <div class="space-y-4">
 
-            <form id="contactForm" class="space-y-4">
+              <h3 class="text-lg font-semibold text-gray-900">
+                Start a Project
+              </h3>
 
               <input required type="text" placeholder="Your Name *" class="input" />
               <input required type="email" placeholder="Email *" class="input" />
 
-              <!-- SELECT -->
+              <!-- PROJECT TYPE -->
               <div class="custom-select" data-name="service">
                 <div class="select-trigger">Project Type *</div>
                 <div class="select-options">
@@ -50,6 +50,17 @@ import { siteConfig } from "../config";
                 </div>
               </div>
 
+              <!-- TIMELINE -->
+              <div class="custom-select" data-name="timeline">
+                <div class="select-trigger">Timeline</div>
+                <div class="select-options">
+                  <div data-value="Urgent (1–3 days)">Urgent (1–3 days)</div>
+                  <div data-value="1 Week">1 Week</div>
+                  <div data-value="Flexible">Flexible</div>
+                </div>
+              </div>
+
+              <!-- BUDGET -->
               <div class="custom-select" data-name="budget">
                 <div class="select-trigger">Budget</div>
                 <div class="select-options">
@@ -63,8 +74,12 @@ import { siteConfig } from "../config";
                 placeholder="Tell me about your project *"
                 class="input textarea"></textarea>
 
-              <!-- RESPONSE TEXT -->
-              <p class="text-xs text-gray-400">
+            </div>
+
+            <!-- FOOTER -->
+            <div class="mt-5">
+
+              <p class="text-xs text-gray-400 mb-3">
                 I usually reply within a few hours.
               </p>
 
@@ -73,44 +88,14 @@ import { siteConfig } from "../config";
                 Start Project
               </button>
 
-            </form>
-
-          </div>
-
-          <!-- RIGHT SIDE (IMAGE + TRUST) -->
-          <div class="space-y-6">
-
-            <!-- IMAGE -->
-            <div class="image-box rounded-xl overflow-hidden border border-gray-200 shadow-sm">
-              <img src="/images/contact.jpg" class="w-full h-full object-cover" />
             </div>
 
-            <!-- TRUST CARD -->
-            <div class="trust-card">
+          </form>
 
-              <h3 class="text-white text-lg font-semibold">
-                Fast Response ⚡
-              </h3>
-
-              <p class="text-gray-300 text-sm mt-2">
-                Clear communication. No delays.
-              </p>
-
-              <div class="mt-6">
-                <p class="text-white font-semibold text-sm">4.9/5 Rating</p>
-                <p class="text-gray-400 text-xs mt-1">
-                  Trusted by 100+ clients
-                </p>
-              </div>
-
-              <a href="https://wa.me/918144991049"
-                target="_blank"
-                class="inline-block mt-6 bg-white text-black px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition">
-                Chat Directly
-              </a>
-
-            </div>
-
+          <!-- IMAGE -->
+          <div id="contactImage"
+            class="image-box rounded-xl overflow-hidden border border-gray-200 shadow-sm">
+            <img src="/images/contact.jpg" class="w-full h-full object-cover" />
           </div>
 
         </div>
@@ -123,17 +108,10 @@ import { siteConfig } from "../config";
 
 <style>
 
-/* FORM CARD */
+/* CARD */
 .contact-card {
   background: linear-gradient(145deg, #f9fafb, #f3f4f6);
   border: 1px solid #e5e7eb;
-  border-radius: 16px;
-  padding: 20px;
-}
-
-/* TRUST CARD */
-.trust-card {
-  background: #0f172a;
   border-radius: 16px;
   padding: 20px;
 }
@@ -208,16 +186,43 @@ import { siteConfig } from "../config";
   display: block;
 }
 
-/* IMAGE */
+/* IMAGE (camera rig feel) */
 .image-box {
-  height: 200px;
-  animation: float 8s ease-in-out infinite;
+  min-height: 100%;
+  position: relative;
+  overflow: hidden;
 }
 
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0); }
+.image-box img {
+  transition: transform 8s ease-in-out;
+  transform: scale(1.05);
+}
+
+.image-box:hover img {
+  transform: scale(1.12) translateY(-5px);
+}
+
+/* subtle auto movement */
+@keyframes cinematic {
+  0% { transform: scale(1.05) translateY(0px); }
+  50% { transform: scale(1.08) translateY(-6px); }
+  100% { transform: scale(1.05) translateY(0px); }
+}
+
+.image-box img {
+  animation: cinematic 12s ease-in-out infinite;
+}
+
+/* MOBILE FIX */
+@media (max-width: 768px) {
+  #contact .grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .image-box {
+    height: 220px;
+    order: -1; /* image on top */
+  }
 }
 
 </style>
@@ -244,6 +249,21 @@ document.querySelectorAll(".custom-select").forEach(select => {
   });
 });
 
+/* HEIGHT MATCH */
+function matchHeight() {
+  const form = document.getElementById("contactForm");
+  const image = document.getElementById("contactImage");
+
+  if (window.innerWidth >= 768) {
+    image.style.height = form.offsetHeight + "px";
+  } else {
+    image.style.height = "220px";
+  }
+}
+
+window.addEventListener("load", matchHeight);
+window.addEventListener("resize", matchHeight);
+
 /* WHATSAPP */
 const form = document.getElementById("contactForm");
 
@@ -256,7 +276,8 @@ form.addEventListener("submit", (e) => {
 
   const selects = document.querySelectorAll(".custom-select");
   const service = selects[0].dataset.value || "";
-  const budget = selects[1].dataset.value || "";
+  const timeline = selects[1].dataset.value || "";
+  const budget = selects[2].dataset.value || "";
 
   const text = `Hi Saurav,
 
@@ -265,6 +286,7 @@ New Project Inquiry
 Name: ${name}
 Email: ${email}
 Project: ${service}
+Timeline: ${timeline}
 Budget: ${budget}
 
 Details:
