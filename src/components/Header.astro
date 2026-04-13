@@ -39,6 +39,16 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
     <ul class="text-lg">
 
       <li class="menu-item">
+        <a href="#hero" class="menu-link">
+          Home
+          <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+        </a>
+      </li>
+
+      <li class="menu-item">
         <a href="#about" class="menu-link">
           About
           <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -80,7 +90,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
       <li class="menu-item">
         <a href="#testimonials" class="menu-link">
-          Review
+          Reviews
           <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M7 17L17 7M17 7H7M17 7V17"/>
@@ -124,11 +134,12 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   <!-- DESKTOP NAV -->
   <nav class="hidden md:block max-w-7xl mx-auto px-8 py-4">
     <ul class="flex items-center gap-8 justify-center">
+      <li><a href="#hero" class="nav-link">Home</a></li>
       <li><a href="#about" class="nav-link">About</a></li>
       {hasProjects && <li><a href="#projects" class="nav-link">Projects</a></li>}
       {hasEducation && <li><a href="#education" class="nav-link">Services</a></li>}
       <li><a href="#pricing" class="nav-link">Pricing</a></li>
-      <li><a href="#testimonials" class="nav-link">Review</a></li>
+      <li><a href="#testimonials" class="nav-link">Reviews</a></li>
     </ul>
   </nav>
 
