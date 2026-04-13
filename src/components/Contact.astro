@@ -165,24 +165,28 @@ section { margin: 0; }
   border-radius: 999px;
   background: #e5e7eb;
   font-size: 14px;
-  color: #727375; /* placeholder color */
+  color: #9ca3af;
   cursor: pointer;
 }
 
-/* DROPDOWN */
+/* DROPDOWN (matches UI) */
 .select-options {
   position: absolute;
   top: calc(100% + 6px);
   width: 100%;
-  background: #e0ecff;
+
+  background: #f9fafb; /* FIX */
   border-radius: 14px;
-  border: 1px solid var(--accent-color);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  border: 1px solid #e5e7eb; /* FIX */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06); /* softer */
+
   overflow: hidden;
+
   transform-origin: top;
   opacity: 0;
   transform: scaleY(0.85) translateY(-6px);
   pointer-events: none;
+
   transition: all 0.25s ease;
   z-index: 50;
 }
@@ -197,8 +201,9 @@ section { margin: 0; }
   padding: 12px 16px;
 }
 
+/* SOFT HOVER */
 .select-options div:hover {
-  background: rgba(29,78,216,0.15);
+  background: rgba(29,78,216,0.08);
 }
 
 /* IMAGE */
@@ -226,112 +231,3 @@ section { margin: 0; }
 }
 
 </style>
-
-<script>
-
-/* SELECT */
-document.querySelectorAll(".custom-select").forEach(select => {
-  const trigger = select.querySelector(".select-trigger");
-  const options = select.querySelectorAll(".select-options div");
-
-  trigger.addEventListener("click", (e) => {
-    e.stopPropagation();
-
-    document.querySelectorAll(".custom-select").forEach(s => {
-      if (s !== select) {
-        s.classList.remove("active");
-        s.querySelector(".select-trigger").classList.remove("active");
-      }
-    });
-
-    select.classList.toggle("active");
-    trigger.classList.toggle("active");
-  });
-
-  options.forEach(option => {
-    option.addEventListener("click", () => {
-      trigger.textContent = option.textContent;
-      trigger.style.color = "#111827"; // selected = dark
-
-      select.dataset.value = option.dataset.value;
-
-      select.classList.remove("active");
-      trigger.classList.remove("active");
-    });
-  });
-});
-
-/* OUTSIDE CLICK */
-document.addEventListener("click", () => {
-  document.querySelectorAll(".custom-select").forEach(select => {
-    select.classList.remove("active");
-    select.querySelector(".select-trigger").classList.remove("active");
-  });
-});
-
-/* HEIGHT MATCH */
-function matchHeight() {
-  const form = document.getElementById("contactForm");
-  const image = document.getElementById("contactImage");
-
-  if (window.innerWidth >= 768) {
-    image.style.height = form.offsetHeight + "px";
-  } else {
-    image.style.height = "220px";
-  }
-}
-
-window.addEventListener("load", matchHeight);
-window.addEventListener("resize", matchHeight);
-
-/* WHATSAPP + RESET */
-document.getElementById("contactForm").addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const form = e.target;
-
-  const name = form.querySelector('input[type="text"]').value;
-  const email = form.querySelector('input[type="email"]').value;
-  const message = form.querySelector("textarea").value;
-
-  const selects = document.querySelectorAll(".custom-select");
-
-  const service = selects[0].dataset.value || "";
-  const timeline = selects[1].dataset.value || "";
-  const budget = selects[2].dataset.value || "";
-
-  const text = `Hi Saurav,
-
-New Project Inquiry
-
-Name: ${name}
-Email: ${email}
-Project: ${service}
-Timeline: ${timeline}
-Budget: ${budget}
-
-Details:
-${message}`;
-
-  window.open(`https://wa.me/918144991049?text=${encodeURIComponent(text)}`);
-
-  // RESET INPUTS
-  form.reset();
-
-  // RESET SELECTS
-  document.querySelectorAll(".custom-select").forEach(select => {
-    const trigger = select.querySelector(".select-trigger");
-
-    if (trigger.textContent.includes("Project Type")) {
-      trigger.textContent = "Project Type *";
-    } else if (trigger.textContent.includes("Timeline")) {
-      trigger.textContent = "Timeline (optional)";
-    } else if (trigger.textContent.includes("Budget")) {
-      trigger.textContent = "Budget (optional)";
-    }
-
-    trigger.style.color = "#9ca3af";
-    delete select.dataset.value;
-  });
-});
-</script>
