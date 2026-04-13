@@ -2,7 +2,7 @@
 import { siteConfig } from "../config";
 ---
 
-<section id="contact" class="p-6 sm:p-10 md:p-14 lg:p-20">
+<section id="contact" class="p-6 sm:p-10 md:p-14 lg:p-20 bg-white mt-0">
   <div>
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
@@ -30,9 +30,9 @@ import { siteConfig } from "../config";
           <!-- FORM -->
           <form id="contactForm" class="contact-card flex flex-col justify-between">
 
-            <div class="space-y-4">
+            <div class="space-y-5">
 
-              <h3 class="text-lg font-semibold text-gray-900">
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">
                 Start a Project
               </h3>
 
@@ -82,7 +82,7 @@ import { siteConfig } from "../config";
               </p>
 
               <button type="submit"
-                class="btn-primary w-full py-2 rounded-md font-medium" style={`--accent: ${siteConfig.accentColor}`}>
+                class="btn-primary w-full py-2 rounded-md font-medium">
                 Start Project
               </button>
             </div>
@@ -137,15 +137,29 @@ import { siteConfig } from "../config";
   box-shadow: 0 0 0 3px rgba(29,78,216,0.15);
 }
 
-/* BUTTON */
+/* BUTTON FIX */
 .btn-primary {
   background-color: #101828;
   color: white;
+  border: none;
   transition: all 0.25s ease;
 }
 
-.btn-primary:hover {
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
   background-color: var(--accent-color);
+  color: white;
+  outline: none;
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-primary:disabled {
+  background-color: var(--accent-color);
+  opacity: 0.7;
 }
 
 /* SELECT */
@@ -195,12 +209,7 @@ import { siteConfig } from "../config";
   transform: translateX(4px);
 }
 
-/* IMAGE */
-.image-box {
-  position: relative;
-  overflow: hidden;
-}
-
+/* IMAGE (NO HOVER, ONLY AUTO MOTION) */
 .image-box img {
   width: 100%;
   height: 100%;
@@ -208,18 +217,12 @@ import { siteConfig } from "../config";
   animation: cinematicMove 14s ease-in-out infinite;
 }
 
-/* CINEMATIC */
 @keyframes cinematicMove {
   0%   { transform: scale(1.08) translate(0,0); }
   25%  { transform: scale(1.1) translate(4px,-6px); }
   50%  { transform: scale(1.12) translate(-4px,-10px); }
   75%  { transform: scale(1.1) translate(3px,-5px); }
   100% { transform: scale(1.08) translate(0,0); }
-}
-
-.image-box:hover img {
-  animation-duration: 6s;
-  transform: scale(1.15);
 }
 
 /* MOBILE */
@@ -292,16 +295,15 @@ window.addEventListener("load", matchHeight);
 window.addEventListener("resize", matchHeight);
 
 /* WHATSAPP */
-const form = document.getElementById("contactForm");
-
-form.addEventListener("submit", (e) => {
+document.getElementById("contactForm").addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const name = form.querySelector('input[type="text"]').value;
-  const email = form.querySelector('input[type="email"]').value;
-  const message = form.querySelector("textarea").value;
+  const name = e.target.querySelector('input[type="text"]').value;
+  const email = e.target.querySelector('input[type="email"]').value;
+  const message = e.target.querySelector("textarea").value;
 
   const selects = document.querySelectorAll(".custom-select");
+
   const service = selects[0].dataset.value || "";
   const timeline = selects[1].dataset.value || "";
   const budget = selects[2].dataset.value || "";
