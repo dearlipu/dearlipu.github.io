@@ -209,8 +209,11 @@ import "../styles/global.css";
               
                   <span class="text-gray-400">•</span>
               
-                  <a href={`https://wa.me/${siteConfig.social.whatsapp.replace("+", "")}`} class="hover:underline">
-                    {siteConfig.social.whatsapp}
+                  <a 
+                    href={`https://wa.me/${siteConfig.social.whatsapp}`}
+                    class="hover:underline"
+                  >
+                    +91 {siteConfig.social.whatsapp.replace(/(\d{5})(\d+)/, "$1 $2")}
                   </a>
               
                 </div>
