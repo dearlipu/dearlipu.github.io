@@ -2,27 +2,27 @@
 ---
 
 <html>
-<head>
-  <title>Test</title>
-</head>
-
-<body style="background:black; color:white;">
-
-<h1>TEST PAGE</h1>
+<body style="margin:0">
 
 <canvas id="canvas"></canvas>
 
+<script is:inline src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
+
 <script is:inline>
-console.log("JS WORKING ✅");
+console.log("PIXI START");
 
-const canvas = document.getElementById("canvas");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+const app = new PIXI.Application({
+  view: document.getElementById("canvas"),
+  resizeTo: window,
+  backgroundColor: 0x111111
+});
 
-const ctx = canvas.getContext("2d");
+const sprite = PIXI.Sprite.from("https://picsum.photos/500/500");
 
-ctx.fillStyle = "red";
-ctx.fillRect(100, 100, 200, 200);
+sprite.x = 100;
+sprite.y = 100;
+
+app.stage.addChild(sprite);
 </script>
 
 </body>
