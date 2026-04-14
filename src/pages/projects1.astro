@@ -21,73 +21,55 @@ const imageUrls = imageIds.map(
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
-      rel="stylesheet"
-    />
-
 <title>Gallery</title>
 
-<!-- 🔥 Font -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
 <style>
-:root {
-  --bg: #0b0b0f;
-  --card: #111116;
-  --text: #ffffff;
-  --muted: #9ca3af;
-  --accent: #6366f1;
-}
 
-body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-}
+/* 🔥 KEEP YOUR THEME (NO DARK OVERRIDE) */
 
-/* HEADER */
 .gallery {
-  padding: 60px 20px;
+  padding: 80px 20px;
   max-width: 1400px;
   margin: auto;
 }
 
+/* HEADER */
 .heading {
-  font-size: 40px;
+  font-size: 42px;
   text-align: center;
   font-weight: 600;
+  color: #1f2937;
 }
 
 .subHeading {
   text-align: center;
-  color: var(--muted);
+  color: #6b7280;
   margin-top: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
 }
 
 /* 🔥 PINTEREST GRID */
 .container {
   column-count: 4;
-  column-gap: 16px;
+  column-gap: 18px;
 }
 
+/* CARD */
 .project {
   break-inside: avoid;
-  margin-bottom: 16px;
-  border-radius: 14px;
+  margin-bottom: 18px;
+  border-radius: 16px;
   overflow: hidden;
-  background: var(--card);
+  background: #ffffff;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.05);
   position: relative;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .project:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
 }
 
 /* IMAGE */
@@ -97,14 +79,15 @@ body {
   display: block;
 }
 
-/* OVERLAY BUTTON */
+/* HOVER OVERLAY */
 .btn-box {
   position: absolute;
   inset: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0,0,0,0.4);
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(6px);
   opacity: 0;
   transition: 0.3s;
 }
@@ -113,21 +96,27 @@ body {
   opacity: 1;
 }
 
+/* BUTTON */
 .btn {
-  background: white;
-  color: black;
+  background: #2563eb;
+  color: white;
   padding: 8px 18px;
   border-radius: 20px;
   font-size: 14px;
   border: none;
   cursor: pointer;
+  transition: 0.2s;
 }
 
-/* 🔥 OVERLAY */
+.btn:hover {
+  background: #1d4ed8;
+}
+
+/* 🔥 OVERLAY VIEW */
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.9);
+  background: rgba(0,0,0,0.85);
   display: none;
   justify-content: center;
   align-items: center;
@@ -141,7 +130,7 @@ body {
 .overlay img {
   max-width: 90%;
   max-height: 90%;
-  border-radius: 12px;
+  border-radius: 14px;
 }
 
 .close {
@@ -149,7 +138,7 @@ body {
   top: 25px;
   right: 35px;
   color: white;
-  font-size: 18px;
+  font-size: 20px;
   cursor: pointer;
 }
 
@@ -163,6 +152,7 @@ body {
 @media (max-width: 500px) {
   .container { column-count: 1; }
 }
+
 </style>
 </head>
 
