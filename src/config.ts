@@ -17,25 +17,25 @@ export const siteConfig = {
   
   projects: [
     {
-      name: "Newsletter Design & Layout System",
+      name: "Social Media Content System",
       description:
-        "Designed a clean, structured email layout focused on readability and content clarity.",
+        "Built a complete content system for consistent, high-quality social media posts designed to improve engagement and brand clarity.",
       link: "/coming-soon",
-      skills: ["Content Design", "Motion Graphics", "Video Editing"],
+      skills: ["Content Design", "Social Media", "Branding"],
     },
     {
-      name: "Landing Page & Content Design",
+      name: "High-Retention Video Editing",
       description:
-        "Designed a conversion-focused layout for a technical product, improving clarity and user flow.",
+        "Edited short-form videos with strong hooks, captions, and pacing to keep viewers engaged and improve watch time.",
       link: "/coming-soon",
-      skills: ["UI Design", "Motion Graphics", "Content Design"],
+      skills: ["Video Editing", "Reels & Shorts", "Motion Graphics"],
     },
     {
-      name: "Product UI & Visual System",
+      name: "Visual Redesign & Brand Upgrade",
       description:
-        "Created a clean interface and visual system for a developer-focused toolkit.",
+        "Redesigned outdated visuals into clean, modern designs that improve clarity, professionalism, and overall brand perception.",
       link: "/coming-soon",
-      skills: ["Visual Design", "UI Design", "Video Editing"],
+      skills: ["Redesign", "Branding", "Visual Upgrade"],
     },
   ],
   
