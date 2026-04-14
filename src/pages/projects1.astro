@@ -1,28 +1,149 @@
 ---
+const imageIds = [
+  "11ED5yQTazPPWzzlU5rlYMHDzqELyl9QP",
+  "1yxGFHBfkSOYnKY0Z4Mk-EwFKADJ0Vt91",
+  "1YhRzX0KQ8IHWO-L8Lpcj26uqSkEVQ2GZ",
+  "1t0_rJeF8pwhGJKmwG7FCaA6DK2afPGaj",
+  "1cjX3CVhxVoEZGQuSFFSoJvFgj0gCqgCx",
+  "1G5HafXFH4whR-Nf_03jhrcXfEhJLhphk"
+];
+
+const imageUrls = imageIds.map(
+  id => `https://drive.google.com/uc?export=view&id=${id}`
+);
 ---
 
 <html>
-<body style="margin:0">
+<body style="margin:0; overflow:hidden; background:#0b0b0f;">
 
 <canvas id="canvas"></canvas>
 
 <script is:inline src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
 
 <script is:inline>
-console.log("PIXI START");
+const images = JSON.parse(`${JSON.stringify(imageUrls)}`);
 
 const app = new PIXI.Application({
   view: document.getElementById("canvas"),
   resizeTo: window,
-  backgroundColor: 0x111111
+  backgroundAlpha: 0
 });
 
-const sprite = PIXI.Sprite.from("https://picsum.photos/500/500");
+let tiles = [];
 
-sprite.x = 100;
-sprite.y = 100;
+let scrollX = 0;
+let scrollY = 0;
+let velX = 0;
+let velY = 0;
 
-app.stage.addChild(sprite);
+const GAP = 20;
+const SIZE = 300;
+
+let cols, rows;
+
+function buildGrid() {
+  app.stage.removeChildren();
+  tiles = [];
+
+  cols = Math.ceil(window.innerWidth / SIZE) + 4;
+  rows = Math.ceil(window.innerHeight / SIZE) + 4;
+
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+
+      const src = images[Math.floor(Math.random() * images.length)];
+
+      const sprite = PIXI.Sprite.from(src); // ✅ SAFE
+
+      sprite.anchor.set(0.5);
+      sprite.width = SIZE - GAP;
+      sprite.height = SIZE - GAP;
+
+      app.stage.addChild(sprite);
+
+      tiles.push({
+        sprite,
+        baseX: x * SIZE,
+        baseY: y * SIZE
+      });
+    }
+  }
+}
+
+function curve(x, w) {
+  let t = (x / w) * 2 - 1;
+  return Math.sin(t * Math.PI * 0.5) * 60;
+}
+
+function update() {
+
+  scrollX += velX;
+  scrollY += velY;
+
+  velX *= 0.92;
+  velY *= 0.92;
+
+  const gridW = cols * SIZE;
+  const gridH = rows * SIZE;
+
+  tiles.forEach(t => {
+
+    let x = (t.baseX + scrollX) % gridW;
+    let y = (t.baseY + scrollY) % gridH;
+
+    if (x < 0) x += gridW;
+    if (y < 0) y += gridH;
+
+    let centerX = x + SIZE / 2;
+
+    let curvedY = y + curve(centerX, window.innerWidth);
+
+    let dist = Math.abs((centerX / window.innerWidth) - 0.5);
+    let scale = 1 - dist * 0.25;
+
+    t.sprite.x = x + SIZE / 2;
+    t.sprite.y = curvedY + SIZE / 2;
+    t.sprite.scale.set(scale);
+  });
+}
+
+app.ticker.add(update);
+
+/* DRAG */
+let isDown = false;
+let lastX, lastY;
+
+window.addEventListener("pointerdown", e => {
+  isDown = true;
+  lastX = e.clientX;
+  lastY = e.clientY;
+});
+
+window.addEventListener("pointerup", () => isDown = false);
+
+window.addEventListener("pointermove", e => {
+  if (!isDown) return;
+
+  let dx = e.clientX - lastX;
+  let dy = e.clientY - lastY;
+
+  velX += dx * 0.6;
+  velY += dy * 0.6;
+
+  lastX = e.clientX;
+  lastY = e.clientY;
+});
+
+/* SCROLL */
+window.addEventListener("wheel", e => {
+  velX += -e.deltaX * 0.25;
+  velY += -e.deltaY * 0.25;
+});
+
+/* RESIZE */
+window.addEventListener("resize", buildGrid);
+
+buildGrid();
 </script>
 
 </body>
