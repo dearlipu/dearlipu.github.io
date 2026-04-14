@@ -1,16 +1,15 @@
 ---
-const imageIds = [
-  "11ED5yQTazPPWzzlU5rlYMHDzqELyl9QP",
-  "1yxGFHBfkSOYnKY0Z4Mk-EwFKADJ0Vt91",
-  "1YhRzX0KQ8IHWO-L8Lpcj26uqSkEVQ2GZ",
-  "1t0_rJeF8pwhGJKmwG7FCaA6DK2afPGaj",
-  "1cjX3CVhxVoEZGQuSFFSoJvFgj0gCqgCx",
-  "1G5HafXFH4whR-Nf_03jhrcXfEhJLhphk"
+const images = [
+  "/projects/after.jpg",
+  "/projects/before.jpg",
+  "/projects/p1-1.jpg",
+  "/projects/p1-2.jpg",
+  "/projects/p1-3.jpg",
+  "/projects/p1-4.jpg",
+  "/projects/p1-5.jpg",
+  "/projects/p1-6.jpg",
+  "/projects/p1-7.jpg"
 ];
-
-const imageUrls = imageIds.map(
-  id => `https://drive.google.com/uc?export=view&id=${id}`
-);
 ---
 
 <html>
@@ -21,7 +20,7 @@ const imageUrls = imageIds.map(
 <script is:inline src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
 
 <script is:inline>
-const images = JSON.parse(`${JSON.stringify(imageUrls)}`);
+const images = JSON.parse(`${JSON.stringify(images)}`);
 
 const app = new PIXI.Application({
   view: document.getElementById("canvas"),
@@ -36,8 +35,8 @@ let scrollY = 0;
 let velX = 0;
 let velY = 0;
 
-const GAP = 20;
 const SIZE = 300;
+const GAP = 20;
 
 let cols, rows;
 
@@ -53,7 +52,7 @@ function buildGrid() {
 
       const src = images[Math.floor(Math.random() * images.length)];
 
-      const sprite = PIXI.Sprite.from(src); // ✅ SAFE
+      const sprite = PIXI.Sprite.from(src);
 
       sprite.anchor.set(0.5);
       sprite.width = SIZE - GAP;
@@ -76,7 +75,6 @@ function curve(x, w) {
 }
 
 function update() {
-
   scrollX += velX;
   scrollY += velY;
 
