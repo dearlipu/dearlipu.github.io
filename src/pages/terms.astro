@@ -31,25 +31,6 @@ const whatsappUrl =
 
   <body class="bg-white text-gray-800">
 
-    <!-- BACK BUTTON -->
-    <div id="backBtnWrapper"
-      class="fixed top-6 right-6 z-50
-             transition-all duration-300 ease-out">
-    
-      <button 
-        onclick="history.length > 1 ? history.back() : window.location.href='/'"
-        class="group flex items-center gap-2 px-4 py-2 rounded-full
-               bg-white/70 backdrop-blur-md border border-gray-200
-               shadow-md hover:shadow-lg
-               text-sm text-gray-700 hover:text-black
-               transition-all duration-300"
-      >
-        <span class="transition group-hover:-translate-x-1">←</span>
-        Back
-      </button>
-    
-    </div>
-
     <!-- MAIN -->
     <section class="px-6 sm:px-10 md:px-16 lg:px-24 py-12 md:py-16 lg:py-20">
 
@@ -282,29 +263,6 @@ const whatsappUrl =
       </div>
 
     </section>
-
-      <script>
-        let lastScroll = 0;
-        const btn = document.getElementById("backBtnWrapper");
-      
-        window.addEventListener("scroll", () => {
-          const currentScroll = window.scrollY;
-      
-          if (currentScroll > lastScroll && currentScroll > 100) {
-            // hide (scroll down)
-            btn.style.transform = "translateY(-40px)";
-            btn.style.opacity = "0";
-            btn.style.pointerEvents = "none";
-          } else {
-            // show (scroll up)
-            btn.style.transform = "translateY(0)";
-            btn.style.opacity = "1";
-            btn.style.pointerEvents = "auto";
-          }
-      
-          lastScroll = currentScroll;
-        });
-      </script>
 
   </body>
 </html>
