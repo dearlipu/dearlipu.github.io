@@ -6,9 +6,9 @@ export const siteConfig = {
   social: {
     email: "infodearlipu+web@gmail.com",
     whatsapp: "918144991049",
-    instagram: "https://www.instagram.com/dearlipu",
-    twitter: "https://x.com/dearlipu",
-    youtube: "https://www.youtube.com/@dearlipu",
+    //instagram: "https://www.instagram.com/dearlipu",
+    //twitter: "https://x.com/dearlipu",
+    //youtube: "https://www.youtube.com/@dearlipu",
   },
   aboutMe:
     `I’m a visual designer and video editor focused on creating clear, engaging digital content. I help businesses and creators turn ideas into visuals and videos that look professional and communicate effectively. I enjoy working on practical, real-world projects from social media content and motion graphics to editorial design — always focused on clarity, quality, and results.`,
