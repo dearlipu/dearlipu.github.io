@@ -1,43 +1,95 @@
 ---
 import { siteConfig } from "../config";
+import "../styles/global.css";
+
+const imageIds = [
+  "11ED5yQTazPPWzzlU5rlYMHDzqELyl9QP",
+  "1yxGFHBfkSOYnKY0Z4Mk-EwFKADJ0Vt91",
+  "1YhRzX0KQ8IHWO-L8Lpcj26uqSkEVQ2GZ",
+  "1t0_rJeF8pwhGJKmwG7FCaA6DK2afPGaj",
+  "1cjX3CVhxVoEZGQuSFFSoJvFgj0gCqgCx",
+  "1G5HafXFH4whR-Nf_03jhrcXfEhJLhphk"
+];
+
+const images = imageIds.map(
+  id => `https://lh3.googleusercontent.com/d/${id}=w1200`
+);
+
+/* 🔥 Random layout pattern */
+const spans = [
+  "col-span-2 row-span-2",
+  "col-span-1 row-span-2",
+  "col-span-2 row-span-1",
+  "col-span-1 row-span-1"
+];
 ---
 
-<section id="about" class="p-8 sm:p-12 md:p-16 lg:p-24">
-  <div>
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-      <div class="lg:col-span-4">
-        <h2
-          class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900"
-        >
-          About Me.
-        </h2>
-        <div
-          class="w-[75px] h-[5px] mt-2 rounded-full"
-          style={`background-color: ${siteConfig.accentColor}`}
-        >
-        </div>
-            <p class="text-gray-500 mt-5 text-sm max-w-sm leading-relaxed">
-              What I do — and how it helps your business or you.
-            </p>
-      </div>
+<section class="px-6 sm:px-12 md:px-16 lg:px-24 py-16">
 
-      <div class="lg:col-span-8 space-y-8">
-        <p class="text-lg sm:text-xl md:text-2xl leading-relaxed text-gray-600 whitespace-pre-line">
-          {siteConfig.aboutMe}
-        </p>
+  <!-- HEADER (MATCH YOUR STYLE) -->
+  <div class="text-center mb-12">
+    <h1 class="text-4xl md:text-5xl font-bold text-gray-900">
+      Gallery
+    </h1>
 
-        <div class="pt-4">
-          <div class="flex flex-wrap gap-3">
-            {
-              siteConfig.skills.map((skill) => (
-                <span class="px-3 sm:px-4 py-1.5 sm:py-2 bg-gray-100 text-gray-800 rounded-full text-sm sm:text-base md:text-lg font-medium hover:bg-gray-200 transition-colors duration-200">
-                  {skill}
-                </span>
-              ))
-            }
-          </div>
-        </div>
-      </div>
-    </div>
+    <div
+      class="w-[75px] h-[5px] mt-3 mx-auto rounded-full"
+      style={`background-color: ${siteConfig.accentColor}`}
+    ></div>
+
+    <p class="text-gray-500 mt-4 text-sm">
+      Visual works & creative outputs
+    </p>
   </div>
+
+  <!-- 🔥 GRID -->
+  <div class="grid grid-cols-2 md:grid-cols-4 auto-rows-[150px] gap-3">
+
+    {images.map((img, i) => (
+      <div
+        class={`group relative overflow-hidden ${spans[i % spans.length]}`}
+      >
+        <img
+          src={img}
+          class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+          loading="lazy"
+        />
+
+        <!-- hover overlay -->
+        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition duration-300 flex items-center justify-center">
+          <button
+            data-img={img}
+            class="opacity-0 group-hover:opacity-100 transition bg-white text-gray-900 px-4 py-2 rounded-full text-sm shadow"
+          >
+            View
+          </button>
+        </div>
+      </div>
+    ))}
+
+  </div>
+
 </section>
+
+<!-- 🔥 FULL VIEW -->
+<div id="overlay" class="fixed inset-0 bg-black/90 hidden items-center justify-center z-50">
+  <img id="overlayImg" class="max-w-[90%] max-h-[90%] rounded-lg" />
+</div>
+
+<script is:inline>
+const overlay = document.getElementById("overlay");
+const overlayImg = document.getElementById("overlayImg");
+
+document.querySelectorAll("button[data-img]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    overlay.classList.remove("hidden");
+    overlay.classList.add("flex");
+    overlayImg.src = btn.dataset.img;
+  });
+});
+
+overlay.addEventListener("click", () => {
+  overlay.classList.add("hidden");
+  overlay.classList.remove("flex");
+});
+</script>
