@@ -16,20 +16,19 @@ import { siteConfig } from "../config";
       href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-
   </head>
 
   <body>
 
     <div class="wrapper">
 
-      <!-- Glow background -->
+      <!-- Glow -->
       <div class="bg-glow"></div>
 
       <!-- Content -->
       <div class="content">
 
-        <h1 class="title">Coming Soon</h1>
+        <h1 class="title-main">Coming Soon</h1>
 
         <p class="subtitle">
           I’m working on something new — crafted with detail, clarity, and purpose.
@@ -37,7 +36,6 @@ import { siteConfig } from "../config";
 
         <div class="actions">
           <a href="/" class="btn-primary">Go Home</a>
-
           <a href={`mailto:${siteConfig.social.email}`} class="btn-secondary">
             Contact Me
           </a>
@@ -57,43 +55,47 @@ body {
   margin: 0;
   font-family: 'Josefin Sans', sans-serif;
   background: #f9fafb;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
-/* WRAPPER */
+/* WRAPPER (same as 404) */
 .wrapper {
   position: relative;
   min-height: 100vh;
+  padding: 20px;
+
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* SOFT GLOW BACKGROUND */
+/* GLOW */
 .bg-glow {
   position: absolute;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(29,78,216,0.15), transparent 70%);
-  filter: blur(80px);
-  animation: floatGlow 8s ease-in-out infinite;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(29,78,216,0.12), transparent 70%);
+  filter: blur(90px);
+  animation: floatGlow 10s ease-in-out infinite;
 }
 
 /* CONTENT */
 .content {
   position: relative;
   text-align: center;
-  max-width: 500px;
-  padding: 20px;
-  animation: fadeUp 0.6s ease;
+  width: 100%;
+  max-width: 420px;
+  padding: 10px;
+  animation: fadeUp 0.5s ease;
 }
 
-/* TITLE */
-.title {
-  font-size: 48px;
+/* TITLE (same scaling system) */
+.title-main {
+  font-size: clamp(42px, 8vw, 64px);
   font-weight: 600;
   color: #111827;
-  letter-spacing: -0.02em;
+  letter-spacing: -1px;
+  margin: 0;
 }
 
 /* SUBTITLE */
@@ -139,30 +141,56 @@ body {
 }
 
 /* ANIMATIONS */
-
-/* fade + slight move */
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* floating glow */
 @keyframes floatGlow {
-  0% { transform: translate(0, 0); }
-  50% { transform: translate(30px, -20px); }
-  100% { transform: translate(0, 0); }
+  0% { transform: translate(0,0); }
+  50% { transform: translate(40px,-20px); }
+  100% { transform: translate(0,0); }
 }
 
-/* RESPONSIVE */
+/* MOBILE */
 @media (max-width: 640px) {
-  .title {
-    font-size: 36px;
+
+  .wrapper {
+    padding: 16px;
+  }
+
+  .bg-glow {
+    width: 450px;
+    height: 450px;
+    filter: blur(70px);
+  }
+
+  .content {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  .title-main {
+    font-size: 42px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 28px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    border-radius: 10px;
   }
 }
 
