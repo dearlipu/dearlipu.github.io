@@ -1,203 +1,28 @@
 ---
-const imageUrls = [
-  "https://picsum.photos/500/500",
-  "https://picsum.photos/600/600",
-  "https://picsum.photos/700/700"
-];
 ---
 
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Gallery</title>
-
-<style>
-body {
-  margin: 0;
-  background: #0b0b0f;
-  overflow: hidden;
-}
-
-canvas {
-  position: fixed;
-  inset: 0;
-}
-
-.top {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 10;
-  color: white;
-  font-family: sans-serif;
-}
-</style>
+  <title>Test</title>
 </head>
 
-<body>
+<body style="background:black; color:white;">
 
-<div class="top">
-  <h2>PROJECT</h2>
-  <p>DRAG / SCROLL</p>
-</div>
+<h1>TEST PAGE</h1>
 
 <canvas id="canvas"></canvas>
 
-<script src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
+<script is:inline>
+console.log("JS WORKING ✅");
 
-<script>
-const images = JSON.parse(`${JSON.stringify(imageUrls)}`);
+const canvas = document.getElementById("canvas");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-const app = new PIXI.Application({
-  view: document.getElementById("canvas"),
-  resizeTo: window,
-  backgroundAlpha: 0,
-  antialias: true
-});
+const ctx = canvas.getContext("2d");
 
-let textures = [];
-let tiles = [];
-
-let scrollX = 0;
-let scrollY = 0;
-let velX = 0;
-let velY = 0;
-
-const GAP = 20;
-let tileSize = 320;
-let cols, rows;
-
-const CURVE_STRENGTH = 60;
-const DEPTH_SCALE = 0.25;
-
-/* 🔥 SAFE LOADER (FIXED) */
-async function loadTextures() {
-  const loaded = await Promise.all(
-    images.map(async (src) => {
-      try {
-        return await PIXI.Assets.load(src);
-      } catch (e) {
-        return null; // ignore broken images
-      }
-    })
-  );
-
-  textures = loaded.filter(Boolean);
-
-  if (!textures.length) {
-    document.body.innerHTML = "<h2 style='color:white'>Images not loading</h2>";
-    return;
-  }
-
-  buildGrid();
-}
-
-function buildGrid() {
-  app.stage.removeChildren();
-  tiles = [];
-
-  cols = Math.ceil(window.innerWidth / tileSize) + 4;
-  rows = Math.ceil(window.innerHeight / tileSize) + 4;
-
-  for (let y = 0; y < rows; y++) {
-    for (let x = 0; x < cols; x++) {
-
-      const tex = textures[Math.floor(Math.random() * textures.length)];
-
-      const sprite = new PIXI.Sprite(tex);
-      sprite.anchor.set(0.5);
-
-      sprite.width = tileSize - GAP;
-      sprite.height = tileSize - GAP;
-
-      app.stage.addChild(sprite);
-
-      tiles.push({
-        sprite,
-        baseX: x * tileSize,
-        baseY: y * tileSize
-      });
-    }
-  }
-}
-
-function curve(x, width) {
-  let t = (x / width) * 2 - 1;
-  return Math.sin(t * Math.PI * 0.5) * CURVE_STRENGTH;
-}
-
-function update() {
-
-  scrollX += velX;
-  scrollY += velY;
-
-  velX *= 0.92;
-  velY *= 0.92;
-
-  const gridW = cols * tileSize;
-  const gridH = rows * tileSize;
-
-  tiles.forEach(t => {
-
-    let x = (t.baseX + scrollX) % gridW;
-    let y = (t.baseY + scrollY) % gridH;
-
-    if (x < 0) x += gridW;
-    if (y < 0) y += gridH;
-
-    let centerX = x + tileSize / 2;
-
-    let curvedY = y + curve(centerX, window.innerWidth);
-
-    let dist = Math.abs((centerX / window.innerWidth) - 0.5);
-    let scale = 1 - dist * DEPTH_SCALE;
-
-    t.sprite.x = x + tileSize / 2;
-    t.sprite.y = curvedY + tileSize / 2;
-    t.sprite.scale.set(scale);
-  });
-}
-
-app.ticker.add(update);
-
-/* DRAG */
-let isDown = false;
-let lastX, lastY;
-
-window.addEventListener("pointerdown", e => {
-  isDown = true;
-  lastX = e.clientX;
-  lastY = e.clientY;
-});
-
-window.addEventListener("pointerup", () => isDown = false);
-
-window.addEventListener("pointermove", e => {
-  if (!isDown) return;
-
-  let dx = e.clientX - lastX;
-  let dy = e.clientY - lastY;
-
-  velX += dx * 0.6;
-  velY += dy * 0.6;
-
-  lastX = e.clientX;
-  lastY = e.clientY;
-});
-
-/* SCROLL */
-window.addEventListener("wheel", e => {
-  velX += -e.deltaX * 0.25;
-  velY += -e.deltaY * 0.25;
-});
-
-/* RESIZE */
-window.addEventListener("resize", () => {
-  buildGrid();
-});
-
-loadTextures();
+ctx.fillStyle = "red";
+ctx.fillRect(100, 100, 200, 200);
 </script>
 
 </body>
