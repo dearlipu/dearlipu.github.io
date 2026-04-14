@@ -145,6 +145,7 @@ section { margin: 0; }
   border: 2px solid #e5e7eb;
   background: #f9fafb;
   box-shadow: none;
+  transform: scale(0.98);
 }
 
 /* BUTTON */
@@ -173,24 +174,31 @@ section { margin: 0; }
   font-size: 14px;
   color: #727375; /* placeholder color */
   cursor: pointer;
+  transition: background 0.15s ease, border 0.15s ease;
 }
 
 /* DROPDOWN */
 .select-options {
   position: absolute;
-  top: calc(100% + 6px);
+  top: calc(100% + 4px); /* slightly tighter */
   width: 100%;
   background: #f9fafb;
   border-radius: 14px;
   border: 2px solid #e5e7eb;
   box-shadow: 0 20px 40px rgba(0,0,0,0.08);
   overflow: hidden;
-  transform-origin: top;
+
   opacity: 0;
-  transform: translateY(-6px);
   pointer-events: none;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+
+  transition: opacity 0.15s ease; /* only fade */
+
   z-index: 50;
+}
+
+.custom-select.active .select-options {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .custom-select.active .select-options {
