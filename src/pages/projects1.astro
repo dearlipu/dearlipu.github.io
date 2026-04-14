@@ -2,6 +2,20 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
+
+/* 🔥 Only add Drive FILE IDs here */
+const driveIds = [
+  "11ED5yQTazPPWzzlU5rlYMHDzqELyl9QP",
+  "1yxGFHBfkSOYnKY0Z4Mk-EwFKADJ0Vt91",
+  "1YhRzX0KQ8IHWO-L8Lpcj26uqSkEVQ2GZ",
+  "1t0_rJeF8pwhGJKmwG7FCaA6DK2afPGaj",
+  "1cjX3CVhxVoEZGQuSFFSoJvFgj0gCqgCx",
+  "1G5HafXFH4whR-Nf_03jhrcXfEhJLhphk"
+];
+
+const images = driveIds.map(id => ({
+  url: `https://drive.google.com/uc?export=view&id=${id}`,
+}));
 ---
 
 <html lang="en">
@@ -23,7 +37,7 @@ import "../styles/global.css";
       <main class="container">
 
         <!-- HERO -->
-        <section class="hero fade">
+        <section class="fade">
           <h1>Social Media Content System</h1>
           <p>
             Built a scalable content system to improve brand clarity,
@@ -31,7 +45,7 @@ import "../styles/global.css";
           </p>
         </section>
 
-        <!-- METRICS (NEW 🔥) -->
+        <!-- METRICS -->
         <section class="metrics fade">
           <div>
             <h2>+65%</h2>
@@ -63,36 +77,16 @@ import "../styles/global.css";
           </div>
         </section>
 
-        <!-- PROBLEM / SOLUTION -->
-        <section class="ps fade">
-          <div>
-            <h3>Problem</h3>
-            <p>
-              Content lacked structure and consistency, reducing trust and engagement.
-            </p>
-          </div>
-          <div>
-            <h3>Solution</h3>
-            <p>
-              Built a modular visual system with reusable layouts and strong hierarchy.
-            </p>
-          </div>
-        </section>
-
-        <!-- GALLERY -->
+        <!-- GALLERY (Pinterest Style) -->
         <section class="grid fade">
 
-          <img src="/projects/p1-1.jpg" class="item" />
-
-          <img src="/projects/p1-2.jpg" class="item" />
-
-          <video class="item video" muted loop playsinline>
-            <source src="/projects/video.mp4" type="video/mp4" />
-          </video>
-
-          <img src="/projects/p1-3.jpg" class="item" />
-          <img src="/projects/p1-4.jpg" class="item" />
-          <img src="/projects/p1-5.jpg" class="item" />
+          {images.map((img) => (
+            <img
+              src={img.url}
+              loading="lazy"
+              class="item lazy"
+            />
+          ))}
 
         </section>
 
@@ -101,36 +95,24 @@ import "../styles/global.css";
           <h3>Before / After</h3>
 
           <div class="ba" id="ba">
-
-            <img src="/projects/before.jpg" class="ba-img" />
+            <img src="https://drive.google.com/uc?export=view&id=BEFORE_ID" class="ba-img" />
 
             <div class="ba-after" id="after">
-              <img src="/projects/after.jpg" class="ba-img" />
+              <img src="https://drive.google.com/uc?export=view&id=AFTER_ID" class="ba-img" />
             </div>
 
             <div class="ba-divider" id="divider"></div>
-
           </div>
-
         </section>
 
-        <!-- RESULT -->
-        <section class="result fade">
-          <h3>Result</h3>
-          <p>
-            Delivered a system that improved consistency, reduced design time,
-            and created a stronger brand presence.
-          </p>
-        </section>
-
-        <!-- CTA (CLIENT CONVERSION 🔥) -->
+        <!-- CTA -->
         <section class="cta fade">
-          <h2>Want similar results for your brand?</h2>
-          <p>I help creators and businesses build high-performing visual systems.</p>
+          <h2>Want similar results?</h2>
+          <p>I help brands build high-performing visual systems.</p>
 
           <div class="cta-btns">
-            <a href="https://wa.me/your-number" target="_blank">Chat on WhatsApp</a>
-            <a href="/#contact">Start a Project</a>
+            <a href="https://wa.me/your-number">Chat on WhatsApp</a>
+            <a href="/#contact">Start Project</a>
           </div>
         </section>
 
@@ -149,10 +131,10 @@ import "../styles/global.css";
     <script>
       window.addEventListener("DOMContentLoaded", () => {
 
-        // PAGE LOAD
+        // page animation
         document.getElementById("page")?.classList.add("show");
 
-        // SCROLL ANIMATION
+        // fade on scroll
         const fades = document.querySelectorAll(".fade");
 
         const observer = new IntersectionObserver(entries => {
@@ -163,30 +145,42 @@ import "../styles/global.css";
 
         fades.forEach(el => observer.observe(el));
 
-        // LIGHTBOX
+        // lightbox
         const lightbox = document.getElementById("lightbox");
         const lightboxImg = document.getElementById("lightboxImg");
 
-        document.querySelectorAll(".item").forEach(el => {
-          if (el.tagName === "IMG") {
-            el.addEventListener("click", () => {
-              lightbox.classList.remove("hidden");
-              lightboxImg.src = el.src;
-            });
-          }
+        document.querySelectorAll(".item").forEach(img => {
+          img.addEventListener("click", () => {
+            lightbox.classList.remove("hidden");
+            lightboxImg.src = img.src;
+          });
         });
 
-        lightbox?.addEventListener("click", () => {
-          lightbox.classList.add("hidden");
+        lightbox.onclick = () => lightbox.classList.add("hidden");
+
+        // blur load effect
+        const lazyImages = document.querySelectorAll(".lazy");
+
+        const imgObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+
+              const temp = new Image();
+              temp.src = img.src;
+
+              temp.onload = () => {
+                img.classList.add("loaded");
+              };
+
+              imgObserver.unobserve(img);
+            }
+          });
         });
 
-        // VIDEO
-        document.querySelectorAll(".video").forEach(v => {
-          v.addEventListener("mouseenter", () => v.play());
-          v.addEventListener("mouseleave", () => v.pause());
-        });
+        lazyImages.forEach(img => imgObserver.observe(img));
 
-        // BEFORE AFTER FIX
+        // before after
         const container = document.getElementById("ba");
         const after = document.getElementById("after");
         const divider = document.getElementById("divider");
@@ -235,13 +229,13 @@ import "../styles/global.css";
       }
 
       .container {
-        max-width: 1100px;
+        max-width: 1200px;
         margin: auto;
-        padding: 60px 20px;
+        padding: 60px 16px;
       }
 
-      h1 { font-size: clamp(32px,6vw,60px); }
-      h2 { font-size: 28px; }
+      h1 { font-size: clamp(28px,6vw,60px); }
+      h2 { font-size: 26px; }
       h3 { font-size: 20px; }
 
       p { color: #6b7280; }
@@ -254,11 +248,6 @@ import "../styles/global.css";
         margin: 40px 0;
       }
 
-      .metrics h2 {
-        font-size: 28px;
-        font-weight: 700;
-      }
-
       /* VALUE */
       .value {
         display: grid;
@@ -267,26 +256,44 @@ import "../styles/global.css";
         margin: 40px 0;
       }
 
-      /* GRID */
+      /* PINTEREST GRID */
       .grid {
-        column-count: 1;
-        gap: 16px;
+        column-count: 2;
+        column-gap: 12px;
       }
 
       @media(min-width:768px){
-        .grid { column-count: 2; }
-        .value { grid-template-columns: repeat(3,1fr); }
+        .grid { column-count: 3; }
       }
 
-      @media(min-width:1024px){
-        .grid { column-count: 3; }
+      @media(min-width:1200px){
+        .grid { column-count: 4; }
       }
 
       .item {
         width: 100%;
-        margin-bottom: 16px;
-        border-radius: 12px;
+        margin-bottom: 12px;
+        border-radius: 16px;
+        display: block;
+        break-inside: avoid;
         cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .item:hover {
+        transform: scale(1.03);
+      }
+
+      /* BLUR LOAD */
+      .lazy {
+        filter: blur(12px);
+        transform: scale(1.05);
+        transition: 0.5s;
+      }
+
+      .lazy.loaded {
+        filter: blur(0);
+        transform: scale(1);
       }
 
       /* CTA */
@@ -296,10 +303,10 @@ import "../styles/global.css";
       }
 
       .cta-btns {
-        margin-top: 20px;
         display: flex;
         gap: 12px;
         justify-content: center;
+        margin-top: 20px;
         flex-wrap: wrap;
       }
 
@@ -317,8 +324,8 @@ import "../styles/global.css";
         inset: 0;
         background: rgba(0,0,0,0.9);
         display: flex;
-        align-items: center;
         justify-content: center;
+        align-items: center;
       }
 
       .lightbox img {
@@ -333,6 +340,7 @@ import "../styles/global.css";
         aspect-ratio: 16/9;
         overflow: hidden;
         border-radius: 12px;
+        margin-top: 20px;
       }
 
       .ba-img {
@@ -358,6 +366,15 @@ import "../styles/global.css";
         background: white;
       }
 
+      /* MOBILE */
+      @media(max-width:600px){
+        .metrics,
+        .value {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+      }
+
       /* FADE */
       .fade {
         opacity: 0;
@@ -368,11 +385,6 @@ import "../styles/global.css";
       .fade.show {
         opacity: 1;
         transform: none;
-      }
-
-      @media(max-width:600px){
-        .metrics { grid-template-columns: 1fr; gap:20px; }
-        .value { grid-template-columns: 1fr; }
       }
 
     </style>
