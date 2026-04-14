@@ -20,7 +20,7 @@ export const siteConfig = {
       name: "Social Media Content System",
       description:
         "Built a complete content system for consistent, high-quality social media posts designed to improve engagement and brand clarity.",
-      link: "/coming-soon",
+      link: "/projects1",
       skills: ["Content Design", "Social Media", "Branding"],
     },
     {
