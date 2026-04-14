@@ -26,6 +26,7 @@ const brands = [
       <div class="marquee-track">
         {brands.map((b) => <img src={b.logo} class="logo" alt={b.name} />)}
         {brands.map((b) => <img src={b.logo} class="logo" alt={b.name} />)}
+        {brands.map((b) => <img src={b.logo} class="logo" alt={b.name} />)}
       </div>
 
     </div>
@@ -40,13 +41,14 @@ const brands = [
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: scroll 35s linear infinite;
+  will-change: transform;
+  animation: scroll 40s linear infinite;
 }
 
-/* LOGO (FIX SIZE + HOVER COLOR LIKE FOOTER) */
+/* LOGO */
 .logo {
-  height: 40px;              /* SAME SIZE ALL */
-  width: 40px;               /* FORCE CONSISTENT BOX */
+  height: 40px;
+  width: 40px;
   object-fit: contain;
 
   margin-right: 3.2rem;
@@ -57,7 +59,7 @@ const brands = [
   transition: all 0.3s ease;
 }
 
-/* HOVER = REAL COLOR (LIKE FOOTER ICONS) */
+/* HOVER */
 .logo:hover {
   filter: grayscale(0%) brightness(1);
   opacity: 1;
@@ -67,7 +69,7 @@ const brands = [
 /* ANIMATION */
 @keyframes scroll {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to { transform: translateX(-33.333%); }
 }
 
 /* FADE */
