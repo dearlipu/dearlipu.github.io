@@ -16,17 +16,14 @@ import { siteConfig } from "../config";
       href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-
   </head>
 
   <body>
 
     <div class="wrapper">
 
-      <!-- glow -->
       <div class="bg-glow"></div>
 
-      <!-- content -->
       <div class="content">
 
         <h1 class="code">404</h1>
@@ -56,16 +53,14 @@ body {
   margin: 0;
   font-family: 'Josefin Sans', sans-serif;
   background: #f9fafb;
-  overflow-x: hidden; /* FIXED */
+  overflow-x: hidden;
 }
 
-/* WRAPPER */
+/* WRAPPER (FIXED) */
 .wrapper {
   position: relative;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 80px 20px 40px;   /* natural spacing */
 }
 
 /* GLOW */
@@ -76,13 +71,17 @@ body {
   background: radial-gradient(circle, rgba(29,78,216,0.12), transparent 70%);
   filter: blur(90px);
   animation: floatGlow 10s ease-in-out infinite;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* CONTENT */
 .content {
   position: relative;
   text-align: center;
-  padding: 20px;
+  max-width: 420px;
+  margin: 120px auto 0;
   animation: fadeUp 0.6s ease;
 }
 
@@ -152,9 +151,9 @@ body {
 }
 
 @keyframes floatGlow {
-  0% { transform: translate(0,0); }
-  50% { transform: translate(40px,-20px); }
-  100% { transform: translate(0,0); }
+  0% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-20px); }
+  100% { transform: translateX(-50%) translateY(0); }
 }
 
 @keyframes floatText {
@@ -163,30 +162,27 @@ body {
   100% { transform: translateY(0); }
 }
 
-/* MOBILE */
+/* MOBILE (FIXED PROPERLY) */
 @media (max-width: 640px) {
 
   .wrapper {
-    padding: 24px 16px;
-    align-items: flex-start; 
-    justify-content: center;
+    padding: 60px 16px 30px;
   }
 
   .bg-glow {
-    width: 500px;     /* bigger glow */
+    width: 500px;
     height: 500px;
     filter: blur(70px);
+    top: 10%;
   }
 
   .content {
-    margin-top: 20vh;
-    width: 100%;
-    max-width: 320%;
-    padding: 0;
+    margin-top: 80px;
+    max-width: 100%;
   }
 
   .code {
-    font-size: 110px;  
+    font-size: 100px;
     letter-spacing: -3px;
   }
 
@@ -197,7 +193,6 @@ body {
   .subtitle {
     font-size: 15px;
     line-height: 1.6;
-    padding: 0 6px;
   }
 
   .actions {
