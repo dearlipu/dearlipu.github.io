@@ -58,3 +58,9 @@ section {
   font-size: 11px;
   cursor: pointer;
 }
+
+img, video {
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
