@@ -1,5 +1,4 @@
 ---
-/* 👉 Add your Google Drive IMAGE IDs here */
 const images = [
   "11ED5yQTazPPWzzlU5rlYMHDzqELyl9QP",
   "1yxGFHBfkSOYnKY0Z4Mk-EwFKADJ0Vt91",
@@ -9,7 +8,6 @@ const images = [
   "1G5HafXFH4whR-Nf_03jhrcXfEhJLhphk"
 ];
 
-/* Convert ID → usable image URL */
 const getImage = (id) =>
   `https://lh3.googleusercontent.com/d/${id}=w1200`;
 ---
@@ -18,159 +16,151 @@ const getImage = (id) =>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Project Gallery</title>
+  <title>Gallery</title>
+
+  <style>
+    body {
+      margin: 0;
+      background: #0b0b0f;
+      overflow: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      inset: 0;
+    }
+
+    .top {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 10;
+      color: white;
+      font-family: sans-serif;
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- 🔥 Header -->
-  <div class="top">
-    <h1>PROJECT GALLERY</h1>
-    <p>Scroll / Drag to explore</p>
-  </div>
+<div class="top">
+  <h2>PROJECT</h2>
+  <p>Drag / Scroll</p>
+</div>
 
-  <!-- 🔥 Gallery -->
-  <div class="gallery" id="gallery">
+<canvas id="canvas"></canvas>
 
-    {images.map((id) => (
-      <div class="item">
-        <img src={getImage(id)} loading="lazy" />
-      </div>
-    ))}
+<script src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
 
-  </div>
+<script>
+const images = JSON.parse(`${JSON.stringify(images.map(id => getImage(id)))}`);
 
-  <!-- 🔥 Fullscreen Preview -->
-  <div class="viewer" id="viewer">
-    <img id="viewerImg" />
-  </div>
+const app = new PIXI.Application({
+  view: document.getElementById("canvas"),
+  resizeTo: window,
+  backgroundAlpha: 0
+});
+
+let textures = [];
+let tiles = [];
+
+let scrollX = 0;
+let scrollY = 0;
+let velX = 0;
+let velY = 0;
+
+const GAP = 20;
+let tileSize = 300;
+let cols, rows;
+
+async function loadTextures() {
+  textures = await Promise.all(
+    images.map(src => PIXI.Assets.load(src))
+  );
+  buildGrid();
+}
+
+function buildGrid() {
+  cols = Math.ceil(window.innerWidth / tileSize) + 2;
+  rows = Math.ceil(window.innerHeight / tileSize) + 2;
+
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+
+      const tex = textures[Math.floor(Math.random() * textures.length)];
+
+      const sprite = new PIXI.Sprite(tex);
+      sprite.width = tileSize - GAP;
+      sprite.height = tileSize - GAP;
+
+      sprite.x = x * tileSize;
+      sprite.y = y * tileSize;
+
+      app.stage.addChild(sprite);
+
+      tiles.push({ sprite, x, y });
+    }
+  }
+}
+
+function update() {
+
+  scrollX += velX;
+  scrollY += velY;
+
+  velX *= 0.92;
+  velY *= 0.92;
+
+  const gridW = cols * tileSize;
+  const gridH = rows * tileSize;
+
+  tiles.forEach(t => {
+    let x = (t.x * tileSize + scrollX) % gridW;
+    let y = (t.y * tileSize + scrollY) % gridH;
+
+    if (x < 0) x += gridW;
+    if (y < 0) y += gridH;
+
+    t.sprite.x = x;
+    t.sprite.y = y;
+  });
+}
+
+app.ticker.add(update);
+
+/* DRAG */
+let isDown = false;
+let lastX, lastY;
+
+window.addEventListener("pointerdown", e => {
+  isDown = true;
+  lastX = e.clientX;
+  lastY = e.clientY;
+});
+
+window.addEventListener("pointerup", () => isDown = false);
+
+window.addEventListener("pointermove", e => {
+  if (!isDown) return;
+
+  let dx = e.clientX - lastX;
+  let dy = e.clientY - lastY;
+
+  velX += dx * 0.5;
+  velY += dy * 0.5;
+
+  lastX = e.clientX;
+  lastY = e.clientY;
+});
+
+/* SCROLL */
+window.addEventListener("wheel", e => {
+  velX += -e.deltaX * 0.2;
+  velY += -e.deltaY * 0.2;
+});
+
+loadTextures();
+</script>
 
 </body>
 </html>
-
-<style>
-body {
-  margin: 0;
-  background: #0b0b0f;
-  color: white;
-  font-family: sans-serif;
-  overflow-x: hidden;
-}
-
-/* Header */
-.top {
-  padding: 20px;
-  text-align: center;
-}
-
-.top h1 {
-  margin: 0;
-  font-size: 28px;
-}
-
-.top p {
-  opacity: 0.6;
-  font-size: 14px;
-}
-
-/* Gallery */
-.gallery {
-  column-count: 4;
-  column-gap: 16px;
-  padding: 20px;
-  cursor: grab;
-}
-
-.item {
-  break-inside: avoid;
-  margin-bottom: 16px;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.item img {
-  width: 100%;
-  display: block;
-  transition: 0.4s;
-}
-
-.item img:hover {
-  transform: scale(1.05);
-}
-
-/* Responsive */
-@media (max-width: 1000px) {
-  .gallery { column-count: 3; }
-}
-@media (max-width: 700px) {
-  .gallery { column-count: 2; }
-}
-@media (max-width: 500px) {
-  .gallery { column-count: 1; }
-}
-
-/* Viewer */
-.viewer {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.95);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.viewer img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 10px;
-}
-</style>
-
-<script>
-const gallery = document.getElementById("gallery");
-const viewer = document.getElementById("viewer");
-const viewerImg = document.getElementById("viewerImg");
-
-/* 🔥 CLICK → OPEN FULL */
-document.querySelectorAll(".item img").forEach(img => {
-  img.addEventListener("click", () => {
-    viewer.style.display = "flex";
-    viewerImg.src = img.src;
-  });
-});
-
-/* CLOSE */
-viewer.addEventListener("click", () => {
-  viewer.style.display = "none";
-});
-
-/* 🔥 DRAG SCROLL */
-let isDown = false;
-let startX, scrollLeft;
-
-gallery.addEventListener("mousedown", (e) => {
-  isDown = true;
-  gallery.style.cursor = "grabbing";
-  startX = e.pageX - gallery.offsetLeft;
-  scrollLeft = gallery.scrollLeft;
-});
-
-gallery.addEventListener("mouseleave", () => {
-  isDown = false;
-  gallery.style.cursor = "grab";
-});
-
-gallery.addEventListener("mouseup", () => {
-  isDown = false;
-  gallery.style.cursor = "grab";
-});
-
-gallery.addEventListener("mousemove", (e) => {
-  if (!isDown) return;
-  e.preventDefault();
-  const x = e.pageX - gallery.offsetLeft;
-  const walk = (x - startX) * 2;
-  gallery.scrollLeft = scrollLeft - walk;
-});
-</script>
