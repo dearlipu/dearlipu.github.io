@@ -1,161 +1,183 @@
 ---
-const images = [
-  "/projects/after.jpg",
-  "/projects/before.jpg",
-  "/projects/p1-1.jpg",
-  "/projects/p1-2.jpg",
-  "/projects/p1-3.jpg",
-  "/projects/p1-4.jpg",
-  "/projects/p1-5.jpg",
-  "/projects/p1-6.jpg",
-  "/projects/p1-7.jpg"
+const imageIds = [
+  "11ED5yQTazPPWzzlU5rlYMHDzqELyl9QP",
+  "1yxGFHBfkSOYnKY0Z4Mk-EwFKADJ0Vt91",
+  "1YhRzX0KQ8IHWO-L8Lpcj26uqSkEVQ2GZ",
+  "1t0_rJeF8pwhGJKmwG7FCaA6DK2afPGaj",
+  "1cjX3CVhxVoEZGQuSFFSoJvFgj0gCqgCx",
+  "1G5HafXFH4whR-Nf_03jhrcXfEhJLhphk"
 ];
+
+const imageUrls = imageIds.map(
+  id => `https://drive.google.com/uc?export=view&id=${id}`
+);
 ---
 
-<html>
-<body style="margin:0; overflow:hidden; background:#0b0b0f;">
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<canvas id="canvas"></canvas>
+<title>Gallery</title>
 
-<script is:inline src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
-
-<script is:inline>
-const imageList = JSON.parse(`${JSON.stringify(images)}`);
-
-const app = new PIXI.Application({
-  view: document.getElementById("canvas"),
-  resizeTo: window,
-  backgroundAlpha: 0
-});
-
-let textures = [];
-let tiles = [];
-
-let scrollX = 0;
-let scrollY = 0;
-let velX = 0;
-let velY = 0;
-
-const SIZE = 300;
-const GAP = 20;
-
-let cols, rows;
-
-/* 🔥 PRELOAD IMAGES (IMPORTANT FIX) */
-async function preload() {
-  textures = await Promise.all(
-    imageList.map(src => PIXI.Texture.fromURL(src))
-  );
-
-  buildGrid();
+<style>
+body {
+  margin: 0;
+  font-family: Nunito, sans-serif;
 }
 
-/* 🔥 BUILD GRID */
-function buildGrid() {
-  app.stage.removeChildren();
-  tiles = [];
+.gallery {
+  padding: 40px;
+}
 
-  cols = Math.ceil(window.innerWidth / SIZE) + 4;
-  rows = Math.ceil(window.innerHeight / SIZE) + 4;
+.heading {
+  font-size: 36px;
+  text-align: center;
+}
 
-  for (let y = 0; y < rows; y++) {
-    for (let x = 0; x < cols; x++) {
+.subHeading {
+  text-align: center;
+  color: #777;
+  max-width: 700px;
+  margin: 10px auto 40px;
+}
 
-      const tex = textures[Math.floor(Math.random() * textures.length)];
+/* GRID */
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
 
-      const sprite = new PIXI.Sprite(tex);
+.project {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+}
 
-      sprite.anchor.set(0.5);
-      sprite.width = SIZE - GAP;
-      sprite.height = SIZE - GAP;
+.project img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-      app.stage.addChild(sprite);
+/* BUTTON */
+.btn-box {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: 0.3s;
+}
 
-      tiles.push({
-        sprite,
-        baseX: x * SIZE,
-        baseY: y * SIZE
-      });
-    }
+.project:hover .btn-box {
+  opacity: 1;
+}
+
+.btn {
+  background: white;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+/* OVERLAY */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.overlay.active {
+  display: flex;
+}
+
+.overlay img {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* CURVE */
-function curve(x, w) {
-  let t = (x / w) * 2 - 1;
-  return Math.sin(t * Math.PI * 0.5) * 60;
+@media (max-width: 500px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
 }
+</style>
+</head>
 
-/* ANIMATION LOOP */
-function update() {
-  scrollX += velX;
-  scrollY += velY;
+<body>
 
-  velX *= 0.92;
-  velY *= 0.92;
+<div class="gallery">
 
-  const gridW = cols * SIZE;
-  const gridH = rows * SIZE;
+  <h1 class="heading">Gallery</h1>
+  <p class="subHeading">Click to view full image</p>
 
-  tiles.forEach(t => {
+  <div class="container">
 
-    let x = (t.baseX + scrollX) % gridW;
-    let y = (t.baseY + scrollY) % gridH;
+    {images.map((img) => (
+      <div class="project">
+        <img src={img} />
 
-    if (x < 0) x += gridW;
-    if (y < 0) y += gridH;
+        <div class="btn-box">
+          <button class="btn" data-img={img}>View</button>
+        </div>
+      </div>
+    ))}
 
-    let centerX = x + SIZE / 2;
+  </div>
 
-    let curvedY = y + curve(centerX, window.innerWidth);
+</div>
 
-    let dist = Math.abs((centerX / window.innerWidth) - 0.5);
-    let scale = 1 - dist * 0.25;
+<!-- OVERLAY -->
+<div class="overlay" id="overlay">
+  <span class="close">Close ✕</span>
+  <img id="overlayImg" />
+</div>
 
-    t.sprite.x = x + SIZE / 2;
-    t.sprite.y = curvedY + SIZE / 2;
-    t.sprite.scale.set(scale);
+<script is:inline>
+const overlay = document.getElementById("overlay");
+const overlayImg = document.getElementById("overlayImg");
+
+/* OPEN */
+document.querySelectorAll(".btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    overlay.classList.add("active");
+    overlayImg.src = btn.dataset.img;
   });
-}
-
-app.ticker.add(update);
-
-/* DRAG */
-let isDown = false;
-let lastX, lastY;
-
-window.addEventListener("pointerdown", e => {
-  isDown = true;
-  lastX = e.clientX;
-  lastY = e.clientY;
 });
 
-window.addEventListener("pointerup", () => isDown = false);
-
-window.addEventListener("pointermove", e => {
-  if (!isDown) return;
-
-  let dx = e.clientX - lastX;
-  let dy = e.clientY - lastY;
-
-  velX += dx * 0.6;
-  velY += dy * 0.6;
-
-  lastX = e.clientX;
-  lastY = e.clientY;
+/* CLOSE */
+document.querySelector(".close").addEventListener("click", () => {
+  overlay.classList.remove("active");
 });
 
-/* SCROLL */
-window.addEventListener("wheel", e => {
-  velX += -e.deltaX * 0.25;
-  velY += -e.deltaY * 0.25;
+/* CLICK OUTSIDE */
+overlay.addEventListener("click", (e) => {
+  if (e.target === overlay) {
+    overlay.classList.remove("active");
+  }
 });
-
-/* RESIZE */
-window.addEventListener("resize", buildGrid);
-
-/* 🔥 START */
-preload();
 </script>
 
 </body>
