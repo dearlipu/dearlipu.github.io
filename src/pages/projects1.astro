@@ -14,38 +14,38 @@ const getImage = (id) =>
 
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gallery</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gallery</title>
 
-  <style>
-    body {
-      margin: 0;
-      background: #0b0b0f;
-      overflow: hidden;
-    }
+<style>
+body {
+  margin: 0;
+  background: #0b0b0f;
+  overflow: hidden;
+}
 
-    canvas {
-      position: fixed;
-      inset: 0;
-    }
+canvas {
+  position: fixed;
+  inset: 0;
+}
 
-    .top {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 10;
-      color: white;
-      font-family: sans-serif;
-    }
-  </style>
+.top {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  color: white;
+  font-family: sans-serif;
+}
+</style>
 </head>
 
 <body>
 
 <div class="top">
   <h2>PROJECT</h2>
-  <p>Drag / Scroll</p>
+  <p>DRAG / SCROLL</p>
 </div>
 
 <canvas id="canvas"></canvas>
@@ -58,7 +58,8 @@ const images = JSON.parse(`${JSON.stringify(images.map(id => getImage(id)))}`);
 const app = new PIXI.Application({
   view: document.getElementById("canvas"),
   resizeTo: window,
-  backgroundAlpha: 0
+  backgroundAlpha: 0,
+  antialias: true
 });
 
 let textures = [];
@@ -70,19 +71,23 @@ let velX = 0;
 let velY = 0;
 
 const GAP = 20;
-let tileSize = 300;
+let tileSize = 320;
 let cols, rows;
 
+const CURVE_STRENGTH = 60;
+const DEPTH_SCALE = 0.25;
+
 async function loadTextures() {
-  textures = await Promise.all(
-    images.map(src => PIXI.Assets.load(src))
-  );
+  textures = await Promise.all(images.map(src => PIXI.Assets.load(src)));
   buildGrid();
 }
 
 function buildGrid() {
-  cols = Math.ceil(window.innerWidth / tileSize) + 2;
-  rows = Math.ceil(window.innerHeight / tileSize) + 2;
+  app.stage.removeChildren();
+  tiles = [];
+
+  cols = Math.ceil(window.innerWidth / tileSize) + 4;
+  rows = Math.ceil(window.innerHeight / tileSize) + 4;
 
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
@@ -90,17 +95,25 @@ function buildGrid() {
       const tex = textures[Math.floor(Math.random() * textures.length)];
 
       const sprite = new PIXI.Sprite(tex);
+      sprite.anchor.set(0.5);
+
       sprite.width = tileSize - GAP;
       sprite.height = tileSize - GAP;
 
-      sprite.x = x * tileSize;
-      sprite.y = y * tileSize;
-
       app.stage.addChild(sprite);
 
-      tiles.push({ sprite, x, y });
+      tiles.push({
+        sprite,
+        baseX: x * tileSize,
+        baseY: y * tileSize
+      });
     }
   }
+}
+
+function curve(x, width) {
+  let t = (x / width) * 2 - 1;
+  return Math.sin(t * Math.PI * 0.5) * CURVE_STRENGTH;
 }
 
 function update() {
@@ -115,14 +128,26 @@ function update() {
   const gridH = rows * tileSize;
 
   tiles.forEach(t => {
-    let x = (t.x * tileSize + scrollX) % gridW;
-    let y = (t.y * tileSize + scrollY) % gridH;
+
+    let x = (t.baseX + scrollX) % gridW;
+    let y = (t.baseY + scrollY) % gridH;
 
     if (x < 0) x += gridW;
     if (y < 0) y += gridH;
 
-    t.sprite.x = x;
-    t.sprite.y = y;
+    let centerX = x + tileSize / 2;
+
+    // 🔥 CURVE EFFECT
+    let curvedY = y + curve(centerX, window.innerWidth);
+
+    // 🔥 DEPTH SCALE
+    let dist = Math.abs((centerX / window.innerWidth) - 0.5);
+    let scale = 1 - dist * DEPTH_SCALE;
+
+    t.sprite.x = x + tileSize / 2;
+    t.sprite.y = curvedY + tileSize / 2;
+    t.sprite.scale.set(scale);
+
   });
 }
 
@@ -146,8 +171,8 @@ window.addEventListener("pointermove", e => {
   let dx = e.clientX - lastX;
   let dy = e.clientY - lastY;
 
-  velX += dx * 0.5;
-  velY += dy * 0.5;
+  velX += dx * 0.6;
+  velY += dy * 0.6;
 
   lastX = e.clientX;
   lastY = e.clientY;
@@ -155,8 +180,13 @@ window.addEventListener("pointermove", e => {
 
 /* SCROLL */
 window.addEventListener("wheel", e => {
-  velX += -e.deltaX * 0.2;
-  velY += -e.deltaY * 0.2;
+  velX += -e.deltaX * 0.25;
+  velY += -e.deltaY * 0.25;
+});
+
+/* RESIZE */
+window.addEventListener("resize", () => {
+  buildGrid();
 });
 
 loadTextures();
