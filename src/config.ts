@@ -27,14 +27,14 @@ export const siteConfig = {
       name: "High-Retention Video Editing",
       description:
         "Edited short-form videos with strong hooks, captions, and pacing to keep viewers engaged and improve watch time.",
-      link: "/coming-soon",
+      link: "/projects2",
       skills: ["Video Editing", "Reels & Shorts", "Motion Graphics"],
     },
     {
       name: "Visual Redesign & Brand Upgrade",
       description:
         "Redesigned outdated visuals into clean, modern designs that improve clarity, professionalism, and overall brand perception.",
-      link: "/coming-soon",
+      link: "/projects3",
       skills: ["Redesign", "Branding", "Visual Upgrade"],
     },
   ],
