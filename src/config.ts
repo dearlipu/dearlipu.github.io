@@ -20,21 +20,21 @@ export const siteConfig = {
       name: "Newsletter Design & Layout System",
       description:
         "Designed a clean, structured email layout focused on readability and content clarity.",
-      link: "https://www.behance.net/gallery/239908611/Portfolio-2025",
+      link: "/coming-soon",
       skills: ["Content Design", "Motion Graphics", "Video Editing"],
     },
     {
       name: "Landing Page & Content Design",
       description:
         "Designed a conversion-focused layout for a technical product, improving clarity and user flow.",
-      link: "#",
+      link: "/coming-soon",
       skills: ["UI Design", "Motion Graphics", "Content Design"],
     },
     {
       name: "Product UI & Visual System",
       description:
         "Created a clean interface and visual system for a developer-focused toolkit.",
-      link: "#",
+      link: "/coming-soon",
       skills: ["Visual Design", "UI Design", "Video Editing"],
     },
   ],
