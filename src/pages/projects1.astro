@@ -1,5 +1,5 @@
 ---
-const images = [
+const imageIds = [
   "11ED5yQTazPPWzzlU5rlYMHDzqELyl9QP",
   "1yxGFHBfkSOYnKY0Z4Mk-EwFKADJ0Vt91",
   "1YhRzX0KQ8IHWO-L8Lpcj26uqSkEVQ2GZ",
@@ -8,8 +8,9 @@ const images = [
   "1G5HafXFH4whR-Nf_03jhrcXfEhJLhphk"
 ];
 
-const getImage = (id) =>
-  `https://lh3.googleusercontent.com/d/${id}=w1200`;
+const imageUrls = imageIds.map(
+  id => `https://lh3.googleusercontent.com/d/${id}=w1200`
+);
 ---
 
 <html lang="en">
@@ -53,7 +54,7 @@ canvas {
 <script src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
 
 <script>
-const images = JSON.parse(`${JSON.stringify(images.map(id => getImage(id)))}`);
+const images = JSON.parse(`${JSON.stringify(imageUrls)}`);
 
 const app = new PIXI.Application({
   view: document.getElementById("canvas"),
@@ -77,8 +78,25 @@ let cols, rows;
 const CURVE_STRENGTH = 60;
 const DEPTH_SCALE = 0.25;
 
+/* 🔥 SAFE LOADER (FIXED) */
 async function loadTextures() {
-  textures = await Promise.all(images.map(src => PIXI.Assets.load(src)));
+  const loaded = await Promise.all(
+    images.map(async (src) => {
+      try {
+        return await PIXI.Assets.load(src);
+      } catch (e) {
+        return null; // ignore broken images
+      }
+    })
+  );
+
+  textures = loaded.filter(Boolean);
+
+  if (!textures.length) {
+    document.body.innerHTML = "<h2 style='color:white'>Images not loading</h2>";
+    return;
+  }
+
   buildGrid();
 }
 
@@ -137,17 +155,14 @@ function update() {
 
     let centerX = x + tileSize / 2;
 
-    // 🔥 CURVE EFFECT
     let curvedY = y + curve(centerX, window.innerWidth);
 
-    // 🔥 DEPTH SCALE
     let dist = Math.abs((centerX / window.innerWidth) - 0.5);
     let scale = 1 - dist * DEPTH_SCALE;
 
     t.sprite.x = x + tileSize / 2;
     t.sprite.y = curvedY + tileSize / 2;
     t.sprite.scale.set(scale);
-
   });
 }
 
