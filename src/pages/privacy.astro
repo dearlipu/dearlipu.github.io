@@ -205,7 +205,12 @@ import "../styles/global.css";
               
                 <div class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-gray-900 font-medium">
               
-                  <a href={`mailto:${siteConfig.social.email}`} class="hover:underline">
+                  <a 
+                    href={`mailto:${siteConfig.social.email}`} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="hover:underline"
+                  >
                     {siteConfig.social.email}
                   </a>
               
@@ -213,10 +218,16 @@ import "../styles/global.css";
               
                   <a 
                     href={`https://wa.me/${siteConfig.social.whatsapp}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     class="hover:underline"
                   >
                     +{siteConfig.social.whatsapp.slice(0, 2)} {siteConfig.social.whatsapp.slice(2)}
                   </a>
+
+                    <p class="text-gray-400 text-xs mt-1">
+                      WhatsApp only.
+                    </p>
               
                 </div>
               </div>
