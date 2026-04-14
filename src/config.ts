@@ -4,7 +4,7 @@ export const siteConfig = {
   description: "I create impactful design, video, and motion content for brands and creators. Focused on clarity, quality, and visuals that actually perform.",
   accentColor: "#1d4ed8",
   social: {
-    email: "sauravpanda34+web@gmail.com",
+    email: "infodearlipu+web@gmail.com",
     whatsapp: "918144991049",
     instagram: "https://www.instagram.com/dearlipu",
     twitter: "https://x.com/dearlipu",
