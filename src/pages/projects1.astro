@@ -20,7 +20,7 @@ const images = [
 <script is:inline src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
 
 <script is:inline>
-const images = JSON.parse(`${JSON.stringify(images)}`);
+const imageList = JSON.parse(`${JSON.stringify(images)}`);
 
 const app = new PIXI.Application({
   view: document.getElementById("canvas"),
@@ -28,6 +28,7 @@ const app = new PIXI.Application({
   backgroundAlpha: 0
 });
 
+let textures = [];
 let tiles = [];
 
 let scrollX = 0;
@@ -40,6 +41,16 @@ const GAP = 20;
 
 let cols, rows;
 
+/* 🔥 PRELOAD IMAGES (IMPORTANT FIX) */
+async function preload() {
+  textures = await Promise.all(
+    imageList.map(src => PIXI.Texture.fromURL(src))
+  );
+
+  buildGrid();
+}
+
+/* 🔥 BUILD GRID */
 function buildGrid() {
   app.stage.removeChildren();
   tiles = [];
@@ -50,9 +61,9 @@ function buildGrid() {
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
 
-      const src = images[Math.floor(Math.random() * images.length)];
+      const tex = textures[Math.floor(Math.random() * textures.length)];
 
-      const sprite = PIXI.Sprite.from(src);
+      const sprite = new PIXI.Sprite(tex);
 
       sprite.anchor.set(0.5);
       sprite.width = SIZE - GAP;
@@ -69,11 +80,13 @@ function buildGrid() {
   }
 }
 
+/* CURVE */
 function curve(x, w) {
   let t = (x / w) * 2 - 1;
   return Math.sin(t * Math.PI * 0.5) * 60;
 }
 
+/* ANIMATION LOOP */
 function update() {
   scrollX += velX;
   scrollY += velY;
@@ -141,7 +154,8 @@ window.addEventListener("wheel", e => {
 /* RESIZE */
 window.addEventListener("resize", buildGrid);
 
-buildGrid();
+/* 🔥 START */
+preload();
 </script>
 
 </body>
