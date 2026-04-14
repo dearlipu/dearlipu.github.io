@@ -213,7 +213,7 @@ import "../styles/global.css";
                     href={`https://wa.me/${siteConfig.social.whatsapp}`}
                     class="hover:underline"
                   >
-                    + {siteConfig.social.whatsapp.replace(/(\+\d{2})(\d{5})(\d+)/, "$1 $2 $3")}
+                    +{siteConfig.social.whatsapp.slice(0, 2)} {siteConfig.social.whatsapp.slice(2)}
                   </a>
               
                 </div>
