@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
   <title>Featured Work</title>
 
   <style>
@@ -13,7 +12,7 @@
       margin:0;
       padding:0;
       overflow-x:hidden;
-      background:#ffffff;
+      background:#000;
       font-family:-apple-system,system-ui,Segoe UI,Roboto,sans-serif;
     }
 
@@ -47,7 +46,6 @@
       display:block;
       object-fit:cover;
       user-select:none;
-      background:#f3f4f6;
     }
 
     .sep{
@@ -56,63 +54,64 @@
       padding:0;
     }
 
-    /* WHITE SKELETON LOADER */
+    /* -------- PREMIUM SKELETON LOADER OVERLAY -------- */
     #loader{
       position:fixed;
       inset:0;
-      background:#ffffff;
+      background:radial-gradient(circle at top,#191919 0,#000 55%);
       display:flex;
       flex-direction:column;
       align-items:center;
       justify-content:center;
-      gap:16px;
+      gap:18px;
       z-index:9999;
-      padding:16px;
+      padding:20px;
       box-sizing:border-box;
-      color:#111827;
+      color:#fff;
       text-align:center;
     }
 
     .loader-title{
-      font-size:16px;
+      font-size:18px;
       font-weight:600;
-      letter-spacing:.03em;
-      opacity:.9;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      opacity:.85;
     }
 
     .loader-sub{
-      font-size:12px;
-      opacity:.6;
-      margin-bottom:6px;
+      font-size:13px;
+      opacity:.65;
+      margin-bottom:8px;
     }
 
     .skeleton-row{
       display:flex;
       flex-direction:column;
-      gap:12px;
+      gap:14px;
       width:100%;
-      max-width:600px;
+      max-width:900px;
     }
 
     .skeleton-page{
-      border-radius:16px;
-      background:#f9fafb;
-      padding:14px;
-      border:1px solid #e5e7eb;
+      border-radius:20px;
+      background:rgba(10,10,10,0.9);
+      padding:16px;
+      box-shadow:0 22px 60px rgba(0,0,0,0.80);
+      border:1px solid rgba(255,255,255,0.04);
       overflow:hidden;
-      box-shadow:0 4px 12px rgba(0,0,0,0.05);
     }
 
     .sk-thumb{
-      height:140px;
-      border-radius:12px;
-      margin-bottom:10px;
+      height:190px;
+      border-radius:16px;
+      margin-bottom:12px;
     }
 
     .sk-line{
-      height:8px;
+      height:10px;
       border-radius:999px;
-      margin-bottom:6px;
+      margin-bottom:8px;
     }
 
     .sk-line:last-child{
@@ -126,9 +125,9 @@
 
     .sk-thumb,
     .sk-line{
-      background-image:linear-gradient(110deg,#eee 0%,#f5f5f5 40%,#e5e7eb 80%);
+      background-image:linear-gradient(110deg,#222 0%,#333 40%,#111 80%);
       background-size:200% 100%;
-      animation:skeleton-loading 1.2s infinite linear;
+      animation:skeleton-loading 1.25s infinite linear;
     }
 
     @keyframes skeleton-loading{
@@ -136,17 +135,16 @@
       100%{ background-position-x:120%; }
     }
 
-    /* Desktop */
+    /* Desktop: bigger & more spread */
     @media (min-width: 900px){
       .skeleton-row{
         flex-direction:row;
-        max-width:1000px;
       }
       .skeleton-page{
         flex:1;
       }
       .sk-thumb{
-        height:220px;
+        height:min(360px,45vh);
       }
     }
   </style>
@@ -161,12 +159,13 @@
   </div>
 
   <script>
+  /* --------- IMAGE LOADER (optimized for webp) ----------- */
   (function(){
     const wrap   = document.getElementById('wrap');
     const loader = document.getElementById('loader');
     const folder = '/projects/';
     const base   = 'p1-';
-    const tryExt = ['webp','gif'];
+    const tryExt = ['webp','gif']; // prefer webp first
 
     let idx  = 1;
     let miss = 0;
@@ -187,8 +186,7 @@
       const img = document.createElement('img');
       img.src   = url;
       img.loading = 'lazy';
-      img.decoding = 'async';
-      img.style.background = "#f3f4f6";
+      img.decoding = 'async';   // hint: decode off main thread
 
       p.appendChild(img);
       wrap.appendChild(p);
@@ -203,11 +201,11 @@
 
       const title = document.createElement('div');
       title.className = 'loader-title';
-      title.textContent = 'Preparing portfolio...';
+      title.textContent = 'Preparing portfolio for you…';
 
       const sub = document.createElement('div');
       sub.className = 'loader-sub';
-      sub.textContent = 'Loading visuals';
+      sub.textContent = 'Loading high-resolution pages';
 
       const row = document.createElement('div');
       row.className = 'skeleton-row';
@@ -230,27 +228,33 @@
       loader.appendChild(row);
     }
 
-      async function scan(){
-        buildSkeleton();
-      
-        for(let n=1;n<300;n++){
-          const path = getPath(idx);
-      
+    async function scan(){
+      buildSkeleton();
+
+      for(let n=1;n<300;n++){
+        let ok = false;
+        for(const ext of tryExt){
+          const path = `${folder}${base}${idx}.${ext}`;
+          // eslint-disable-next-line no-await-in-loop
           if(await exists(path)){
             addImg(path);
-            miss = 0;
-          } else {
-            miss++;
-            if(miss >= 5) break;
+            ok = true;
+            break;
           }
-      
-          idx++;
         }
-      
-        loader.style.transition = 'opacity 0.3s ease';
-        loader.style.opacity = '0';
-        setTimeout(() => loader.remove(), 300);
+        if(!ok){
+          miss++;
+          if(miss>=6) break;   // stop if several consecutive pages missing
+        } else {
+          miss = 0;
+        }
+        idx++;
       }
+
+      loader.style.transition = 'opacity 0.3s ease';
+      loader.style.opacity = '0';
+      setTimeout(() => loader.remove(), 300);
+    }
 
     scan();
   })();
