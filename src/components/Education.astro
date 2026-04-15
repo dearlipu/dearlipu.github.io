@@ -1,11 +1,11 @@
 ---
 import { siteConfig } from "../config";
-const hasEducation = siteConfig.education && siteConfig.education.length > 0;
+const hasServices = siteConfig.services && siteConfig.services.length > 0;
 ---
 
 {
-  hasEducation && (
-    <section id="education" class="p-8 sm:p-12 md:p-16 lg:p-24 bg-white">
+  hasServices && (
+    <section id="services" class="p-8 sm:p-12 md:p-16 lg:p-24 bg-white">
       <div>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
@@ -28,7 +28,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
           <!-- RIGHT -->
           <div class="lg:col-span-8 space-y-8">
 
-            {siteConfig.education.map((edu, index) => (
+            {siteConfig.services.map((edu, index) => (
 
               <div class="bg-gray-50 rounded-xl border border-gray-200 
                           flex flex-col md:flex-row overflow-hidden 
