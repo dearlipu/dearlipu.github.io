@@ -25,21 +25,26 @@
     }
 
     .wrap{
-      width:100%;
+      display:flex;
+      flex-direction:column;
     }
 
     .page{
+      width:100vw;
+      height:100vh;
+      overflow:hidden;
+    }
+    
+    .page img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
       margin:0;
       padding:0;
-      line-height:0;
-    }
-
-    .page img{
-      width:100vw;
-      height:auto;
-      display:block;
-      object-fit:cover;
-      background:#f3f4f6;
+      border:0;
+      outline:none;
+      vertical-align:bottom;
     }
 
     .sep{
@@ -170,7 +175,7 @@
 
       const title = document.createElement('div');
       title.className = 'loader-title';
-      title.textContent = 'Loading portfolio...';
+      title.textContent = 'Loading works...';
 
       const row = document.createElement('div');
       row.className = 'skeleton-row';
