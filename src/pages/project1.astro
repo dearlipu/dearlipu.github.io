@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Featured Work</title>
 
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
   <style>
     html, body {
       margin: 0;
@@ -51,30 +49,24 @@
     '.wrap{' +
       'display:flex;' +
       'flex-direction:column;' +
-      'align-items:center;' +
       'width:100%;' +
     '}' +
 
     '.page{' +
-      'width:100%;' +
-      'min-height:100dvh;' +
+      'width:100vw;' +
+      'height:100dvh;' +
+      'overflow:hidden;' +
       'display:flex;' +
-      'align-items:center;' +
-      'justify-content:center;' +
-      'background:#000;' +
     '}' +
 
-    /* 🔥 KEY FIX */
     '.page img{' +
-      'max-width:100%;' +
-      'max-height:100dvh;' +
-      'width:auto;' +
-      'height:auto;' +
+      'width:100%;' +
+      'height:100%;' +
       'display:block;' +
-      'object-fit:contain;' +
+      'object-position:center center;' +
     '}' +
 
-    /* LOADER */
+    /* loader */
     '.loader{' +
       'position:fixed;' +
       'inset:0;' +
@@ -113,12 +105,27 @@
   }
 
   function addImg(url){
+
     const p = document.createElement('div');
     p.className = 'page';
 
     const img = document.createElement('img');
     img.src = url;
     img.loading = 'lazy';
+
+    // 🔥 SMART FIT LOGIC
+    img.onload = function(){
+      const ratio = img.naturalWidth / img.naturalHeight;
+
+      if(ratio > 1){
+        // wide → fill screen
+        img.style.objectFit = 'cover';
+      } else {
+        // tall / gif → fit inside
+        img.style.objectFit = 'contain';
+        img.style.background = '#000'; // remove side gaps feel
+      }
+    };
 
     p.appendChild(img);
     wrap.appendChild(p);
