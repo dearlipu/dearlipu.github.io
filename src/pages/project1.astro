@@ -2,129 +2,111 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Featured Work</title>
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
   <style>
-    html,body{
-      margin:0;
-      padding:0;
-      background:#000;
-      overflow-x:hidden;
-      font-family:-apple-system,system-ui,Segoe UI,Roboto,sans-serif;
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      overflow: hidden;
     }
 
-    #viewer{
-      width:100vw;
-      height:100vh;
-      overflow-y:auto;
-      overflow-x:hidden;
-      -webkit-overflow-scrolling:touch;
-      scrollbar-width:none;
-    }
-
-    #viewer::-webkit-scrollbar{
-      display:none;
-    }
-
-    .wrap{
-      width:100%;
-    }
-
-    .page{
-      width:100%;
-      line-height:0;
-    }
-
-    .page img{
-      width:100vw;
-      height:auto;
-      display:block;
-      object-fit:contain;
-      background:#000;
-    }
-
-    /* REMOVE ANY POSSIBLE GAP */
-    img{
-      margin:0;
-      padding:0;
-      border:0;
-      outline:none;
-      vertical-align:bottom;
-    }
-
-    /* LOADER */
-    #loader{
-      position:fixed;
-      inset:0;
-      background:#ffffff;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:12px;
-      z-index:9999;
-      color:#111827;
-    }
-
-    .loader-title{
-      font-size:16px;
-      font-weight:600;
-    }
-
-    .skeleton{
-      width:90%;
-      max-width:400px;
-    }
-
-    .sk{
-      height:120px;
-      border-radius:12px;
-      margin-bottom:10px;
-      background:linear-gradient(110deg,#eee 0%,#f5f5f5 40%,#e5e7eb 80%);
-      background-size:200% 100%;
-      animation:load 1.2s infinite linear;
-    }
-
-    @keyframes load{
-      0%{background-position-x:-120%}
-      100%{background-position-x:120%}
+    #app {
+      position: fixed;
+      inset: 0;
     }
   </style>
 </head>
 
 <body>
 
-<div id="loader">
-  <div class="loader-title">Loading works...</div>
-  <div class="skeleton">
-    <div class="sk"></div>
-    <div class="sk"></div>
-  </div>
-</div>
-
-<div id="viewer">
-  <div class="wrap" id="wrap"></div>
-</div>
+<div id="app"></div>
 
 <script>
 (function(){
 
-  const wrap   = document.getElementById('wrap');
-  const loader = document.getElementById('loader');
+  const root = document.getElementById('app');
+  const shadow = root.attachShadow({ mode: 'open' });
+
+  shadow.innerHTML =
+    '<style>' +
+
+    '*{margin:0;padding:0;box-sizing:border-box;}' +
+
+    '.viewer{' +
+      'position:fixed;' +
+      'inset:0;' +
+      'overflow-y:auto;' +
+      'background:#000;' +
+      '-webkit-overflow-scrolling:touch;' +
+      'scrollbar-width:none;' +
+    '}' +
+
+    '.viewer::-webkit-scrollbar{display:none;}' +
+
+    '.wrap{' +
+      'display:flex;' +
+      'flex-direction:column;' +
+      'align-items:center;' +
+      'width:100%;' +
+    '}' +
+
+    '.page{' +
+      'width:100%;' +
+      'min-height:100dvh;' +
+      'display:flex;' +
+      'align-items:center;' +
+      'justify-content:center;' +
+      'background:#000;' +
+    '}' +
+
+    /* 🔥 KEY FIX */
+    '.page img{' +
+      'max-width:100%;' +
+      'max-height:100dvh;' +
+      'width:auto;' +
+      'height:auto;' +
+      'display:block;' +
+      'object-fit:contain;' +
+    '}' +
+
+    /* LOADER */
+    '.loader{' +
+      'position:fixed;' +
+      'inset:0;' +
+      'background:#fff;' +
+      'display:flex;' +
+      'align-items:center;' +
+      'justify-content:center;' +
+      'z-index:9999;' +
+      'font-family:sans-serif;' +
+    '}' +
+
+    '</style>' +
+
+    '<div class="loader" id="loader">Loading...</div>' +
+
+    '<div class="viewer">' +
+      '<div class="wrap" id="wrap"></div>' +
+    '</div>';
+
+  const wrap   = shadow.getElementById('wrap');
+  const loader = shadow.getElementById('loader');
 
   const folder = '/projects/';
   const tryExt = ['webp','gif'];
 
-  let idx  = 1;
+  let idx = 1;
   let miss = 0;
 
   function exists(url){
     return new Promise(res => {
       const i = new Image();
-      i.onload  = () => res(true);
+      i.onload = () => res(true);
       i.onerror = () => res(false);
       i.src = url;
     });
@@ -137,7 +119,6 @@
     const img = document.createElement('img');
     img.src = url;
     img.loading = 'lazy';
-    img.decoding = 'async';
 
     p.appendChild(img);
     wrap.appendChild(p);
@@ -147,7 +128,8 @@
     for(let n=1;n<300;n++){
       let found = false;
 
-      for(const ext of tryExt){
+      for(let i=0;i<tryExt.length;i++){
+        const ext = tryExt[i];
         const path = folder + 'p1-' + idx + '.' + ext;
 
         if(await exists(path)){
