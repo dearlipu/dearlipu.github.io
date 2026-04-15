@@ -20,21 +20,21 @@ export const siteConfig = {
       name: "Social Media Content System",
       description:
         "Built a complete content system for consistent, high-quality social media posts designed to improve engagement and brand clarity.",
-      link: "/projects1",
+      link: "/project1",
       skills: ["Content Design", "Social Media", "Branding"],
     },
     {
       name: "High-Retention Video Editing",
       description:
         "Edited short-form videos with strong hooks, captions, and pacing to keep viewers engaged and improve watch time.",
-      link: "/projects2",
+      link: "/project2",
       skills: ["Video Editing", "Reels & Shorts", "Motion Graphics"],
     },
     {
       name: "Visual Redesign & Brand Upgrade",
       description:
         "Redesigned outdated visuals into clean, modern designs that improve clarity, professionalism, and overall brand perception.",
-      link: "/projects3",
+      link: "/project3",
       skills: ["Redesign", "Branding", "Visual Upgrade"],
     },
   ],
