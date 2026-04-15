@@ -6,228 +6,217 @@
   <title>Featured Work</title>
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-  <style>
-    #viewer, #viewer * {
-      all: unset;
-      box-sizing: border-box;
-    }
-
-    html,body{
-      height:100%;
-      margin:0;
-      padding:0;
-      background:#ffffff;
-      overflow:hidden;
-      font-family:-apple-system,system-ui,Segoe UI,Roboto,sans-serif;
-    }
-
-    #viewer{
-      display:block;
-      width:100vw;
-      height:100vh;
-      overflow-y:auto;
-      overflow-x:hidden;
-      -webkit-overflow-scrolling:touch;
-    }
-
-    .wrap{
-      display:flex;
-      flex-direction:column;
-      width:100%;
-    }
-
-    .page{
-      width:100vw;
-      height:100vh;
-      overflow:hidden;
-    }
-
-    .page img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-
-    /* WHITE SKELETON */
-    #loader{
-      position:fixed;
-      inset:0;
-      background:#ffffff;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:12px;
-      z-index:9999;
-      padding:16px;
-      color:#111827;
-    }
-
-    .loader-title{
-      font-size:16px;
-      font-weight:600;
-    }
-
-    .skeleton-row{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      width:100%;
-      max-width:500px;
-    }
-
-    .skeleton-page{
-      border-radius:14px;
-      background:#f9fafb;
-      padding:12px;
-      border:1px solid #e5e7eb;
-    }
-
-    .sk-thumb{
-      height:120px;
-      border-radius:10px;
-      margin-bottom:8px;
-    }
-
-    .sk-line{
-      height:8px;
-      border-radius:999px;
-      margin-bottom:6px;
-    }
-
-    .sk-line.w1{ width:78%; }
-    .sk-line.w2{ width:62%; }
-    .sk-line.w3{ width:90%; }
-
-    .sk-thumb,
-    .sk-line{
-      background-image:linear-gradient(110deg,#eee 0%,#f5f5f5 40%,#e5e7eb 80%);
-      background-size:200% 100%;
-      animation:skeleton-loading 1.2s infinite linear;
-    }
-
-    @keyframes skeleton-loading{
-      0%{ background-position-x:-120%; }
-      100%{ background-position-x:120%; }
-    }
-
-    @media (min-width: 900px){
-      .skeleton-row{
-        flex-direction:row;
-        max-width:900px;
-      }
-      .skeleton-page{
-        flex:1;
-      }
-      .sk-thumb{
-        height:200px;
-      }
-    }
-  </style>
 </head>
 
 <body>
 
-  <div id="loader"></div>
+<div id="app"></div>
 
-  <div id="viewer">
-    <div class="wrap" id="wrap"></div>
-  </div>
+<script>
+(function(){
 
-  <script>
-  (function(){
-    const wrap   = document.getElementById('wrap');
-    const loader = document.getElementById('loader');
+  const root = document.getElementById('app');
 
-    const folder = '/projects/';
-    const tryExt = ['webp','gif'];
+  /* 🔥 CREATE SHADOW ROOT (FULL ISOLATION) */
+  const shadow = root.attachShadow({ mode: 'open' });
 
-    let idx  = 1;
-    let miss = 0;
+  shadow.innerHTML = `
+    <style>
+      html,body{
+        margin:0;
+        padding:0;
+      }
 
-    function exists(url){
-      return new Promise(res => {
-        const i = new Image();
-        i.onload  = () => res(true);
-        i.onerror = () => res(false);
-        i.src = url;
-      });
-    }
+      .viewer{
+        width:100vw;
+        height:100vh;
+        overflow-y:auto;
+        overflow-x:hidden;
+        background:#ffffff;
+        -webkit-overflow-scrolling:touch;
+      }
 
-    function addImg(url){
-      const p = document.createElement('div');
-      p.className = 'page';
+      .wrap{
+        display:flex;
+        flex-direction:column;
+      }
 
-      const img = document.createElement('img');
-      img.src = url;
-      img.loading = 'lazy';
-      img.decoding = 'async';
+      .page{
+        width:100vw;
+        height:100vh;
+        overflow:hidden;
+      }
 
-      p.appendChild(img);
-      wrap.appendChild(p);
-    }
+      .page img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        display:block;
+      }
 
-    function buildSkeleton(){
-      loader.innerHTML = '';
+      /* LOADER */
+      .loader{
+        position:fixed;
+        inset:0;
+        background:#ffffff;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        gap:12px;
+        z-index:9999;
+        font-family:-apple-system,system-ui,Segoe UI,Roboto,sans-serif;
+      }
 
-      const title = document.createElement('div');
-      title.className = 'loader-title';
-      title.textContent = 'Loading works...';
+      .loader-title{
+        font-size:16px;
+        font-weight:600;
+        color:#111827;
+      }
 
-      const row = document.createElement('div');
-      row.className = 'skeleton-row';
+      .skeleton-row{
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        width:100%;
+        max-width:500px;
+      }
 
-      for(let i=0;i<3;i++){
-        const card = document.createElement('div');
-        card.className = 'skeleton-page';
-        card.innerHTML = `
+      .skeleton-page{
+        border-radius:14px;
+        background:#f9fafb;
+        padding:12px;
+        border:1px solid #e5e7eb;
+      }
+
+      .sk-thumb{
+        height:120px;
+        border-radius:10px;
+        margin-bottom:8px;
+      }
+
+      .sk-line{
+        height:8px;
+        border-radius:999px;
+        margin-bottom:6px;
+      }
+
+      .sk-line.w1{ width:78%; }
+      .sk-line.w2{ width:62%; }
+      .sk-line.w3{ width:90%; }
+
+      .sk-thumb,
+      .sk-line{
+        background-image:linear-gradient(110deg,#eee 0%,#f5f5f5 40%,#e5e7eb 80%);
+        background-size:200% 100%;
+        animation:skeleton-loading 1.2s infinite linear;
+      }
+
+      @keyframes skeleton-loading{
+        0%{ background-position-x:-120%; }
+        100%{ background-position-x:120%; }
+      }
+
+      @media (min-width: 900px){
+        .skeleton-row{
+          flex-direction:row;
+          max-width:900px;
+        }
+        .skeleton-page{
+          flex:1;
+        }
+        .sk-thumb{
+          height:200px;
+        }
+      }
+    </style>
+
+    <div class="loader" id="loader">
+      <div class="loader-title">Loading works...</div>
+      <div class="skeleton-row">
+        <div class="skeleton-page">
           <div class="sk-thumb"></div>
           <div class="sk-line w1"></div>
           <div class="sk-line w3"></div>
           <div class="sk-line w2"></div>
-        `;
-        row.appendChild(card);
+        </div>
+        <div class="skeleton-page">
+          <div class="sk-thumb"></div>
+          <div class="sk-line w1"></div>
+          <div class="sk-line w3"></div>
+          <div class="sk-line w2"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="viewer">
+      <div class="wrap" id="wrap"></div>
+    </div>
+  `;
+
+  const wrap   = shadow.getElementById('wrap');
+  const loader = shadow.getElementById('loader');
+
+  const folder = '/projects/';
+  const tryExt = ['webp','gif'];
+
+  let idx  = 1;
+  let miss = 0;
+
+  function exists(url){
+    return new Promise(res => {
+      const i = new Image();
+      i.onload  = () => res(true);
+      i.onerror = () => res(false);
+      i.src = url;
+    });
+  }
+
+  function addImg(url){
+    const p = document.createElement('div');
+    p.className = 'page';
+
+    const img = document.createElement('img');
+    img.src = url;
+    img.loading = 'lazy';
+    img.decoding = 'async';
+
+    p.appendChild(img);
+    wrap.appendChild(p);
+  }
+
+  async function scan(){
+    for(let n=1;n<300;n++){
+      let found = false;
+
+      for(const ext of tryExt){
+        const path = `${folder}p1-${idx}.${ext}`;
+
+        if(await exists(path)){
+          addImg(path);
+          found = true;
+          break;
+        }
       }
 
-      loader.appendChild(title);
-      loader.appendChild(row);
-    }
-
-    async function scan(){
-      buildSkeleton();
-
-      for(let n=1;n<300;n++){
-        let found = false;
-
-        for(const ext of tryExt){
-          const path = `${folder}p1-${idx}.${ext}`;
-
-          if(await exists(path)){
-            addImg(path);
-            found = true;
-            break;
-          }
-        }
-
-        if(!found){
-          miss++;
-          if(miss >= 5) break;
-        } else {
-          miss = 0;
-        }
-
-        idx++;
+      if(!found){
+        miss++;
+        if(miss >= 5) break;
+      } else {
+        miss = 0;
       }
 
-      loader.style.opacity = '0';
-      setTimeout(() => loader.remove(), 300);
+      idx++;
     }
 
-    scan();
-  })();
-  </script>
+    loader.style.opacity = '0';
+    setTimeout(() => loader.remove(), 300);
+  }
+
+  scan();
+
+})();
+</script>
 
 </body>
 </html>
