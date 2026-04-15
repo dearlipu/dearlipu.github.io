@@ -16,15 +16,14 @@
 (function(){
 
   const root = document.getElementById('app');
-
-  /* 🔥 CREATE SHADOW ROOT (FULL ISOLATION) */
   const shadow = root.attachShadow({ mode: 'open' });
 
   shadow.innerHTML = `
     <style>
-      html,body{
+      *{
         margin:0;
         padding:0;
+        box-sizing:border-box;
       }
 
       .viewer{
@@ -34,24 +33,37 @@
         overflow-x:hidden;
         background:#ffffff;
         -webkit-overflow-scrolling:touch;
+
+        /* HIDE SCROLLBAR */
+        scrollbar-width:none;
+      }
+
+      .viewer::-webkit-scrollbar{
+        display:none;
       }
 
       .wrap{
         display:flex;
         flex-direction:column;
+        gap:0;
       }
 
       .page{
         width:100vw;
         height:100vh;
         overflow:hidden;
+        display:flex;
       }
 
       .page img{
         width:100%;
         height:100%;
         object-fit:cover;
+        object-position:center;
+
         display:block;
+
+        border:0;
       }
 
       /* LOADER */
@@ -190,7 +202,7 @@
       let found = false;
 
       for(const ext of tryExt){
-        const path = `${folder}p1-${idx}.${ext}`;
+        const path = \`\${folder}p1-\${idx}.\${ext}\`;
 
         if(await exists(path)){
           addImg(path);
