@@ -39,7 +39,7 @@ export const siteConfig = {
     },
   ],
   
-  education: [
+  services: [
     {
       degree: "Visual Design",
       school: "Branding, graphics, and image editing that stand out.",
