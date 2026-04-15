@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Featured Work</title>
+
+  <style>
+    html,body{
+      height:100%;
+      margin:0;
+      padding:0;
+      overflow-x:hidden;
+      background:#ffffff;
+      font-family:-apple-system,system-ui,Segoe UI,Roboto,sans-serif;
+    }
+
+    #viewer{
+      width:100vw;
+      height:100vh;
+      overflow:auto;
+      -webkit-overflow-scrolling:touch;
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    .wrap{
+      width:100%;
+      margin:0;
+      padding:0;
+    }
+
+    .page{
+      margin:0;
+      padding:0;
+      line-height:0;
+    }
+
+    .page img{
+      width:100vw;
+      height:auto;
+      margin:0;
+      border:0;
+      display:block;
+      object-fit:cover;
+      user-select:none;
+      background:#f3f4f6;
+    }
+
+    .sep{
+      height:0;
+      margin:0;
+      padding:0;
+    }
+
+    /* WHITE SKELETON LOADER */
+    #loader{
+      position:fixed;
+      inset:0;
+      background:#ffffff;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:16px;
+      z-index:9999;
+      padding:16px;
+      box-sizing:border-box;
+      color:#111827;
+      text-align:center;
+    }
+
+    .loader-title{
+      font-size:16px;
+      font-weight:600;
+      letter-spacing:.03em;
+      opacity:.9;
+    }
+
+    .loader-sub{
+      font-size:12px;
+      opacity:.6;
+      margin-bottom:6px;
+    }
+
+    .skeleton-row{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      width:100%;
+      max-width:600px;
+    }
+
+    .skeleton-page{
+      border-radius:16px;
+      background:#f9fafb;
+      padding:14px;
+      border:1px solid #e5e7eb;
+      overflow:hidden;
+      box-shadow:0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .sk-thumb{
+      height:140px;
+      border-radius:12px;
+      margin-bottom:10px;
+    }
+
+    .sk-line{
+      height:8px;
+      border-radius:999px;
+      margin-bottom:6px;
+    }
+
+    .sk-line:last-child{
+      margin-bottom:0;
+    }
+
+    .sk-line.w1{ width:78%; }
+    .sk-line.w2{ width:62%; }
+    .sk-line.w3{ width:90%; }
+    .sk-line.w4{ width:48%; }
+
+    .sk-thumb,
+    .sk-line{
+      background-image:linear-gradient(110deg,#eee 0%,#f5f5f5 40%,#e5e7eb 80%);
+      background-size:200% 100%;
+      animation:skeleton-loading 1.2s infinite linear;
+    }
+
+    @keyframes skeleton-loading{
+      0%{ background-position-x:-120%; }
+      100%{ background-position-x:120%; }
+    }
+
+    /* Desktop */
+    @media (min-width: 900px){
+      .skeleton-row{
+        flex-direction:row;
+        max-width:1000px;
+      }
+      .skeleton-page{
+        flex:1;
+      }
+      .sk-thumb{
+        height:220px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="loader"></div>
+
+  <div id="viewer">
+    <div class="wrap" id="wrap"></div>
+  </div>
+
+  <script>
+  (function(){
+    const wrap   = document.getElementById('wrap');
+    const loader = document.getElementById('loader');
+    const folder = '/projects/';
+    const base   = 'p1-';
+    const tryExt = ['webp','gif'];
+
+    let idx  = 1;
+    let miss = 0;
+
+    function exists(url){
+      return new Promise(res => {
+        const i = new Image();
+        i.onload  = () => res(true);
+        i.onerror = () => res(false);
+        i.src = url;
+      });
+    }
+
+    function addImg(url){
+      const p   = document.createElement('div');
+      p.className = 'page';
+
+      const img = document.createElement('img');
+      img.src   = url;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.style.background = "#f3f4f6";
+
+      p.appendChild(img);
+      wrap.appendChild(p);
+
+      const sep = document.createElement('div');
+      sep.className = 'sep';
+      wrap.appendChild(sep);
+    }
+
+    function buildSkeleton(){
+      loader.innerHTML = '';
+
+      const title = document.createElement('div');
+      title.className = 'loader-title';
+      title.textContent = 'Preparing portfolio...';
+
+      const sub = document.createElement('div');
+      sub.className = 'loader-sub';
+      sub.textContent = 'Loading visuals';
+
+      const row = document.createElement('div');
+      row.className = 'skeleton-row';
+
+      for(let i=0;i<3;i++){
+        const card = document.createElement('div');
+        card.className = 'skeleton-page';
+        card.innerHTML = `
+          <div class="sk-thumb"></div>
+          <div class="sk-line w1"></div>
+          <div class="sk-line w3"></div>
+          <div class="sk-line w2"></div>
+          <div class="sk-line w4"></div>
+        `;
+        row.appendChild(card);
+      }
+
+      loader.appendChild(title);
+      loader.appendChild(sub);
+      loader.appendChild(row);
+    }
+
+      async function scan(){
+        buildSkeleton();
+      
+        for(let n=1;n<300;n++){
+          const path = getPath(idx);
+      
+          if(await exists(path)){
+            addImg(path);
+            miss = 0;
+          } else {
+            miss++;
+            if(miss >= 5) break;
+          }
+      
+          idx++;
+        }
+      
+        loader.style.transition = 'opacity 0.3s ease';
+        loader.style.opacity = '0';
+        setTimeout(() => loader.remove(), 300);
+      }
+
+    scan();
+  })();
+  </script>
+
+</body>
+</html>
