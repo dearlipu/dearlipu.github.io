@@ -1,6 +1,41 @@
 ---
 import { siteConfig } from "../config";
 import "../styles/global.css";
+
+const termsSections = [
+  {
+    title: "Acceptance of Terms",
+    body: "By using this website or purchasing services, you agree to these terms. If you do not agree, please do not use the website or services.",
+  },
+  {
+    title: "Scope of Work",
+    body: "Each project is delivered based on mutually agreed scope, timeline, and pricing. New requests outside scope may require additional fees or timeline updates.",
+  },
+  {
+    title: "Payments",
+    body: "A deposit may be required to reserve your project slot. Final files are delivered after full payment unless otherwise agreed in writing.",
+  },
+  {
+    title: "Revisions",
+    body: "Minor revisions are included based on the selected service. Major direction changes or additional tasks may be billed separately.",
+  },
+  {
+    title: "Client Responsibilities",
+    body: "You are responsible for providing clear brief details, timely feedback, and legally owned/licensed assets required for your project.",
+  },
+  {
+    title: "Intellectual Property",
+    body: "Website content remains my intellectual property. Project usage rights transfer according to the agreed terms once payment is complete.",
+  },
+  {
+    title: "Liability",
+    body: "Services are provided in good faith and to professional standards, but no guaranteed business outcome is implied. Liability is limited to the value of services paid.",
+  },
+  {
+    title: "Updates",
+    body: "These terms may be updated periodically. Continued use of the website or services indicates acceptance of any revised terms.",
+  },
+];
 ---
 
 <html lang="en">
@@ -8,120 +43,83 @@ import "../styles/global.css";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Terms of Service | {siteConfig.name}</title>
+    <meta name="description" content="Terms and conditions for using this website and creative services." />
 
-    <!-- FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <title>Terms & Conditions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   </head>
 
-  <body class="bg-white text-gray-800">
-
-    <!-- MAIN -->
-    <section class="px-6 sm:px-10 md:px-16 lg:px-24 py-12 md:py-16 lg:py-20">
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start">
-
-        <!-- LEFT -->
+  <body class="text-gray-800">
+    <section class="px-6 py-12 sm:px-10 md:px-16 md:py-16 lg:px-20 lg:py-20 overflow-x-hidden">
+      <div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
         <div class="lg:col-span-4">
+          <p class="inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">Legal</p>
 
-          <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
-            Terms of Service.
-          </h2>
+          <h1 class="mt-4 text-3xl font-bold leading-tight text-gray-900 sm:text-4xl md:text-5xl">Terms of Service</h1>
 
-          <div
-            class="w-[75px] h-[5px] mt-2 rounded-full"
-            style={`background-color: ${siteConfig.accentColor}`}
-          ></div>
+          <div class="mt-3 h-1.5 w-20 rounded-full" style={`background-color: ${siteConfig.accentColor}`}></div>
 
-          <p class="text-gray-500 mt-5 text-sm sm:text-base max-w-sm leading-relaxed">
-            Rules, agreements, and responsibilities when using services or working together.
+          <p class="mt-5 max-w-sm text-sm leading-relaxed text-gray-600 sm:text-base">
+            Key terms that define project expectations, payment, revisions, and responsibilities.
           </p>
 
+          <p class="mt-6 text-xs uppercase tracking-[0.14em] text-gray-500">Last updated: April 2026</p>
         </div>
 
-        <!-- RIGHT -->
-        <div class="lg:col-span-8 w-full min-w-0">
-
-          <div class="bg-gray-50 border border-gray-200 rounded-2xl 
-                      p-6 sm:p-8 md:p-10 lg:p-12
-                      shadow-sm hover:shadow-lg transition duration-300">
-
-            <p class="text-xs text-gray-400 mb-6">
-              Last updated: April 2026
-            </p>
-
-            <div class="space-y-8 text-lg sm:text-xl md:text-xl leading-relaxed text-gray-600">
-            
-              <p>
-                By using this website or working with me, you agree to the following terms and conditions. If you do not agree with any part of these terms, please do not continue to use the site or services.
-              </p>
-            
-              <p>
-                All content on this website — including text, visuals, design elements, and layout — is the intellectual property of "dearlipu" and is protected under applicable copyright laws. You may not copy, reproduce, distribute, or reuse any part of this website without prior written permission.
-              </p>
-            
-              <p>
-                All services are provided based on project requirements discussed beforehand. Scope, pricing, and timelines are agreed upon before work begins. Any additional requests beyond the agreed scope may require revised timelines or additional charges.
-              </p>
-            
-              <p>
-                Payments may require an advance to confirm your project slot. Final files or deliverables are shared only after full payment is completed. Unless otherwise agreed, payments are non-refundable once work has started.
-              </p>
-            
-              <p>
-                Revisions are limited and based on the selected service or agreement. Minor adjustments are included, while major changes or new directions may be treated as a separate task.
-              </p>
-            
-              <p>
-                Delivery timelines are estimated and may vary depending on project complexity, communication, and feedback speed. Delays caused by incomplete information or late responses are not the responsibility of the service provider.
-              </p>
-            
-              <p>
-                You are responsible for ensuring that all content, materials, and assets you provide are legally owned or properly licensed. Any legal issues arising from provided content remain your responsibility.
-              </p>
-            
-              <p>
-                Once full payment is received, usage rights for the final work are transferred to you unless otherwise agreed. However, the work may still be displayed in portfolio or promotional materials.
-              </p>
-            
-              <p>
-                While every effort is made to ensure quality and reliability, services are provided "as-is" without guarantees that they will meet every expectation or perform flawlessly in all situations. I am not liable for any indirect losses, damages, or business impact resulting from the use of delivered work.
-              </p>
-            
-              <p>
-                This website may contain links to third-party platforms or tools. I am not responsible for their content, policies, or practices.
-              </p>
-            
-              <p>
-                These terms may be updated from time to time. Continued use of the website or services after updates implies acceptance of the revised terms.
-              </p>
-            
-              <!-- CONTACT -->
-              <div class="pt-6">
-                <p class="text-gray-500 text-base sm:text-lg">
-                  Questions about these terms?
-                </p>
-            
-                <p class="text-gray-900 font-medium mt-1">
-                  {siteConfig.social.email}
-                </p>
-              </div>
-            
+        <div class="lg:col-span-8">
+          <div class="legal-card">
+            <div class="space-y-3">
+              {
+                termsSections.map((item) => (
+                  <article class="legal-block">
+                    <h2>{item.title}</h2>
+                    <p>{item.body}</p>
+                  </article>
+                ))
+              }
             </div>
 
+            <div class="mt-8 rounded-xl border border-gray-200 bg-white p-4 text-sm text-gray-600">
+              Questions about these terms?
+              <a href={`mailto:${siteConfig.social.email}`} class="font-semibold text-gray-900 underline-offset-2 hover:underline"> {siteConfig.social.email}</a>
+            </div>
           </div>
-
         </div>
-
       </div>
-
     </section>
-
   </body>
 </html>
+
+<style>
+  .legal-card {
+    border-radius: 1rem;
+    border: 1px solid #e5e7eb;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.93), rgba(248, 250, 252, 0.92));
+    padding: 1rem;
+    box-shadow: 0 12px 34px rgba(15, 23, 42, 0.08);
+    backdrop-filter: blur(8px);
+  }
+
+  .legal-block {
+    border-radius: 0.9rem;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    padding: 0.9rem;
+  }
+
+  .legal-block h2 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #111827;
+  }
+
+  .legal-block p {
+    margin: 0.45rem 0 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #4b5563;
+  }
+</style>
