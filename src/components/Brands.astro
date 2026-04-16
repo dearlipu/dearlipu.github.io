@@ -1,104 +1,136 @@
 ---
+import { siteConfig } from "../config";
+
 const brands = [
-  { name: "icon1", logo: "/brands/icon1.svg" },
-  { name: "icon2", logo: "/brands/icon2.svg" },
-  { name: "icon3", logo: "/brands/icon3.svg" },
-  { name: "icon4", logo: "/brands/icon4.svg" },
-  { name: "icon5", logo: "/brands/icon5.svg" },
-  { name: "icon6", logo: "/brands/icon6.svg" },
-  { name: "icon7", logo: "/brands/icon7.svg" },
-  { name: "icon8", logo: "/brands/icon8.svg" },
-  { name: "icon9", logo: "/brands/icon9.svg" },
+  { name: "Brand partner 01", logo: "/brands/icon1.svg" },
+  { name: "Brand partner 02", logo: "/brands/icon2.svg" },
+  { name: "Brand partner 03", logo: "/brands/icon3.svg" },
+  { name: "Brand partner 04", logo: "/brands/icon4.svg" },
+  { name: "Brand partner 05", logo: "/brands/icon5.svg" },
+  { name: "Brand partner 06", logo: "/brands/icon6.svg" },
+  { name: "Brand partner 07", logo: "/brands/icon7.svg" },
+  { name: "Brand partner 08", logo: "/brands/icon8.svg" },
+  { name: "Brand partner 09", logo: "/brands/icon9.svg" },
 ];
 ---
 
-<section class="py-4 md:py-6 px-6 md:px-16 bg-gray-50 border-t border-gray-200">
-
-  <!-- SAME AS FOOTER -->
-  <div class="mx-auto max-w-6xl flex items-center gap-3 md:gap-8">
-
-    <!-- LOGOS -->
-    <div class="relative flex-1 overflow-hidden">
-
-      <div class="fade-left"></div>
-      <div class="fade-right"></div>
-
-      <div class="marquee-track">
-        {brands.map((b) => <img src={b.logo} class="logo" alt={b.name} />)}
-        {brands.map((b) => <img src={b.logo} class="logo" alt={b.name} />)}
-        {brands.map((b) => <img src={b.logo} class="logo" alt={b.name} />)}
-      </div>
-
+<section id="brands" class="border-y border-gray-200 bg-gray-50 px-6 py-10 md:px-16 md:py-12">
+  <div class="mx-auto max-w-6xl">
+    <div class="mb-6 flex flex-col gap-2 text-center md:mb-8">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">Social proof</p>
+      <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl">Brands, creators, and teams trust my visual work</h2>
+      <div class="mx-auto h-1.5 w-16 rounded-full" style={`background-color: ${siteConfig.accentColor}`}></div>
+      <p class="mx-auto max-w-2xl text-sm leading-relaxed text-gray-600 sm:text-base">
+        I build clean, conversion-focused design and motion assets used across social media, campaigns, and brand systems.
+      </p>
     </div>
 
-  </div>
+    <div class="relative overflow-hidden" aria-label="Brand logos carousel">
+      <div class="fade-left" aria-hidden="true"></div>
+      <div class="fade-right" aria-hidden="true"></div>
 
+      <ul class="marquee-track" role="list">
+        {
+          brands.map((brand) => (
+            <li>
+              <img src={brand.logo} class="logo" alt={brand.name} loading="lazy" decoding="async" />
+            </li>
+          ))
+        }
+        {
+          brands.map((brand) => (
+            <li aria-hidden="true">
+              <img src={brand.logo} class="logo" alt="" loading="lazy" decoding="async" />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
 </section>
 
 <style>
-
-/* TRACK */
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: scroll 40s linear infinite;
-}
-
-/* LOGO */
-.logo {
-  height: 40px;
-  width: 40px;
-  object-fit: contain;
-
-  margin-right: 3.2rem;
-  opacity: 0.6;
-  flex-shrink: 0;
-
-  filter: grayscale(100%) brightness(0.7);
-  transition: all 0.3s ease;
-}
-
-/* HOVER 
-.logo:hover {
-  filter: grayscale(0%) brightness(1);
-  opacity: 1;
-  transform: scale(1.05);
-} */
-
-/* ANIMATION */
-@keyframes scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-33.333%); }
-}
-
-/* FADE */
-.fade-left {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 3rem;
-  height: 100%;
-  background: linear-gradient(to right, #f9fafb, transparent);
-  z-index: 10;
-}
-
-.fade-right {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 3rem;
-  height: 100%;
-  background: linear-gradient(to left, #f9fafb, transparent);
-  z-index: 10;
-}
-
-/* MOBILE */
-@media (max-width: 640px) {
-  .logo {
-    height: 28px;
-    width: 28px;
-    margin-right: 2rem;
+  .marquee-track {
+    display: flex;
+    align-items: center;
+    gap: 2.75rem;
+    width: max-content;
+    animation: scroll 35s linear infinite;
+    padding: 0.25rem 0;
   }
-}
 
+  .logo {
+    height: 2.75rem;
+    width: 2.75rem;
+    object-fit: contain;
+    opacity: 0.68;
+    flex-shrink: 0;
+    filter: grayscale(100%) brightness(0.72);
+    transition: transform 0.25s ease, opacity 0.25s ease, filter 0.25s ease;
+  }
+
+  .marquee-track:hover,
+  .marquee-track:focus-within {
+    animation-play-state: paused;
+  }
+
+  .logo:hover {
+    opacity: 1;
+    filter: grayscale(0) brightness(1);
+    transform: scale(1.05);
+  }
+
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .fade-left,
+  .fade-right {
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    height: 100%;
+    width: 3.5rem;
+    pointer-events: none;
+  }
+
+  .fade-left {
+    left: 0;
+    background: linear-gradient(to right, #f9fafb, transparent);
+  }
+
+  .fade-right {
+    right: 0;
+    background: linear-gradient(to left, #f9fafb, transparent);
+  }
+
+  @media (max-width: 640px) {
+    .marquee-track {
+      gap: 1.75rem;
+    }
+
+    .logo {
+      height: 2rem;
+      width: 2rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .fade-left,
+    .fade-right {
+      display: none;
+    }
+  }
 </style>
