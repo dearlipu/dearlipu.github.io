@@ -1,14 +1,14 @@
 export const siteConfig = {
   name: "Saurav Panda",
   title: "I design visuals that make brands impossible to ignore.",
-  description: "I create impactful design, video, and motion content for brands and creators. Focused on clarity, quality, and visuals that actually perform.",
+  description: "I help brands and creators with high-performing design, video editing, and motion graphics—built for clarity, consistency, and conversion.",
   accentColor: "#1d4ed8",
   social: {
     email: "infodearlipu+web@gmail.com",
     whatsapp: "918144991049",
-    //instagram: "https://www.instagram.com/dearlipu",
-    //twitter: "https://x.com/dearlipu",
-    //youtube: "https://www.youtube.com/@dearlipu",
+    instagram: "https://www.instagram.com/dearlipu",
+    twitter: "https://x.com/dearlipu",
+    youtube: "https://www.youtube.com/@dearlipu",
   },
   aboutMe:
     `I’m a visual designer and video editor focused on creating clear, engaging digital content. I help businesses and creators turn ideas into visuals and videos that look professional and communicate effectively. I enjoy working on practical, real-world projects from social media content and motion graphics to editorial design — always focused on clarity, quality, and results.`,
