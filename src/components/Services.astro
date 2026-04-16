@@ -36,7 +36,6 @@ const hasServices = services.length > 0;
                         <h3 class="text-lg font-bold text-gray-900 sm:text-xl">{service.degree}</h3>
                         <p class="mt-1 text-sm sm:text-base" style={`color: ${siteConfig.accentColor}`}>{service.school}</p>
                       </div>
-                      <span class="service-index" style={`--accent: ${siteConfig.accentColor}`}>0{index + 1}</span>
                     </div>
 
                     <ul class="space-y-2.5">
@@ -79,17 +78,6 @@ const hasServices = services.length > 0;
   .service-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 16px 38px rgba(15, 23, 42, 0.09);
-  }
-
-  .service-index {
-    border-radius: 999px;
-    border: 1px solid color-mix(in srgb, var(--accent) 35%, #d1d5db);
-    background: color-mix(in srgb, var(--accent) 8%, #fff);
-    padding: 0.2rem 0.65rem;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    color: #374151;
   }
 
   .service-media {
