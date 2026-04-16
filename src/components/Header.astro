@@ -48,6 +48,7 @@ const hasServices = siteConfig.services && siteConfig.services.length > 0;
         </a>
       </li>
 
+      {hasProjects && (
       <li class="menu-item">
         <a href="#projects" class="menu-link">
           Projects
@@ -57,7 +58,9 @@ const hasServices = siteConfig.services && siteConfig.services.length > 0;
           </svg>
         </a>
       </li>
+      )}
 
+      {hasServices && (
       <li class="menu-item">
         <a href="#services" class="menu-link">
           Services
@@ -67,6 +70,7 @@ const hasServices = siteConfig.services && siteConfig.services.length > 0;
           </svg>
         </a>
       </li>
+      )}
 
       <li class="menu-item">
         <a href="#pricing" class="menu-link">
