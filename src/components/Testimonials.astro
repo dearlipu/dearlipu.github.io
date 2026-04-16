@@ -29,7 +29,7 @@ const testimonials = [
 ];
 ---
 
-<section id="testimonials" class="bg-white px-6 py-14 sm:px-10 sm:py-16 md:px-14 lg:px-20 lg:py-24">
+<section id="testimonials" class="testimonial-wrap px-6 py-14 sm:px-10 sm:py-16 md:px-14 lg:px-20 lg:py-24">
   <div class="mx-auto max-w-6xl">
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
       <div class="lg:col-span-4">
@@ -51,9 +51,9 @@ const testimonials = [
       <div class="lg:col-span-4">
         <article class="summary-card h-full">
           <div>
-            <p class="text-xs uppercase tracking-[0.16em] text-blue-200">Average rating</p>
+            <p class="text-xs uppercase tracking-[0.2em] text-blue-200">Average rating</p>
             <h3 class="mt-2 text-4xl font-bold">4.9/5</h3>
-            <p class="mt-2 text-sm text-gray-300">Trusted by 100+ businesses and creators.</p>
+            <p class="mt-2 text-sm text-gray-200">Trusted by 100+ businesses and creators.</p>
           </div>
 
           <div class="mt-6 flex -space-x-3">
@@ -64,7 +64,9 @@ const testimonials = [
             <div class="avatar avatar-more">+99</div>
           </div>
 
-          <p class="mt-4 text-xs text-gray-400">Results-focused execution with clear communication and quick turnaround.</p>
+          <div class="mt-4 inline-flex rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs text-blue-100">
+            Premium quality • Fast turnaround
+          </div>
         </article>
       </div>
 
@@ -75,9 +77,10 @@ const testimonials = [
               testimonials.map((item) => (
                 <article class="review-card" aria-label={`Review by ${item.name}`}>
                   <div>
+                    <p class="mb-2 text-3xl leading-none text-gray-300">“</p>
                     <div class="mb-2 flex items-center gap-2 text-sm">
                       <span class="font-semibold text-gray-900">{item.rating}</span>
-                      <div class="flex text-red-500" aria-hidden="true">
+                      <div class="flex text-amber-500" aria-hidden="true">
                         {
                           Array(5)
                             .fill(0)
@@ -92,10 +95,10 @@ const testimonials = [
                       <span class="text-gray-500">Rating</span>
                     </div>
 
-                    <p class="text-sm leading-relaxed text-gray-700">“{item.quote}”</p>
+                    <p class="text-sm leading-relaxed text-gray-700">{item.quote}</p>
                   </div>
 
-                  <div class="mt-6 flex items-center gap-3">
+                  <div class="mt-6 flex items-center gap-3 border-t border-gray-100 pt-4">
                     <img src={item.avatar} alt={`${item.name} avatar`} class="h-10 w-10 rounded-full border border-white object-cover shadow" />
                     <div>
                       <p class="text-sm font-semibold text-gray-900">{item.name}</p>
@@ -107,7 +110,13 @@ const testimonials = [
             }
           </div>
 
-          <div id="reviewDots" class="mt-4 flex items-center justify-center gap-2"></div>
+          <div class="mt-4 flex items-center justify-between">
+            <div id="reviewDots" class="flex items-center gap-2"></div>
+            <div class="flex items-center gap-2">
+              <button id="prevReview" type="button" class="nav-btn" aria-label="Previous review">←</button>
+              <button id="nextReview" type="button" class="nav-btn" aria-label="Next review">→</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -115,12 +124,17 @@ const testimonials = [
 </section>
 
 <style>
+  .testimonial-wrap {
+    background: radial-gradient(130% 80% at 10% 0%, rgba(59, 130, 246, 0.08), transparent 55%),
+      radial-gradient(110% 75% at 100% 100%, rgba(17, 24, 39, 0.06), transparent 50%);
+  }
+
   .summary-card {
-    border-radius: 1rem;
-    background: linear-gradient(160deg, #0f172a, #111827);
+    border-radius: 1.1rem;
+    background: linear-gradient(160deg, #0b1220, #111827 60%, #1f2937);
     padding: 1.25rem;
     color: #fff;
-    box-shadow: 0 10px 35px rgba(15, 23, 42, 0.25);
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.3);
   }
 
   .avatar {
@@ -135,18 +149,19 @@ const testimonials = [
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.15);
     font-size: 0.72rem;
     font-weight: 700;
     color: #fff;
   }
 
   .review-shell {
-    overflow: hidden;
-    border-radius: 1rem;
-    border: 1px solid #e5e7eb;
-    background: #fff;
-    padding: 0.5rem;
+    border-radius: 1.1rem;
+    border: 1px solid rgba(209, 213, 219, 0.7);
+    background: rgba(255, 255, 255, 0.85);
+    padding: 0.55rem;
+    box-shadow: 0 14px 35px rgba(15, 23, 42, 0.09);
+    backdrop-filter: blur(8px);
   }
 
   .review-slider {
@@ -156,15 +171,15 @@ const testimonials = [
 
   .review-card {
     min-width: 100%;
-    border-radius: 0.9rem;
+    border-radius: 0.95rem;
     border: 1px solid #e5e7eb;
-    background: linear-gradient(160deg, #ffffff, #f8fafc);
+    background: linear-gradient(170deg, #fff, #f8fafc);
     padding: 1rem;
   }
 
   .review-dot {
-    height: 0.45rem;
-    width: 0.45rem;
+    height: 0.48rem;
+    width: 0.48rem;
     border-radius: 999px;
     border: 0;
     background: #d1d5db;
@@ -172,14 +187,39 @@ const testimonials = [
   }
 
   .review-dot-active {
-    transform: scale(1.25);
+    transform: scale(1.3);
     background: #111827;
+  }
+
+  .nav-btn {
+    border: 1px solid #d1d5db;
+    background: #fff;
+    color: #111827;
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    line-height: 1;
+    transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .nav-btn:hover,
+  .nav-btn:focus-visible {
+    transform: translateY(-1px);
+    border-color: #111827;
+    color: #111827;
+    outline: none;
   }
 </style>
 
 <script>
   const slider = document.getElementById("reviewSlider");
   const dotsContainer = document.getElementById("reviewDots");
+  const prevButton = document.getElementById("prevReview");
+  const nextButton = document.getElementById("nextReview");
 
   if (slider && dotsContainer) {
     const total = slider.children.length;
@@ -218,8 +258,22 @@ const testimonials = [
       }, 3500);
     }
 
+    function goPrev() {
+      index = (index - 1 + total) % total;
+      updateSlider();
+      startAutoRotate();
+    }
+
+    function goNext() {
+      index = (index + 1) % total;
+      updateSlider();
+      startAutoRotate();
+    }
+
     slider.addEventListener("mouseenter", () => clearInterval(timer));
     slider.addEventListener("mouseleave", startAutoRotate);
+    prevButton?.addEventListener("click", goPrev);
+    nextButton?.addEventListener("click", goNext);
 
     renderDots();
     updateSlider();
