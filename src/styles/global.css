@@ -12,53 +12,6 @@ section {
   scroll-margin-top: 100px;
 }
 
-.email-popup {
-  position: fixed;
-  z-index: 999;
-  opacity: 0;
-  transform: translateY(-6px) scale(0.95);
-  transform-origin: left center;
-  transition: all 0.25s ease;
-}
-
-.email-popup.show {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-.email-box {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-
-  background: #f3f4f6;
-  color: #111827;
-
-  padding: 6px 10px;
-  border-radius: 999px;
-
-  font-size: 12px;
-  font-weight: 500;
-
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-}
-
-/* email text */
-#emailText {
-  font-size: 12px;
-}
-
-/* copy button */
-#copyBtn {
-  background: white;
-  border: 1px solid #e5e7eb;
-  padding: 2px 8px;
-  border-radius: 999px;
-  font-size: 11px;
-  cursor: pointer;
-}
-
 img, video {
   user-select: none;
   -webkit-user-drag: none;
