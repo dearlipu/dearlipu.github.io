@@ -16,11 +16,6 @@ const brands = [
 
 <section id="brands" class="border-y border-gray-200 bg-gray-50 px-6 py-10 md:px-16 md:py-12">
   <div class="mx-auto max-w-6xl">
-    <div class="mb-6 flex flex-col gap-2 text-center md:mb-8">
-      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">Social proof</p>
-      <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl">Brands, creators, and teams trust my visual work</h2>
-      <div class="mx-auto h-1.5 w-16 rounded-full" style={`background-color: ${siteConfig.accentColor}`}></div>
-    </div>
 
     <div class="relative overflow-hidden" aria-label="Brand logos carousel">
       <div class="fade-left" aria-hidden="true"></div>
@@ -79,12 +74,6 @@ const brands = [
     flex-shrink: 0;
     filter: grayscale(100%) brightness(0.72);
     transition: transform 0.25s ease, opacity 0.25s ease, filter 0.25s ease;
-  }
-
-  .logo:hover {
-    opacity: 1;
-    filter: grayscale(0) brightness(1);
-    transform: scale(1.05);
   }
 
   @keyframes scroll {
