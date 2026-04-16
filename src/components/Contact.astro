@@ -296,11 +296,14 @@ Details:
 ${details}`;
     const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(plainText)}`;
 
-    const popup = window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    const popup = window.open("about:blank", "_blank", "noopener,noreferrer");
     if (!popup) {
-      window.location.href = whatsappUrl;
+      formError.textContent = "Please allow pop-ups for this site so WhatsApp can open in a new tab.";
+      formError.classList.remove("hidden");
+      return;
     }
 
+    popup.location.href = whatsappUrl;
     form.reset();
   });
 </script>
