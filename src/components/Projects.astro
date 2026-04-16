@@ -49,7 +49,7 @@ const hasProjects = projects.length > 0;
 
                       {project.link && (
                         <span class="project-icon" aria-hidden="true">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17" />
                           </svg>
                         </span>
@@ -83,15 +83,15 @@ const hasProjects = projects.length > 0;
     display: block;
     border-radius: 1rem;
     border: 1px solid #e5e7eb;
-    background: linear-gradient(160deg, #fff, #f8fafc);
+    background: #f9fafb;
     padding: 1.25rem;
-    box-shadow: 0 8px 28px rgba(15, 23, 42, 0.04);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
   }
 
   .project-card-link:hover,
   .project-card-link:focus-visible {
     transform: translateY(-3px);
+    background: #fff;
     border-color: #cbd5e1;
     box-shadow: 0 16px 38px rgba(15, 23, 42, 0.1);
     outline: none;
@@ -112,8 +112,8 @@ const hasProjects = projects.length > 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 2rem;
-    width: 2rem;
+    height: 2.5rem;
+    width: 2.5rem;
     border-radius: 999px;
     background: #111827;
     color: #fff;
@@ -127,12 +127,17 @@ const hasProjects = projects.length > 0;
   }
 
   .skill-chip {
-    border-radius: 999px;
-    border: 1px solid #d1d5db;
-    background: #fff;
-    padding: 0.25rem 0.65rem;
+    border-radius: 0.5rem;
+    background: #111827;
+    padding: 0.35rem 0.75rem;
     font-size: 0.75rem;
     font-weight: 600;
-    color: #374151;
+    color: #fff;
+    transition: background-color 0.2s ease;
+  }
+
+  .project-card-link:hover .skill-chip,
+  .project-card-link:focus-visible .skill-chip {
+    background: #1f2937;
   }
 </style>
