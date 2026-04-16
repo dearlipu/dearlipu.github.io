@@ -5,209 +5,213 @@ import { siteConfig } from "../config";
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Page Not Found</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>404 — Page Not Found | {siteConfig.name}</title>
+    <meta name="description" content="The page you requested could not be found." />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-    <!-- FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   </head>
 
   <body>
+    <main class="wrapper">
+      <div class="bg-glow" aria-hidden="true"></div>
 
-    <div class="wrapper">
-
-      <!-- Glow -->
-      <div class="bg-glow"></div>
-
-      <!-- Content -->
-      <div class="content">
-
-        <h1 class="code">404</h1>
-
-        <h2 class="title">Page not found</h2>
+      <section class="content" aria-labelledby="notFoundTitle">
+        <p class="eyebrow">Error 404</p>
+        <h1 id="notFoundTitle" class="title">This page is no longer here.</h1>
 
         <p class="subtitle">
-          The page you’re looking for doesn’t exist or has been moved.
+          The link may be broken or the page may have moved. Let’s get you back on track quickly.
         </p>
 
         <div class="actions">
-          <a href="/" class="btn-primary">Go Home</a>
-          <a href="/#contact" class="btn-secondary">Start a Project</a>
+          <a href="/" class="btn-primary">Go to Homepage</a>
+          <a href="/#contact" class="btn-secondary">Contact Me</a>
         </div>
 
-      </div>
-
-    </div>
-
+        <div class="quick-links">
+          <a href="/#about">About</a>
+          <a href="/#services">Services</a>
+          <a href="/#projects">Projects</a>
+          <a href="/#pricing">Pricing</a>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
 
 <style>
-
-/* GLOBAL */
-body {
-  margin: 0;
-  font-family: 'Josefin Sans', sans-serif;
-  background: #f9fafb;
-  overflow-x: hidden;
-}
-
-/* WRAPPER (CENTER FIXED) */
-.wrapper {
-  position: relative;
-  min-height: 100vh;
-  padding: 20px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* GLOW */
-.bg-glow {
-  position: absolute;
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, rgba(29,78,216,0.12), transparent 70%);
-  filter: blur(90px);
-  animation: floatGlow 10s ease-in-out infinite;
-}
-
-/* CONTENT */
-.content {
-  position: relative;
-  text-align: center;
-  width: 100%;
-  max-width: 420px;
-  padding: 10px;
-  animation: fadeUp 0.5s ease;
-}
-
-/* 404 TEXT */
-.code {
-  font-size: clamp(90px, 12vw, 140px);
-  font-weight: 700;
-  color: #111827;
-  letter-spacing: -4px;
-  margin: 0;
-  animation: floatText 4s ease-in-out infinite;
-}
-
-/* TITLE */
-.title {
-  font-size: 28px;
-  font-weight: 600;
-  margin-top: 10px;
-  color: #111827;
-}
-
-/* SUBTITLE */
-.subtitle {
-  margin-top: 8px;
-  color: #6b7280;
-  font-size: 15px;
-}
-
-/* BUTTONS */
-.actions {
-  margin-top: 24px;
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-}
-
-.btn-primary {
-  background: #101828;
-  color: white;
-  padding: 10px 18px;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: all 0.25s ease;
-}
-
-.btn-primary:hover {
-  background: var(--accent, #1d4ed8);
-}
-
-.btn-secondary {
-  border: 1px solid #e5e7eb;
-  color: #374151;
-  padding: 10px 18px;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: all 0.25s ease;
-}
-
-.btn-secondary:hover {
-  background: #f3f4f6;
-}
-
-/* ANIMATIONS */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes floatGlow {
-  0% { transform: translate(0,0); }
-  50% { transform: translate(40px,-20px); }
-  100% { transform: translate(0,0); }
-}
-
-@keyframes floatText {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-  100% { transform: translateY(0); }
-}
-
-/* MOBILE */
-@media (max-width: 640px) {
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Josefin Sans", sans-serif;
+    color: #111827;
+    background:
+      radial-gradient(900px 500px at -10% -20%, rgba(59, 130, 246, 0.13), transparent 60%),
+      radial-gradient(700px 450px at 110% 0%, rgba(15, 23, 42, 0.1), transparent 60%),
+      #f8fafc;
+  }
 
   .wrapper {
-    padding: 16px;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
   }
 
   .bg-glow {
-    width: 450px;
-    height: 450px;
+    position: absolute;
+    width: min(60vw, 680px);
+    height: min(60vw, 680px);
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(29, 78, 216, 0.18), transparent 70%);
     filter: blur(70px);
+    animation: floatGlow 8s ease-in-out infinite;
   }
 
   .content {
-    max-width: 320px;
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    border-radius: 1.15rem;
+    border: 1px solid rgba(209, 213, 219, 0.7);
+    background: rgba(255, 255, 255, 0.86);
+    backdrop-filter: blur(8px);
+    padding: 1.35rem;
+    text-align: center;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.1);
+    animation: fadeUp 0.5s ease;
   }
 
-  .code {
-    font-size: 88px;
-    letter-spacing: -3px;
+  .eyebrow {
+    margin: 0;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #6b7280;
   }
 
   .title {
-    font-size: 22px;
+    margin: 0.55rem 0 0;
+    font-size: clamp(1.9rem, 4.5vw, 2.5rem);
+    line-height: 1.2;
   }
 
   .subtitle {
-    font-size: 14px;
-    line-height: 1.5;
+    margin-top: 0.75rem;
+    color: #4b5563;
+    line-height: 1.6;
+    font-size: 0.98rem;
   }
 
   .actions {
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
+    margin-top: 1.4rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.65rem;
+    flex-wrap: wrap;
   }
 
   .btn-primary,
   .btn-secondary {
-    width: 100%;
-    padding: 12px;
+    border-radius: 999px;
+    padding: 0.62rem 1rem;
+    text-decoration: none;
+    font-size: 0.86rem;
+    font-weight: 700;
+    transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
   }
-}
 
+  .btn-primary {
+    border: 1px solid #111827;
+    background: #111827;
+    color: #fff;
+  }
+
+  .btn-primary:hover,
+  .btn-primary:focus-visible {
+    transform: translateY(-1px);
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+    outline: none;
+  }
+
+  .btn-secondary {
+    border: 1px solid #d1d5db;
+    background: #fff;
+    color: #374151;
+  }
+
+  .btn-secondary:hover,
+  .btn-secondary:focus-visible {
+    transform: translateY(-1px);
+    border-color: #9ca3af;
+    outline: none;
+  }
+
+  .quick-links {
+    margin-top: 1.2rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .quick-links a {
+    color: #6b7280;
+    text-decoration: none;
+  }
+
+  .quick-links a:hover,
+  .quick-links a:focus-visible {
+    color: #111827;
+    outline: none;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes floatGlow {
+    0% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(18px, -10px);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .content {
+      max-width: 360px;
+      padding: 1.1rem;
+    }
+
+    .actions {
+      flex-direction: column;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      width: 100%;
+      padding: 0.72rem;
+    }
+  }
 </style>
