@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from "../config";
+
 const whatsappNumber = siteConfig.social.whatsapp;
 ---
 
@@ -29,7 +30,7 @@ const whatsappNumber = siteConfig.social.whatsapp;
 
       <div class="lg:col-span-8">
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <form id="contactForm" class="contact-card" novalidate>
+          <form id="contactForm" class="contact-card" novalidate data-whatsapp={whatsappNumber}>
             <h3 class="text-lg font-semibold text-gray-900">Start your project inquiry</h3>
             <p class="mt-1 text-sm text-gray-500">Fields marked with * are required.</p>
 
@@ -141,7 +142,6 @@ const whatsappNumber = siteConfig.social.whatsapp;
 </section>
 
 <style>
-
   .contact-card {
     border-radius: 1rem;
     border: 1px solid #e5e7eb;
@@ -216,11 +216,11 @@ const whatsappNumber = siteConfig.social.whatsapp;
     min-height: 100%;
   }
 
-  .image-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 100%;
+  .contact-image {
+    height: 100%;
+    min-height: 260px;
+    width: 100%;
+    object-fit: cover;
   }
 
   .quick-link {
@@ -234,15 +234,12 @@ const whatsappNumber = siteConfig.social.whatsapp;
     transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
   }
 
-  .quick-link {
-    border-radius: 999px;
-    border: 1px solid #d1d5db;
-    background: #fff;
-    padding: 0.45rem 0.9rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #374151;
-    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  .quick-link:hover,
+  .quick-link:focus-visible {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-1px);
+    outline: none;
   }
 
   @media (max-width: 768px) {
@@ -252,15 +249,15 @@ const whatsappNumber = siteConfig.social.whatsapp;
   }
 </style>
 
-<script define:vars={{ whatsappNumber }}>
+<script>
   const contactForm = document.getElementById("contactForm");
   const formError = document.getElementById("formError");
 
   contactForm?.addEventListener("submit", (event) => {
     event.preventDefault();
 
-  contactForm?.addEventListener("submit", (event) => {
-    event.preventDefault();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
 
     const name = String(formData.get("name") || "").trim();
     const email = String(formData.get("email") || "").trim();
@@ -277,9 +274,32 @@ const whatsappNumber = siteConfig.social.whatsapp;
 
     formError.classList.add("hidden");
 
-    const message = `Hi Saurav,%0A%0ANew Project Inquiry%0A%0AName: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0AProject: ${encodeURIComponent(projectType)}%0ATimeline: ${encodeURIComponent(timeline)}%0ABudget: ${encodeURIComponent(budget)}%0A%0ADetails:%0A${encodeURIComponent(details)}`;
+    const whatsappNumber = String(form.dataset.whatsapp || "").replace(/\D/g, "");
 
-    window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank", "noopener,noreferrer");
+    if (!whatsappNumber) {
+      formError.textContent = "WhatsApp contact is not configured yet. Please use the Email button below.";
+      formError.classList.remove("hidden");
+      return;
+    }
+
+    const plainText = `Hi Saurav,
+
+New Project Inquiry
+
+Name: ${name}
+Email: ${email}
+Project: ${projectType}
+Timeline: ${timeline}
+Budget: ${budget}
+
+Details:
+${details}`;
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(plainText)}`;
+
+    const popup = window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    if (!popup) {
+      window.location.href = whatsappUrl;
+    }
 
     form.reset();
   });
