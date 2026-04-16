@@ -294,16 +294,29 @@ Budget: ${budget}
 
 Details:
 ${details}`;
-    const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(plainText)}`;
-
-    const popup = window.open("about:blank", "_blank", "noopener,noreferrer");
+    const encodedText = encodeURIComponent(plainText);
+    const whatsappWebUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedText}`;
+    const whatsappAppUrl = `whatsapp://send?phone=${whatsappNumber}&text=${encodedText}`;
+    const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+      window.location.href = whatsappAppUrl;
+    
+      setTimeout(() => {
+        window.location.href = whatsappWebUrl;
+      }, 900);
+    
+      form.reset();
+      return;
+    }
+    
+    const popup = window.open(whatsappWebUrl, "_blank", "noopener,noreferrer");
     if (!popup) {
       formError.textContent = "Please allow pop-ups for this site so WhatsApp can open in a new tab.";
       formError.classList.remove("hidden");
       return;
     }
-
-    popup.location.href = whatsappUrl;
+    
     form.reset();
   });
 </script>
