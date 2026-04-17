@@ -12,17 +12,13 @@ const plans = [
   {
     name: "Standard",
     badge: "Most Popular",
-    badgeColor: siteConfig.accentColor,
-    badgeTextColor: "#ffffff",
     icon: "heart",
     projectPrice: "₹2,999+",
     monthlyPrice: "₹19,999/mo",
   },
   {
     name: "Premium",
-    //badge: "Best for teams",
-    badgeColor: siteConfig.accentColor,
-    badgeTextColor: "#ffffff",
+    badge: null,
     icon: "shield",
     projectPrice: "₹7,999+",
     monthlyPrice: "₹39,999/mo",
@@ -69,7 +65,7 @@ const plans = [
               <article class={`pricing-card ${plan.badge ? "pricing-card-featured" : ""}`} style={`--accent-color: ${siteConfig.accentColor}`}>
                 {
                   plan.badge && (
-                    <span class="pricing-badge" style={`background-color: ${plan.badgeColor || siteConfig.accentColor}; color: ${plan.badgeTextColor || "#ffffff"}`}>
+                    <span class="pricing-badge" style={`background-color: ${siteConfig.accentColor}`}>
                       {plan.badge}
                     </span>
                   )
