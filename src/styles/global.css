@@ -1,19 +1,47 @@
 @import "tailwindcss";
 
-body {
-  font-family: 'Josefin Sans', sans-serif;
+:root {
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --brand: #4f46e5;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-section {
-  scroll-margin-top: 100px;
+body {
+  margin: 0;
+  font-family: "Inter", "Inter var", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at top left, #eef0ff, #f8fafc 40%, #f6f7fb 100%);
 }
 
-img, video {
+* {
+  box-sizing: border-box;
+}
+
+img,
+video {
   user-select: none;
   -webkit-user-drag: none;
-  pointer-events: none;
+}
+
+.section-anchor {
+  scroll-margin-top: 92px;
+}
+
+.section-shell {
+  @apply mx-auto w-full max-w-6xl px-6 sm:px-8 lg:px-10;
+}
+
+.section-title {
+  @apply text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl;
+}
+
+.section-eyebrow {
+  @apply inline-flex items-center rounded-full border border-gray-200 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-gray-600;
 }
