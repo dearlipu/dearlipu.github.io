@@ -5,8 +5,8 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
 
 {
   hasProjects && (
-    <section id="projects" class="p-8 sm:p-12 md:p-16 lg:p-24">
-      <div>
+    <section id="projects" class="bg-white px-6 py-14 sm:px-10 sm:py-16 md:px-14 lg:px-20 lg:py-24">
+      <div class="mx-auto max-w-6xl">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           <div class="lg:col-span-4">
             <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
@@ -37,11 +37,11 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
                   <div class="group relative">
                     <Component
                       {...linkProps}
-                      class={`block relative p-4 sm:p-6 md:p-8 bg-gray-50 rounded-xl sm:rounded-2xl border border-gray-200 transition-all duration-300 ${
+                      class={`block relative p-5 sm:p-6 bg-gray-50 rounded-xl sm:rounded-2xl border border-gray-200 transition-all duration-300 ${
                         project.link
                           ? "hover:bg-white hover:shadow-xl hover:border-gray-300 hover:-translate-y-1"
                           : ""
-                      }`}
+                        }`}
                     >
                       {project.link && (
                         <div class="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center bg-gray-900 rounded-full text-white transition-all duration-300 group-hover:bg-gray-700">
@@ -74,9 +74,8 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
                           </h3>
                         </div>
 
-                        <p
-                          class={`text-base sm:text-lg text-gray-600 leading-relaxed ${project.link ? "pr-12 sm:pr-14 md:pr-16" : ""}`}
-                        >
+                        <p class={`text-base sm:text-lg text-gray-600 leading-relaxed ${project.link ? "pr-12 sm:pr-14" : ""}`}>
+
                           {project.description}
                         </p>
 
