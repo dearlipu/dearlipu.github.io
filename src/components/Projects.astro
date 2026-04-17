@@ -1,113 +1,52 @@
 ---
-import { siteConfig } from "../config";
-
-const projects = siteConfig.projects || [];
-const hasProjects = projects.length > 0;
+const projects = [
+  {
+    title: "Content System for a Fitness Creator",
+    category: "Graphic design + motion",
+    result: "Increased average post saves by 63% in 8 weeks.",
+    summary:
+      "I redesigned their post templates, reel covers, and CTA slides into one clean system that kept the brand consistent while speeding up weekly production.",
+  },
+  {
+    title: "YouTube Edit Overhaul for an Education Channel",
+    category: "Video editing",
+    result: "Raised average watch duration from 38% to 52%.",
+    summary:
+      "I restructured intros, pacing, and visual callouts so key points landed faster and viewers stayed engaged past the first minute.",
+  },
+  {
+    title: "Launch Visuals for a Product Brand",
+    category: "Branding + campaign design",
+    result: "Generated a stronger launch week with 2.4x click-through from paid creatives.",
+    summary:
+      "I built a focused campaign kit: paid ads, social cutdowns, and print-ready assets with one premium visual language.",
+  },
+];
 ---
 
-{
-  hasProjects && (
-    <section id="projects" class="bg-white px-6 py-14 sm:px-10 sm:py-16 md:px-14 lg:px-20 lg:py-24">
-      <div class="mx-auto max-w-6xl">
-        <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-14">
-          <div class="lg:col-span-4">
-            <p class="inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">
-              Projects
-            </p>
+<section id="work" class="section-anchor bg-white py-18 sm:py-22">
+  <div class="section-shell">
+    <p class="section-eyebrow">Selected work</p>
+    <div class="mt-5 flex flex-wrap items-end justify-between gap-5">
+      <h2 class="section-title max-w-3xl">Case-style projects built around measurable outcomes.</h2>
+      <a href="#contact" class="text-sm font-semibold text-indigo-600 transition hover:text-indigo-800">Discuss your project →</a>
+    </div>
 
-            <h2 class="mt-4 text-3xl font-bold leading-tight text-gray-900 sm:text-4xl md:text-5xl">
-              Featured work with real-world impact.
-            </h2>
-
-            <div class="mt-3 h-1.5 w-20 rounded-full" style={`background-color: ${siteConfig.accentColor}`}></div>
-
-            <p class="mt-5 max-w-sm text-sm leading-relaxed text-gray-600 sm:text-base">
-              Selected case studies that highlight strategy, craft, and measurable results across each project.
-            </p>
-          </div>
-
-          <div class="lg:col-span-8">
-            <div class="space-y-8">
-              {projects.map((project, index) => {
-                const Component = project.link ? "a" : "div";
-                const linkProps = project.link
-                  ? {
-                      href: project.link,
-                      target: "_blank",
-                      rel: "noopener noreferrer",
-                    }
-                  : {};
-
-                return (
-                  <div class="group relative">
-                    <Component
-                      {...linkProps}
-                      class={`block relative p-5 sm:p-6 bg-gray-50 rounded-xl sm:rounded-2xl border border-gray-200 transition-all duration-300 ${
-                        project.link
-                          ? "hover:bg-white hover:shadow-xl hover:border-gray-300 hover:-translate-y-1"
-                          : ""
-                        }`}
-                    >
-                      {project.link && (
-                        <div class="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center bg-gray-900 rounded-full text-white transition-all duration-300 group-hover:bg-gray-700">
-                          <svg
-                            class="w-4 h-4 sm:w-[18px] sm:h-[18px] md:w-5 md:h-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M7 17L17 7M17 7H7M17 7V17"
-                            />
-                          </svg>
-                        </div>
-                      )}
-
-                      <div class="space-y-4">
-                        <div>
-                          <span
-                            class="text-sm font-mono"
-                            style={{ color: siteConfig.accentColor }}
-                          >
-                            0{index + 1}
-                          </span>
-                          <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mt-1">
-                            {project.name}
-                          </h3>
-                        </div>
-
-                        <p class={`text-base sm:text-lg text-gray-600 leading-relaxed ${project.link ? "pr-12 sm:pr-14" : ""}`}>
-
-                          {project.description}
-                        </p>
-
-                        {project.skills && project.skills.length > 0 && (
-                          <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-2">
-                            {project.skills.map((skill) => (
-                              <span
-                                class={`px-2.5 sm:px-3 py-1 sm:py-1.5 bg-gray-900 text-white rounded-md sm:rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 ${
-                                  project.link ? "group-hover:bg-gray-800" : ""
-                                }`}
-                              >
-                                {skill}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-
-                        {project.link && <p class="text-xs font-semibold uppercase tracking-[0.16em] text-gray-500">View project details</p>}
-                      </div>
-                    </Component>
-                  </div>
-                );
-              })}
+    <div class="mt-10 grid gap-5 lg:grid-cols-3">
+      {
+        projects.map((project, index) => (
+          <article class="group rounded-3xl border border-gray-200 bg-white p-6 shadow-[0_10px_30px_rgba(15,23,42,0.04)] transition hover:-translate-y-1 hover:shadow-[0_18px_44px_rgba(15,23,42,0.1)]">
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-gray-500">Case {index + 1}</p>
+            <h3 class="mt-3 text-xl font-semibold text-gray-900">{project.title}</h3>
+            <p class="mt-2 text-sm font-medium text-indigo-600">{project.category}</p>
+            <p class="mt-4 text-sm leading-relaxed text-gray-600">{project.summary}</p>
+            <div class="mt-6 rounded-2xl bg-gray-50 px-4 py-3">
+              <p class="text-sm font-semibold text-gray-900">Result</p>
+              <p class="mt-1 text-sm text-gray-700">{project.result}</p>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
