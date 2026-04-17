@@ -1,14 +1,15 @@
 ---
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
-import About from "../components/About.astro";
+import SocialProof from "../components/SocialProof.astro";
 import Projects from "../components/Projects.astro";
 import Services from "../components/Services.astro";
-import Footer from "../components/Footer.astro";
+import Process from "../components/Process.astro";
 import Pricing from "../components/Pricing.astro";
 import Testimonials from "../components/Testimonials.astro";
-import Brands from "../components/Brands.astro";
+import FaqInline from "../components/FaqInline.astro";
 import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
 import { siteConfig } from "../config";
 import "../styles/global.css";
 ---
@@ -21,50 +22,40 @@ import "../styles/global.css";
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={siteConfig.description} />
     <link rel="canonical" href="https://dearlipu.github.io/" />
-  
-    <!-- OPEN GRAPH / SOCIAL PREVIEW -->
-    <meta property="og:title" content="Saurav Panda – aka @dearlipu" />
+
+    <meta property="og:title" content="Saurav Panda — Creative Designer & Video Editor" />
     <meta property="og:description" content={siteConfig.description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://dearlipu.github.io/" />
     <meta property="og:image" content="https://dearlipu.github.io/social-card.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-  
-    <!-- TWITTER PREVIEW -->
+
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Saurav Panda – aka @dearlipu" />
+    <meta name="twitter:title" content="Saurav Panda — Creative Designer & Video Editor" />
     <meta name="twitter:description" content={siteConfig.description} />
     <meta name="twitter:image" content="https://dearlipu.github.io/social-card.png" />
-    <meta name="twitter:creator" content="@dearlipu" />
-  
-    <!-- ROBOTS -->
+
     <meta name="robots" content="index, follow" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-    <title>{siteConfig.name} - aka @dearlipu</title>
+    <title>{siteConfig.name} | Premium Graphic Design, Video Editing & Motion</title>
   </head>
 
   <body>
     <Header />
-
-    <section>
+    <main>
       <Hero />
-      <About />
+      <SocialProof />
       <Projects />
       <Services />
+      <Process />
       <Pricing />
       <Testimonials />
+      <FaqInline />
       <Contact />
-      <Brands />
-    </section>
-
+    </main>
     <Footer />
   </body>
 </html>
