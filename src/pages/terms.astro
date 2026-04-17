@@ -1,0 +1,127 @@
+---
+import { siteConfig } from "../config";
+import "../styles/global.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Terms & Conditions</title>
+  </head>
+
+  <body class="bg-white text-gray-800">
+
+    <!-- MAIN -->
+    <section class="px-6 sm:px-10 md:px-16 lg:px-24 py-12 md:py-16 lg:py-20">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start">
+
+        <!-- LEFT -->
+        <div class="lg:col-span-4">
+
+          <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+            Terms of Service.
+          </h2>
+
+          <div
+            class="w-[75px] h-[5px] mt-2 rounded-full"
+            style={`background-color: ${siteConfig.accentColor}`}
+          ></div>
+
+          <p class="text-gray-500 mt-5 text-sm sm:text-base max-w-sm leading-relaxed">
+            Rules, agreements, and responsibilities when using services or working together.
+          </p>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="lg:col-span-8 w-full min-w-0">
+
+          <div class="bg-gray-50 border border-gray-200 rounded-2xl 
+                      p-6 sm:p-8 md:p-10 lg:p-12
+                      shadow-sm hover:shadow-lg transition duration-300">
+
+            <p class="text-xs text-gray-400 mb-6">
+              Last updated: April 2026
+            </p>
+
+            <div class="space-y-8 text-lg sm:text-xl md:text-xl leading-relaxed text-gray-600">
+            
+              <p>
+                By using this website or working with me, you agree to the following terms and conditions. If you do not agree with any part of these terms, please do not continue to use the site or services.
+              </p>
+            
+              <p>
+                All content on this website — including text, visuals, design elements, and layout — is the intellectual property of "dearlipu" and is protected under applicable copyright laws. You may not copy, reproduce, distribute, or reuse any part of this website without prior written permission.
+              </p>
+            
+              <p>
+                All services are provided based on project requirements discussed beforehand. Scope, pricing, and timelines are agreed upon before work begins. Any additional requests beyond the agreed scope may require revised timelines or additional charges.
+              </p>
+            
+              <p>
+                Payments may require an advance to confirm your project slot. Final files or deliverables are shared only after full payment is completed. Unless otherwise agreed, payments are non-refundable once work has started.
+              </p>
+            
+              <p>
+                Revisions are limited and based on the selected service or agreement. Minor adjustments are included, while major changes or new directions may be treated as a separate task.
+              </p>
+            
+              <p>
+                Delivery timelines are estimated and may vary depending on project complexity, communication, and feedback speed. Delays caused by incomplete information or late responses are not the responsibility of the service provider.
+              </p>
+            
+              <p>
+                You are responsible for ensuring that all content, materials, and assets you provide are legally owned or properly licensed. Any legal issues arising from provided content remain your responsibility.
+              </p>
+            
+              <p>
+                Once full payment is received, usage rights for the final work are transferred to you unless otherwise agreed. However, the work may still be displayed in portfolio or promotional materials.
+              </p>
+            
+              <p>
+                While every effort is made to ensure quality and reliability, services are provided "as-is" without guarantees that they will meet every expectation or perform flawlessly in all situations. I am not liable for any indirect losses, damages, or business impact resulting from the use of delivered work.
+              </p>
+            
+              <p>
+                This website may contain links to third-party platforms or tools. I am not responsible for their content, policies, or practices.
+              </p>
+            
+              <p>
+                These terms may be updated from time to time. Continued use of the website or services after updates implies acceptance of the revised terms.
+              </p>
+            
+              <!-- CONTACT -->
+              <div class="pt-6">
+                <p class="text-gray-500 text-base sm:text-lg">
+                  Questions about these terms?
+                </p>
+            
+                <p class="text-gray-900 font-medium mt-1">
+                  {siteConfig.social.email}
+                </p>
+              </div>
+            
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </body>
+</html>

@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-top: 100px;
+}
+
+img, video {
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
