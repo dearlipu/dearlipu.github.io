@@ -79,37 +79,4 @@ My focus is simple: make your communication clearer, your brand more consistent,
       ],
     },
   ],
-  
-  experience: [
-    {
-      company: "Independent Creative Studio",
-      title: "Creative Director & Visual Strategist",
-      dateRange: "2023 - Present",
-      bullets: [
-        "Lead end-to-end brand visuals for creators and service businesses across social, web, and print touchpoints.",
-        "Built repeatable design systems that improve brand consistency and cut content production time.",
-        "Deliver premium-quality campaign creatives focused on conversion, retention, and audience trust.",
-      ],
-    },
-    {
-      company: "Growth Marketing Partner",
-      title: "Senior Video Editor & Motion Designer",
-      dateRange: "2021 - 2023",
-      bullets: [
-        "Produced high-retention short-form edits using structured hooks, pacing, and motion overlays.",
-        "Created ad-ready video variations optimized for Meta, YouTube, and Instagram placements.",
-        "Collaborated with performance teams to align creative direction with campaign goals and analytics.",
-      ],
-    },
-    {
-      company: "Design & Print Agency",
-      title: "Graphic Designer",
-      dateRange: "2019 - 2021",
-      bullets: [
-        "Designed magazines, brochures, and brand collateral with print-ready precision and clean typography.",
-        "Refined client branding assets into modern, cohesive visual identities for local and regional businesses.",
-        "Managed multi-deliverable projects while maintaining quality, turnaround speed, and production standards.",
-      ],
-    },
-  ],
 };
