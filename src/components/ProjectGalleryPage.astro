@@ -19,14 +19,20 @@ const {
   fallbackFolder = "projects",
 } = Astro.props;
 
+const normalizeFolder = (folder: string) => folder.replace(/^\/+|\/+$/g, "");
+
 const toImageUrls = (folder: string) => {
-  const folderUrl = new URL(`../../public/${folder.replace(/^\/+|\/+$/g, "")}/`, import.meta.url);
+  const cleanFolder = normalizeFolder(folder);
+  const folderUrl = new URL(`../../public/${cleanFolder}/`, import.meta.url);
 
   try {
     return readdirSync(folderUrl)
       .filter((file) => /\.(avif|gif|jpe?g|png|webp|svg)$/i.test(file))
       .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
-      .map((file) => `/${folder.replace(/^\/+|\/+$/g, "")}/${file}`);
+      .map((file) => ({
+        src: `/${cleanFolder}/${file}`,
+        name: file.replace(/\.[^.]+$/, "").replace(/[-_]+/g, " "),
+      }));
   } catch {
     return [];
   }
@@ -37,6 +43,8 @@ let galleryImages = toImageUrls(imageFolder);
 if (galleryImages.length === 0 && fallbackFolder !== imageFolder) {
   galleryImages = toImageUrls(fallbackFolder);
 }
+
+const imageCount = galleryImages.length;
 ---
 
 <html lang="en">
@@ -48,49 +56,57 @@ if (galleryImages.length === 0 && fallbackFolder !== imageFolder) {
     <title>{title} | {siteConfig.name}</title>
   </head>
 
-  <body>
-    <main class="min-h-screen bg-[#05080f] text-white px-6 py-10 sm:px-10 sm:py-14 lg:px-16">
+  <body class="bg-slate-50 text-slate-900">
+    <main class="min-h-screen px-5 py-8 sm:px-8 lg:px-14">
       <div class="mx-auto max-w-7xl">
-        <div class="relative overflow-hidden rounded-3xl border border-white/15 bg-gradient-to-br from-[#0b1220] via-[#060b14] to-[#070b12] p-6 shadow-2xl sm:p-9 md:p-12">
-          <div class="pointer-events-none absolute -top-16 -left-16 h-44 w-44 rounded-full bg-blue-500/25 blur-3xl"></div>
-          <div class="pointer-events-none absolute -bottom-20 -right-16 h-56 w-56 rounded-full bg-indigo-500/25 blur-3xl"></div>
-
-          <a href="/#projects" class="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/90 transition hover:bg-white/12">
+        <header class="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_20px_80px_-40px_rgba(15,23,42,0.35)] sm:p-10">
+          <a href="/#projects" class="inline-flex items-center gap-2 rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-700 transition hover:bg-slate-100">
             <span aria-hidden="true">←</span>
             Back to projects
           </a>
 
-          <p class="mt-6 inline-flex rounded-full border border-blue-400/60 bg-blue-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-blue-200">
-            {badge}
-          </p>
+          <div class="mt-6 flex flex-wrap items-center gap-3">
+            <span class="rounded-full bg-blue-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-blue-700">{badge}</span>
+            <span class="rounded-full border border-slate-300 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.12em] text-slate-600">
+              {imageCount > 0 ? `${imageCount} gallery items` : "Ready for your uploads"}
+            </span>
+          </div>
 
-          <h1 class="mt-4 max-w-3xl text-3xl font-semibold leading-tight text-white sm:text-4xl md:text-5xl">{title}</h1>
-
-          <p class="mt-4 max-w-3xl text-sm leading-relaxed text-slate-200 sm:text-base">{description}</p>
-        </div>
+          <h1 class="mt-5 max-w-4xl text-3xl font-bold leading-tight text-slate-900 sm:text-4xl lg:text-5xl">{title}</h1>
+          <p class="mt-4 max-w-3xl text-sm leading-relaxed text-slate-600 sm:text-base">{description}</p>
+        </header>
 
         {galleryImages.length > 0 ? (
-          <section class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {galleryImages.map((src, index) => (
-              <article class="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/5 shadow-xl transition duration-300 hover:-translate-y-1 hover:border-blue-300/70">
-                <img
-                  src={src}
-                  alt={`${title} image ${index + 1}`}
-                  class="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent opacity-90"></div>
-                <div class="absolute inset-x-4 bottom-4 flex items-end justify-between gap-3">
-                  <p class="text-sm font-semibold text-white">Artwork {String(index + 1).padStart(2, "0")}</p>
-                  <span class="rounded-full border border-white/25 bg-black/35 px-3 py-1 text-xs text-white/90">Preview</span>
-                </div>
-              </article>
-            ))}
+          <section class="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-12">
+            {galleryImages.map((image, index) => {
+              const featured = index === 0;
+              return (
+                <article class={`group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_18px_50px_-35px_rgba(15,23,42,0.35)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_30px_70px_-35px_rgba(37,99,235,0.35)] ${featured ? "sm:col-span-2 xl:col-span-7" : "xl:col-span-5"}`}>
+                  <a href={image.src} target="_blank" rel="noopener noreferrer" class="block">
+                    <div class={`relative overflow-hidden ${featured ? "aspect-[16/10]" : "aspect-[4/3]"}`}>
+                      <img src={image.src} alt={`${title} preview ${index + 1}`} class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
+                      <div class="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-transparent"></div>
+                      <span class="absolute right-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-slate-900">Preview</span>
+                    </div>
+                    <div class="flex items-center justify-between gap-3 p-4 sm:p-5">
+                      <div>
+                        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-blue-700">Artwork {String(index + 1).padStart(2, "0")}</p>
+                        <h2 class="mt-1 text-base font-semibold text-slate-900 sm:text-lg">{image.name}</h2>
+                      </div>
+                      <span class="hidden rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 sm:inline">Open full size ↗</span>
+                    </div>
+                  </a>
+                </article>
+              );
+            })}
           </section>
         ) : (
-          <section class="mt-10 rounded-2xl border border-dashed border-white/35 bg-white/5 p-8 text-center">
-            <h2 class="text-xl font-semibold text-white">No images found yet.</h2>
-            <p class="mt-2 text-sm text-slate-200">Add images to <code>public/{imageFolder}</code> to show this gallery.</p>
+          <section class="mt-8 rounded-3xl border border-dashed border-slate-300 bg-white p-10 text-center shadow-[0_16px_40px_-30px_rgba(15,23,42,0.35)]">
+            <h2 class="text-2xl font-semibold text-slate-900">Your premium gallery is ready.</h2>
+            <p class="mx-auto mt-3 max-w-2xl text-slate-600">
+              Add images to <code class="rounded bg-slate-100 px-2 py-1 text-sm">public/{normalizeFolder(imageFolder)}</code> and refresh.
+              If that folder is empty, files from <code class="rounded bg-slate-100 px-2 py-1 text-sm">public/{normalizeFolder(fallbackFolder)}</code> are used automatically.
+            </p>
           </section>
         )}
       </div>
