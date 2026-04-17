@@ -31,13 +31,6 @@ const brands = [
         }
         {
           brands.map((brand) => (
-            <li>
-              <img src={brand.logo} class="logo" alt={brand.name} loading="lazy" decoding="async" />
-            </li>
-          ))
-        }
-        {
-          brands.map((brand) => (
             <li aria-hidden="true">
               <img src={brand.logo} class="logo" alt="" loading="lazy" decoding="async" />
             </li>
@@ -57,8 +50,7 @@ const brands = [
     margin: 0;
     padding: 0.25rem 0;
     list-style: none;
-    animation: scroll 35s linear infinite;
-    transform: translateX(-33.333%);
+    animation: scroll 20s linear infinite;
   }
 
   .marquee-track li {
@@ -78,10 +70,10 @@ const brands = [
 
   @keyframes scroll {
     from {
-      transform: translateX(-33.333%);
+      transform: translateX(0);
     }
     to {
-      transform: translateX(-66.666%);
+      transform: translateX(-50%);
     }
   }
 
