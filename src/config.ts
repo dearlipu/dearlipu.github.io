@@ -11,9 +11,9 @@ export const siteConfig = {
     youtube: "https://www.youtube.com/@dearlipu",
   },
   aboutMe:
-    `  I’m a visual designer and video editor who helps brands and creators turn ideas into high-impact content.
+    `I’m a visual designer and video editor who helps brands and creators turn ideas into high-impact content.
 
-My focus is simple: clearer communication, stronger brand consistency, and content that performs across social media, web, and print. I combine design thinking with practical execution, so you get polished visuals that support real business outcomes.`,
+I focus on three outcomes: clearer communication, stronger brand consistency, and content that performs across social media, web, and print. I combine strategy with execution, so every deliverable looks polished and supports a measurable goal.`,
   
   skills: ["Graphic Design", "Motion Graphics", "Photo & Video Editing", "Print Design"],
   
