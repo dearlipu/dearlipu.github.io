@@ -16,13 +16,13 @@ const hasServices = services.length > 0;
             </p>
 
             <h2 class="mt-4 text-3xl font-bold leading-tight text-gray-900 sm:text-4xl md:text-5xl">
-              Premium creative services built for results
+              Creative services built for growth
             </h2>
 
             <div class="mt-3 h-1.5 w-20 rounded-full" style={`background-color: ${siteConfig.accentColor}`}></div>
 
             <p class="mt-5 max-w-sm text-sm leading-relaxed text-gray-600 sm:text-base">
-              I help brands and creators with design, editing, and motion systems that look polished and perform consistently.
+              I help brands and creators with design, editing, and motion deliverables that look premium and perform across platforms.
             </p>
           </div>
 
@@ -42,8 +42,8 @@ const hasServices = services.length > 0;
                       {
                         service.achievements.map((achievement) => (
                           <li class="flex items-start gap-2.5 text-sm leading-relaxed text-gray-600 sm:text-base">
-                            <span class="mt-2 inline-block h-1.5 w-1.5 rounded-full bg-gray-400"></span>
-                            <span>{achievement}</span>
+                            <span class="service-bullet" aria-hidden="true"></span>
+                            <span class="min-w-0 flex-1">{achievement}</span>
                           </li>
                         ))
                       }
@@ -64,6 +64,16 @@ const hasServices = services.length > 0;
 }
 
 <style>
+  .service-bullet {
+    margin-top: 0.62em;
+    display: inline-block;
+    height: 0.375rem;
+    width: 0.375rem;
+    flex-shrink: 0;
+    border-radius: 999px;
+    background: #9ca3af;
+  }
+
   .service-card {
     display: flex;
     flex-direction: column;
