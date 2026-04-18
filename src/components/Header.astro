@@ -31,7 +31,7 @@ const hasServices = siteConfig.services && siteConfig.services.length > 0;
 
   <!-- FLOATING MENU -->
   <div id="menuPanel"
-    class="fixed top-20 right-4 w-[90%] max-w-sm bg-[#101828] text-white rounded-3xl p-6 shadow-2xl border border-gray-700 z-50
+    class="fixed top-20 right-4 w-[90%] max-w-sm max-h-[calc(100vh-6rem)] overflow-y-auto overscroll-contain bg-[#101828] text-white rounded-3xl p-6 shadow-2xl border border-gray-700 z-50
     
     opacity-0 scale-90 translate-y-6 pointer-events-none origin-[90%_-10px]
     transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]">
@@ -125,6 +125,16 @@ const hasServices = siteConfig.services && siteConfig.services.length > 0;
       <li class="menu-item">
         <a href="/terms" class="menu-link">
           Terms of Service
+          <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a href="/copyright" class="menu-link">
+          Copyright
           <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M7 17L17 7M17 7H7M17 7V17"/>
