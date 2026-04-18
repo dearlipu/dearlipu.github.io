@@ -194,6 +194,15 @@ document.addEventListener("DOMContentLoaded", () => {
     open ? closeMenu() : openMenu();
   });
 
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!open || !(target instanceof Node)) return;
+
+    if (panel.contains(target) || btn.contains(target)) return;
+
+    closeMenu();
+  });
+
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener("click", function(e) {
       e.preventDefault();
@@ -215,8 +224,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // scroll header effect
   window.addEventListener("scroll", () => {
-    if (open) closeMenu();
-
     if (window.scrollY > 100) {
       header.classList.add("bg-white/80", "backdrop-blur-sm");
     } else {
