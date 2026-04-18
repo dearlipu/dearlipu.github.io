@@ -1,0 +1,78 @@
+---
+import { siteConfig } from "../config";
+import "../styles/global.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Copyright Notice</title>
+  </head>
+
+  <body class="bg-white text-gray-800">
+    <section class="px-6 sm:px-10 md:px-16 lg:px-24 py-12 md:py-16 lg:py-20 overflow-x-hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start">
+        <div class="lg:col-span-4">
+          <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+            Copyright Notice.
+          </h2>
+
+          <div
+            class="w-[75px] h-[5px] mt-2 rounded-full"
+            style={`background-color: ${siteConfig.accentColor}`}
+          ></div>
+
+          <p class="text-gray-500 mt-5 text-sm sm:text-base max-w-sm leading-relaxed">
+            Ownership, attribution, and permitted use of content and visual elements on this website.
+          </p>
+        </div>
+
+        <div class="lg:col-span-8 w-full min-w-0">
+          <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 shadow-sm hover:shadow-lg transition duration-300">
+            <p class="text-xs text-gray-400 mb-6">
+              Last updated: April 2026
+            </p>
+
+            <div class="space-y-8 text-lg sm:text-xl md:text-xl leading-relaxed text-gray-600">
+              <p>
+                Unless otherwise stated, all original text, branding, custom graphics, and project presentation on this website are owned by {siteConfig.name}.
+              </p>
+
+              <p>
+                Some visual elements may be inspired by, adapted from, or built using publicly available references, design patterns, icon sets, or licensed resources. Credits and rights remain with their respective owners where applicable.
+              </p>
+
+              <p>
+                If you believe any material on this website should be credited differently or removed, please contact me directly. I will review and resolve valid requests promptly.
+              </p>
+
+              <p>
+                You may not copy, reproduce, republish, or distribute original content from this website for commercial use without prior written permission.
+              </p>
+
+              <div class="pt-6">
+                <p class="text-gray-500 text-base sm:text-lg">
+                  Copyright questions or attribution requests:
+                </p>
+
+                <p class="text-gray-900 font-medium mt-1">
+                  {siteConfig.social.email}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
