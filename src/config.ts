@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Saurav Panda",
   title: "I design visuals that make brands impossible to ignore.",
-  description: "I help brands and creators with high-performing design, video editing, and motion graphics—built for clarity, consistency, and conversion.",
+  description: "I help brands and creators turn ideas into strategic design, video editing, and motion graphics that improve clarity, consistency, and conversion.",
   accentColor: "#1d4ed8",
   social: {
     email: "infodearlipu+web@gmail.com",
@@ -11,9 +11,9 @@ export const siteConfig = {
     youtube: "https://www.youtube.com/@dearlipu",
   },
   aboutMe:
-    `I’m a visual designer and video editor helping brands and creators turn ideas into high-impact visual content.
+    `  I’m a visual designer and video editor who helps brands and creators turn ideas into high-impact content.
 
-My focus is simple: make your communication clearer, your brand more consistent, and your content more effective across social media, web, and print. I combine design thinking with practical execution so you get polished visuals that support real business outcomes.`,
+My focus is simple: clearer communication, stronger brand consistency, and content that performs across social media, web, and print. I combine design thinking with practical execution, so you get polished visuals that support real business outcomes.`,
   
   skills: ["Graphic Design", "Motion Graphics", "Photo & Video Editing", "Print Design"],
   
@@ -21,21 +21,21 @@ My focus is simple: make your communication clearer, your brand more consistent,
     {
       name: "Social Media Content System",
       description:
-        "Built a complete content system for consistent, high-quality social media posts designed to improve engagement and brand clarity.",
+        "Built a complete content system for consistent social posts that improved engagement and strengthened brand clarity.",
       link: "/project1",
       skills: ["Content Design", "Social Media", "Branding"],
     },
     {
       name: "High-Retention Video Editing",
       description:
-        "Edited short-form videos with strong hooks, captions, and pacing to keep viewers engaged and improve watch time.",
+        "Edited short-form videos with stronger hooks, captions, and pacing to increase retention and watch time.",
       link: "/project2",
       skills: ["Video Editing", "Reels & Shorts", "Motion Graphics"],
     },
     {
       name: "Visual Redesign & Brand Upgrade",
       description:
-        "Redesigned outdated visuals into clean, modern designs that improve clarity, professionalism, and overall brand perception.",
+        "Replaced outdated assets with clean, modern visuals that improved clarity, professionalism, and overall brand perception.",
       link: "/project3",
       skills: ["Redesign", "Branding", "Visual Upgrade"],
     },
@@ -44,11 +44,11 @@ My focus is simple: make your communication clearer, your brand more consistent,
   services: [
     {
       degree: "Visual Design",
-      school: "Branding, graphics, and image editing that stand out.",
+      school: "Branding, design systems, and image editing built to stand out.",
       //dateRange: "",
       achievements: [
         "Social media creatives (posts, carousels)",
-        "Illustration, Thumbnails & banners",
+        "Illustrations, thumbnails, and banners",
         "Brand identity & visual systems",
         "Posters, campaigns & marketing creatives",
         "Photo editing, retouching & color grading"
@@ -56,10 +56,10 @@ My focus is simple: make your communication clearer, your brand more consistent,
     },
     {
       degree: "Video & Motion",
-      school: "High-quality video editing and motion content.",
+      school: "Video editing and motion content built for attention and retention.",
       //dateRange: "",
       achievements: [
-        "Social media content (Reels, Shorts, Long-forms)",
+        "Social media content (Reels, Shorts, long-form)",
         "Motion graphics & animated content",
         "Cinematic edits & storytelling",
         "Ads & promotional videos",
@@ -68,7 +68,7 @@ My focus is simple: make your communication clearer, your brand more consistent,
     },
     {
       degree: "Print & Editorial",
-      school: "Professional layouts for print and publishing.",
+      school: "Editorial and print layouts designed for clarity and polish.",
       //dateRange: "",
       achievements: [
         "Magazines & editorial layouts",
