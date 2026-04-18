@@ -1,12 +1,7 @@
 @import "tailwindcss";
-@import url("https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@400;500;600;700;800&display=swap");
-
-:root {
-  --site-font-family: 'Anek Devanagari', sans-serif;
-}
 
 body {
-  font-family: var(--site-font-family);
+  font-family: 'Anek Devanagari', sans-serif;
 }
 
 html {
