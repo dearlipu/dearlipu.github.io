@@ -44,22 +44,22 @@ I focus on three outcomes: clearer communication, stronger brand consistency, an
   services: [
     {
       degree: "Visual Design",
-      school: "Branding, design systems, and image editing built to stand out.",
+      school: "Brand identity, content design, and image editing built for clarity and recall.",
       //dateRange: "",
       achievements: [
-        "Social media creatives (posts, carousels)",
+        "Social media creatives (posts, carousels, campaigns)",
         "Illustrations, thumbnails, and banners",
-        "Brand identity & visual systems",
-        "Posters, campaigns & marketing creatives",
+        "Brand identity systems and visual guidelines",
+        "Posters, campaign assets, and marketing creatives",
         "Photo editing, retouching & color grading"
       ],
     },
     {
       degree: "Video & Motion",
-      school: "Video editing and motion content built for attention and retention.",
+      school: "Video editing and motion content designed to hold attention and increase retention.",
       //dateRange: "",
       achievements: [
-        "Social media content (Reels, Shorts, long-form)",
+        "Social content editing (Reels, Shorts, long-form)",
         "Motion graphics & animated content",
         "Cinematic edits & storytelling",
         "Ads & promotional videos",
@@ -68,7 +68,7 @@ I focus on three outcomes: clearer communication, stronger brand consistency, an
     },
     {
       degree: "Print & Editorial",
-      school: "Editorial and print layouts designed for clarity and polish.",
+      school: "Editorial and print layouts that balance readability, structure, and visual polish.",
       //dateRange: "",
       achievements: [
         "Magazines & editorial layouts",
