@@ -8,7 +8,6 @@ const hasServices = siteConfig.services && siteConfig.services.length > 0;
 <header id="header"
   class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
 
-  <!-- MOBILE BUTTON -->
   <div class="flex md:hidden justify-end px-6 py-4">
     <button id="menuBtn"
       class="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium 
@@ -222,7 +221,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // scroll header effect
   window.addEventListener("scroll", () => {
     if (window.scrollY > 100) {
       header.classList.add("bg-white/80", "backdrop-blur-sm");
@@ -248,7 +246,6 @@ html {
   transition: all 0.25s ease;
 }
 
-/* only first item gets top border */
 .menu-item:first-child .menu-link {
   border-top: 1px solid rgba(255,255,255,0.06);
 }
