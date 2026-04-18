@@ -15,29 +15,29 @@ export const siteConfig = {
 
 I focus on three outcomes: clearer communication, stronger brand consistency, and content that performs across social media, web, and print. I combine strategy with execution, so every deliverable looks polished and supports a measurable goal.`,
   
-  skills: ["Graphic Design", "Motion Graphics", "Photo & Video Editing", "Print Design"],
+  skills: ["Graphic Design", "Motion Graphics", "Photo & Video Editing", "Editorial Design"],
   
   projects: [
     {
-      name: "Social Media Content System",
+      name: "Social Content System",
       description:
-        "Built a complete content system for consistent social posts that improved engagement and strengthened brand clarity.",
-      link: "/project1",
-      skills: ["Content Design", "Social Media", "Branding"],
+        "Designed a repeatable social content system that improved posting consistency, engagement, and brand recognition.",
+      link: "#",
+      skills: ["Content Strategy", "Social Design", "Brand Systems"],
     },
     {
       name: "High-Retention Video Editing",
       description:
-        "Edited short-form videos with stronger hooks, captions, and pacing to increase retention and watch time.",
-      link: "/project2",
-      skills: ["Video Editing", "Reels & Shorts", "Motion Graphics"],
+        "Edited short-form videos with stronger hooks, tighter pacing, and caption strategy to improve retention and watch time.",
+      link: "#",
+      skills: ["Video Editing", "Reels & Shorts", "Motion Design"],
     },
     {
-      name: "Visual Redesign & Brand Upgrade",
+      name: "Brand Visual Redesign",
       description:
-        "Replaced outdated assets with clean, modern visuals that improved clarity, professionalism, and overall brand perception.",
-      link: "/project3",
-      skills: ["Redesign", "Branding", "Visual Upgrade"],
+        "Rebuilt outdated brand assets into a modern visual direction that improved clarity, credibility, and overall brand perception.",
+      link: "#",
+      skills: ["Visual Redesign", "Branding", "Design Direction"],
     },
   ],
   
