@@ -1,0 +1,185 @@
+---
+import { siteConfig } from "../config";
+import "../styles/global.css";
+
+const caseStudies = [
+  {
+    slug: "social-content-system",
+    title: "Social Content System",
+    summary:
+      "A structured social publishing system built to improve consistency, audience growth, and visual brand recall.",
+    metric: "+2k follower growth in 90 days",
+    timeline: "Q1 Campaign Sprint",
+    tags: ["Content Strategy", "Creative Ops", "Brand Consistency"],
+    star: {
+      situation:
+        "The brand posted irregularly and visual quality varied by post, causing weaker momentum and low repeat engagement.",
+      task:
+        "Build a repeatable content workflow with templates and a clear publishing rhythm for Instagram and Shorts distribution.",
+      action:
+        "Created modular design systems, monthly content buckets, hook-first caption formulas, and a lightweight review pipeline to reduce turnaround time.",
+      result:
+        "Reached +2k net follower growth, improved posting consistency, and raised average engagement quality through clearer visual direction.",
+    },
+  },
+  {
+    slug: "high-retention-video-editing",
+    title: "High-Retention Video Editing",
+    summary:
+      "Performance-focused editing workflow for short-form videos with stronger open loops and pacing control.",
+    metric: "+40% average watch time",
+    timeline: "6-Week Optimization Cycle",
+    tags: ["Video Editing", "Audience Retention", "Creative Analytics"],
+    star: {
+      situation:
+        "Existing videos had early drop-off because hooks were delayed and key value points arrived too late in the timeline.",
+      task:
+        "Increase retention and completion by redesigning intros, pacing, cut structure, and on-screen messaging hierarchy.",
+      action:
+        "Re-cut openings in the first 2 seconds, added pattern interrupts, refined caption hierarchy, and used data-driven A/B variants for sequencing.",
+      result:
+        "Lifted average watch time by +40%, with noticeably better retention curves in the first 8 seconds and stronger replay behavior.",
+    },
+  },
+  {
+    slug: "brand-visual-redesign",
+    title: "Brand Visual Redesign",
+    summary:
+      "A premium visual identity refresh to modernize perception and improve communication clarity across channels.",
+    metric: "+28% inbound inquiries",
+    timeline: "Brand Refresh Sprint",
+    tags: ["Visual Identity", "Design System", "Positioning"],
+    star: {
+      situation:
+        "Legacy brand assets looked dated, visual hierarchy was inconsistent, and campaign creatives lacked a unified style.",
+      task:
+        "Redesign core brand visuals and establish scalable standards usable in social, web, and pitch materials.",
+      action:
+        "Defined a clean typography stack, upgraded color system, redesigned key asset templates, and documented usage rules.",
+      result:
+        "Delivered a stronger premium perception, smoother production handoffs, and +28% inbound inquiries from revamped touchpoints.",
+    },
+  },
+];
+
+const selectedSlug = Astro.url.searchParams.get("case") || caseStudies[0].slug;
+const selectedCase = caseStudies.find((item) => item.slug === selectedSlug) || caseStudies[0];
+
+const galleryItems = Array.from({ length: 12 }, (_, i) => ({
+  src: `/projects/p1-${i + 1}.webp`,
+  alt: `${selectedCase.title} showcase frame ${i + 1}`,
+}));
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={`Case study details for ${selectedCase.title} by ${siteConfig.name}.`} />
+    <title>{selectedCase.title} Case Study | {siteConfig.name}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="bg-[#f5f2ec] text-zinc-900">
+    <main class="px-6 py-12 sm:px-10 md:px-14 lg:px-20 lg:py-16">
+      <div class="mx-auto max-w-6xl">
+        <a
+          href="/#projects"
+          class="inline-flex items-center gap-2 rounded-full border border-zinc-900/15 bg-white/80 px-4 py-2 text-sm font-semibold tracking-wide text-zinc-700 transition hover:-translate-y-0.5 hover:bg-white"
+        >
+          <span aria-hidden="true">←</span>
+          Back to projects
+        </a>
+
+        <section class="mt-8 rounded-3xl border border-white/70 bg-white/70 p-6 shadow-[0_20px_70px_rgba(0,0,0,0.08)] backdrop-blur sm:p-9 lg:p-12">
+          <p class="text-xs font-semibold uppercase tracking-[0.22em] text-blue-700">Case Study</p>
+          <h1 class="mt-3 text-3xl font-extrabold leading-tight text-zinc-900 sm:text-4xl lg:text-5xl">{selectedCase.title}</h1>
+          <p class="mt-4 max-w-3xl text-base leading-relaxed text-zinc-700 sm:text-lg">{selectedCase.summary}</p>
+
+          <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div class="rounded-2xl border border-zinc-200 bg-white p-4">
+              <p class="text-xs uppercase tracking-[0.16em] text-zinc-500">Primary metric</p>
+              <p class="mt-2 text-xl font-bold text-zinc-900">{selectedCase.metric}</p>
+            </div>
+            <div class="rounded-2xl border border-zinc-200 bg-white p-4">
+              <p class="text-xs uppercase tracking-[0.16em] text-zinc-500">Timeline</p>
+              <p class="mt-2 text-xl font-bold text-zinc-900">{selectedCase.timeline}</p>
+            </div>
+            <div class="rounded-2xl border border-zinc-200 bg-white p-4 sm:col-span-2 lg:col-span-1">
+              <p class="text-xs uppercase tracking-[0.16em] text-zinc-500">Focus areas</p>
+              <div class="mt-3 flex flex-wrap gap-2">
+                {selectedCase.tags.map((tag) => <span class="rounded-full bg-zinc-100 px-3 py-1 text-xs font-semibold text-zinc-700">{tag}</span>)}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="mt-10">
+          <div class="flex items-end justify-between gap-4">
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">Gallery</p>
+              <h2 class="mt-2 text-2xl font-bold text-zinc-900 sm:text-3xl">Visual story grid</h2>
+            </div>
+          </div>
+
+          <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+            {galleryItems.map((item, idx) => (
+              <figure class={`group relative overflow-hidden rounded-2xl border border-zinc-200 bg-white p-2 shadow-sm ${idx % 5 === 0 ? "sm:col-span-2" : ""}`}>
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  loading="lazy"
+                  class="h-28 w-full rounded-xl object-cover transition duration-500 group-hover:scale-[1.03] sm:h-36"
+                />
+                <figcaption class="mt-2 px-1 text-xs font-medium tracking-wide text-zinc-500">
+                  p1-{idx + 1}.webp
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
+        <section class="mt-12 rounded-3xl border border-zinc-200 bg-white p-6 sm:p-9">
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-blue-700">S.T.A.R. Breakdown</p>
+          <h2 class="mt-2 text-2xl font-bold text-zinc-900 sm:text-3xl">Project descriptions restructured for clarity</h2>
+
+          <div class="mt-8 space-y-6">
+            {caseStudies.map((item, index) => (
+              <article class={`rounded-2xl border p-5 sm:p-6 ${item.slug === selectedCase.slug ? "border-blue-200 bg-blue-50/40" : "border-zinc-200 bg-zinc-50/60"}`}>
+                <div class="flex flex-wrap items-center gap-3">
+                  <span class="text-sm font-semibold text-blue-700">0{index + 1}</span>
+                  <h3 class="text-xl font-bold text-zinc-900">{item.title}</h3>
+                  <span class="rounded-full bg-zinc-900 px-3 py-1 text-xs font-semibold text-white">{item.metric}</span>
+                </div>
+                <dl class="mt-5 grid gap-4 md:grid-cols-2">
+                  <div>
+                    <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">Situation</dt>
+                    <dd class="mt-2 text-sm leading-relaxed text-zinc-700">{item.star.situation}</dd>
+                  </div>
+                  <div>
+                    <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">Task</dt>
+                    <dd class="mt-2 text-sm leading-relaxed text-zinc-700">{item.star.task}</dd>
+                  </div>
+                  <div>
+                    <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">Action</dt>
+                    <dd class="mt-2 text-sm leading-relaxed text-zinc-700">{item.star.action}</dd>
+                  </div>
+                  <div>
+                    <dt class="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">Result</dt>
+                    <dd class="mt-2 text-sm leading-relaxed text-zinc-700">{item.star.result}</dd>
+                  </div>
+                </dl>
+              </article>
+            ))}
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
