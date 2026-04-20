@@ -1,0 +1,24 @@
+---
+import ProjectCasePage from "../components/ProjectCasePage.astro";
+
+const caseData = {
+  title: "Brand Visual Redesign",
+  summary:
+    "A modern, premium visual refresh for brand touchpoints to improve clarity, trust, and conversion-ready perception.",
+  metric: "+28% inbound inquiries",
+  timeline: "Brand Refresh Sprint",
+  tags: ["Visual Redesign", "Branding", "Design Direction"],
+  star: {
+    situation:
+      "Legacy brand assets looked dated and lacked visual consistency across social, web, and campaign materials.",
+    task:
+      "Upgrade the visual identity into a cohesive premium system without breaking brand familiarity.",
+    action:
+      "Built a new visual language covering typography, color rhythm, component templates, and practical usage rules for production teams.",
+    result:
+      "Generated +28% inbound inquiries and significantly improved perceived credibility and consistency across all brand surfaces.",
+  },
+};
+---
+
+<ProjectCasePage caseData={caseData} projectPrefix="p3" projectNumber={3} />
