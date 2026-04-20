@@ -1,0 +1,24 @@
+---
+import ProjectCasePage from "../components/ProjectCasePage.astro";
+
+const caseData = {
+  title: "High-Retention Video Editing",
+  summary:
+    "Performance-focused short-form video editing crafted for stronger hooks, pacing, and audience retention from the first second.",
+  metric: "+40% average watch time",
+  timeline: "6-Week Optimization Cycle",
+  tags: ["Video Editing", "Retention Strategy", "Motion Design"],
+  star: {
+    situation:
+      "Short videos had early drop-off due to delayed hooks and uneven pacing in the first few seconds.",
+    task:
+      "Improve watch-time and retention by restructuring intros, sequencing, and on-screen communication.",
+    action:
+      "Re-cut opening beats, tightened transitions, optimized caption hierarchy, and used iteration-based edit versions for top-performing topics.",
+    result:
+      "Achieved +40% average watch time and stronger retention curves, with viewers staying longer through key narrative moments.",
+  },
+};
+---
+
+<ProjectCasePage caseData={caseData} projectPrefix="p2" projectNumber={2} />
