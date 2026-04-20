@@ -1,24 +1,103 @@
 ---
-import ProjectCasePage from "../components/ProjectCasePage.astro";
-//re
-const caseData = {
-  title: "Social Content System",
-  summary:
-    "A structured social publishing framework for premium, on-brand content with measurable consistency and growth outcomes.",
-  metric: "+2k follower growth in 90 days",
-  timeline: "Q1 Campaign Sprint",
-  tags: ["Content Strategy", "Social Design", "Brand Systems"],
-  star: {
-    situation:
-      "The brand posted inconsistently and design quality changed from post to post, which reduced momentum and brand recall.",
-    task:
-      "Build a repeatable social content system that enables consistent publishing while keeping visual quality high.",
-    action:
-      "Designed reusable post templates, content pillars, and a lightweight review workflow that reduced production friction and improved delivery speed.",
-    result:
-      "Delivered +2k net follower growth with stronger posting cadence, cleaner visual consistency, and improved audience response quality.",
-  },
-};
+import ProjectShowcase from "../components/ProjectShowcase.astro";
+
+export function getStaticPaths() {
+  const projectMap = {
+    project1: {
+      projectNumber: 1,
+      projectPrefix: "p1",
+      caseData: {
+        title: "Social Content System",
+        summary:
+          "Developed a scalable social content engine that elevated brand consistency, accelerated publishing velocity, and improved measurable audience growth.",
+        metric: {
+          target: 2000,
+          format: "compact",
+          prefix: "+",
+          label: "follower growth in 90 days",
+        },
+        timeline: "Q1 Campaign Sprint",
+        tags: ["Content Strategy", "Social Design", "Brand Systems"],
+        star: {
+          situation:
+            "Content output was inconsistent, visual standards fluctuated, and audience traction stalled due to the lack of a structured content framework.",
+          task:
+            "Design a repeatable content workflow that keeps quality high while enabling consistent weekly publishing across social channels.",
+          action:
+            "Implemented content pillars, modular design templates, and a streamlined review cycle to reduce production friction and improve execution speed.",
+          result:
+            "Achieved +2k follower growth with stronger brand consistency, better post cadence, and a clearer editorial direction.",
+        },
+      },
+    },
+    project2: {
+      projectNumber: 2,
+      projectPrefix: "p2",
+      caseData: {
+        title: "High-Retention Video Editing",
+        summary:
+          "Optimized short-form videos with stronger first-second hooks, tighter pacing, and clearer narrative flow to maximize retention performance.",
+        metric: {
+          target: 40,
+          format: "number",
+          prefix: "+",
+          label: "average watch-time lift",
+        },
+        timeline: "6-Week Optimization Cycle",
+        tags: ["Video Editing", "Retention Strategy", "Motion Design"],
+        star: {
+          situation:
+            "Videos experienced early viewer drop-off caused by delayed hooks and pacing inconsistencies during the most critical opening seconds.",
+          task:
+            "Increase watch-time and retention by redesigning intros, sequencing rhythm, and on-screen communication hierarchy.",
+          action:
+            "Recrafted opening frames, optimized transition density, improved caption hierarchy, and iterated edit variants using performance feedback.",
+          result:
+            "Delivered +40% average watch-time lift with noticeably stronger retention curves and improved replay behavior.",
+        },
+      },
+    },
+    project3: {
+      projectNumber: 3,
+      projectPrefix: "p3",
+      caseData: {
+        title: "Brand Visual Redesign",
+        summary:
+          "Reimagined a dated visual identity into a polished, premium design system that improved trust signals and elevated brand perception.",
+        metric: {
+          target: 28,
+          format: "number",
+          prefix: "+",
+          label: "inbound inquiry growth",
+        },
+        timeline: "Brand Refresh Sprint",
+        tags: ["Visual Redesign", "Branding", "Design Direction"],
+        star: {
+          situation:
+            "Legacy brand assets lacked consistency and visual sophistication, limiting perceived credibility across marketing touchpoints.",
+          task:
+            "Build a cohesive visual system that modernizes the brand while staying practical for daily content and campaign production.",
+          action:
+            "Defined typography hierarchy, refreshed color architecture, and built reusable branded components for social, web, and collateral use.",
+          result:
+            "Produced +28% growth in inbound inquiries and significantly improved consistency across all brand-facing surfaces.",
+        },
+      },
+    },
+  } as const;
+
+  return [
+    { params: { project: "project1" }, props: projectMap.project1 },
+    { params: { project: "project2" }, props: projectMap.project2 },
+    { params: { project: "project3" }, props: projectMap.project3 },
+  ];
+}
+
+const { caseData, projectPrefix, projectNumber } = Astro.props;
 ---
 
-<ProjectCasePage caseData={caseData} projectPrefix="p1" projectNumber={1} />
+<ProjectShowcase
+  caseData={caseData}
+  projectPrefix={projectPrefix}
+  projectNumber={projectNumber}
+/>
