@@ -1,0 +1,107 @@
+---
+import ProjectShowcase from "../components/ProjectShowcase.astro";
+
+export function getStaticPaths() {
+  const projectMap = {
+    project1: {
+      caseData: {
+        title: "Social Content Growth Engine",
+        media: [
+          { type: "image", src: "/projects/p1-1.webp", name: "Content system overview" },
+          { type: "image", src: "/projects/p1-2.webp", name: "Content variation pack" },
+          { type: "image", src: "/projects/p1-3.webp", name: "Campaign composition" },
+          { type: "image", src: "/projects/p1-4.webp", name: "Grid consistency check" },
+          { type: "image", src: "/projects/p1-5.webp", name: "Brand card visual" },
+          {
+            type: "video",
+            src: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            thumb: "/projects/p1-6.webp",
+            name: "Reel concept preview",
+          },
+          { type: "image", src: "/projects/p1-7.webp", name: "CTA hierarchy sample" },
+          { type: "image", src: "/projects/p1-8.webp", name: "Carousel pacing frame" },
+          { type: "image", src: "/projects/p1-9.webp", name: "Campaign composition" },
+          { type: "image", src: "/projects/p1-10.webp", name: "Grid consistency check" },
+          { type: "image", src: "/projects/p1-11.webp", name: "Brand card visual" },
+          {
+            type: "video",
+            src: "https://player.vimeo.com/video/76979871",
+            thumb: "/projects/p1-12.webp",
+            name: "Campaign motion preview",
+          },
+        ],
+      },
+    },
+    project2: {
+      caseData: {
+        title: "High-Retention Video Editing System",
+        media: [
+          { type: "image", src: "/projects/p2-1.webp", name: "Content system overview" },
+          { type: "image", src: "/projects/p2-2.webp", name: "Content variation pack" },
+          { type: "image", src: "/projects/p2-3.webp", name: "Campaign composition" },
+          { type: "image", src: "/projects/p2-4.webp", name: "Grid consistency check" },
+          { type: "image", src: "/projects/p2-5.webp", name: "Brand card visual" },
+          {
+            type: "video",
+            src: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            thumb: "/projects/p2-6.webp",
+            name: "Reel concept preview",
+          },
+          { type: "image", src: "/projects/p2-7.webp", name: "CTA hierarchy sample" },
+          { type: "image", src: "/projects/p2-8.webp", name: "Carousel pacing frame" },
+          { type: "image", src: "/projects/p2-9.webp", name: "Campaign composition" },
+          { type: "image", src: "/projects/p2-10.webp", name: "Grid consistency check" },
+          { type: "image", src: "/projects/p2-11.webp", name: "Brand card visual" },
+          {
+            type: "video",
+            src: "https://player.vimeo.com/video/76979871",
+            thumb: "/projects/p2-12.webp",
+            name: "Campaign motion preview",
+          },
+        ],
+      },
+    },
+    project3: {
+      caseData: {
+        title: "Premium Brand Visual Redesign",
+        media: [
+          { type: "image", src: "/projects/p3-1.webp", name: "Content system overview" },
+          { type: "image", src: "/projects/p3-2.webp", name: "Content variation pack" },
+          { type: "image", src: "/projects/p3-3.webp", name: "Campaign composition" },
+          { type: "image", src: "/projects/p3-4.webp", name: "Grid consistency check" },
+          { type: "image", src: "/projects/p3-5.webp", name: "Brand card visual" },
+          {
+            type: "video",
+            src: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            thumb: "/projects/p3-6.webp",
+            name: "Reel concept preview",
+          },
+          { type: "image", src: "/projects/p3-7.webp", name: "CTA hierarchy sample" },
+          { type: "image", src: "/projects/p3-8.webp", name: "Carousel pacing frame" },
+          { type: "image", src: "/projects/p3-9.webp", name: "Campaign composition" },
+          { type: "image", src: "/projects/p3-10.webp", name: "Grid consistency check" },
+          { type: "image", src: "/projects/p3-11.webp", name: "Brand card visual" },
+          {
+            type: "video",
+            src: "https://player.vimeo.com/video/76979871",
+            thumb: "/projects/p3-12.webp",
+            name: "Campaign motion preview",
+          },
+        ],
+      },
+    },
+  } as const;
+
+  return [
+    { params: { project: "project1" }, props: projectMap.project1 },
+    { params: { project: "project2" }, props: projectMap.project2 },
+    { params: { project: "project3" }, props: projectMap.project3 },
+  ];
+}
+
+const { caseData } = Astro.props;
+---
+
+<ProjectShowcase
+  caseData={caseData}
+/>
