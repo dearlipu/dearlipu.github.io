@@ -22,21 +22,21 @@ I focus on three outcomes: clearer communication, stronger brand consistency, an
       name: "Social Content System",
       description:
         "Built and deployed a repeatable social content system that drove +2k follower growth and stronger engagement consistency.",
-      link: "/project1?case=social-content-system",
+      link: "/project1",
       skills: ["Content Strategy", "Social Design", "Brand Systems"],
     },
     {
       name: "High-Retention Video Editing",
       description:
         "Re-edited short-form videos with tighter hooks and pacing to deliver +40% average watch time across priority clips.",
-      link: "/project2?case=high-retention-video-editing",
+      link: "/project2",
       skills: ["Video Editing", "Reels & Shorts", "Motion Design"],
     },
     {
       name: "Brand Visual Redesign",
       description:
         "Rebuilt outdated brand assets into a modern visual direction that improved clarity, credibility, and overall brand perception.",
-      link: "/project3?case=brand-visual-redesign",
+      link: "/project3",
       skills: ["Visual Redesign", "Branding", "Design Direction"],
     },
   ],
