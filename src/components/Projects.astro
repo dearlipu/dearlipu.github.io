@@ -30,11 +30,11 @@ const hasProjects = projects.length > 0;
             <div class="space-y-8">
               {projects.map((project, index) => {
                 const Component = project.link ? "a" : "div";
+                const isInternalLink = project.link?.startsWith("/");
                 const linkProps = project.link
                   ? {
                       href: project.link,
-                      target: "_blank",
-                      rel: "noopener noreferrer",
+                      ...(isInternalLink ? {} : { target: "_blank", rel: "noopener noreferrer" }),
                     }
                   : {};
 
