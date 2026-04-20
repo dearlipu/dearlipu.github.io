@@ -2,20 +2,6 @@
 import { siteConfig } from "../config";
 import "../styles/global.css";
 
-interface StarBlock {
-  situation: string;
-  task: string;
-  action: string;
-  result: string;
-}
-
-interface MetricBlock {
-  target: number;
-  format: "compact" | "number";
-  prefix: string;
-  label: string;
-}
-
 interface MediaItem {
   type: "image" | "video";
   src: string;
@@ -23,31 +9,13 @@ interface MediaItem {
   thumb?: string;
 }
 
-interface BeforeAfterItem {
-  title: string;
-  description: string;
-  media: string;
-}
-
 interface CaseData {
   title: string;
-  summary: string;
-  metric: MetricBlock;
-  timeline: string;
-  tags: string[];
-  star: StarBlock;
   media: MediaItem[];
-  beforeAfter: {
-    before: BeforeAfterItem;
-    after: BeforeAfterItem;
-  };
-  insights: string[];
 }
 
-const { caseData, projectNumber } = Astro.props as {
+const { caseData } = Astro.props as {
   caseData: CaseData;
-  projectPrefix: string;
-  projectNumber: number;
 };
 
 const getMediaThumb = (item: MediaItem) => {
@@ -133,65 +101,6 @@ const getMediaThumb = (item: MediaItem) => {
     </div>
 
     <script is:inline>
-      const formatCounterValue = (value, format) => {
-        if (format === "compact" && value >= 1000) {
-          return `${(value / 1000).toFixed(value % 1000 === 0 ? 0 : 1)}k`;
-        }
-        return `${Math.round(value)}`;
-      };
-
-      const counters = document.querySelectorAll(".counter");
-      const animations = new WeakMap();
-
-      const startCounter = (el) => {
-        const target = Number(el.dataset.target || "0");
-        const prefix = el.dataset.prefix || "";
-        const format = el.dataset.format || "number";
-        const duration = 1200;
-        const start = performance.now();
-
-        const tick = (now) => {
-          const progress = Math.min((now - start) / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          const value = target * eased;
-          el.textContent = `${prefix}${formatCounterValue(value, format)}`;
-          if (progress < 1 && animations.get(el) !== null) {
-            const rafId = requestAnimationFrame(tick);
-            animations.set(el, rafId);
-          } else {
-            animations.set(el, null);
-          }
-        };
-
-        const rafId = requestAnimationFrame(tick);
-        animations.set(el, rafId);
-      };
-
-      const counterObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            const el = entry.target;
-            if (entry.isIntersecting) {
-              const existing = animations.get(el);
-              if (typeof existing === "number") cancelAnimationFrame(existing);
-              startCounter(el);
-            } else {
-              const existing = animations.get(el);
-              if (typeof existing === "number") cancelAnimationFrame(existing);
-              animations.set(el, null);
-              const prefix = el.dataset.prefix || "";
-              el.textContent = `${prefix}0`;
-            }
-          });
-        },
-        { threshold: 0.55 }
-      );
-
-      counters.forEach((counter) => {
-        animations.set(counter, null);
-        counterObserver.observe(counter);
-      });
-
       const reveals = document.querySelectorAll(".reveal");
       const revealObserver = new IntersectionObserver(
         (entries) => {
