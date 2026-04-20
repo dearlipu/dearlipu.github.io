@@ -50,31 +50,9 @@ const { caseData, projectNumber } = Astro.props as {
   projectNumber: number;
 };
 
-const resolveMediaSource = (url: string) => {
-  if (!url) return url;
-
-  const driveFileMatch = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
-  if (driveFileMatch?.[1]) {
-    return `https://drive.google.com/uc?export=view&id=${driveFileMatch[1]}`;
-  }
-
-  const driveOpenMatch = url.match(/[?&]id=([^&]+)/);
-  if (url.includes("drive.google.com") && driveOpenMatch?.[1]) {
-    return `https://drive.google.com/uc?export=view&id=${driveOpenMatch[1]}`;
-  }
-
-  if (url.includes("dropbox.com")) {
-    return url.includes("?") ? `${url}&raw=1` : `${url}?raw=1`;
-  }
-
-  return url;
-};
-
 const getMediaThumb = (item: MediaItem) => {
-  const isInstagramPost = /instagram\.com\/(p|reel)\//.test(item.src);
   if (item.type === "video") return item.thumb ?? "/social-card.png";
-  if (isInstagramPost) return item.thumb ?? "/social-card.png";
-  return resolveMediaSource(item.src);
+  return item.src;
 };
 ---
 
@@ -82,6 +60,7 @@ const getMediaThumb = (item: MediaItem) => {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="description" content={`${caseData.title} case study by ${siteConfig.name}: strategy, creative execution, and measurable outcomes.`} />
     <title>{caseData.title} — Case Study | {siteConfig.name}</title>
 
@@ -166,7 +145,7 @@ const getMediaThumb = (item: MediaItem) => {
         <section class="reveal mt-12 rounded-3xl border border-zinc-200/70 bg-[#f9f6ef] p-5 sm:p-8">
           <p class="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">Media Gallery</p>
           <h2 class="mt-2 text-2xl font-bold text-zinc-900 sm:text-3xl">Interactive media showcase</h2>
-          <p class="mt-2 max-w-3xl text-sm leading-relaxed text-zinc-600 sm:text-base">Browse stills and motion previews. Click any tile to open a full-screen preview. You can also use Google Drive/Dropbox/Instagram links.</p>
+          <p class="mt-2 max-w-3xl text-sm leading-relaxed text-zinc-600 sm:text-base">Browse stills and motion previews. Click any tile to open a full-screen preview.</p>
 
           <div class="mt-7 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
             {caseData.media.map((item) => (
@@ -322,18 +301,6 @@ const getMediaThumb = (item: MediaItem) => {
       const modalContent = document.getElementById("modal-content");
       const mediaButtons = document.querySelectorAll(".media-trigger");
 
-      const resolveMediaSource = (url) => {
-        if (!url) return url;
-        const driveFileMatch = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
-        if (driveFileMatch?.[1]) return `https://drive.google.com/uc?export=view&id=${driveFileMatch[1]}`;
-        const driveOpenMatch = url.match(/[?&]id=([^&]+)/);
-        if (url.includes("drive.google.com") && driveOpenMatch?.[1]) {
-          return `https://drive.google.com/uc?export=view&id=${driveOpenMatch[1]}`;
-        }
-        if (url.includes("dropbox.com")) return url.includes("?") ? `${url}&raw=1` : `${url}?raw=1`;
-        return url;
-      };
-
       const resolveInstagramEmbed = (url) => {
         const match = url.match(/instagram\.com\/(p|reel)\/([^/?#]+)/);
         if (!match) return null;
@@ -372,15 +339,13 @@ const getMediaThumb = (item: MediaItem) => {
           if (!src) return;
 
           const instagramEmbed = resolveInstagramEmbed(src);
-          const resolvedSrc = resolveMediaSource(src);
-
           if (type === "video") {
-            const embedSrc = instagramEmbed ?? resolvedSrc;
+            const embedSrc = instagramEmbed ?? src;
             modalContent.innerHTML = `<iframe src="${embedSrc}" title="${title}" class="aspect-video w-full" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
           } else if (instagramEmbed) {
             modalContent.innerHTML = `<iframe src="${instagramEmbed}" title="${title}" class="aspect-video w-full bg-white" allowfullscreen></iframe>`;
           } else {
-            modalContent.innerHTML = `<img src="${resolvedSrc}" alt="${title}" class="max-h-[84vh] w-full object-contain bg-black" />`;
+            modalContent.innerHTML = `<img src="${src}" alt="${title}" class="max-h-[84vh] w-full object-contain bg-black" />`;
           }
           openModal();
         });
