@@ -49,6 +49,33 @@ const { caseData, projectNumber } = Astro.props as {
   projectPrefix: string;
   projectNumber: number;
 };
+
+const resolveMediaSource = (url: string) => {
+  if (!url) return url;
+
+  const driveFileMatch = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
+  if (driveFileMatch?.[1]) {
+    return `https://drive.google.com/uc?export=view&id=${driveFileMatch[1]}`;
+  }
+
+  const driveOpenMatch = url.match(/[?&]id=([^&]+)/);
+  if (url.includes("drive.google.com") && driveOpenMatch?.[1]) {
+    return `https://drive.google.com/uc?export=view&id=${driveOpenMatch[1]}`;
+  }
+
+  if (url.includes("dropbox.com")) {
+    return url.includes("?") ? `${url}&raw=1` : `${url}?raw=1`;
+  }
+
+  return url;
+};
+
+const getMediaThumb = (item: MediaItem) => {
+  const isInstagramPost = /instagram\.com\/(p|reel)\//.test(item.src);
+  if (item.type === "video") return item.thumb ?? "/social-card.png";
+  if (isInstagramPost) return item.thumb ?? "/social-card.png";
+  return resolveMediaSource(item.src);
+};
 ---
 
 <html lang="en">
@@ -139,7 +166,7 @@ const { caseData, projectNumber } = Astro.props as {
         <section class="reveal mt-12 rounded-3xl border border-zinc-200/70 bg-[#f9f6ef] p-5 sm:p-8">
           <p class="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">Media Gallery</p>
           <h2 class="mt-2 text-2xl font-bold text-zinc-900 sm:text-3xl">Interactive media showcase</h2>
-          <p class="mt-2 max-w-3xl text-sm leading-relaxed text-zinc-600 sm:text-base">Browse stills and motion previews. Click any tile to open a full-screen preview.</p>
+          <p class="mt-2 max-w-3xl text-sm leading-relaxed text-zinc-600 sm:text-base">Browse stills and motion previews. Click any tile to open a full-screen preview. You can also use Google Drive/Dropbox/Instagram links.</p>
 
           <div class="mt-7 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
             {caseData.media.map((item) => (
@@ -151,7 +178,7 @@ const { caseData, projectNumber } = Astro.props as {
                   data-title={item.name}
                 >
                   <img
-                    src={item.type === "video" ? item.thumb ?? "/social-card.png" : item.src}
+                    src={getMediaThumb(item)}
                     alt={item.name}
                     loading="lazy"
                     class="h-28 w-full rounded-[2px] object-cover sm:h-32"
@@ -210,8 +237,8 @@ const { caseData, projectNumber } = Astro.props as {
       </div>
     </main>
 
-    <div id="media-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-zinc-950/80 p-4">
-      <div class="relative w-full max-w-5xl">
+    <div id="media-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-zinc-950/0 p-4 transition-colors duration-300">
+      <div id="modal-panel" class="relative w-full max-w-5xl scale-[0.96] opacity-0 transition duration-300 ease-out">
         <button id="modal-close" class="absolute -top-12 right-0 rounded-full border border-white/40 bg-white px-4 py-2 text-sm font-semibold text-zinc-900 shadow-md transition hover:-translate-y-0.5 hover:bg-zinc-50">Close ✕</button>
         <div id="modal-content" class="overflow-hidden rounded-2xl border border-white/30 bg-black"></div>
       </div>
@@ -290,14 +317,50 @@ const { caseData, projectNumber } = Astro.props as {
       reveals.forEach((section) => revealObserver.observe(section));
 
       const modal = document.getElementById("media-modal");
+      const modalPanel = document.getElementById("modal-panel");
       const modalClose = document.getElementById("modal-close");
       const modalContent = document.getElementById("modal-content");
       const mediaButtons = document.querySelectorAll(".media-trigger");
 
+      const resolveMediaSource = (url) => {
+        if (!url) return url;
+        const driveFileMatch = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
+        if (driveFileMatch?.[1]) return `https://drive.google.com/uc?export=view&id=${driveFileMatch[1]}`;
+        const driveOpenMatch = url.match(/[?&]id=([^&]+)/);
+        if (url.includes("drive.google.com") && driveOpenMatch?.[1]) {
+          return `https://drive.google.com/uc?export=view&id=${driveOpenMatch[1]}`;
+        }
+        if (url.includes("dropbox.com")) return url.includes("?") ? `${url}&raw=1` : `${url}?raw=1`;
+        return url;
+      };
+
+      const resolveInstagramEmbed = (url) => {
+        const match = url.match(/instagram\.com\/(p|reel)\/([^/?#]+)/);
+        if (!match) return null;
+        return `https://www.instagram.com/${match[1]}/${match[2]}/embed`;
+      };
+
+      const openModal = () => {
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+        requestAnimationFrame(() => {
+          modal.classList.remove("bg-zinc-950/0");
+          modal.classList.add("bg-zinc-950/80");
+          modalPanel?.classList.remove("scale-[0.96]", "opacity-0");
+          modalPanel?.classList.add("scale-100", "opacity-100");
+        });
+      };
+
       const closeModal = () => {
-        modal.classList.add("hidden");
-        modal.classList.remove("flex");
-        modalContent.innerHTML = "";
+        modal.classList.remove("bg-zinc-950/80");
+        modal.classList.add("bg-zinc-950/0");
+        modalPanel?.classList.remove("scale-100", "opacity-100");
+        modalPanel?.classList.add("scale-[0.96]", "opacity-0");
+        setTimeout(() => {
+          modal.classList.add("hidden");
+          modal.classList.remove("flex");
+          modalContent.innerHTML = "";
+        }, 220);
       };
 
       mediaButtons.forEach((button) => {
@@ -308,14 +371,18 @@ const { caseData, projectNumber } = Astro.props as {
 
           if (!src) return;
 
-          if (type === "video") {
-            modalContent.innerHTML = `<iframe src="${src}" title="${title}" class="aspect-video w-full" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
-          } else {
-            modalContent.innerHTML = `<img src="${src}" alt="${title}" class="max-h-[84vh] w-full object-contain bg-black" />`;
-          }
+          const instagramEmbed = resolveInstagramEmbed(src);
+          const resolvedSrc = resolveMediaSource(src);
 
-          modal.classList.remove("hidden");
-          modal.classList.add("flex");
+          if (type === "video") {
+            const embedSrc = instagramEmbed ?? resolvedSrc;
+            modalContent.innerHTML = `<iframe src="${embedSrc}" title="${title}" class="aspect-video w-full" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+          } else if (instagramEmbed) {
+            modalContent.innerHTML = `<iframe src="${instagramEmbed}" title="${title}" class="aspect-video w-full bg-white" allowfullscreen></iframe>`;
+          } else {
+            modalContent.innerHTML = `<img src="${resolvedSrc}" alt="${title}" class="max-h-[84vh] w-full object-contain bg-black" />`;
+          }
+          openModal();
         });
       });
 
