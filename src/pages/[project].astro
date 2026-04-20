@@ -28,6 +28,46 @@ export function getStaticPaths() {
           result:
             "Achieved +2k follower growth with stronger brand consistency, better post cadence, and a clearer editorial direction.",
         },
+        beforeAfter: {
+          before: {
+            title: "Before: inconsistent content feed",
+            description:
+              "Visual quality and messaging changed from post to post, with no repeatable format for storytelling.",
+            media: "/projects/p1-2.webp",
+          },
+          after: {
+            title: "After: modular premium system",
+            description:
+              "Posts aligned to a consistent art direction, stronger hook structure, and cleaner branded composition.",
+            media: "/projects/p1-9.webp",
+          },
+        },
+        insights: [
+          "Template libraries reduced creative turnaround time by ~35%.",
+          "Publishing cadence improved from sporadic to 4x per week.",
+          "Consistent visual hierarchy boosted save/share behavior.",
+        ],
+        media: [
+          { type: "image", src: "/projects/p1-1.webp", name: "System dashboard cover" },
+          { type: "image", src: "/projects/p1-3.webp", name: "Content variation pack" },
+          { type: "image", src: "/projects/p1-4.webp", name: "Campaign composition" },
+          { type: "image", src: "/projects/p1-5.webp", name: "Grid consistency check" },
+          { type: "image", src: "/projects/p1-6.webp", name: "Brand card visual" },
+          {
+            type: "video",
+            src: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            thumb: "/projects/p1-8.webp",
+            name: "Content reel preview",
+          },
+          { type: "image", src: "/projects/p1-10.webp", name: "CTA hierarchy sample" },
+          { type: "image", src: "/projects/p1-11.webp", name: "Carousel pacing frame" },
+          {
+            type: "video",
+            src: "https://player.vimeo.com/video/76979871",
+            thumb: "/projects/p1-12.webp",
+            name: "Campaign motion sample",
+          },
+        ],
       },
     },
     project2: {
@@ -55,6 +95,41 @@ export function getStaticPaths() {
           result:
             "Delivered +40% average watch-time lift with noticeably stronger retention curves and improved replay behavior.",
         },
+        beforeAfter: {
+          before: {
+            title: "Before: slow opener",
+            description:
+              "The first three seconds had low urgency, which caused immediate viewer drop-off.",
+            media: "/images/edu-1.gif",
+          },
+          after: {
+            title: "After: hook-first narrative",
+            description:
+              "Lead visual + bolder typography created instant context and improved retention.",
+            media: "/images/edu-2.gif",
+          },
+        },
+        insights: [
+          "Frame-1 context + motion cue reduced early exits.",
+          "Faster cut rhythm increased completion rate in <30s edits.",
+          "Caption contrast improvements supported silent-viewing audiences.",
+        ],
+        media: [
+          { type: "image", src: "/images/edu-1.gif", name: "Hook redesign sample" },
+          { type: "image", src: "/images/edu-2.gif", name: "Caption hierarchy sample" },
+          {
+            type: "video",
+            src: "https://www.youtube.com/embed/jNQXAC9IVRw",
+            thumb: "/images/edu-3.gif",
+            name: "Retention-focused reel",
+          },
+          {
+            type: "video",
+            src: "https://player.vimeo.com/video/357274789",
+            thumb: "/images/edu-2.gif",
+            name: "A/B pacing comparison",
+          },
+        ],
       },
     },
     project3: {
@@ -82,6 +157,36 @@ export function getStaticPaths() {
           result:
             "Produced +28% growth in inbound inquiries and significantly improved consistency across all brand-facing surfaces.",
         },
+        beforeAfter: {
+          before: {
+            title: "Before: legacy inconsistent identity",
+            description:
+              "Old materials used mixed type, color drift, and no reusable visual framework.",
+            media: "/images/edu-3.gif",
+          },
+          after: {
+            title: "After: premium visual system",
+            description:
+              "New visual language improved hierarchy, polished composition, and brand trust.",
+            media: "/projects/p1-7.webp",
+          },
+        },
+        insights: [
+          "Unified color tokens improved cross-channel consistency.",
+          "Editorial grid system reduced revision loops.",
+          "Brand clarity increased qualified inbound requests.",
+        ],
+        media: [
+          { type: "image", src: "/projects/p1-7.webp", name: "Identity refresh poster" },
+          { type: "image", src: "/projects/p1-8.webp", name: "Brand moodboard panel" },
+          { type: "image", src: "/projects/p1-9.webp", name: "Template suite overview" },
+          {
+            type: "video",
+            src: "https://www.youtube.com/embed/aqz-KE-bpKQ",
+            thumb: "/projects/p1-10.webp",
+            name: "Brand motion presentation",
+          },
+        ],
       },
     },
   } as const;
