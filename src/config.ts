@@ -45,7 +45,7 @@ I focus on three outcomes: clearer communication, stronger brand consistency, an
     {
       degree: "Visual Design",
       school: "Brand identity, content design, and image editing built for clarity and recall.",
-      //dateRange: "",
+      //dateRange: "", fr
       achievements: [
         "Social media creatives (posts, carousels, campaigns)",
         "Illustrations, thumbnails, and banners",
