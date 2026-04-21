@@ -11,9 +11,9 @@ export const siteConfig = {
     youtube: "https://www.youtube.com/@dearlipu",
   },
   aboutMe:
-    `I’m a visual designer and video editor who helps brands and creators turn ideas into high-impact content.
+    `I’m Saurav, a visual designer and video editor who cares about one thing: making your message easy to understand.
 
-I focus on three outcomes: clearer communication, stronger brand consistency, and content that performs across social media, web, and print. I combine strategy with execution, so every deliverable looks polished and supports a measurable goal.`,
+I blend strategy with execution, so every visual has a purpose, not just style. When we work together, you get honest communication, fast turnaround, and polished content that helps people trust your brand and take action.`,
   
   skills: ["Graphic Design", "Motion Graphics", "Photo & Video Editing", "Editorial Design"],
   
