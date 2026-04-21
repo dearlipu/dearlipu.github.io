@@ -25,6 +25,8 @@ const impactStats = [
   { value: 140, suffix: "", label: "Completed Projects", icon: "projects" },
   { value: 50, suffix: "+", label: "Clients Worldwide", icon: "clients" },
 ];
+
+const [aboutIntro, aboutDetails] = siteConfig.aboutMe.split("\n\n");
 ---
 
 <section id="about" class="px-6 py-14 sm:px-10 sm:py-16 md:px-14 lg:px-20 lg:py-24">
@@ -46,7 +48,11 @@ const impactStats = [
 
       <div class="space-y-8 lg:col-span-8">
         <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7">
-          <div class="mb-5 grid grid-cols-1 gap-3 sm:grid-cols-3" data-counter-root>
+          <p class="text-base leading-relaxed text-gray-700 sm:text-lg md:text-xl">
+            {aboutIntro}
+          </p>
+
+          <div class="my-5 grid grid-cols-1 gap-3 sm:grid-cols-3" data-counter-root>
             {
               impactStats.map((stat) => (
                 <article class="impact-pill rounded-xl px-3 py-3 text-center sm:py-4">
@@ -88,9 +94,7 @@ const impactStats = [
               ))
             }
           </div>
-          <p class="text-base leading-relaxed text-gray-700 sm:text-lg md:text-xl whitespace-pre-line">
-            {siteConfig.aboutMe}
-          </p>
+          <p class="text-base leading-relaxed text-gray-700 sm:text-lg md:text-xl">{aboutDetails}</p>
         </div>
 
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
