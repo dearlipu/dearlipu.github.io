@@ -14,6 +14,8 @@ export const siteConfig = {
     `Yes, I’m a visual designer and video editor focused on making ideas feel clear, human, and persuasive.
 
 I work with founders, brands, and creators who want content that looks clean and performs in the real world. My process is simple: understand your goal, shape the message, and deliver polished assets fast with clear communication at every step.`,
+
+  skills: ["Graphic Design", "Motion Graphics", "Photo & Video Editing", "Editorial Design"],
   
   projects: [
     {
