@@ -1,38 +1,74 @@
-# Personal Portfolio Website
+# Saurav Panda — Portfolio-cum-Agency Website
 
-This is my personal portfolio website built to showcase my work, skills, and services in design and digital development.
-
-## About
-
-This project is based on an open-source template originally created by **Ryan Fitzgerald** and released under the MIT License.
-
-I have significantly customized and modified the original template — including UI, UX, layout, and overall structure — to better fit my personal style and workflow.
-
-## What I Changed
-
-* Redesigned UI and layout
-* Improved user experience and responsiveness
-* Modified components and sections
-* Customized content and branding
-* Optimized structure for real-world use
-
-## For Developers
-
-If you plan to use or fork this project, you’ll find that most parts of the code — including UI elements, layout sections, and components — are clearly explained using comments and tags to make understanding and customization easier.
-
-## Usage
-
-This project is open-source under the MIT License.
-
-If you like the structure or idea, feel free to fork and use it for your own projects.
-
-## License
-
-This project includes code from the original work by Ryan Fitzgerald, licensed under the MIT License.
-
-All modifications and customizations are also shared under the same license.
+> ⚡ Live: https://dearlipu.github.io/
+> 🎯 Design • UI • Motion • Digital Systems  
 
 ---
 
-**Note:**
-This is a personal portfolio project. If you use it, make sure to customize it and not copy it directly.
+## 🚀 About This Project
+
+This is my personal website where I showcase my work, skills, and services in design and digital development.
+
+Built on top of an open-source template by **Ryan Fitzgerald**, but heavily redesigned and re-engineered to create a more practical, real-world portfolio system.
+
+This is not a basic template edit — it's a structured rebuild focused on usability, clarity, and performance.
+
+---
+
+## 🧠 What Makes This Different
+
+- Fully redesigned UI (not just styled — rethought layout)
+- Improved UX for better flow and clarity
+- Component-level customization
+- Clean and scalable structure
+- Mobile-first responsive design
+- Real-world ready (not just showcase)
+
+---
+
+## 🛠 Tech Stack
+
+- Astro  
+- Tailwind CSS  
+- JavaScript  
+- Modern component-based architecture  
+
+---
+
+## 📂 Use This as a Base
+
+You can use this project as a starting point for your own portfolio.
+
+But don’t copy it blindly.
+
+If you use it:
+- Customize the design  
+- Replace content completely  
+- Build your own identity  
+
+---
+
+## 🙌 Credits
+
+Original template by **Ryan Fitzgerald**  
+This project is a heavily modified and customized version of that work.
+
+---
+
+## 📜 License
+
+MIT License
+
+- Original code: Ryan Fitzgerald  
+- Modifications: Saurav Panda  
+
+---
+
+## ⚠️ Note
+
+This is a personal portfolio project.
+
+If you fork it, treat it as a foundation — not a finished product.
+
+
+❤ by Saurav Panda aka @dearlipu
