@@ -46,49 +46,6 @@ const impactStats = [
           I create strategic visuals that clarify your message, strengthen brand perception, and turn attention into action.
         </p>
 
-        <div class="mt-6 grid grid-cols-3 gap-3" data-counter-root>
-          {
-            impactStats.map((stat) => (
-              <article class="impact-metric-item rounded-xl px-2 py-3 text-center sm:px-3 sm:py-4">
-                <div class="mx-auto flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 text-blue-600" aria-hidden="true">
-                  {
-                    stat.icon === "experience" && (
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M12 6l4 6l5 -4l-2 10h-14l-2 -10l5 4l4 -6"></path>
-                      </svg>
-                    )
-                  }
-                  {
-                    stat.icon === "projects" && (
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M3 9a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9"></path>
-                        <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"></path>
-                      </svg>
-                    )
-                  }
-                  {
-                    stat.icon === "clients" && (
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
-                        <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
-                      </svg>
-                    )
-                  }
-                </div>
-
-                <p class="mt-2 text-3xl font-extrabold leading-none sm:text-4xl">
-                  <span class="impact-counter" data-counter-target={stat.value}>0</span><span class="impact-suffix">{stat.suffix}</span>
-                </p>
-                <p class="mt-2 text-[11px] font-semibold leading-tight text-gray-600 sm:text-xs">{stat.label}</p>
-              </article>
-            ))
-          }
-        </div>
       </div>
 
       <div class="space-y-8 lg:col-span-8">
@@ -96,6 +53,50 @@ const impactStats = [
           <p class="text-base leading-relaxed text-gray-700 sm:text-lg md:text-xl whitespace-pre-line">
             {siteConfig.aboutMe}
           </p>
+        </div>
+
+
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-3" data-counter-root>
+          {
+            impactStats.map((stat) => (
+              <article class="impact-metric-item rounded-2xl px-4 py-5 text-center sm:px-3 sm:py-6">
+                <p class="flex items-center justify-center gap-2 text-3xl font-extrabold leading-none sm:text-4xl">
+                  <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-50 text-blue-600" aria-hidden="true">
+                    {
+                      stat.icon === "experience" && (
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M12 6l4 6l5 -4l-2 10h-14l-2 -10l5 4l4 -6"></path>
+                        </svg>
+                      )
+                    }
+                    {
+                      stat.icon === "projects" && (
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M3 9a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9"></path>
+                          <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                      )
+                    }
+                    {
+                      stat.icon === "clients" && (
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+                          <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                          <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
+                        </svg>
+                      )
+                    }
+                  </span>
+                  <span><span class="impact-counter" data-counter-target={stat.value}>0</span><span class="impact-suffix">{stat.suffix}</span></span>
+                </p>
+                <p class="mt-3 text-sm font-semibold leading-snug text-gray-700">{stat.label}</p>
+              </article>
+            ))
+          }
         </div>
 
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
