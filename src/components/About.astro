@@ -19,14 +19,6 @@ const aboutHighlights = [
     ],
   },
 ];
-
-const impactStats = [
-  { value: 5, suffix: "", label: "Years of Experience", icon: "experience" },
-  { value: 140, suffix: "", label: "Completed Projects", icon: "projects" },
-  { value: 50, suffix: "+", label: "Clients Worldwide", icon: "clients" },
-];
-
-const [aboutIntro, aboutDetails] = siteConfig.aboutMe.split("\n\n");
 ---
 
 <section id="about" class="px-6 py-14 sm:px-10 sm:py-16 md:px-14 lg:px-20 lg:py-24">
@@ -39,62 +31,21 @@ const [aboutIntro, aboutDetails] = siteConfig.aboutMe.split("\n\n");
           About
         </p>
 
-        <h2 class="mt-4 text-3xl font-bold leading-tight text-gray-900 sm:text-4xl md:text-5xl">About Me</h2>
+        <h2 class="mt-4 text-3xl font-bold leading-tight text-gray-900 sm:text-4xl md:text-5xl">
+          Who I Am.
+        </h2>
         <div class="mt-3 h-1.5 w-20 rounded-full" style={`background-color: ${siteConfig.accentColor}`}></div>
 
-        <p class="mt-5 max-w-sm text-sm leading-relaxed text-gray-600 sm:text-base">I help brands tell a clear story through visuals people notice and remember.</p>
-
+        <p class="mt-5 max-w-sm text-sm leading-relaxed text-gray-600 sm:text-base">
+          How I help brands tell a clear story through visuals people notice and remember.
+        </p>
       </div>
 
       <div class="space-y-8 lg:col-span-8">
         <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7">
-          <p class="text-base leading-relaxed text-gray-700 sm:text-lg md:text-xl">
-            {aboutIntro}
+          <p class="text-base leading-relaxed text-gray-700 sm:text-lg md:text-xl whitespace-pre-line">
+            {siteConfig.aboutMe}
           </p>
-
-          <div class="my-5 grid grid-cols-1 gap-3 sm:grid-cols-3" data-counter-root>
-            {
-              impactStats.map((stat) => (
-                <article class="impact-pill rounded-xl px-3 py-3 text-center sm:py-4">
-                  <div class="mx-auto flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 text-blue-600" aria-hidden="true">
-                    {
-                      stat.icon === "experience" && (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                          <path d="M12 6l4 6l5 -4l-2 10h-14l-2 -10l5 4l4 -6"></path>
-                        </svg>
-                      )
-                    }
-                    {
-                      stat.icon === "projects" && (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                          <path d="M3 9a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9"></path>
-                          <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"></path>
-                        </svg>
-                      )
-                    }
-                    {
-                      stat.icon === "clients" && (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                          <path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
-                          <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                          <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
-                        </svg>
-                      )
-                    }
-                  </div>
-                  <p class="mt-2 text-3xl font-extrabold leading-none sm:text-[2rem]">
-                    <span class="impact-counter" data-counter-target={stat.value}>0</span><span class="impact-suffix">{stat.suffix}</span>
-                  </p>
-                  <p class="mt-1 text-[11px] font-semibold leading-tight text-gray-600 sm:text-xs">{stat.label}</p>
-                </article>
-              ))
-            }
-          </div>
-          <p class="text-base leading-relaxed text-gray-700 sm:text-lg md:text-xl">{aboutDetails}</p>
         </div>
 
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -117,6 +68,18 @@ const [aboutIntro, aboutDetails] = siteConfig.aboutMe.split("\n\n");
           }
         </div>
 
+        <div>
+          <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-500">Core Capabilities</h3>
+          <div class="mt-3 flex flex-wrap gap-3">
+            {
+              siteConfig.skills.map((skill) => (
+                <span class="px-3 sm:px-4 py-1.5 sm:py-2 bg-gray-100 text-gray-800 rounded-full text-sm sm:text-base md:text-lg font-medium hover:bg-gray-200 transition-colors duration-200">
+                  {skill}
+                </span>
+              ))
+            }
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -132,89 +95,4 @@ const [aboutIntro, aboutDetails] = siteConfig.aboutMe.split("\n\n");
     border-radius: 999px;
     background: #9ca3af;
   }
-
-  .impact-pill {
-    border: 1px solid rgba(209, 213, 219, 0.9);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(249, 250, 251, 0.96));
-    box-shadow:
-      0 14px 24px -22px rgba(15, 23, 42, 0.55),
-      inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  }
-
-  .impact-counter {
-    color: #111827;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .impact-suffix {
-    color: #2563eb;
-  }
 </style>
-
-<script>
-  const counterRoot = document.querySelector("[data-counter-root]");
-
-  if (counterRoot) {
-    const counters = Array.from(counterRoot.querySelectorAll("[data-counter-target]"));
-    const activeAnimations = new WeakMap();
-
-    const animateCounter = (counter, index) => {
-      const target = Number(counter.getAttribute("data-counter-target") || 0);
-      const duration = 1200 + index * 160;
-      const start = performance.now();
-
-      const currentAnimation = activeAnimations.get(counter);
-      if (currentAnimation) {
-        cancelAnimationFrame(currentAnimation);
-      }
-
-      const animate = (currentTime) => {
-        const progress = Math.min((currentTime - start) / duration, 1);
-        const easedProgress = 1 - Math.pow(1 - progress, 3);
-        counter.textContent = Math.floor(target * easedProgress).toString();
-
-        if (progress < 1) {
-          const frameId = requestAnimationFrame(animate);
-          activeAnimations.set(counter, frameId);
-        } else {
-          counter.textContent = target.toString();
-          activeAnimations.delete(counter);
-        }
-      };
-
-      counter.textContent = "0";
-      const frameId = requestAnimationFrame(animate);
-      activeAnimations.set(counter, frameId);
-    };
-
-    const startCounters = () => {
-      counters.forEach((counter, index) => animateCounter(counter, index));
-    };
-
-    const resetCounters = () => {
-      counters.forEach((counter) => {
-        const currentAnimation = activeAnimations.get(counter);
-        if (currentAnimation) {
-          cancelAnimationFrame(currentAnimation);
-          activeAnimations.delete(counter);
-        }
-        counter.textContent = "0";
-      });
-    };
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            startCounters();
-          } else {
-            resetCounters();
-          }
-        });
-      },
-      { threshold: 0.45 },
-    );
-
-    observer.observe(counterRoot);
-  }
-</script>
