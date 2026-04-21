@@ -46,15 +46,15 @@ const impactStats = [
           I create strategic visuals that clarify your message, strengthen brand perception, and turn attention into action.
         </p>
 
-        <div class="impact-metrics mt-6 rounded-2xl p-4 sm:p-5" data-counter-root>
-          <div class="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+        <div class="impact-metrics mt-6 rounded-2xl p-3 sm:p-4" style={`--impact-accent: ${siteConfig.accentColor};`} data-counter-root>
+          <div class="grid grid-cols-3 overflow-hidden rounded-xl border border-gray-200 bg-white/80">
             {
-              impactStats.map((stat) => (
-                <article class="impact-metric-item rounded-xl px-3 py-2.5 sm:px-3.5 sm:py-3">
+              impactStats.map((stat, index) => (
+                <article class={`impact-metric-item px-2 py-3 text-center sm:px-3 sm:py-4 ${index < impactStats.length - 1 ? "border-r border-gray-200" : ""}`}>
                   <p class="text-3xl font-extrabold leading-none sm:text-4xl">
                     <span class="impact-counter" data-counter-target={stat.value}>0</span>{stat.suffix}
                   </p>
-                  <p class="mt-1.5 text-sm font-medium leading-tight text-white/85">{stat.label}</p>
+                  <p class="mt-2 text-[11px] font-semibold leading-tight text-gray-600 sm:text-xs">{stat.label}</p>
                 </article>
               ))
             }
@@ -118,27 +118,23 @@ const impactStats = [
   }
 
   .impact-metrics {
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(209, 213, 219, 0.8);
     background:
-      radial-gradient(circle at 15% 10%, rgba(255, 255, 255, 0.16), transparent 45%),
-      radial-gradient(circle at 78% 0%, rgba(255, 255, 255, 0.1), transparent 40%),
-      linear-gradient(145deg, #101827 0%, #141f33 55%, #0f172a 100%);
+      radial-gradient(circle at 15% 10%, rgba(255, 255, 255, 0.96), transparent 45%),
+      linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.96) 100%);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.18),
-      0 20px 35px -24px rgba(15, 23, 42, 0.65);
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      0 16px 30px -24px rgba(15, 23, 42, 0.35);
   }
 
   .impact-metric-item {
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: linear-gradient(130deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
-    color: #d9fd76;
-    box-shadow: 0 9px 22px -16px rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(2px);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.75), rgba(248, 250, 252, 0.9));
   }
 
   .impact-counter {
+    color: var(--impact-accent, #2563eb);
     font-variant-numeric: tabular-nums;
-    text-shadow: 0 0 24px rgba(185, 255, 122, 0.36);
+    text-shadow: 0 8px 18px rgba(37, 99, 235, 0.22);
   }
 </style>
 
