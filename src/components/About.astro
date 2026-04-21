@@ -21,9 +21,9 @@ const aboutHighlights = [
 ];
 
 const impactStats = [
-  { value: 12, suffix: "", label: "Years of Experience" },
-  { value: 270, suffix: "", label: "Completed Projects" },
-  { value: 50, suffix: "+", label: "Clients Worldwide" },
+  { value: 12, suffix: "", label: "Years of Experience", icon: "experience" },
+  { value: 270, suffix: "", label: "Completed Projects", icon: "projects" },
+  { value: 50, suffix: "+", label: "Clients Worldwide", icon: "clients" },
 ];
 ---
 
@@ -46,19 +46,48 @@ const impactStats = [
           I create strategic visuals that clarify your message, strengthen brand perception, and turn attention into action.
         </p>
 
-        <div class="impact-metrics mt-6 rounded-2xl p-3 sm:p-4" style={`--impact-accent: ${siteConfig.accentColor};`} data-counter-root>
-          <div class="grid grid-cols-3 overflow-hidden rounded-xl border border-gray-200 bg-white/80">
-            {
-              impactStats.map((stat, index) => (
-                <article class={`impact-metric-item px-2 py-3 text-center sm:px-3 sm:py-4 ${index < impactStats.length - 1 ? "border-r border-gray-200" : ""}`}>
-                  <p class="text-3xl font-extrabold leading-none sm:text-4xl">
-                    <span class="impact-counter" data-counter-target={stat.value}>0</span>{stat.suffix}
-                  </p>
-                  <p class="mt-2 text-[11px] font-semibold leading-tight text-gray-600 sm:text-xs">{stat.label}</p>
-                </article>
-              ))
-            }
-          </div>
+        <div class="mt-6 grid grid-cols-3 gap-3" data-counter-root>
+          {
+            impactStats.map((stat) => (
+              <article class="impact-metric-item rounded-xl px-2 py-3 text-center sm:px-3 sm:py-4">
+                <div class="mx-auto flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 text-blue-600" aria-hidden="true">
+                  {
+                    stat.icon === "experience" && (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M12 6l4 6l5 -4l-2 10h-14l-2 -10l5 4l4 -6"></path>
+                      </svg>
+                    )
+                  }
+                  {
+                    stat.icon === "projects" && (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M3 9a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9"></path>
+                        <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"></path>
+                      </svg>
+                    )
+                  }
+                  {
+                    stat.icon === "clients" && (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+                        <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
+                      </svg>
+                    )
+                  }
+                </div>
+
+                <p class="mt-2 text-3xl font-extrabold leading-none sm:text-4xl">
+                  <span class="impact-counter" data-counter-target={stat.value}>0</span><span class="impact-suffix">{stat.suffix}</span>
+                </p>
+                <p class="mt-2 text-[11px] font-semibold leading-tight text-gray-600 sm:text-xs">{stat.label}</p>
+              </article>
+            ))
+          }
         </div>
       </div>
 
@@ -117,24 +146,21 @@ const impactStats = [
     background: #9ca3af;
   }
 
-  .impact-metrics {
-    border: 1px solid rgba(209, 213, 219, 0.8);
-    background:
-      radial-gradient(circle at 15% 10%, rgba(255, 255, 255, 0.96), transparent 45%),
-      linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.96) 100%);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.9),
-      0 16px 30px -24px rgba(15, 23, 42, 0.35);
-  }
-
   .impact-metric-item {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.75), rgba(248, 250, 252, 0.9));
+    border: 1px solid rgba(209, 213, 219, 0.95);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.95));
+    box-shadow:
+      0 12px 24px -22px rgba(15, 23, 42, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
   }
 
   .impact-counter {
-    color: var(--impact-accent, #2563eb);
+    color: #111827;
     font-variant-numeric: tabular-nums;
-    text-shadow: 0 8px 18px rgba(37, 99, 235, 0.22);
+  }
+
+  .impact-suffix {
+    color: #2563eb;
   }
 </style>
 
@@ -143,39 +169,63 @@ const impactStats = [
 
   if (counterRoot) {
     const counters = Array.from(counterRoot.querySelectorAll("[data-counter-target]"));
+    const activeAnimations = new WeakMap();
 
-    const runCounters = () => {
-      counters.forEach((counter, index) => {
-        const target = Number(counter.getAttribute("data-counter-target") || 0);
-        const duration = 1300 + index * 180;
-        const start = performance.now();
+    const animateCounter = (counter, index) => {
+      const target = Number(counter.getAttribute("data-counter-target") || 0);
+      const duration = 1200 + index * 160;
+      const start = performance.now();
 
-        const animate = (currentTime) => {
-          const progress = Math.min((currentTime - start) / duration, 1);
-          const easedProgress = 1 - Math.pow(1 - progress, 3);
-          counter.textContent = Math.floor(target * easedProgress).toString();
+      const currentAnimation = activeAnimations.get(counter);
+      if (currentAnimation) {
+        cancelAnimationFrame(currentAnimation);
+      }
 
-          if (progress < 1) {
-            requestAnimationFrame(animate);
-          } else {
-            counter.textContent = target.toString();
-          }
-        };
+      const animate = (currentTime) => {
+        const progress = Math.min((currentTime - start) / duration, 1);
+        const easedProgress = 1 - Math.pow(1 - progress, 3);
+        counter.textContent = Math.floor(target * easedProgress).toString();
 
-        requestAnimationFrame(animate);
+        if (progress < 1) {
+          const frameId = requestAnimationFrame(animate);
+          activeAnimations.set(counter, frameId);
+        } else {
+          counter.textContent = target.toString();
+          activeAnimations.delete(counter);
+        }
+      };
+
+      counter.textContent = "0";
+      const frameId = requestAnimationFrame(animate);
+      activeAnimations.set(counter, frameId);
+    };
+
+    const startCounters = () => {
+      counters.forEach((counter, index) => animateCounter(counter, index));
+    };
+
+    const resetCounters = () => {
+      counters.forEach((counter) => {
+        const currentAnimation = activeAnimations.get(counter);
+        if (currentAnimation) {
+          cancelAnimationFrame(currentAnimation);
+          activeAnimations.delete(counter);
+        }
+        counter.textContent = "0";
       });
     };
 
     const observer = new IntersectionObserver(
-      (entries, obs) => {
+      (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            runCounters();
-            obs.disconnect();
+            startCounters();
+          } else {
+            resetCounters();
           }
         });
       },
-      { threshold: 0.4 },
+      { threshold: 0.45 },
     );
 
     observer.observe(counterRoot);
