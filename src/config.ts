@@ -44,38 +44,38 @@ export const siteConfig = {
   services: [
     {
       degree: "Visual Design",
-      school: "Brand identity, content design, and image editing built for clarity and recall.",
+      school: "Design systems and campaign visuals that help people understand your offer fast.",
       //dateRange: "",
       achievements: [
-        "Social media creatives (posts, carousels, campaigns)",
-        "Illustrations, thumbnails, and banners",
-        "Brand identity systems and visual guidelines",
-        "Posters, campaign assets, and marketing creatives",
-        "Photo editing, retouching & color grading"
+        "Social creatives for posts, carousels, and campaigns",
+        "Thumbnails, banners, and custom visual assets",
+        "Brand identity kits and practical style guidelines",
+        "Marketing visuals for launches, offers, and ads",
+        "Photo editing, retouching, and color correction"
       ],
     },
     {
       degree: "Video & Motion",
-      school: "Video editing and motion content designed to hold attention and increase retention.",
+      school: "Video and motion assets built to keep attention and improve watch time.",
       //dateRange: "",
       achievements: [
-        "Social content editing (Reels, Shorts, long-form)",
-        "Motion graphics & animated content",
-        "Cinematic edits & storytelling",
-        "Ads & promotional videos",
-        "2D/3D character & scene animation"
+        "Editing for Reels, Shorts, and long-form content",
+        "Motion graphics and animated explainer content",
+        "Story-led edits with stronger hooks and pacing",
+        "Promotional videos and paid ad creatives",
+        "2D/3D animation for characters and scenes"
       ],
     },
     {
       degree: "Print & Editorial",
-      school: "Editorial and print layouts that balance readability, structure, and visual polish.",
+      school: "Print and editorial design that looks premium and reads clearly.",
       //dateRange: "",
       achievements: [
-        "Magazines & editorial layouts",
-        "Book design & formatting",
-        "Brochures & catalogs",
-        "Flyers, business cards & print assets",
-        "Print-ready production (CMYK, bleed, export setup)"
+        "Magazine and editorial layout design",
+        "Book design and publishing-ready formatting",
+        "Brochures, catalogs, and product sheets",
+        "Flyers, business cards, and event materials",
+        "Press-ready files with CMYK, bleed, and export setup"
       ],
     },
   ],
