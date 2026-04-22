@@ -19,7 +19,7 @@ const whatsappNumber = siteConfig.social.whatsapp;
         <div class="mt-3 h-1.5 w-20 rounded-full" style={`background-color: ${siteConfig.accentColor}`}></div>
 
         <p class="mt-5 max-w-sm text-sm leading-relaxed text-gray-600 sm:text-base">
-          Share a few details and I’ll reply with a clear scope, timeline, and pricing plan tailored to your goals.
+          Share a few details and I’ll reply with a clear scope, timeline, and pricing recommendation for your goal.
         </p>
 
         <div class="mt-6 rounded-xl border border-gray-200 bg-gray-50 p-4">
@@ -31,7 +31,7 @@ const whatsappNumber = siteConfig.social.whatsapp;
       <div class="lg:col-span-8">
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
           <form id="contactForm" class="contact-card" novalidate data-whatsapp={whatsappNumber}>
-            <h3 class="text-lg font-semibold text-gray-900">Start your project inquiry</h3>
+            <h3 class="text-lg font-semibold text-gray-900">Start your project brief</h3>
             <p class="mt-1 text-sm text-gray-500">Fields marked with * are required.</p>
 
             <div class="mt-5 space-y-4">
@@ -43,20 +43,6 @@ const whatsappNumber = siteConfig.social.whatsapp;
               <div>
                 <label for="email" class="field-label">Email *</label>
                 <input id="email" name="email" type="email" required autocomplete="email" placeholder="e.g., john@email.com" class="input" />
-              </div>
-
-              <div>
-                <label for="projectType" class="field-label">Project Type *</label>
-                <select id="projectType" name="projectType" required class="input select-input">
-                  <option value="">Select project type</option>
-                  <option>Social Media Design</option>
-                  <option>Video Editing (YouTube / Reels)</option>
-                  <option>Motion Graphics & Animation</option>
-                  <option>Branding & Visual Identity</option>
-                  <option>Print Design (Posters, Flyers)</option>
-                  <option>Not sure (Need guidance)</option>
-                  <option>Other (Custom Request)</option>
-                </select>
               </div>
 
               <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -261,12 +247,11 @@ const whatsappNumber = siteConfig.social.whatsapp;
 
     const name = String(formData.get("name") || "").trim();
     const email = String(formData.get("email") || "").trim();
-    const projectType = String(formData.get("projectType") || "").trim();
     const timeline = String(formData.get("timeline") || "Not specified").trim();
     const budget = String(formData.get("budget") || "Not specified").trim();
     const details = String(formData.get("details") || "").trim();
 
-    if (!name || !email || !projectType || !details) {
+    if (!name || !email || !details) {
       formError.textContent = "Please complete all required fields before continuing.";
       formError.classList.remove("hidden");
       return;
@@ -288,7 +273,6 @@ New Project Inquiry
 
 Name: ${name}
 Email: ${email}
-Project: ${projectType}
 Timeline: ${timeline}
 Budget: ${budget}
 
