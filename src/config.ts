@@ -11,11 +11,11 @@ export const siteConfig = {
     youtube: "https://www.youtube.com/@dearlipu",
   },
   aboutMe:
-    `Yes, I’m a visual designer and video editor focused on making ideas feel clear, human, and persuasive.
+    `Yes, I’m a visual designer and video editor focused on making ideas feel clear, human, and persuasive. I work with founders, brands, and creators who want content that looks clean and performs in the real world.
+    
+    My process is simple: understand your goal, shape the message, and deliver polished assets fast with clear communication at every step.`,
 
-I work with founders, brands, and creators who want content that looks clean and performs in the real world. My process is simple: understand your goal, shape the message, and deliver polished assets fast with clear communication at every step.`,
-
-  skills: ["Graphic Design", "Motion Graphics", "Photo & Video Editing", "Editorial Design"],
+  skills: ["Fast Turnaround", "Clear Communication", "Consistent Quality"],
   
   projects: [
     {
@@ -45,7 +45,7 @@ I work with founders, brands, and creators who want content that looks clean and
     {
       degree: "Visual Design",
       school: "Brand identity, content design, and image editing built for clarity and recall.",
-      //dateRange: "", fr
+      //dateRange: "",
       achievements: [
         "Social media creatives (posts, carousels, campaigns)",
         "Illustrations, thumbnails, and banners",
