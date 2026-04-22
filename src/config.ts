@@ -21,22 +21,22 @@ export const siteConfig = {
     {
       name: "Social Content System",
       description:
-        "Built and deployed a repeatable social content system that drove +2k follower growth and stronger engagement consistency.",
-      link: "/project1",
-      skills: ["Content Strategy", "Social Design", "Brand Systems"],
+        "Built a repeatable social content workflow that helped the brand grow by 2,000+ followers and post with stronger consistency.",
+      link: "#",
+      skills: ["Content Strategy", "Social Design", "System Design"],
     },
     {
       name: "High-Retention Video Editing",
       description:
-        "Re-edited short-form videos with tighter hooks and pacing to deliver +40% average watch time across priority clips.",
-      link: "/project2",
-      skills: ["Video Editing", "Reels & Shorts", "Motion Design"],
+        "Reworked short-form videos with stronger hooks and cleaner pacing, increasing average watch time by 40% on priority clips.",
+      link: "#",
+      skills: ["Video Editing", "Reels & Shorts", "Retention Design"],
     },
     {
       name: "Brand Visual Redesign",
       description:
-        "Rebuilt outdated brand assets into a modern visual direction that improved clarity, credibility, and overall brand perception.",
-      link: "/project3",
+        "Redesigned outdated brand assets into a cleaner visual direction that improved clarity, trust, and overall brand perception.",
+      link: "#",
       skills: ["Visual Redesign", "Branding", "Design Direction"],
     },
   ],
@@ -45,7 +45,6 @@ export const siteConfig = {
     {
       degree: "Visual Design",
       school: "Design systems and campaign visuals that help people understand your offer fast.",
-      //dateRange: "",
       achievements: [
         "Social creatives for posts, carousels, and campaigns",
         "Thumbnails, banners, and custom visual assets",
@@ -57,7 +56,6 @@ export const siteConfig = {
     {
       degree: "Video & Motion",
       school: "Video and motion assets built to keep attention and improve watch time.",
-      //dateRange: "",
       achievements: [
         "Editing for Reels, Shorts, and long-form content",
         "Motion graphics and animated explainer content",
@@ -69,7 +67,6 @@ export const siteConfig = {
     {
       degree: "Print & Editorial",
       school: "Print and editorial design that looks premium and reads clearly.",
-      //dateRange: "",
       achievements: [
         "Magazine and editorial layout design",
         "Book design and publishing-ready formatting",
