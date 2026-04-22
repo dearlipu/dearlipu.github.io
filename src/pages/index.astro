@@ -11,6 +11,20 @@ import Brands from "../components/Brands.astro";
 import Contact from "../components/Contact.astro";
 import { siteConfig } from "../config";
 import "../styles/global.css";
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: siteConfig.name,
+  url: siteConfig.siteUrl,
+  sameAs: [
+    siteConfig.social.instagram,
+    siteConfig.social.twitter,
+    siteConfig.social.youtube,
+  ],
+  jobTitle: "Visual Designer and Video Editor",
+  knowsAbout: ["Visual Design", "Video Editing", "Motion Graphics"],
+};
 ---
 
 <html lang="en">
@@ -20,14 +34,20 @@ import "../styles/global.css";
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={siteConfig.description} />
-    <link rel="canonical" href="https://dearlipu.github.io/" />
+    <link rel="canonical" href={`${siteConfig.siteUrl}/`} />
+    {siteConfig.googleSiteVerification !== "TSCFrIOxF2u50hCpi2uMfBaJEYATy4CKBIzyvy6iyyc" && (
+      <meta
+        name="google-site-verification"
+        content={siteConfig.googleSiteVerification}
+      />
+    )}
   
     <!-- OPEN GRAPH / SOCIAL PREVIEW -->
     <meta property="og:title" content="Saurav Panda – aka @dearlipu" />
     <meta property="og:description" content={siteConfig.description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://dearlipu.github.io/" />
-    <meta property="og:image" content="https://dearlipu.github.io/social-card.png" />
+    <meta property="og:url" content={`${siteConfig.siteUrl}/`} />
+    <meta property="og:image" content={`${siteConfig.siteUrl}/social-card.png`} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
   
@@ -35,10 +55,11 @@ import "../styles/global.css";
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Saurav Panda – aka @dearlipu" />
     <meta name="twitter:description" content={siteConfig.description} />
-    <meta name="twitter:image" content="https://dearlipu.github.io/social-card.png" />
+    <meta name="twitter:image" content={`${siteConfig.siteUrl}/social-card.png`} />
     <meta name="twitter:creator" content="@dearlipu" />
   
     <meta name="robots" content="index, follow" />
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)}></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
