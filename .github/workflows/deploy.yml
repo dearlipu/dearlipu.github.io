@@ -37,7 +37,6 @@ jobs:
           grep -q "<urlset" dist/sitemap.xml
           test -f dist/robots.txt
 
-
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
