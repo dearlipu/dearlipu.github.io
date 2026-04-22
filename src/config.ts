@@ -1,4 +1,7 @@
 export const siteConfig = {
+  siteUrl: "https://dearlipu.github.io",
+  googleSiteVerification: "TSCFrIOxF2u50hCpi2uMfBaJEYATy4CKBIzyvy6iyyc",
+
   name: "Saurav Panda",
   title: "I design visuals that make brands impossible to ignore.",
   description: "I help brands and creators turn ideas into strategic design, video editing, and motion graphics that improve clarity, consistency, and conversion.",
