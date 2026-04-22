@@ -15,7 +15,7 @@ export const siteConfig = {
     
     My process is simple: understand your goal, shape the message, and deliver polished assets fast with clear communication at every step.`,
 
-  skills: ["Fast Turnaround", "Clear Communication", "Consistent Quality"],
+  skills: ["Fast Turnaround", "Clear Communication", "Consistent Quality", "Detail-Focused"],
   
   projects: [
     {
