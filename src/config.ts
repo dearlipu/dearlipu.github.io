@@ -25,21 +25,21 @@ export const siteConfig = {
       name: "Social Content System",
       description:
         "Built a repeatable social content workflow that helped the brand grow by 2,000+ followers and post with stronger consistency.",
-      link: "#",
+      link: "/project1",
       skills: ["Content Strategy", "Social Design", "System Design"],
     },
     {
       name: "High-Retention Video Editing",
       description:
         "Reworked short-form videos with stronger hooks and cleaner pacing, increasing average watch time by 40% on priority clips.",
-      link: "#",
+      link: "/project2",
       skills: ["Video Editing", "Reels & Shorts", "Retention Design"],
     },
     {
       name: "Brand Visual Redesign",
       description:
         "Redesigned outdated brand assets into a cleaner visual direction that improved clarity, trust, and overall brand perception.",
-      link: "#",
+      link: "/project3",
       skills: ["Visual Redesign", "Branding", "Design Direction"],
     },
   ],
