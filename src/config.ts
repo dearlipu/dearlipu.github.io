@@ -25,7 +25,7 @@ export const siteConfig = {
       name: "Social Content System",
       description:
         "Built a repeatable social content workflow that helped the brand grow by 2,000+ followers and post with stronger consistency.",
-      link: "/project1",
+      link: "https://www.behance.net/gallery/248155335/Social-Media-Bloom-Brew",
       skills: ["Content Strategy", "Social Design", "System Design"],
     },
     {
