@@ -117,7 +117,7 @@ const plans = [
                 <button
                   type="button"
                   data-plan={plan.name}
-                  class="whatsapp-btn btn-primary mt-6 w-full rounded-xl px-4 py-2.5 text-center text-sm font-semibold"
+                  class="email-btn btn-primary mt-6 w-full rounded-xl px-4 py-2.5 text-center text-sm font-semibold"
                   style={`--accent: ${siteConfig.accentColor}`}
                 >
                   Request Quote
@@ -231,7 +231,7 @@ const plans = [
   }
 </style>
 
-<script define:vars={{ whatsappNumber: siteConfig.social.whatsapp }}>
+<script>
   let currentMode = "project";
 
   const perBtn = document.getElementById("perProjectBtn");
@@ -240,7 +240,7 @@ const plans = [
 
   const prices = document.querySelectorAll(".price");
   const features = document.querySelectorAll(".features");
-  const buttons = document.querySelectorAll(".whatsapp-btn");
+  const buttons = document.querySelectorAll(".email-btn");
 
   const featureData = {
     project: [
@@ -300,31 +300,23 @@ const plans = [
     monthlyBtn.setAttribute("aria-pressed", String(isMonthly));
   }
 
-  function createWhatsAppUrl(plan, mode) {
-    const number = String(whatsappNumber || "").replace(/\D/g, "");
-    const modeLabel = mode === "monthly" ? "Monthly Retainer" : "Per Project";
-
-    const text = `Hi Saurav,\n\nI'm interested in your ${plan} (${modeLabel}) plan.\n\nPlease share pricing and timeline details for my requirement.\n\nThank you.`;
-    return `https://api.whatsapp.com/send?phone=${number}&text=${encodeURIComponent(text)}`;
-  }
-
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
       const plan = button.dataset.plan || "";
-      const url = createWhatsAppUrl(plan, currentMode);
+      const contactSection = document.getElementById("contact");
 
-      if (/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)) {
-        const number = String(whatsappNumber || "").replace(/\D/g, "");
-        const appUrl = `whatsapp://send?phone=${number}&text=${encodeURIComponent(`Hi Saurav, I'm interested in your ${plan} (${currentMode === "monthly" ? "Monthly Retainer" : "Per Project"}) plan.`)}`;
-        window.location.href = appUrl;
+      window.dispatchEvent(
+        new CustomEvent("pricing-plan-selected", {
+          detail: {
+            plan,
+            mode: currentMode,
+          },
+        }),
+      );
 
-        setTimeout(() => {
-          window.location.href = url;
-        }, 900);
-        return;
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
       }
-
-      window.open(url, "_blank", "noopener,noreferrer");
     });
   });
 
