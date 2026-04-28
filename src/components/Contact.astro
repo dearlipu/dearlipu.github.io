@@ -43,7 +43,7 @@ import { siteConfig } from "../config";
                 <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="e.g., +91 98765 43210" class="input" />
               </div>
 
-              <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div id="timelineBudgetGroup" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
                   <label for="timeline" class="field-label">Timeline</label>
                   <select id="timeline" name="timeline" class="input select-input">
@@ -261,9 +261,18 @@ import { siteConfig } from "../config";
   const contactForm = document.getElementById("contactForm");
   const formError = document.getElementById("formError");
   const planField = document.getElementById("selectedPlan");
+  const selectedPlanWrapper = document.getElementById("selectedPlanWrapper");
+  const timelineBudgetGroup = document.getElementById("timelineBudgetGroup");
   const timelineField = document.getElementById("timeline");
   const budgetField = document.getElementById("budget");
   const detailsField = document.getElementById("details");
+
+  function setPlanSelectionState(hasPlan) {
+    selectedPlanWrapper?.classList.toggle("hidden", !hasPlan);
+    timelineBudgetGroup?.classList.toggle("hidden", hasPlan);
+  }
+
+  setPlanSelectionState(false);
 
   contactForm?.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -320,6 +329,7 @@ ${details}`;
     if (planField) {
       planField.value = "";
     }
+    setPlanSelectionState(false);
   });
 
   window.addEventListener("pricing-plan-selected", (event) => {
@@ -345,8 +355,9 @@ ${details}`;
       budgetField.value = budgetPrefill;
     }
     if (detailsField && !detailsField.value) {
-      detailsField.value = `I'm interested in the ${plan} (${modeLabel}) plan.\n\nPlease share recommended deliverables, timeline, and next steps.`;
+      detailsField.value = "Please share the recommended deliverables, expected timeline, and next steps for this package.";
     }
+    setPlanSelectionState(true);
 
     contactForm.classList.remove("contact-card-plan-selected");
     window.requestAnimationFrame(() => {
