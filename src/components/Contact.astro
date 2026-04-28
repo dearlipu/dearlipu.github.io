@@ -80,7 +80,7 @@ import { siteConfig } from "../config";
                 ></textarea>
               </div>
 
-              <div>
+              <div id="selectedPlanWrapper" class="hidden">
                 <label for="selectedPlan" class="field-label">Selected Plan</label>
                 <input id="selectedPlan" name="selectedPlan" readonly class="input input-readonly" placeholder="Choose a plan from pricing above" />
               </div>
@@ -353,9 +353,6 @@ ${details}`;
     }
     if (budgetField && !budgetField.value) {
       budgetField.value = budgetPrefill;
-    }
-    if (detailsField && !detailsField.value) {
-      detailsField.value = "Please share the recommended deliverables, expected timeline, and next steps for this package.";
     }
     setPlanSelectionState(true);
 
