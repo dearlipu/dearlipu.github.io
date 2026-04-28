@@ -1,7 +1,5 @@
 ---
 import { siteConfig } from "../config";
-
-const whatsappNumber = siteConfig.social.whatsapp;
 ---
 
 <section id="contact" class="px-6 py-14 sm:px-10 sm:py-16 md:px-14 lg:px-20 lg:py-24">
@@ -30,7 +28,7 @@ const whatsappNumber = siteConfig.social.whatsapp;
 
       <div class="lg:col-span-8">
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <form id="contactForm" class="contact-card" novalidate data-whatsapp={whatsappNumber}>
+          <form id="contactForm" class="contact-card" novalidate data-email={siteConfig.social.email}>
             <h3 class="text-lg font-semibold text-gray-900">Start your project brief</h3>
             <p class="mt-1 text-sm text-gray-500">Fields marked with * are required.</p>
 
@@ -90,7 +88,7 @@ const whatsappNumber = siteConfig.social.whatsapp;
               class="btn-primary mt-5 w-full rounded-xl py-3 text-sm font-semibold sm:text-base"
               style={`--accent: ${siteConfig.accentColor}`}
             >
-              Send on WhatsApp
+              Send via Email
             </button>
           </form>
 
@@ -108,15 +106,6 @@ const whatsappNumber = siteConfig.social.whatsapp;
                   style={`--accent: ${siteConfig.accentColor}`}
                 >
                   {siteConfig.social.email}
-                </a>
-                <a
-                  href={`https://wa.me/${whatsappNumber}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="quick-link"
-                  style={`--accent: ${siteConfig.accentColor}`}
-                >
-                  WhatsApp: +{siteConfig.social.whatsapp.slice(0, 2)} {siteConfig.social.whatsapp.slice(2)}
                 </a>
               </div>
             </div>
@@ -259,10 +248,10 @@ const whatsappNumber = siteConfig.social.whatsapp;
 
     formError.classList.add("hidden");
 
-    const whatsappNumber = String(form.dataset.whatsapp || "").replace(/\D/g, "");
+    const contactEmail = String(form.dataset.email || "").trim();
 
-    if (!whatsappNumber) {
-      formError.textContent = "WhatsApp contact is not configured yet. Please use the Email button below.";
+    if (!contactEmail) {
+      formError.textContent = "Email contact is not configured yet. Please use the Email button below.";
       formError.classList.remove("hidden");
       return;
     }
@@ -278,25 +267,12 @@ Budget: ${budget}
 
 Details:
 ${details}`;
-    const encodedText = encodeURIComponent(plainText);
-    const whatsappWebUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedText}`;
-    const whatsappAppUrl = `whatsapp://send?phone=${whatsappNumber}&text=${encodedText}`;
-    const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
-    
-    if (isMobile) {
-      window.location.href = whatsappAppUrl;
-    
-      setTimeout(() => {
-        window.location.href = whatsappWebUrl;
-      }, 900);
-    
-      form.reset();
-      return;
-    }
-    
-    const popup = window.open(whatsappWebUrl, "_blank", "noopener,noreferrer");
+    const subject = encodeURIComponent(`New Project Inquiry from ${name}`);
+    const body = encodeURIComponent(plainText);
+    const mailtoUrl = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
+    const popup = window.open(mailtoUrl, "_blank", "noopener,noreferrer");
     if (!popup) {
-      formError.textContent = "Please allow pop-ups for this site so WhatsApp can open in a new tab.";
+      formError.textContent = "Please allow pop-ups for this site so your email app can open.";
       formError.classList.remove("hidden");
       return;
     }
