@@ -303,15 +303,18 @@ import { siteConfig } from "../config";
       return;
     }
 
+    const hasSelectedPlan = selectedPlan && selectedPlan !== "Not selected";
+    const scopeLines = hasSelectedPlan
+      ? `Selected Plan: ${selectedPlan}`
+      : `Timeline: ${timeline}\nBudget: ${budget}`;
+
     const plainText = `Hi Saurav,
 
 New Project Inquiry
 
 Name: ${name}
 WhatsApp: ${whatsapp || "Not provided"}
-Selected Plan: ${selectedPlan}
-Timeline: ${timeline}
-Budget: ${budget}
+${scopeLines}
 
 Details:
 ${details}`;
