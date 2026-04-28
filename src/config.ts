@@ -8,7 +8,7 @@ export const siteConfig = {
   accentColor: "#1d4ed8",
   social: {
     email: "infodearlipu+web@gmail.com",
-    whatsapp: "918144991049",
+    //whatsapp: "918144991049",
     instagram: "https://www.instagram.com/dearlipu",
     twitter: "https://x.com/dearlipu",
     youtube: "https://www.youtube.com/@dearlipu",
