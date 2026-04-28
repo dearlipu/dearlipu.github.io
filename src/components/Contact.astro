@@ -39,8 +39,8 @@ import { siteConfig } from "../config";
               </div>
 
               <div>
-                <label for="email" class="field-label">Email *</label>
-                <input id="email" name="email" type="email" required autocomplete="email" placeholder="e.g., john@email.com" class="input" />
+                <label for="whatsapp" class="field-label">WhatsApp Number</label>
+                <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="e.g., +91 98765 43210" class="input" />
               </div>
 
               <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -78,6 +78,11 @@ import { siteConfig } from "../config";
                   placeholder="Tell me your goal, target audience, preferred style, and any reference links."
                   class="input textarea"
                 ></textarea>
+              </div>
+
+              <div>
+                <label for="selectedPlan" class="field-label">Selected Plan</label>
+                <input id="selectedPlan" name="selectedPlan" readonly class="input input-readonly" placeholder="Choose a plan from pricing above" />
               </div>
             </div>
 
@@ -171,11 +176,39 @@ import { siteConfig } from "../config";
     resize: vertical;
   }
 
+  .field-optional {
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+    color: #6b7280;
+  }
+
+  .input-readonly {
+    background: #f8fafc;
+    color: #374151;
+  }
+
   .btn-primary {
     border: none;
     background: #0f172a;
     color: #fff;
     transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+
+  .contact-card-plan-selected {
+    animation: contactPulse 1.15s ease;
+  }
+
+  @keyframes contactPulse {
+    0% {
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.05), 0 0 0 0 rgba(29, 78, 216, 0.25);
+    }
+    40% {
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08), 0 0 0 12px rgba(29, 78, 216, 0.12);
+    }
+    100% {
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.05), 0 0 0 0 rgba(29, 78, 216, 0);
+    }
   }
 
   .btn-primary:hover,
@@ -227,6 +260,10 @@ import { siteConfig } from "../config";
 <script>
   const contactForm = document.getElementById("contactForm");
   const formError = document.getElementById("formError");
+  const planField = document.getElementById("selectedPlan");
+  const timelineField = document.getElementById("timeline");
+  const budgetField = document.getElementById("budget");
+  const detailsField = document.getElementById("details");
 
   contactForm?.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -235,12 +272,13 @@ import { siteConfig } from "../config";
     const formData = new FormData(form);
 
     const name = String(formData.get("name") || "").trim();
-    const email = String(formData.get("email") || "").trim();
+    const whatsapp = String(formData.get("whatsapp") || "").trim();
     const timeline = String(formData.get("timeline") || "Not specified").trim();
     const budget = String(formData.get("budget") || "Not specified").trim();
     const details = String(formData.get("details") || "").trim();
+    const selectedPlan = String(formData.get("selectedPlan") || "Not selected").trim();
 
-    if (!name || !email || !details) {
+    if (!name || !details) {
       formError.textContent = "Please complete all required fields before continuing.";
       formError.classList.remove("hidden");
       return;
@@ -261,7 +299,8 @@ import { siteConfig } from "../config";
 New Project Inquiry
 
 Name: ${name}
-Email: ${email}
+WhatsApp: ${whatsapp || "Not provided"}
+Selected Plan: ${selectedPlan}
 Timeline: ${timeline}
 Budget: ${budget}
 
@@ -278,5 +317,40 @@ ${details}`;
     }
     
     form.reset();
+    if (planField) {
+      planField.value = "";
+    }
+  });
+
+  window.addEventListener("pricing-plan-selected", (event) => {
+    const payload = event.detail || {};
+    const plan = String(payload.plan || "").trim();
+    const mode = String(payload.mode || "project").trim();
+
+    if (!plan || !contactForm) {
+      return;
+    }
+
+    const modeLabel = mode === "monthly" ? "Monthly Retainer" : "Per Project";
+    const budgetPrefill = plan === "Starter" ? "₹1k–₹3k (Basic)" : plan === "Growth" ? "₹3k–₹10k (Standard)" : "₹10k–₹25k (Advanced)";
+    const timelinePrefill = mode === "monthly" ? "Flexible / No deadline" : "Standard (4–7 days)";
+
+    if (planField) {
+      planField.value = `${plan} (${modeLabel})`;
+    }
+    if (timelineField && !timelineField.value) {
+      timelineField.value = timelinePrefill;
+    }
+    if (budgetField && !budgetField.value) {
+      budgetField.value = budgetPrefill;
+    }
+    if (detailsField && !detailsField.value) {
+      detailsField.value = `I'm interested in the ${plan} (${modeLabel}) plan.\n\nPlease share recommended deliverables, timeline, and next steps.`;
+    }
+
+    contactForm.classList.remove("contact-card-plan-selected");
+    window.requestAnimationFrame(() => {
+      contactForm.classList.add("contact-card-plan-selected");
+    });
   });
 </script>
