@@ -55,15 +55,6 @@ This project is a heavily modified and customized version of that work.
 
 ---
 
-## 📜 License
-
-MIT License
-
-- Original code: Ryan Fitzgerald  
-- Modifications: Saurav Panda  
-
----
-
 ## ⚠️ Note
 
 This is a personal portfolio project.
