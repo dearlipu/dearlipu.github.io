@@ -112,6 +112,15 @@ import { siteConfig } from "../config";
                 >
                   {siteConfig.social.email}
                 </a>
+                <a
+                  href={`https://wa.me/${whatsappNumber}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="quick-link"
+                  style={`--accent: ${siteConfig.accentColor}`}
+                >
+                  WhatsApp: +{siteConfig.social.whatsapp.slice(0, 2)} {siteConfig.social.whatsapp.slice(2)}
+                </a>
               </div>
             </div>
           </aside>
