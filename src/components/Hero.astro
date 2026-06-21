@@ -1,8 +1,11 @@
 ---
 import { siteConfig } from "../config";
 
-const { hero } = siteConfig;
-const [phonePreview, firstShot, secondShot] = hero.previews;
+const heroMetrics = [
+  { value: "48h", label: "first design direction" },
+  { value: "3x", label: "visual formats per campaign" },
+  { value: "100%", label: "ready-to-publish files" },
+];
 ---
 
 <div
@@ -25,17 +28,17 @@ const [phonePreview, firstShot, secondShot] = hero.previews;
           <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
           <span class="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
         </span>
-        {hero.badge}
+        Available for creative work
       </p>
 
       <h2 class="mt-8 text-pretty text-xl font-bold tracking-tight text-gray-700 sm:text-2xl md:text-4xl animate-fade-in animation-delay-100">
-        {hero.greeting} <span class="wave-hand">👋</span>
+        Hey! <span class="wave-hand">👋</span>
       </h2>
       <h1 class="mt-4 max-w-4xl text-pretty text-5xl font-extrabold tracking-tight text-gray-900 sm:text-6xl lg:text-7xl xl:text-8xl animate-fade-in animation-delay-200">
-        {hero.headline} <span class="text-gradient">{hero.highlight}</span>
+        I turn ideas into <span class="text-gradient">visuals people stop for.</span>
       </h1>
       <p class="mt-6 max-w-2xl text-pretty text-base font-medium leading-8 text-gray-600 sm:text-lg md:text-xl animate-fade-in animation-delay-300">
-        {hero.description}
+        {siteConfig.title}
       </p>
 
       <div class="mt-8 flex flex-col gap-3 sm:flex-row animate-fade-in animation-delay-400">
@@ -44,7 +47,7 @@ const [phonePreview, firstShot, secondShot] = hero.previews;
       </div>
 
       <dl class="mt-10 grid max-w-2xl grid-cols-3 gap-3 animate-fade-in animation-delay-500">
-        {hero.metrics.map((metric) => (
+        {heroMetrics.map((metric) => (
           <div class="rounded-2xl border border-gray-200 bg-white/75 p-3 shadow-sm backdrop-blur">
             <dt class="text-2xl font-extrabold text-gray-900 sm:text-3xl">{metric.value}</dt>
             <dd class="mt-1 text-xs font-medium leading-snug text-gray-500 sm:text-sm">{metric.label}</dd>
@@ -56,13 +59,13 @@ const [phonePreview, firstShot, secondShot] = hero.previews;
     <div class="relative min-h-[460px] animate-fade-in animation-delay-400 lg:min-h-[560px]" aria-label="Creative work preview collage">
       <div class="phone-card floating-card">
         <div class="phone-top"></div>
-        <img src={phonePreview.src} alt={phonePreview.alt} class="h-full w-full rounded-[1.75rem] object-cover" decoding="async" />
+        <img src="/projects/p1-1.gif" alt="Animated social design preview" class="h-full w-full rounded-[1.75rem] object-cover" decoding="async" />
       </div>
       <div class="shot-card shot-card-one floating-card animation-float-delay">
-        <img src={firstShot.src} alt={firstShot.alt} class="h-full w-full object-cover" decoding="async" />
+        <img src="/projects/p1-4.webp" alt="Brand visual preview" class="h-full w-full object-cover" decoding="async" />
       </div>
       <div class="shot-card shot-card-two floating-card">
-        <img src={secondShot.src} alt={secondShot.alt} class="h-full w-full object-cover" decoding="async" />
+        <img src="/projects/p1-7.webp" alt="Campaign design preview" class="h-full w-full object-cover" decoding="async" />
       </div>
       <div class="insight-card floating-card animation-float-delay-2">
         <span class="text-xs font-bold uppercase tracking-[0.16em] text-blue-700">Creative system</span>
