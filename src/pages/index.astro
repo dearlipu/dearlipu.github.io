@@ -61,6 +61,30 @@ const personSchema = {
     <meta name="robots" content="index, follow" />
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)}></script>
 
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", () => {
+        const revealItems = document.querySelectorAll(".reveal-up");
+        if (!("IntersectionObserver" in window)) {
+          revealItems.forEach((item) => item.classList.add("is-visible"));
+          return;
+        }
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.16, rootMargin: "0px 0px -60px 0px" }
+        );
+
+        revealItems.forEach((item) => observer.observe(item));
+      });
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
