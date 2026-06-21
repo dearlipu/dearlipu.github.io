@@ -6,6 +6,26 @@ export const siteConfig = {
   title: "I design visuals that make brands impossible to ignore.",
   description: "I help brands and creators turn ideas into strategic design, video editing, and motion graphics that improve clarity, consistency, and conversion.",
   accentColor: "#1d4ed8",
+  
+    hero: {
+    badge: "Available for creative work",
+    greeting: "Hey!",
+    headline: "I turn ideas into",
+    highlight: "visuals people stop for.",
+    description:
+      "Strategy, design, video, and motion assets built to feel clear in seconds—not paragraphs.",
+    metrics: [
+      { value: "48h", label: "first design direction" },
+      { value: "3x", label: "visual formats per campaign" },
+      { value: "100%", label: "ready-to-publish files" },
+    ],
+    previews: [
+      { src: "/projects/p1-1.gif", alt: "Animated social design preview" },
+      { src: "/projects/p1-4.webp", alt: "Brand visual preview" },
+      { src: "/projects/p1-7.webp", alt: "Campaign design preview" },
+    ],
+  },
+  
   social: {
     email: "infodearlipu+web@gmail.com",
     whatsapp: "918144991049",
