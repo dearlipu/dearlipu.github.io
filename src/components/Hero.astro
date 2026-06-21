@@ -2,9 +2,9 @@
 import { siteConfig } from "../config";
 
 const heroMetrics = [
-  { value: "01", label: "find the message" },
-  { value: "02", label: "build the story" },
-  { value: "03", label: "launch with confidence" },
+  { value: "48h", label: "first design direction" },
+  { value: "3x", label: "visual formats per campaign" },
+  { value: "100%", label: "ready-to-publish files" },
 ];
 ---
 
@@ -38,7 +38,7 @@ const heroMetrics = [
         I turn ideas into <span class="text-gradient">visuals people stop for.</span>
       </h1>
       <p class="mt-6 max-w-2xl text-pretty text-base font-medium leading-8 text-gray-600 sm:text-lg md:text-xl animate-fade-in animation-delay-300">
-        I shape your message into sharp design, video, and motion—so your audience gets the point fast and knows what to do next.
+        Strategy, design, video, and motion assets built to feel clear in seconds-not paragraphs.
       </p>
 
       <div class="mt-8 flex flex-col gap-3 sm:flex-row animate-fade-in animation-delay-400">
@@ -69,7 +69,7 @@ const heroMetrics = [
       </div>
       <div class="insight-card floating-card animation-float-delay-2">
         <span class="text-xs font-bold uppercase tracking-[0.16em] text-blue-700">Creative system</span>
-        <p class="mt-2 text-lg font-extrabold text-gray-900">Problem → Message → Visual that sells</p>
+        <p class="mt-2 text-lg font-extrabold text-gray-900">Hook → Story → Scroll-stopping asset</p>
         <div class="mt-4 flex gap-2">
           <span></span><span></span><span></span>
         </div>
@@ -94,8 +94,8 @@ const heroMetrics = [
   .text-gradient { background: linear-gradient(90deg, #111827, var(--accent-color), #06b6d4); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .hero-grid { background-image: linear-gradient(rgba(15,23,42,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,.06) 1px, transparent 1px); background-size: 120px 120px; mask-image: radial-gradient(80% 70% at 50% 20%, #000, transparent); }
   .blob { position: absolute; border-radius: 999px; filter: blur(8px); opacity: .24; animation: blobMove 7s ease-in-out infinite; }
-  .blob-one { right: 11%; top: 16%; width: 10rem; height: 10rem; background: #fb923c; }
-  .blob-two { right: 28%; bottom: 14%; width: 7rem; height: 7rem; background: #facc15; animation-delay: -2s; }
+  .blob-one { right: 11%; top: 16%; width: 10rem; height: 10rem; background: #60a5fa; }
+  .blob-two { right: 28%; bottom: 14%; width: 7rem; height: 7rem; background: #22d3ee; animation-delay: -2s; }
   .hero-btn { display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; padding: .9rem 1.2rem; font-weight: 800; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
   .hero-btn:hover { transform: translateY(-2px); }
   .hero-btn-primary { background: #0f172a; color: #fff; box-shadow: 0 18px 35px rgba(15,23,42,.18); }
@@ -110,7 +110,7 @@ const heroMetrics = [
   .shot-card-one { left: 0; top: 14%; height: 185px; width: 260px; --rotate: -5deg; }
   .shot-card-two { bottom: 4%; right: 0; height: 185px; width: 285px; --rotate: 3deg; }
   .insight-card { position: absolute; bottom: 16%; left: 7%; width: 270px; border: 1px solid rgba(229,231,235,.9); border-radius: 1.5rem; background: rgba(255,255,255,.88); padding: 1.1rem; backdrop-filter: blur(14px); --rotate: -2deg; }
-  .insight-card span:not(:first-child), .insight-card div span { display: block; height: .45rem; flex: 1; border-radius: 999px; background: linear-gradient(90deg, var(--accent-color), #facc15); }
+  .insight-card span:not(:first-child), .insight-card div span { display: block; height: .45rem; flex: 1; border-radius: 999px; background: linear-gradient(90deg, var(--accent-color), #67e8f9); }
   @media (max-width: 1023px) { .phone-card { right: 18%; } .shot-card-one { left: 7%; } }
   @media (max-width: 640px) { .phone-card { right: 4%; height: 360px; width: 205px; } .shot-card { border-width: 6px; } .shot-card-one { left: -4%; width: 210px; height: 150px; } .shot-card-two { width: 225px; height: 145px; } .insight-card { left: 0; bottom: 20%; width: 225px; } }
 </style>
