@@ -5,7 +5,7 @@ export const siteConfig = {
   name: "Saurav Panda",
   title: "I design visuals that make brands impossible to ignore.",
   description: "I help brands and creators turn ideas into strategic design, video editing, and motion graphics that improve clarity, consistency, and conversion.",
-  accentColor: "#1d4ed8",
+  accentColor: "#f97316",
   social: {
     email: "infodearlipu+web@gmail.com",
     whatsapp: "918144991049",
