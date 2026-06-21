@@ -1,327 +1,116 @@
 ---
 import { siteConfig } from "../config";
+
+const heroMetrics = [
+  { value: "48h", label: "first design direction" },
+  { value: "3x", label: "visual formats per campaign" },
+  { value: "100%", label: "ready-to-publish files" },
+];
 ---
 
 <div
   id="hero"
-  class="relative isolate overflow-hidden bg-white px-6 pb-28 pt-32 sm:px-10 sm:py-24 md:h-screen md:px-14 lg:px-20"
+  class="relative isolate overflow-hidden bg-white px-6 pb-32 pt-28 sm:px-10 sm:py-24 md:min-h-screen md:px-14 lg:px-20"
   style={`--accent-color: ${siteConfig.accentColor}`}
 >
-  <!-- Gradient overlay -->
   <div
-    class="absolute inset-0 -z-10"
-    style={`background: radial-gradient(ellipse 800px 1200px at 0% 0%, ${siteConfig.accentColor}40 0%, ${siteConfig.accentColor}25 20%, ${siteConfig.accentColor}10 40%, rgba(255, 255, 255, 0.3) 70%, rgba(255, 255, 255, 0.8) 90%, white 100%)`}
-  >
-  </div>
-  <svg
-    aria-hidden="true"
-    class="absolute inset-0 -z-10 size-full stroke-gray-200 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
-  >
-    <defs>
-      <pattern
-        x="50%"
-        y={-1}
-        id="0787a7c5-978c-4f66-83c7-11c213f99cb7"
-        width={200}
-        height={200}
-        patternUnits="userSpaceOnUse"
-      >
-        <path d="M.5 200V.5H200" fill="none"></path>
-      </pattern>
-      <pattern
-        id="programming-symbols"
-        x="0"
-        y="0"
-        width="400"
-        height="400"
-        patternUnits="userSpaceOnUse"
-      >
-        <text
-          x="50"
-          y="50"
-          fill={siteConfig.accentColor}
-          font-family="monospace"
-          font-size="24"
-          transform="rotate(-15)">OwO</text
-        >
-        <text
-          x="150"
-          y="100"
-          fill={siteConfig.accentColor}
-          font-family="monospace"
-          font-size="20"
-          transform="rotate(10)">^_^</text
-        >
-        <text
-          x="250"
-          y="80"
-          fill={siteConfig.accentColor}
-          font-family="monospace"
-          font-size="18"
-          transform="rotate(-5)">:D</text
-        >
-        <text
-          x="100"
-          y="200"
-          fill={siteConfig.accentColor}
-          font-family="monospace"
-          font-size="22"
-          transform="rotate(15)">T_T</text
-        >
-        <text
-          x="300"
-          y="180"
-          fill={siteConfig.accentColor}
-          font-family="monospace"
-          font-size="20"
-          transform="rotate(-10)">>_<</text
-        >
-        <text
-          x="200"
-          y="250"
-          fill={siteConfig.accentColor}
-          font-family="monospace"
-          font-size="24"
-          transform="rotate(5)">=)</text
-        >
-        <text
-          x="50"
-          y="320"
-          fill={siteConfig.accentColor}
-          font-family="monospace"
-          font-size="18"
-          transform="rotate(-8)">O.O</text
-        >
-        <text
-          x="350"
-          y="300"
-          fill={siteConfig.accentColor}
-          font-family="monospace"
-          font-size="22"
-          transform="rotate(12)">¬_¬</text
-        >
-        <text
-          x="150"
-          y="350"
-          fill={siteConfig.accentColor}
-          font-family="monospace"
-          font-size="20"
-          transform="rotate(-15)">^.^</text
-        >
-        <text
-          x="250"
-          y="370"
-          fill={siteConfig.accentColor}
-          font-family="monospace"
-          font-size="24"
-          transform="rotate(8)">$_$</text
-        >
-      </pattern>
-    </defs>
-    <rect
-      fill="url(#programming-symbols)"
-      width="100%"
-      height="100%"
-      opacity="0.2"></rect>
-    <rect
-      fill="url(#0787a7c5-978c-4f66-83c7-11c213f99cb7)"
-      width="100%"
-      height="100%"
-      stroke-width={0}></rect>
-  </svg>
-  <div class="h-full mx-auto max-w-6xl flex items-center">
-    <div class="max-w-3xl">
-      <h2
-        class="text-pretty text-xl sm:text-2xl md:text-5xl font-bold tracking-tight text-gray-700 animate-fade-in"
-      >
+    class="absolute inset-0 -z-20"
+    style={`background: radial-gradient(ellipse 800px 1000px at 5% 0%, ${siteConfig.accentColor}33 0%, ${siteConfig.accentColor}18 32%, rgba(255,255,255,.7) 66%, #fff 100%)`}
+  ></div>
+  <div class="hero-grid absolute inset-0 -z-10 opacity-70"></div>
+  <div class="blob blob-one" aria-hidden="true"></div>
+  <div class="blob blob-two" aria-hidden="true"></div>
+
+  <div class="mx-auto grid min-h-[72vh] max-w-6xl items-center gap-12 lg:grid-cols-[1.04fr_.96fr]">
+    <div class="relative z-10">
+      <p class="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/80 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-blue-700 shadow-sm animate-fade-in">
+        <span class="relative flex h-2 w-2">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
+        </span>
+        Available for creative work
+      </p>
+
+      <h2 class="mt-8 text-pretty text-xl font-bold tracking-tight text-gray-700 sm:text-2xl md:text-4xl animate-fade-in animation-delay-100">
         Hey! <span class="wave-hand">👋</span>
       </h2>
-      <h1
-        class="mt-6 sm:mt-8 md:mt-10 text-pretty text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold tracking-tight text-gray-800 animate-fade-in animation-delay-200 whitespace-normal md:whitespace-nowrap"
-      >
-        I'm <span style={{ color: siteConfig.accentColor }}
-          >{siteConfig.name}</span
-        >
+      <h1 class="mt-4 max-w-4xl text-pretty text-5xl font-extrabold tracking-tight text-gray-900 sm:text-6xl lg:text-7xl xl:text-8xl animate-fade-in animation-delay-200">
+        I turn ideas into <span class="text-gradient">visuals people stop for.</span>
       </h1>
-      <p
-        class="mt-4 sm:mt-6 md:mt-8 text-pretty text-base sm:text-lg md:text-xl/8 font-medium text-gray-600 animate-fade-in animation-delay-400"
-      >
-        {siteConfig.title}
+      <p class="mt-6 max-w-2xl text-pretty text-base font-medium leading-8 text-gray-600 sm:text-lg md:text-xl animate-fade-in animation-delay-300">
+        {siteConfig.title} Strategy, design, video, and motion assets built to feel clear in seconds—not paragraphs.
       </p>
+
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row animate-fade-in animation-delay-400">
+        <a href="#contact" class="hero-btn hero-btn-primary">Start a project</a>
+        <a href="#services" class="hero-btn hero-btn-secondary">See what I create</a>
+      </div>
+
+      <dl class="mt-10 grid max-w-2xl grid-cols-3 gap-3 animate-fade-in animation-delay-500">
+        {heroMetrics.map((metric) => (
+          <div class="rounded-2xl border border-gray-200 bg-white/75 p-3 shadow-sm backdrop-blur">
+            <dt class="text-2xl font-extrabold text-gray-900 sm:text-3xl">{metric.value}</dt>
+            <dd class="mt-1 text-xs font-medium leading-snug text-gray-500 sm:text-sm">{metric.label}</dd>
+          </div>
+        ))}
+      </dl>
     </div>
-  </div>
-  <div class="absolute inset-x-0 bottom-6 sm:bottom-8 md:bottom-10 [padding-inline:inherit]">
-    <div
-      class="mx-auto max-w-6xl
-      flex items-center flex-wrap gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-3
-      text-gray-700 animate-fade-in animation-delay-600"
-    >
-    {
-      siteConfig.social?.instagram && (
-        <a
-          href={siteConfig.social.instagram}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Instagram"
-          class="transition-colors duration-300 hover:text-[var(--accent-color)]"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8"
-          >
-            <>
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
-              <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
-              <path d="M16.5 7.5v.01" />
-            </>
-          </svg>
-        </a>
-      )
-    }
-    {
-      siteConfig.social?.twitter && (
-        <a
-          href={siteConfig.social.twitter}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="X / Twitter"
-          class="transition-colors duration-300 hover:text-[var(--accent-color)]"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8"
-          >
-            <>
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
-              <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
-            </>
-          </svg>
-        </a>
-      )
-    }
-    {
-      siteConfig.social?.youtube && (
-        <a
-          href={siteConfig.social.youtube}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="YouTube"
-          class="transition-colors duration-300 hover:text-[var(--accent-color)]"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8"
-          >
-            <>
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z" />
-              <path d="M10 9l5 3l-5 3z" />
-            </>
-          </svg>
-        </a>
-      )
-    }
 
-    <a
-      href="#updates"
-      class="flex items-center gap-1.5 px-2.5 h-6 rounded-full 
-      bg-transparent border-2 border-gray-600 
-      text-gray-700 text-[11px] sm:text-xs font-bold 
-      whitespace-nowrap"
-    >
-    
-      Available for work
-        <span class="relative flex h-1.5 w-1.5">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
-        </span>
-
-      <!--Fully booked this week
-        <span class="relative flex h-1.5 w-1.5">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-yellow-500"></span>
-        </span>-->
-
-      <!--Site under maintenance
-        <span class="relative flex h-1.5 w-1.5">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-500"></span>
-        </span>-->
-    
-    </a>
+    <div class="relative min-h-[460px] animate-fade-in animation-delay-400 lg:min-h-[560px]" aria-label="Creative work preview collage">
+      <div class="phone-card floating-card">
+        <div class="phone-top"></div>
+        <img src="/projects/p1-1.gif" alt="Animated social design preview" class="h-full w-full rounded-[1.75rem] object-cover" decoding="async" />
+      </div>
+      <div class="shot-card shot-card-one floating-card animation-float-delay">
+        <img src="/projects/p1-4.webp" alt="Brand visual preview" class="h-full w-full object-cover" decoding="async" />
+      </div>
+      <div class="shot-card shot-card-two floating-card">
+        <img src="/projects/p1-7.webp" alt="Campaign design preview" class="h-full w-full object-cover" decoding="async" />
+      </div>
+      <div class="insight-card floating-card animation-float-delay-2">
+        <span class="text-xs font-bold uppercase tracking-[0.16em] text-blue-700">Creative system</span>
+        <p class="mt-2 text-lg font-extrabold text-gray-900">Hook → Story → Scroll-stopping asset</p>
+        <div class="mt-4 flex gap-2">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <style>
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes wave { 0%, 60%, 100% { transform: rotate(0deg); } 10% { transform: rotate(14deg); } 20% { transform: rotate(-8deg); } 30% { transform: rotate(14deg); } 40% { transform: rotate(-4deg); } 50% { transform: rotate(10deg); } }
+  @keyframes float { 0%, 100% { transform: translateY(0) rotate(var(--rotate, 0deg)); } 50% { transform: translateY(-14px) rotate(var(--rotate, 0deg)); } }
+  @keyframes blobMove { 0%, 100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(18px,-24px,0) scale(1.08); } }
 
-  .animate-fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
-    opacity: 0;
-  }
-
-  .animation-delay-200 {
-    animation-delay: 0.2s;
-  }
-
-  .animation-delay-400 {
-    animation-delay: 0.4s;
-  }
-
-  .animation-delay-600 {
-    animation-delay: 0.6s;
-  }
-
-.wave-hand {
-  display: inline-block;
-  transform-origin: 70% 70%;
-  animation: wave 1.8s ease-in-out infinite;
-}
-
-@keyframes wave {
-  0% { transform: rotate(0deg); }
-  10% { transform: rotate(14deg); }
-  20% { transform: rotate(-8deg); }
-  30% { transform: rotate(14deg); }
-  40% { transform: rotate(-4deg); }
-  50% { transform: rotate(10deg); }
-  60% { transform: rotate(0deg); }
-  100% { transform: rotate(0deg); }
-}
+  .animate-fade-in { animation: fadeIn .8s ease-out forwards; opacity: 0; }
+  .animation-delay-100 { animation-delay: .1s; }
+  .animation-delay-200 { animation-delay: .2s; }
+  .animation-delay-300 { animation-delay: .3s; }
+  .animation-delay-400 { animation-delay: .4s; }
+  .animation-delay-500 { animation-delay: .5s; }
+  .wave-hand { display: inline-block; transform-origin: 70% 70%; animation: wave 1.8s ease-in-out infinite; }
+  .text-gradient { background: linear-gradient(90deg, #111827, var(--accent-color), #06b6d4); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero-grid { background-image: linear-gradient(rgba(15,23,42,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,.06) 1px, transparent 1px); background-size: 120px 120px; mask-image: radial-gradient(80% 70% at 50% 20%, #000, transparent); }
+  .blob { position: absolute; border-radius: 999px; filter: blur(8px); opacity: .24; animation: blobMove 7s ease-in-out infinite; }
+  .blob-one { right: 11%; top: 16%; width: 10rem; height: 10rem; background: #60a5fa; }
+  .blob-two { right: 28%; bottom: 14%; width: 7rem; height: 7rem; background: #22d3ee; animation-delay: -2s; }
+  .hero-btn { display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; padding: .9rem 1.2rem; font-weight: 800; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+  .hero-btn:hover { transform: translateY(-2px); }
+  .hero-btn-primary { background: #0f172a; color: #fff; box-shadow: 0 18px 35px rgba(15,23,42,.18); }
+  .hero-btn-primary:hover { background: var(--accent-color); }
+  .hero-btn-secondary { border: 1px solid #d1d5db; background: rgba(255,255,255,.8); color: #111827; }
+  .floating-card { animation: float 5.5s ease-in-out infinite; box-shadow: 0 24px 60px rgba(15,23,42,.16); }
+  .animation-float-delay { animation-delay: -1.4s; }
+  .animation-float-delay-2 { animation-delay: -2.4s; }
+  .phone-card { position: absolute; right: 8%; top: 4%; height: 430px; width: 245px; overflow: hidden; border: 10px solid #111827; border-radius: 2.4rem; background: #111827; --rotate: 4deg; }
+  .phone-top { position: absolute; left: 50%; top: .55rem; z-index: 2; height: .45rem; width: 4rem; transform: translateX(-50%); border-radius: 999px; background: #111827; }
+  .shot-card { position: absolute; overflow: hidden; border: 8px solid #fff; border-radius: 1.6rem; background: #fff; }
+  .shot-card-one { left: 0; top: 14%; height: 185px; width: 260px; --rotate: -5deg; }
+  .shot-card-two { bottom: 4%; right: 0; height: 185px; width: 285px; --rotate: 3deg; }
+  .insight-card { position: absolute; bottom: 16%; left: 7%; width: 270px; border: 1px solid rgba(229,231,235,.9); border-radius: 1.5rem; background: rgba(255,255,255,.88); padding: 1.1rem; backdrop-filter: blur(14px); --rotate: -2deg; }
+  .insight-card span:not(:first-child), .insight-card div span { display: block; height: .45rem; flex: 1; border-radius: 999px; background: linear-gradient(90deg, var(--accent-color), #67e8f9); }
+  @media (max-width: 1023px) { .phone-card { right: 18%; } .shot-card-one { left: 7%; } }
+  @media (max-width: 640px) { .phone-card { right: 4%; height: 360px; width: 205px; } .shot-card { border-width: 6px; } .shot-card-one { left: -4%; width: 210px; height: 150px; } .shot-card-two { width: 225px; height: 145px; } .insight-card { left: 0; bottom: 20%; width: 225px; } }
 </style>
