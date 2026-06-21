@@ -3,7 +3,7 @@ export const siteConfig = {
   googleSiteVerification: "TSCFrIOxF2u50hCpi2uMfBaJEYATy4CKBIzyvy6iyyc",
 
   name: "Saurav Panda",
-  title: "I design visuals that make brands impossible to ignore. Strategy, design, video, and motion assets built to feel clear in seconds-not paragraphs.",
+  title: "Strategy, design, video, and motion assets built to feel clear in seconds-not paragraphs.",
   description: "I help brands and creators turn ideas into strategic design, video editing, and motion graphics that improve clarity, consistency, and conversion.",
   accentColor: "#1d4ed8",
   social: {
@@ -14,7 +14,7 @@ export const siteConfig = {
     youtube: "https://www.youtube.com/@dearlipu",
   },
   aboutMe:
-    `I’m Saurav Panda, a visual designer and video editor focused on making ideas feel clear, human, and persuasive. I work with founders, brands, and creators who want content that looks clean and performs in the real world.
+    `I’m <span style={{ color: siteConfig.accentColor }}>{siteConfig.name}</span, a visual designer and video editor focused on making ideas feel clear, human, and persuasive. I work with founders, brands, and creators who want content that looks clean and performs in the real world.
     
     My process is simple: understand your goal, shape the message, and deliver polished assets fast with clear communication at every step.`,
 
