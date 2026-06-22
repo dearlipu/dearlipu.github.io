@@ -25,21 +25,33 @@ export const siteConfig = {
       name: "Social Content System",
       description:
         "Built a repeatable social content workflow that helped the brand grow by 2,000+ followers and post with stronger consistency.",
-      link: "https://www.behance.net/gallery/248155335/Social-Media-Bloom-Brew",
+      images: [
+        { src: "/projects/p1-1.gif", alt: "Social content animation preview" },
+        { src: "/projects/p1-3.webp", alt: "Social campaign post design" },
+        { src: "/projects/p1-4.webp", alt: "Brand content system layout" },
+      ],
       skills: ["Content Strategy", "Social Design", "System Design"],
     },
     {
       name: "High-Retention Video Editing",
       description:
         "Reworked short-form videos with stronger hooks and cleaner pacing, increasing average watch time by 40% on priority clips.",
-      link: "/project2",
+      images: [
+        { src: "/projects/p1-5.webp", alt: "Video editing visual preview" },
+        { src: "/projects/p1-6.webp", alt: "Short-form content preview" },
+        { src: "/projects/p1-7.webp", alt: "Retention editing frame" },
+      ],
       skills: ["Video Editing", "Reels & Shorts", "Retention Design"],
     },
     {
       name: "Brand Visual Redesign",
       description:
         "Redesigned outdated brand assets into a cleaner visual direction that improved clarity, trust, and overall brand perception.",
-      link: "/project3",
+      images: [
+        { src: "/projects/p1-8.webp", alt: "Brand redesign visual preview" },
+        { src: "/projects/p1-9.webp", alt: "Brand direction presentation" },
+        { src: "/projects/p1-2.webp", alt: "Clean brand asset layout" },
+      ],
       skills: ["Visual Redesign", "Branding", "Design Direction"],
     },
   ],
