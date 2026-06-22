@@ -7,85 +7,103 @@ const hasProjects = projects.length > 0;
 
 {
   hasProjects && (
-    <section id="projects" class="bg-white px-6 py-14 sm:px-10 sm:py-16 md:px-14 lg:px-20 lg:py-24">
-      <div class="mx-auto max-w-6xl reveal-up">
-        <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-14">
+    <section id="projects" class="relative overflow-hidden bg-[#080b13] px-5 py-16 text-white sm:px-10 sm:py-20 md:px-14 lg:px-20 lg:py-28">
+      <div class="pointer-events-none absolute -left-32 top-12 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl"></div>
+      <div class="pointer-events-none absolute -right-28 bottom-24 h-96 w-96 rounded-full bg-cyan-300/10 blur-3xl"></div>
+      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.10),transparent_34%),linear-gradient(135deg,rgba(255,255,255,0.06)_0,transparent_26%)]"></div>
+
+      <div class="relative mx-auto max-w-6xl reveal-up">
+        <div class="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-14">
           <div class="lg:col-span-4">
-            <p class="inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">
-              Projects
-            </p>
+            <div class="lg:sticky lg:top-28">
+              <p class="inline-flex rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-blue-100 shadow-lg shadow-blue-950/20 backdrop-blur">
+                Projects
+              </p>
 
-            <h2 class="mt-4 text-3xl font-bold leading-tight text-gray-900 sm:text-4xl md:text-5xl">
-              Selected Work.
-            </h2>
+              <h2 class="mt-5 max-w-sm text-4xl font-bold leading-[0.95] tracking-[-0.04em] text-white sm:text-5xl md:text-6xl">
+                Premium work, cinematic previews.
+              </h2>
 
-            <div class="mt-3 h-1.5 w-20 rounded-full" style={`background-color: ${siteConfig.accentColor}`}></div>
+              <div class="mt-5 h-px w-32 bg-gradient-to-r from-blue-300 via-white/70 to-transparent"></div>
 
-            <p class="mt-5 max-w-sm text-sm leading-relaxed text-gray-600 sm:text-base">
-              Real projects with clear goals, smart execution, and measurable outcomes you can trust.
-            </p>
+              <p class="mt-6 max-w-sm text-sm leading-7 text-slate-300 sm:text-base">
+                Hover a project on desktop to start the image story. On mobile, tap once to open it and scroll to tuck it away again.
+              </p>
+            </div>
           </div>
 
           <div class="lg:col-span-8">
-            <div class="space-y-8">
+            <div class="space-y-6">
               {projects.map((project, index) => {
                 const previewImages = project.images || [];
 
                 return (
                   <article
-                    class="project-card group relative overflow-hidden rounded-xl border border-gray-200 bg-gray-50 p-5 transition-all duration-500 hover:-translate-y-1 hover:border-gray-300 hover:bg-white hover:shadow-xl sm:rounded-2xl sm:p-6"
+                    class="project-card group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.06] shadow-2xl shadow-black/25 backdrop-blur-xl transition-all duration-700 hover:-translate-y-1 hover:border-blue-200/40 hover:bg-white/[0.09] hover:shadow-blue-950/40"
                     data-project-card
                   >
                     <button
                       type="button"
-                      class="project-toggle relative z-10 block w-full text-left"
+                      class="project-toggle relative z-10 block w-full p-5 text-left sm:p-6 md:p-7"
                       aria-expanded="false"
                     >
                       <span class="sr-only">Toggle {project.name} image preview</span>
-                      <div class="flex flex-col gap-6 md:grid md:grid-cols-[minmax(0,1fr)_260px] md:items-center lg:grid-cols-[minmax(0,1fr)_300px]">
-                        <div class="space-y-4">
-                          <div>
-                            <span class="font-mono text-sm" style={{ color: siteConfig.accentColor }}>
+                      <div class="grid gap-7 md:grid-cols-[minmax(0,0.9fr)_minmax(260px,1.1fr)] md:items-center">
+                        <div class="relative z-10 space-y-5">
+                          <div class="flex items-center gap-3">
+                            <span class="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-black/30 font-mono text-sm text-blue-100 shadow-inner shadow-white/5">
                               0{index + 1}
                             </span>
-                            <h3 class="mt-1 text-xl font-bold text-gray-900 sm:text-2xl">
-                              {project.name}
-                            </h3>
+                            <span class="h-px flex-1 bg-gradient-to-r from-white/25 to-transparent"></span>
                           </div>
 
-                          <p class="text-base leading-relaxed text-gray-600 sm:text-lg">
-                            {project.description}
-                          </p>
+                          <div>
+                            <h3 class="text-2xl font-bold leading-tight tracking-[-0.03em] text-white sm:text-3xl">
+                              {project.name}
+                            </h3>
+                            <p class="mt-3 text-base leading-7 text-slate-300">
+                              {project.description}
+                            </p>
+                          </div>
 
                           {project.skills && project.skills.length > 0 && (
-                            <div class="flex flex-wrap gap-1.5 pt-2 sm:gap-2">
+                            <div class="flex flex-wrap gap-2 pt-1">
                               {project.skills.map((skill) => (
-                                <span class="rounded-md bg-gray-900 px-2.5 py-1 text-xs font-medium text-white transition-all duration-300 group-hover:bg-gray-800 sm:rounded-lg sm:px-3 sm:py-1.5 sm:text-sm">
+                                <span class="rounded-full border border-white/10 bg-white/10 px-3 py-1.5 text-xs font-semibold text-slate-100 shadow-sm shadow-black/10 transition-all duration-300 group-hover:border-blue-200/40 group-hover:bg-blue-200/15">
                                   {skill}
                                 </span>
                               ))}
                             </div>
                           )}
 
-                          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-gray-500">
-                            Hover or tap to preview
-                          </p>
+                          <div class="flex items-center gap-3 pt-2 text-xs font-semibold uppercase tracking-[0.2em] text-blue-100/80">
+                            <span class="project-status-dot h-2 w-2 rounded-full bg-blue-300 shadow-[0_0_18px_rgba(147,197,253,0.85)]"></span>
+                            Hover / tap preview
+                          </div>
                         </div>
 
                         {previewImages.length > 0 && (
-                          <div class="project-preview relative h-48 overflow-hidden rounded-2xl bg-gray-900 shadow-inner sm:h-56 md:h-64">
-                            {previewImages.map((image, imageIndex) => (
-                              <img
-                                src={image.src}
-                                alt={image.alt || `${project.name} preview ${imageIndex + 1}`}
-                                loading={imageIndex === 0 ? "eager" : "lazy"}
-                                class="project-preview-image absolute inset-0 h-full w-full object-cover opacity-0 transition-all duration-700 ease-out"
-                                style={`--slide-index: ${imageIndex}; --slide-count: ${previewImages.length};`}
-                              />
-                            ))}
-                            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-white/10"></div>
-                            <div class="pointer-events-none absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-gray-900 shadow-sm">
-                              {previewImages.length} images
+                          <div class="project-preview relative min-h-0 overflow-hidden rounded-[1.5rem] border border-white/10 bg-slate-950 shadow-2xl shadow-black/40">
+                            <div class="project-browser-bar flex items-center gap-2 border-b border-white/10 bg-white/10 px-4 py-3 backdrop-blur">
+                              <span class="h-2.5 w-2.5 rounded-full bg-red-300/80"></span>
+                              <span class="h-2.5 w-2.5 rounded-full bg-amber-200/80"></span>
+                              <span class="h-2.5 w-2.5 rounded-full bg-emerald-300/80"></span>
+                              <span class="ml-auto text-[10px] font-semibold uppercase tracking-[0.22em] text-white/45">
+                                {previewImages.length} frames
+                              </span>
+                            </div>
+
+                            <div class="project-stage relative h-56 overflow-hidden sm:h-72 md:h-80">
+                              {previewImages.map((image, imageIndex) => (
+                                <img
+                                  src={image.src}
+                                  alt={image.alt || `${project.name} preview ${imageIndex + 1}`}
+                                  loading={imageIndex === 0 ? "eager" : "lazy"}
+                                  class="project-preview-image absolute inset-0 h-full w-full object-cover opacity-0"
+                                  style={`--slide-index: ${imageIndex}; --slide-count: ${previewImages.length};`}
+                                />
+                              ))}
+                              <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),transparent_26%),linear-gradient(0deg,rgba(2,6,23,0.42),transparent_45%)]"></div>
                             </div>
                           </div>
                         )}
@@ -136,59 +154,93 @@ const hasProjects = projects.length > 0;
 }
 
 <style>
-  .project-card .project-preview {
+  .project-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(147, 197, 253, 0.18), transparent 38%, rgba(255, 255, 255, 0.08));
+    opacity: 0;
+    transition: opacity 0.7s ease;
+  }
+
+  .project-card:hover::before,
+  .project-card[data-active="true"]::before {
+    opacity: 1;
+  }
+
+  .project-preview {
     max-height: 0;
     opacity: 0;
-    transform: translateY(14px) scale(0.98);
-    transition: max-height 0.6s ease, opacity 0.45s ease, transform 0.55s ease;
+    transform: translateY(18px) scale(0.96);
+    transition: max-height 0.75s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .project-card:hover .project-preview,
   .project-card[data-active="true"] .project-preview {
-    max-height: 20rem;
+    max-height: 24rem;
     opacity: 1;
     transform: translateY(0) scale(1);
   }
 
-  .project-card .project-preview-image:first-child {
+  .project-preview-image:first-child {
     opacity: 1;
   }
 
   .project-card:hover .project-preview-image,
   .project-card[data-active="true"] .project-preview-image {
-    animation: projectPreviewFade calc(var(--slide-count) * 2.4s) infinite;
-    animation-delay: calc(var(--slide-index) * 2.4s);
+    animation: luxuryProjectFade calc(var(--slide-count) * 2.8s) infinite cubic-bezier(0.4, 0, 0.2, 1);
+    animation-delay: calc(var(--slide-index) * 2.8s);
   }
 
-  @keyframes projectPreviewFade {
-    0%, 10% {
+  .project-card:hover .project-status-dot,
+  .project-card[data-active="true"] .project-status-dot {
+    animation: projectPulse 1.3s infinite ease-in-out;
+  }
+
+  @keyframes luxuryProjectFade {
+    0%, 8% {
       opacity: 0;
-      transform: scale(1.04);
+      transform: scale(1.08) translateY(10px);
+      filter: saturate(0.85) contrast(0.92);
     }
 
-    14%, 32% {
+    13%, 34% {
       opacity: 1;
-      transform: scale(1);
+      transform: scale(1) translateY(0);
+      filter: saturate(1.08) contrast(1.02);
     }
 
-    38%, 100% {
+    41%, 100% {
       opacity: 0;
-      transform: scale(1.02);
+      transform: scale(1.04) translateY(-6px);
+      filter: saturate(0.95) contrast(0.95);
+    }
+  }
+
+  @keyframes projectPulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.72;
+    }
+
+    50% {
+      transform: scale(1.8);
+      opacity: 1;
     }
   }
 
   @media (min-width: 768px) {
-    .project-card .project-preview {
+    .project-preview {
       max-height: none;
-      opacity: 0.18;
-      transform: translateX(18px) scale(0.96);
+      opacity: 0.34;
+      transform: perspective(900px) rotateY(-8deg) translateX(22px) scale(0.94);
     }
 
     .project-card:hover .project-preview,
     .project-card[data-active="true"] .project-preview {
       max-height: none;
       opacity: 1;
-      transform: translateX(0) scale(1);
+      transform: perspective(900px) rotateY(0deg) translateX(0) scale(1);
     }
   }
 </style>
