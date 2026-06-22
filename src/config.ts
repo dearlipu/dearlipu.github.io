@@ -49,33 +49,33 @@ export const siteConfig = {
       degree: "Visual Design",
       school: "Design systems and campaign visuals that help people understand your offer fast.",
       achievements: [
-        "Social creatives for posts, carousels, and campaigns",
-        "Thumbnails, banners, and custom visual assets",
-        "Brand identity kits and practical style guidelines",
-        "Marketing visuals for launches, offers, and ads",
-        "Photo editing, retouching, and color correction"
+        "Posts, carousels, and campaign graphics",
+        "Thumbnails, banners, and key visuals",
+        "Simple brand kits and style guides",
+        "Launch, offer, and ad creatives",
+        "Photo edits, retouching, and color"
       ],
     },
     {
       degree: "Video & Motion",
-      school: "Video and motion assets built to keep attention and improve watch time.",
+      school: "Edits and animation that keep people watching.",
       achievements: [
-        "Editing for Reels, Shorts, and long-form content",
-        "Motion graphics and animated explainer content",
-        "Story-led edits with stronger hooks and pacing",
-        "Promotional videos and paid ad creatives",
-        "2D/3D animation for characters and scenes"
+        "Reels, Shorts, and long-form edits",
+        "Motion graphics and explainers",
+        "Hooks, pacing, and clean story flow",
+        "Promo videos and paid ad creatives",
+        "2D/3D scenes and character animation"
       ],
     },
     {
       degree: "Print & Editorial",
-      school: "Print and editorial design that looks premium and reads clearly.",
+      school: "Premium layouts for real-world brand moments.",
       achievements: [
-        "Magazine and editorial layout design",
-        "Book design and publishing-ready formatting",
-        "Brochures, catalogs, and product sheets",
-        "Flyers, business cards, and event materials",
-        "Press-ready files with CMYK, bleed, and export setup"
+        "Magazine and editorial layouts",
+        "Book design and ready-to-print files",
+        "Brochures, catalogs, and sell sheets",
+        "Flyers, cards, and event materials",
+        "CMYK, bleed, and export setup"
       ],
     },
   ],
