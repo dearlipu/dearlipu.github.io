@@ -2,9 +2,9 @@
 import { siteConfig } from "../config";
 
 const heroMetrics = [
-  { value: "48h", label: "first design direction" },
-  { value: "3x", label: "visual formats per campaign" },
-  { value: "100%", label: "ready-to-publish files" },
+  { value: "48", suffix: "h", label: "first design direction" },
+  { value: "3", suffix: "x", label: "visual formats per campaign" },
+  { value: "100", suffix: "%", label: "ready-to-publish files" },
 ];
 ---
 
@@ -49,7 +49,9 @@ const heroMetrics = [
       <dl class="mt-10 grid max-w-2xl grid-cols-3 gap-3 animate-fade-in animation-delay-500">
         {heroMetrics.map((metric) => (
           <div class="rounded-2xl border border-gray-200 bg-white/75 p-3 shadow-sm backdrop-blur">
-            <dt class="text-2xl font-extrabold text-gray-900 sm:text-3xl">{metric.value}</dt>
+            <dt class="text-2xl font-extrabold text-gray-900 sm:text-3xl">
+              <span class="hero-counter" data-target={metric.value}>0</span><span>{metric.suffix}</span>
+            </dt>
             <dd class="mt-1 text-xs font-medium leading-snug text-gray-500 sm:text-sm">{metric.label}</dd>
           </div>
         ))}
@@ -114,3 +116,64 @@ const heroMetrics = [
   @media (max-width: 1023px) { .phone-card { right: 18%; } .shot-card-one { left: 7%; } }
   @media (max-width: 640px) { .phone-card { right: 4%; height: 360px; width: 205px; } .shot-card { border-width: 6px; } .shot-card-one { left: -4%; width: 210px; height: 150px; } .shot-card-two { width: 225px; height: 145px; } .insight-card { left: 0; bottom: 20%; width: 225px; } }
 </style>
+
+<script>
+  const heroCounters = document.querySelectorAll(".hero-counter");
+
+  if (heroCounters.length) {
+    const duration = 1300;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const frameIds = new WeakMap();
+
+    const animateCounter = (counter) => {
+      const target = Number(counter.getAttribute("data-target") || 0);
+
+      if (prefersReducedMotion) {
+        counter.textContent = target.toString();
+        return;
+      }
+
+      const start = performance.now();
+
+      const tick = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        counter.textContent = Math.floor(target * eased).toString();
+
+        if (progress < 1) {
+          frameIds.set(counter, requestAnimationFrame(tick));
+        } else {
+          counter.textContent = target.toString();
+        }
+      };
+
+      counter.textContent = "0";
+      frameIds.set(counter, requestAnimationFrame(tick));
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const counter = entry.target;
+
+          if (!(counter instanceof HTMLElement)) {
+            return;
+          }
+
+          if (entry.isIntersecting) {
+            animateCounter(counter);
+          } else {
+            const frameId = frameIds.get(counter);
+            if (frameId) {
+              cancelAnimationFrame(frameId);
+            }
+            counter.textContent = "0";
+          }
+        });
+      },
+      { threshold: 0.5 },
+    );
+
+    heroCounters.forEach((counter) => observer.observe(counter));
+  }
+</script>
