@@ -47,7 +47,7 @@ export const siteConfig = {
   services: [
     {
       degree: "Visual Design",
-      school: "Design systems and campaign visuals that help people understand your offer fast.",
+      school: "A clear look for your offer, campaign, or brand.",
       achievements: [
         "Posts, carousels, and campaign graphics",
         "Thumbnails, banners, and key visuals",
