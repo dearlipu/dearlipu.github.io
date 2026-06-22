@@ -1,24 +1,43 @@
 @import "tailwindcss";
 
-body {
-  font-family: 'Anek Devanagari', sans-serif;
-  background: #fff;
+:root {
+  color-scheme: light;
+  --ink: #111827;
+  --muted: #5b6472;
+  --paper: #fffaf4;
+  --accent: #f97316;
 }
 
 html {
   scroll-behavior: smooth;
+  background: var(--paper);
+}
+
+body {
+  margin: 0;
+  font-family: 'Anek Devanagari', sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(249, 115, 22, 0.12), transparent 28rem),
+    linear-gradient(180deg, #fffaf4 0%, #ffffff 34%, #fff7ed 100%);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::selection {
+  background: rgba(249, 115, 22, 0.22);
 }
 
 section {
   scroll-margin-top: 100px;
 }
 
-img, video {
+img,
+video {
   user-select: none;
   -webkit-user-drag: none;
   pointer-events: none;
 }
-
 
 .reveal-up {
   opacity: 0;
@@ -31,10 +50,28 @@ img, video {
   transform: translateY(0);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+.story-band {
+  position: relative;
+}
+
+.story-band::before {
+  content: "";
+  position: absolute;
+  left: max(1.5rem, calc((100vw - 72rem) / 2));
+  top: 4rem;
+  bottom: 4rem;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(249, 115, 22, 0.32), transparent);
+}
+
+@media (max-width: 768px) {
+  .story-band::before {
+    display: none;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 
   *,
   *::before,
