@@ -16,7 +16,7 @@ const hasServices = services.length > 0;
             </p>
 
             <h2 class="mt-4 text-3xl font-bold leading-tight text-gray-900 sm:text-4xl md:text-5xl">
-              Then We Build.
+              What I Do.
             </h2>
 
             <div class="mt-3 h-1.5 w-20 rounded-full" style={`background-color: ${siteConfig.accentColor}`}></div>
@@ -29,7 +29,7 @@ const hasServices = services.length > 0;
           <div class="space-y-6 lg:col-span-8">
             {
               services.map((service, index) => (
-                <article class="service-card group" style={`--accent-color: ${siteConfig.accentColor}`}>
+                <article class="service-card group">
                   <div class="flex-1 p-5 md:p-6">
                     <div class="mb-4 flex items-start justify-between gap-3">
                       <div>
@@ -71,7 +71,7 @@ const hasServices = services.length > 0;
     width: 0.375rem;
     flex-shrink: 0;
     border-radius: 999px;
-    background: var(--accent-color, #f97316);
+    background: #9ca3af;
   }
 
   .service-card {
@@ -80,7 +80,7 @@ const hasServices = services.length > 0;
     overflow: hidden;
     border-radius: 1rem;
     border: 1px solid #e5e7eb;
-    background: linear-gradient(160deg, #ffffff, #fff7ed);
+    background: linear-gradient(160deg, #ffffff, #f8fafc);
     box-shadow: 0 8px 28px rgba(15, 23, 42, 0.04);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
