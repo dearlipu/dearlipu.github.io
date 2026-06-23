@@ -29,166 +29,85 @@ const hasProjects = projects.length > 0;
           <div class="lg:col-span-8">
             <div class="space-y-8">
               {projects.map((project, index) => {
-                const previewImages = project.images || [];
+                const Component = project.link ? "a" : "div";
+                const isInternalLink = project.link?.startsWith("/");
+                const linkProps = project.link
+                  ? {
+                      href: project.link,
+                      ...(isInternalLink ? {} : { target: "_blank", rel: "noopener noreferrer" }),
+                    }
+                  : {};
 
                 return (
-                  <article
-                    class="project-card group relative overflow-hidden rounded-xl border border-gray-200 bg-gray-50 p-5 transition-all duration-500 hover:-translate-y-1 hover:border-gray-300 hover:bg-white hover:shadow-xl sm:rounded-2xl sm:p-6"
-                    data-project-card
-                  >
-                    <button
-                      type="button"
-                      class="project-toggle relative z-10 block w-full text-left"
-                      aria-expanded="false"
+                  <div class="group relative">
+                    <Component
+                      {...linkProps}
+                      class={`block relative p-5 sm:p-6 bg-gray-50 rounded-xl sm:rounded-2xl border border-gray-200 transition-all duration-300 ${
+                        project.link
+                          ? "hover:bg-white hover:shadow-xl hover:border-gray-300 hover:-translate-y-1"
+                          : ""
+                        }`}
                     >
-                      <span class="sr-only">Toggle {project.name} image preview</span>
-                      <div class="flex flex-col gap-6 md:grid md:grid-cols-[minmax(0,1fr)_260px] md:items-center lg:grid-cols-[minmax(0,1fr)_300px]">
-                        <div class="space-y-4">
-                          <div>
-                            <span class="font-mono text-sm" style={{ color: siteConfig.accentColor }}>
-                              0{index + 1}
-                            </span>
-                            <h3 class="mt-1 text-xl font-bold text-gray-900 sm:text-2xl">
-                              {project.name}
-                            </h3>
-                          </div>
+                      {project.link && (
+                        <div class="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center bg-gray-900 rounded-full text-white transition-all duration-300 group-hover:bg-gray-700">
+                          <svg
+                            class="w-4 h-4 sm:w-[18px] sm:h-[18px] md:w-5 md:h-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M7 17L17 7M17 7H7M17 7V17"
+                            />
+                          </svg>
+                        </div>
+                      )}
 
-                          <p class="text-base leading-relaxed text-gray-600 sm:text-lg">
-                            {project.description}
-                          </p>
-
-                          {project.skills && project.skills.length > 0 && (
-                            <div class="flex flex-wrap gap-1.5 pt-2 sm:gap-2">
-                              {project.skills.map((skill) => (
-                                <span class="rounded-md bg-gray-900 px-2.5 py-1 text-xs font-medium text-white transition-all duration-300 group-hover:bg-gray-800 sm:rounded-lg sm:px-3 sm:py-1.5 sm:text-sm">
-                                  {skill}
-                                </span>
-                              ))}
-                            </div>
-                          )}
-
-                          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-gray-500">
-                            Hover or tap to preview
-                          </p>
+                      <div class="space-y-4">
+                        <div>
+                          <span
+                            class="text-sm font-mono"
+                            style={{ color: siteConfig.accentColor }}
+                          >
+                            0{index + 1}
+                          </span>
+                          <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mt-1">
+                            {project.name}
+                          </h3>
                         </div>
 
-                        {previewImages.length > 0 && (
-                          <div class="project-preview relative h-48 overflow-hidden rounded-2xl bg-gray-900 shadow-inner sm:h-56 md:h-64">
-                            {previewImages.map((image, imageIndex) => (
-                              <img
-                                src={image.src}
-                                alt={image.alt || `${project.name} preview ${imageIndex + 1}`}
-                                loading={imageIndex === 0 ? "eager" : "lazy"}
-                                class="project-preview-image absolute inset-0 h-full w-full object-cover opacity-0 transition-all duration-700 ease-out"
-                                style={`--slide-index: ${imageIndex}; --slide-count: ${previewImages.length};`}
-                              />
+                        <p class={`text-base sm:text-lg text-gray-600 leading-relaxed ${project.link ? "pr-12 sm:pr-14" : ""}`}>
+
+                          {project.description}
+                        </p>
+
+                        {project.skills && project.skills.length > 0 && (
+                          <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-2">
+                            {project.skills.map((skill) => (
+                              <span
+                                class={`px-2.5 sm:px-3 py-1 sm:py-1.5 bg-gray-900 text-white rounded-md sm:rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 ${
+                                  project.link ? "group-hover:bg-gray-800" : ""
+                                }`}
+                              >
+                                {skill}
+                              </span>
                             ))}
-                            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-white/10"></div>
-                            <div class="pointer-events-none absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-gray-900 shadow-sm">
-                              {previewImages.length} images
-                            </div>
                           </div>
                         )}
+
+                        {project.link && <p class="text-xs font-semibold uppercase tracking-[0.16em] text-gray-500">View project details</p>}
                       </div>
-                    </button>
-                  </article>
+                    </Component>
+                  </div>
                 );
               })}
             </div>
           </div>
         </div>
       </div>
-
-      <script is:inline>
-        (() => {
-          const cards = Array.from(document.querySelectorAll("[data-project-card]"));
-          const closeCard = (card) => {
-            card.removeAttribute("data-active");
-            card.querySelector(".project-toggle")?.setAttribute("aria-expanded", "false");
-          };
-
-          cards.forEach((card) => {
-            const toggle = card.querySelector(".project-toggle");
-            toggle?.addEventListener("click", () => {
-              const isActive = card.hasAttribute("data-active");
-              cards.forEach(closeCard);
-              if (!isActive) {
-                card.setAttribute("data-active", "true");
-                toggle.setAttribute("aria-expanded", "true");
-              }
-            });
-          });
-
-          let lastScrollY = window.scrollY;
-          window.addEventListener(
-            "scroll",
-            () => {
-              if (Math.abs(window.scrollY - lastScrollY) < 12) return;
-              lastScrollY = window.scrollY;
-              cards.forEach(closeCard);
-            },
-            { passive: true }
-          );
-        })();
-      </script>
     </section>
   )
 }
-
-<style>
-  .project-card .project-preview {
-    max-height: 0;
-    opacity: 0;
-    transform: translateY(14px) scale(0.98);
-    transition: max-height 0.6s ease, opacity 0.45s ease, transform 0.55s ease;
-  }
-
-  .project-card:hover .project-preview,
-  .project-card[data-active="true"] .project-preview {
-    max-height: 20rem;
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-
-  .project-card .project-preview-image:first-child {
-    opacity: 1;
-  }
-
-  .project-card:hover .project-preview-image,
-  .project-card[data-active="true"] .project-preview-image {
-    animation: projectPreviewFade calc(var(--slide-count) * 2.4s) infinite;
-    animation-delay: calc(var(--slide-index) * 2.4s);
-  }
-
-  @keyframes projectPreviewFade {
-    0%, 10% {
-      opacity: 0;
-      transform: scale(1.04);
-    }
-
-    14%, 32% {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    38%, 100% {
-      opacity: 0;
-      transform: scale(1.02);
-    }
-  }
-
-  @media (min-width: 768px) {
-    .project-card .project-preview {
-      max-height: none;
-      opacity: 0.18;
-      transform: translateX(18px) scale(0.96);
-    }
-
-    .project-card:hover .project-preview,
-    .project-card[data-active="true"] .project-preview {
-      max-height: none;
-      opacity: 1;
-      transform: translateX(0) scale(1);
-    }
-  }
-</style>
