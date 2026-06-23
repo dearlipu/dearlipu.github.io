@@ -65,101 +65,96 @@ img, video {
 .story-strip {
   pointer-events: none;
   position: absolute;
-  inset-block: 5rem 5rem;
-  left: max(1.25rem, calc((100vw - 72rem) / 2 - 4.25rem));
+  inset-block: 3.75rem 3.75rem;
+  left: max(1rem, calc((100vw - 72rem) / 2 - 0.5rem));
   z-index: 0;
-  width: clamp(3.75rem, 8vw, 6.5rem);
-  border-radius: 999px;
-  opacity: 0.78;
+  width: 2.75rem;
+  opacity: 0.72;
 }
 
 .story-strip__line {
   position: absolute;
   inset: 0 auto 0 50%;
-  width: 2px;
+  width: 1px;
   transform: translateX(-50%);
   background: linear-gradient(
     180deg,
     transparent,
-    rgba(37, 99, 235, 0.08) 5%,
-    rgba(37, 99, 235, 0.28) 18%,
-    rgba(15, 23, 42, 0.14) 50%,
-    rgba(37, 99, 235, 0.28) 82%,
-    rgba(37, 99, 235, 0.08) 95%,
+    rgba(148, 163, 184, 0.16) 2%,
+    rgba(148, 163, 184, 0.42) 15%,
+    rgba(148, 163, 184, 0.42) 85%,
+    rgba(148, 163, 184, 0.16) 98%,
     transparent
   );
 }
 
-.story-strip__line::before,
-.story-strip__line::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: 999px;
-  background: #2563eb;
-  box-shadow: 0 0 0 0.5rem rgba(37, 99, 235, 0.1), 0 0 2rem rgba(37, 99, 235, 0.35);
-  transform: translateX(-50%);
-}
-
-.story-strip__line::before {
-  top: 0;
-}
-
-.story-strip__line::after {
-  bottom: 0;
-}
-
 .story-strip__marquee {
+  position: sticky;
+  top: 7rem;
   display: flex;
-  min-height: 100%;
+  height: calc(100vh - 10rem);
+  min-height: 34rem;
   flex-direction: column;
   align-items: center;
-  gap: 2.75rem;
-  animation: storyStripScroll 24s linear infinite;
-  color: rgba(15, 23, 42, 0.14);
-  font-size: clamp(0.85rem, 1.1vw, 1rem);
-  font-weight: 800;
-  letter-spacing: 0.28em;
+  gap: 2.4rem;
+  overflow: hidden;
+  color: rgba(100, 116, 139, 0.38);
+  font-size: clamp(0.72rem, 0.88vw, 0.82rem);
+  font-weight: 700;
+  letter-spacing: 0.34em;
+  line-height: 1;
   text-transform: uppercase;
   writing-mode: vertical-rl;
 }
 
-.story-strip__marquee span {
-  border-radius: 999px;
-  border: 1px solid rgba(37, 99, 235, 0.12);
-  background: rgba(255, 255, 255, 0.74);
-  padding: 1rem 0.45rem;
-  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.06);
-  backdrop-filter: blur(8px);
+.story-strip__marquee::before,
+.story-strip__marquee::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  height: 4rem;
 }
 
-@keyframes storyStripScroll {
+.story-strip__marquee::before {
+  top: 0;
+  background: linear-gradient(180deg, #fff, rgba(255, 255, 255, 0));
+}
+
+.story-strip__marquee::after {
+  bottom: 0;
+  background: linear-gradient(0deg, #fff, rgba(255, 255, 255, 0));
+}
+
+.story-strip__marquee span {
+  animation: storyStripFloat 18s linear infinite;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+.story-strip__marquee span:nth-child(2n) {
+  color: rgba(71, 85, 105, 0.28);
+}
+
+@keyframes storyStripFloat {
   from {
     transform: translateY(0);
   }
 
   to {
-    transform: translateY(-50%);
+    transform: translateY(-28rem);
   }
 }
 
 @media (max-width: 1023px) {
   .story-strip {
-    left: 0.75rem;
-    width: 2.75rem;
-    opacity: 0.34;
+    left: 0.5rem;
+    opacity: 0.4;
   }
 
   .story-strip__marquee {
-    gap: 2rem;
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-  }
-
-  .story-strip__marquee span {
-    padding: 0.8rem 0.3rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.24em;
   }
 }
 
