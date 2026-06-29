@@ -1,114 +1,81 @@
 ---
 import Header from "../components/Header.astro";
-import Hero from "../components/Hero.astro";
-import About from "../components/About.astro";
-import Projects from "../components/Projects.astro";
-import Services from "../components/Services.astro";
 import Footer from "../components/Footer.astro";
-import Pricing from "../components/Pricing.astro";
-import Testimonials from "../components/Testimonials.astro";
-import Brands from "../components/Brands.astro";
-import Contact from "../components/Contact.astro";
-import { siteConfig } from "../config";
+import { siteConfig, services, projects } from "../config";
 import "../styles/global.css";
 
-const personSchema = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: siteConfig.name,
-  url: siteConfig.siteUrl,
-  sameAs: [
-    siteConfig.social.instagram,
-    siteConfig.social.twitter,
-    siteConfig.social.youtube,
-  ],
-  jobTitle: "Visual Designer and Video Editor",
-  knowsAbout: ["Visual Design", "Video Editing", "Motion Graphics"],
-};
+const stats = [["50+", "Projects completed"], ["20+", "Happy clients"], ["3+", "Years experience"], ["12+", "Countries served"], ["24h", "Average reply"]];
+const reasons = ["Fast communication", "Modern design", "Business-focused strategy", "Unlimited creativity", "Attention to detail", "Reliable delivery", "Problem solving"];
+const process = ["Discovery", "Research", "Strategy", "Design", "Revision", "Launch", "Support"];
+const testimonials = [
+  ["A premium partner from day one. The website made our offer clearer and immediately improved the quality of inquiries.", "Maya Chen", "Founder, Luma Works", "Website redesign"],
+  ["DearLipu Studio translated a messy brief into a confident brand system our team could actually use.", "Arjun Mehta", "Marketing Lead, Northstar", "Brand identity"],
+  ["The edits felt intentional, polished, and built for retention. Communication was fast and the handoff was clean.", "Emily Carter", "Creator Ops, FrameLab", "Video editing"],
+];
+const faqs = [
+  ["How long does a project take?", "Most focused projects take 1–3 weeks. Larger websites or brand systems are planned in clear milestones before work begins."],
+  ["How do payments work?", "Projects usually start with a deposit, followed by milestone or final payment depending on scope."],
+  ["How many revisions are included?", "Each package includes structured revision rounds so feedback is focused and progress stays fast."],
+  ["Will we own the final files?", "Yes. Final approved assets are yours, and source-file delivery can be included based on package."],
+  ["Do you provide support after launch?", "Yes. Growth and Premium projects include post-launch support, and ongoing retainers are available."],
+];
+const schema = { "@context": "https://schema.org", "@type": "ProfessionalService", name: siteConfig.name, url: siteConfig.siteUrl, description: siteConfig.description, email: siteConfig.social.email, areaServed: "Worldwide", serviceType: services.map((s) => s[1]) };
 ---
-
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={siteConfig.description} />
     <link rel="canonical" href={`${siteConfig.siteUrl}/`} />
-    {siteConfig.googleSiteVerification !== "TSCFrIOxF2u50hCpi2uMfBaJEYATy4CKBIzyvy6iyyc" && (
-      <meta
-        name="google-site-verification"
-        content={siteConfig.googleSiteVerification}
-      />
-    )}
-  
-    <!-- OPEN GRAPH / SOCIAL PREVIEW -->
-    <meta property="og:title" content="Saurav Panda – aka @dearlipu" />
+    <meta property="og:title" content={`${siteConfig.name} — Premium Creative Agency`} />
     <meta property="og:description" content={siteConfig.description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={`${siteConfig.siteUrl}/`} />
     <meta property="og:image" content={`${siteConfig.siteUrl}/social-card.png`} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-  
-    <!-- TWITTER PREVIEW -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Saurav Panda – aka @dearlipu" />
-    <meta name="twitter:description" content={siteConfig.description} />
-    <meta name="twitter:image" content={`${siteConfig.siteUrl}/social-card.png`} />
-    <meta name="twitter:creator" content="@dearlipu" />
-  
-    <meta name="robots" content="index, follow" />
-    <script type="application/ld+json" set:html={JSON.stringify(personSchema)}></script>
-
+    <meta name="theme-color" content="#1d4ed8" />
+    <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
     <script is:inline>
-      document.addEventListener("DOMContentLoaded", () => {
-        const revealItems = document.querySelectorAll(".reveal-up");
-        if (!("IntersectionObserver" in window)) {
-          revealItems.forEach((item) => item.classList.add("is-visible"));
-          return;
-        }
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("is-visible");
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.16, rootMargin: "0px 0px -60px 0px" }
-        );
-
-        revealItems.forEach((item) => observer.observe(item));
-      });
+      document.addEventListener("DOMContentLoaded",()=>{const items=document.querySelectorAll(".reveal-up");if(!("IntersectionObserver"in window)){items.forEach(i=>i.classList.add("is-visible"));return}const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("is-visible");io.unobserve(e.target)}}),{threshold:.14});items.forEach(i=>io.observe(i));});
     </script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-
-    <title>{siteConfig.name} - aka @dearlipu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>{siteConfig.name} — Creative Design, Websites, Branding & Video</title>
   </head>
-
   <body>
     <Header />
-
-      <section>
-        <Hero />
-        <About />
-        <Projects />
-        <Services />
-        <Pricing />
-        <Testimonials />
-        <Contact />
-        <Brands />
+    <main>
+      <section class="hero section-pad">
+        <div class="container grid-hero reveal-up">
+          <div>
+            <p class="eyebrow">{siteConfig.tagline}</p>
+            <h1>Design That Helps Your Business Stand Out.</h1>
+            <p class="lead">We create branding, websites, videos, and digital experiences that help businesses attract customers and grow online.</p>
+            <div class="cta-row"><a class="btn primary" href="/contact">Start Your Project</a><a class="btn secondary" href="#work">View Our Work</a></div>
+          </div>
+          <div class="hero-visual" aria-label="Premium creative workspace mockup"><img src="/images/contact.webp" alt="Modern creative workspace with design previews" loading="eager" /></div>
+        </div>
       </section>
 
+      <section class="trust"><div class="container stats reveal-up">{stats.map(([n,l]) => <div><strong>{n}</strong><span>{l}</span></div>)}</div></section>
+
+      <section id="work" class="section-pad"><div class="container reveal-up"><div class="section-head"><p class="eyebrow">Featured Work</p><h2>Case studies built around business outcomes.</h2><a href="/case-studies/saas-launch-system">Explore case study →</a></div><div class="work-grid">{projects.map((p) => <article class="case-card"><img src={p.image} alt={`${p.name} premium mockup`} loading="lazy" /><div><p>{p.industry} • {p.services}</p><h3>{p.name}</h3><span>{p.result}</span><p>{p.description}</p><a href={`/case-studies/${p.slug}`}>View Case Study</a></div></article>)}</div></div></section>
+
+      <section id="services" class="section-pad alt"><div class="container reveal-up"><div class="section-head"><p class="eyebrow">Services</p><h2>Premium creative support for every growth moment.</h2><a href="/services/website-design">View services →</a></div><div class="service-grid">{services.map(([slug,title,desc,items], i) => <article class="service-card"><img src={`/images/edu-${(i%3)+1}.gif`} alt={`${title} service mockup`} loading="lazy" /><div><h3>{title}</h3><p>{desc}</p><ul>{items.map((it)=><li>{it}</li>)}</ul><a href={`/services/${slug}`}>Start with {title}</a></div></article>)}</div></div></section>
+
+      <section class="section-pad"><div class="container split reveal-up"><div><p class="eyebrow">Why Choose Us</p><h2>Built like a studio. Personal enough to move fast.</h2><p class="lead-small">Every decision is tied to clarity, trust, and conversion—not decoration.</p></div><div class="timeline">{reasons.map((r,i)=><div><span>{String(i+1).padStart(2,"0")}</span><strong>{r}</strong><p>Clear systems, premium execution, and thoughtful communication from brief to delivery.</p></div>)}</div></div></section>
+
+      <section class="section-pad alt"><div class="container reveal-up"><div class="section-head"><p class="eyebrow">Our Process</p><h2>A calm, strategic path from idea to launch.</h2></div><div class="process">{process.map((p,i)=><div><span>{i+1}</span><h3>{p}</h3><p>{i<3?"Align the goal and define the direction.":i<5?"Create, refine, and prepare polished assets.":"Launch confidently and support the next move."}</p></div>)}</div></div></section>
+
+      <section class="section-pad"><div class="container reveal-up"><div class="section-head"><p class="eyebrow">Testimonials</p><h2>Trusted by teams that value quality and momentum.</h2></div><div class="quote-grid">{testimonials.map(([q,n,c,t])=><article><div class="stars">★★★★★</div><p>“{q}”</p><strong>{n}</strong><span>{c} • {t}</span></article>)}</div></div></section>
+
+      <section id="pricing" class="section-pad alt"><div class="container reveal-up"><div class="section-head"><p class="eyebrow">Pricing</p><h2>Simple packages. Custom scopes available.</h2></div><div class="pricing">{[["Starter","For focused design needs","$299+"],["Growth","For brands ready to level up","$899+"],["Premium","For complete launch systems","$1,999+"]].map(([n,d,p],i)=><article class={i===1?"featured":""}><h3>{n}</h3><p>{d}</p><strong>{p}</strong><ul><li>Strategy call</li><li>Premium visual direction</li><li>{i+1} revision rounds</li><li>Launch-ready handoff</li></ul><a class="btn primary" href="/contact">Choose {n}</a></article>)}</div></div></section>
+
+      <section class="section-pad"><div class="container split reveal-up"><div><p class="eyebrow">FAQ</p><h2>Answers before we start.</h2></div><div class="faq">{faqs.map(([q,a])=><details><summary>{q}</summary><p>{a}</p></details>)}</div></div></section>
+
+      <section class="final-cta"><div class="container reveal-up"><h2>Ready to Build Something Great?</h2><p>Let’s create something your customers will remember.</p><a class="btn light" href="/contact">Start Your Project</a></div></section>
+    </main>
     <Footer />
   </body>
 </html>
