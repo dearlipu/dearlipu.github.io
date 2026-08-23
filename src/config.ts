@@ -59,18 +59,18 @@ export const siteConfig = {
   services: [
     {
       degree: "Visual Design",
-      school: "A clear look for your offer, campaign, or brand.",
+      school: "Make your brand look better.",
       achievements: [
         "Posts, carousels, and campaign graphics",
         "Thumbnails, banners, and key visuals",
-        "Simple brand kits and style guides",
+        "Brand kits and style guides",
         "Launch, offer, and ad creatives",
-        "Photo edits, retouching, and color"
+        "Photo edits, retouching, and color grading"
       ],
     },
     {
-      degree: "Video & Motion",
-      school: "Edits and animation that keep people watching.",
+      degree: "Video & Motion Design",
+      school: "Make people watch.",
       achievements: [
         "Reels, Shorts, and long-form edits",
         "Motion graphics and explainers",
@@ -80,8 +80,8 @@ export const siteConfig = {
       ],
     },
     {
-      degree: "Print & Editorial",
-      school: "Premium layouts for real-world brand moments.",
+      degree: "Print & Editorial Design",
+      school: "Make information easier to read.",
       achievements: [
         "Magazine and editorial layouts",
         "Book design and ready-to-print files",
