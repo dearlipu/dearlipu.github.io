@@ -1,0 +1,342 @@
+---
+import { siteConfig } from "../config";
+
+const testimonials = [
+  {
+    rating: 4.5,
+    quote:
+      "We shared a rough brief and references on Monday. By Wednesday, I had polished first drafts that matched our brand voice and needed only minor edits.",
+    name: "Riya Sharma",
+    role: "Product Designer",
+    avatar: "/avatars/user5.webp",
+  },
+  {
+    rating: 4.9,
+    quote:
+      "What stood out was consistency. Weekly social assets arrived on time, file handoff was clean, and communication stayed clear even when our priorities changed mid-week.",
+    name: "Brayden Watts",
+    role: "Startup Consultant",
+    avatar: "/avatars/user6.webp",
+  },
+  {
+    rating: 4.7,
+    quote:
+      "It felt like working with an in-house creative partner. Feedback was translated quickly, and each revision improved both clarity and overall campaign performance.",
+    name: "Priya Nair",
+    role: "Marketing Lead",
+    avatar: "/avatars/user7.webp",
+  },
+  {
+    rating: 4.8,
+    quote:
+      "Our scope changed midway from static posts to short-form video cutdowns. He adapted quickly, kept timelines realistic, and communicated tradeoffs before each revision round.",
+    name: "Arjun Mehta",
+    role: "Content Creator",
+    avatar: "/avatars/user8.webp",
+  },
+  {
+    rating: 4.6,
+    quote:
+      "We hired Saurav for a 3-week launch sprint. The first delivery included editable source files, clear naming, and platform-ready exports, which made handoff easy for our internal team.",
+    name: "Emily Carter",
+    role: "Brand Strategist",
+    avatar: "/avatars/user9.webp",
+  },
+];
+---
+
+<section id="testimonials" class="bg-white px-6 py-14 sm:px-10 sm:py-16 md:px-14 lg:px-20 lg:py-24">
+  <div class="mx-auto max-w-6xl reveal-up">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
+      <div class="lg:col-span-4">
+        <p class="inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">
+          Reviews
+        </p>
+
+        <h2 class="mt-4 text-3xl font-bold leading-tight text-gray-900 sm:text-4xl md:text-5xl">
+          Success Stories.
+        </h2>
+
+        <div class="mt-3 h-1.5 w-20 rounded-full" style={`background-color: ${siteConfig.accentColor}`}></div>
+
+        <p class="mt-5 max-w-sm text-sm leading-relaxed text-gray-600 sm:text-base">
+          Real feedback from clients I’ve partnered with on branding, social content, and video projects.
+        </p>
+      </div>
+
+      <div class="lg:col-span-4">
+        <article class="summary-card h-full">
+          <div class="summary-card-icon" aria-hidden="true">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-[180px] h-[180px] md:w-[240px] md:h-[240px] lg:w-[240px] lg:h-[240px]"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#e5e7eb"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M12 21a9 9 0 1 1 0 -18a9 9 0 0 1 0 18" />
+              <path d="M10 10c-.5 -1 -2.5 -1 -3 0" />
+              <path d="M17 10c-.5 -1 -2.5 -1 -3 0" />
+              <path d="M14.5 15a3.5 3.5 0 0 1 -5 0" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-xs uppercase tracking-[0.16em] text-blue-200">Satisfaction rate</p>
+            <h3 class="mt-2 text-4xl font-bold">
+              <span id="satisfactionCounter" data-target="98">0</span><span>%</span>
+            </h3>
+            <p class="mt-2 text-sm text-gray-300">Trusted by 100+ businesses and creators.</p>
+          </div>
+
+          <div class="mt-4 flex -space-x-5">
+            <img src="/avatars/user1.webp" alt="Client avatar 1" class="avatar" />
+            <img src="/avatars/user2.webp" alt="Client avatar 2" class="avatar" />
+            <img src="/avatars/user3.webp" alt="Client avatar 3" class="avatar" />
+            <img src="/avatars/user4.webp" alt="Client avatar 4" class="avatar" />
+
+            <div class="w-10 h-10 rounded-full border-2 border-white bg-black/40 backdrop-blur-sm flex items-center justify-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5 text-white"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 5l0 14" />
+                <path d="M5 12l14 0" />
+              </svg>
+            </div>
+          </div>
+
+          <p class="mt-4 text-xs text-gray-400">Results-focused creative support with clear communication and dependable turnaround.</p>
+        </article>
+      </div>
+
+      <div class="lg:col-span-4">
+        <div class="review-shell">
+          <div id="reviewSlider" class="review-slider" aria-live="polite">
+            {
+              testimonials.map((item) => (
+                <article class="review-card" aria-label={`Review by ${item.name}`}>
+                  <div>
+                    <div class="mb-2 flex items-center gap-2 text-sm leading-none">
+                      <span class="font-semibold text-gray-900">{item.rating}</span>
+                      <div class="flex items-center gap-0.5 text-red-500" aria-hidden="true">
+                        {
+                          Array(5)
+                            .fill(0)
+                            .map(() => (
+                              <svg xmlns="http://www.w3.org/2000/svg" class="block h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z"></path>
+                              </svg>
+                            ))
+                        }
+                      </div>
+                      <span class="text-gray-500">Rating</span>
+                    </div>
+
+                    <p class="text-sm leading-relaxed text-gray-700">“{item.quote}”</p>
+                  </div>
+
+                  <div class="mt-6 flex items-center gap-3">
+                    <img src={item.avatar} alt={`${item.name} avatar`} class="h-10 w-10 rounded-full border border-white object-cover shadow" />
+                    <div>
+                      <p class="text-sm font-semibold text-gray-900">{item.name}</p>
+                      <p class="text-xs text-gray-500">{item.role}</p>
+                    </div>
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+
+          <div id="reviewDots" class="mt-4 flex items-center justify-center gap-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .summary-card {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 1rem;
+    background: linear-gradient(160deg, #0f172a, #111827);
+    padding: 1.25rem;
+    color: #fff;
+    box-shadow: 0 10px 35px rgba(15, 23, 42, 0.25);
+  }
+
+  .summary-card-icon {
+    position: absolute;
+    right: -40px;
+    top: -40px;
+    md:right: -60px;
+    md:top: -60px;
+    opacity: 0.06;
+    pointer-events: none;
+  }
+
+  .avatar {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 999px;
+    border: 2px solid #fff;
+    object-fit: cover;
+  }
+
+  .avatar-more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.14);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .review-shell {
+    height: 100%;
+    overflow: hidden;
+    border-radius: 1rem;
+  }
+
+  .review-slider {
+    display: flex;
+    height: 100%;
+    transition: transform 0.45s ease;
+  }
+
+  .review-card {
+    min-width: 100%;
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 1rem;
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+    color: #111827;
+    padding: 1.25rem;
+    box-shadow: 0 10px 35px rgba(15, 23, 42, 0.08);
+  }
+
+  .review-dot {
+    height: 0.45rem;
+    width: 0.45rem;
+    border-radius: 999px;
+    border: 0;
+    background: #d1d5db;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+
+  .review-dot-active {
+    transform: scale(1.25);
+    background: #111827;
+  }
+</style>
+
+<script>
+  const slider = document.getElementById("reviewSlider");
+  const dotsContainer = document.getElementById("reviewDots");
+  const satisfactionCounter = document.getElementById("satisfactionCounter");
+
+  if (satisfactionCounter) {
+    const target = Number(satisfactionCounter.getAttribute("data-target") || 98);
+    const duration = 1300;
+    let frameId;
+
+    const animateCounter = () => {
+      const start = performance.now();
+
+      const tick = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        satisfactionCounter.textContent = Math.floor(target * eased).toString();
+
+        if (progress < 1) {
+          frameId = requestAnimationFrame(tick);
+        } else {
+          satisfactionCounter.textContent = target.toString();
+        }
+      };
+
+      satisfactionCounter.textContent = "0";
+      frameId = requestAnimationFrame(tick);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCounter();
+          } else if (frameId) {
+            cancelAnimationFrame(frameId);
+            satisfactionCounter.textContent = "0";
+          }
+        });
+      },
+      { threshold: 0.5 },
+    );
+
+    observer.observe(satisfactionCounter);
+  }
+
+  if (slider && dotsContainer) {
+    const total = slider.children.length;
+    let index = 0;
+    let timer;
+
+    function renderDots() {
+      dotsContainer.innerHTML = "";
+      for (let i = 0; i < total; i += 1) {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = `review-dot ${i === 0 ? "review-dot-active" : ""}`;
+        dot.setAttribute("aria-label", `Go to review ${i + 1}`);
+        dot.addEventListener("click", () => {
+          index = i;
+          updateSlider();
+          startAutoRotate();
+        });
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function updateSlider() {
+      slider.style.transform = `translateX(-${index * 100}%)`;
+      dotsContainer.querySelectorAll(".review-dot").forEach((dot, dotIndex) => {
+        dot.classList.toggle("review-dot-active", dotIndex === index);
+      });
+    }
+
+    function startAutoRotate() {
+      clearInterval(timer);
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      timer = window.setInterval(() => {
+        index = (index + 1) % total;
+        updateSlider();
+      }, 3500);
+    }
+
+    slider.addEventListener("mouseenter", () => clearInterval(timer));
+    slider.addEventListener("mouseleave", startAutoRotate);
+
+    renderDots();
+    updateSlider();
+    startAutoRotate();
+  }
+</script>

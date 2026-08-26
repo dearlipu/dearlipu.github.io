@@ -1,4 +1,0 @@
----
-import { capabilities } from "../config/content";
----
-<section id="capabilities" class="section"><div class="shell"><div class="section-head" data-reveal><div><p class="eyebrow">Capabilities</p><h2 class="heading" style="margin-top:1rem">One creative practice.<br/>Many ways in.</h2></div><p class="body-lg">Choose the shape the idea needs. Each discipline can stand alone or work as part of a wider system.</p></div><div class="capability-list">{capabilities.map((item) => <article class="capability" data-reveal><span class="eyebrow">{item.number}</span><div><h3>{item.title}</h3><p style="margin-top:.55rem">{item.description}</p><p class="eyebrow" style="margin-top:.9rem">{item.detail}</p></div><img src={item.image} alt="" loading="lazy" decoding="async" /></article>)}</div></div></section>

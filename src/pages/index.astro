@@ -1,23 +1,114 @@
 ---
-import SiteHeader from "../components/SiteHeader.astro";
+import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
-import Introduction from "../components/Introduction.astro";
-import Manifesto from "../components/Manifesto.astro";
-import Capabilities from "../components/Capabilities.astro";
-import Process from "../components/Process.astro";
-import SelectedWork from "../components/SelectedWork.astro";
-import Tools from "../components/Tools.astro";
 import About from "../components/About.astro";
-import Contact from "../components/Contact.astro";
+import Projects from "../components/Projects.astro";
+import Services from "../components/Services.astro";
 import Footer from "../components/Footer.astro";
-import { site } from "../config/site";
+import Pricing from "../components/Pricing.astro";
+import Testimonials from "../components/Testimonials.astro";
+import Brands from "../components/Brands.astro";
+import Contact from "../components/Contact.astro";
+import { siteConfig } from "../config";
 import "../styles/global.css";
 
-const personSchema = { "@context": "https://schema.org", "@type": "Person", name: site.name, url: site.siteUrl, sameAs: site.social.map((item) => item.href), jobTitle: "Visual designer and video editor", knowsAbout: ["Visual design", "Video editing", "Motion graphics", "Digital experiences"] };
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: siteConfig.name,
+  url: siteConfig.siteUrl,
+  sameAs: [
+    siteConfig.social.instagram,
+    siteConfig.social.twitter,
+    siteConfig.social.youtube,
+  ],
+  jobTitle: "Visual Designer and Video Editor",
+  knowsAbout: ["Visual Design", "Video Editing", "Motion Graphics"],
+};
 ---
-<html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><meta name="description" content={site.description} /><link rel="canonical" href={`${site.siteUrl}/`} /><link rel="icon" type="image/svg+xml" href="/favicon.svg" /><meta property="og:title" content={`${site.name} — ${site.handle}`} /><meta property="og:description" content={site.description} /><meta property="og:type" content="website" /><meta property="og:image" content={`${site.siteUrl}/social-card.png`} /><meta name="twitter:card" content="summary_large_image" /><script type="application/ld+json" set:html={JSON.stringify(personSchema)}></script><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" /><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" /><title>{site.name} — Visual stories and digital work</title></head><body><SiteHeader /><main><Hero /><Introduction /><Manifesto /><Capabilities /><Process /><SelectedWork /><Tools /><About /><Contact /></main><Footer /><script is:inline>
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const revealItems = document.querySelectorAll('[data-reveal]');
-  if (reducedMotion || !('IntersectionObserver' in window)) { revealItems.forEach((item) => item.classList.add('is-visible')); }
-  else { const observer = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }), { threshold: .12, rootMargin: '0px 0px -30px' }); revealItems.forEach((item) => observer.observe(item)); }
-</script></body></html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={siteConfig.description} />
+    <link rel="canonical" href={`${siteConfig.siteUrl}/`} />
+    {siteConfig.googleSiteVerification !== "TSCFrIOxF2u50hCpi2uMfBaJEYATy4CKBIzyvy6iyyc" && (
+      <meta
+        name="google-site-verification"
+        content={siteConfig.googleSiteVerification}
+      />
+    )}
+  
+    <!-- OPEN GRAPH / SOCIAL PREVIEW -->
+    <meta property="og:title" content="Saurav Panda – aka @dearlipu" />
+    <meta property="og:description" content={siteConfig.description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`${siteConfig.siteUrl}/`} />
+    <meta property="og:image" content={`${siteConfig.siteUrl}/social-card.png`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+  
+    <!-- TWITTER PREVIEW -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Saurav Panda – aka @dearlipu" />
+    <meta name="twitter:description" content={siteConfig.description} />
+    <meta name="twitter:image" content={`${siteConfig.siteUrl}/social-card.png`} />
+    <meta name="twitter:creator" content="@dearlipu" />
+  
+    <meta name="robots" content="index, follow" />
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)}></script>
+
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", () => {
+        const revealItems = document.querySelectorAll(".reveal-up");
+        if (!("IntersectionObserver" in window)) {
+          revealItems.forEach((item) => item.classList.add("is-visible"));
+          return;
+        }
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.16, rootMargin: "0px 0px -60px 0px" }
+        );
+
+        revealItems.forEach((item) => observer.observe(item));
+      });
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>{siteConfig.name} - aka @dearlipu</title>
+  </head>
+
+  <body>
+    <Header />
+
+      <section>
+        <Hero />
+        <About />
+        <Projects />
+        <Services />
+        <Pricing />
+        <Testimonials />
+        <Contact />
+        <Brands />
+      </section>
+
+    <Footer />
+  </body>
+</html>

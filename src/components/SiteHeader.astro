@@ -1,5 +1,0 @@
----
-import { site } from "../config/site";
-import { navigation } from "../config/content";
----
-<header class="site-header"><nav class="shell nav" aria-label="Main navigation"><a class="brand" href="/">{site.handle}</a><div class="nav-links">{navigation.slice(0, 3).map((item) => <a href={item.href}>{item.label}</a>)}</div><a class="nav-cta" href="#contact">Let’s work</a></nav></header>
