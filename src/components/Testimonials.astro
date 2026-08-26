@@ -267,12 +267,12 @@ const testimonials = [
   if (satisfactionCounter) {
     const target = Number(satisfactionCounter.getAttribute("data-target") || 98);
     const duration = 1300;
-    let frameId;
+    let frameId: number | undefined;
 
     const animateCounter = () => {
       const start = performance.now();
 
-      const tick = (now) => {
+      const tick = (now: number) => {
         const progress = Math.min((now - start) / duration, 1);
         const eased = 1 - Math.pow(1 - progress, 3);
         satisfactionCounter.textContent = Math.floor(target * eased).toString();
@@ -306,12 +306,14 @@ const testimonials = [
   }
 
   if (slider && dotsContainer) {
-    const total = slider.children.length;
+    const reviewSlider = slider;
+    const reviewDots = dotsContainer;
+    const total = reviewSlider.children.length;
     let index = 0;
-    let timer;
+    let timer: number | undefined;
 
     function renderDots() {
-      dotsContainer.innerHTML = "";
+      reviewDots.innerHTML = "";
       for (let i = 0; i < total; i += 1) {
         const dot = document.createElement("button");
         dot.type = "button";
@@ -322,13 +324,13 @@ const testimonials = [
           updateSlider();
           startAutoRotate();
         });
-        dotsContainer.appendChild(dot);
+        reviewDots.appendChild(dot);
       }
     }
 
     function updateSlider() {
-      slider.style.transform = `translateX(-${index * 100}%)`;
-      dotsContainer.querySelectorAll(".review-dot").forEach((dot, dotIndex) => {
+      reviewSlider.style.transform = `translateX(-${index * 100}%)`;
+      reviewDots.querySelectorAll<HTMLButtonElement>(".review-dot").forEach((dot, dotIndex) => {
         dot.classList.toggle("review-dot-active", dotIndex === index);
       });
     }
@@ -342,8 +344,8 @@ const testimonials = [
       }, 3500);
     }
 
-    slider.addEventListener("mouseenter", () => clearInterval(timer));
-    slider.addEventListener("mouseleave", startAutoRotate);
+    reviewSlider.addEventListener("mouseenter", () => clearInterval(timer));
+    reviewSlider.addEventListener("mouseleave", startAutoRotate);
 
     renderDots();
     updateSlider();

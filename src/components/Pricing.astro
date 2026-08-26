@@ -6,6 +6,7 @@ const plans = [
     name: "Quick Start",
     audience: "For one clear task or a small content need.",
     badge: null,
+    discount: "10% OFF",
     icon: "sparkles",
     projectPrice: "₹1,999+",
     monthlyPrice: "₹9,999/mo",
@@ -14,6 +15,7 @@ const plans = [
     name: "Growth",
     audience: "For brands that need regular content and campaign support.",
     badge: "Most Popular",
+    discount: "15% OFF",
     icon: "heart",
     projectPrice: "₹5,999+",
     monthlyPrice: "₹19,999/mo",
@@ -22,6 +24,7 @@ const plans = [
     name: "Professional",
     audience: "For growing teams that need a reliable creative partner.",
     badge: null,
+    discount: "20% OFF",
     icon: "shield",
     projectPrice: "₹17,999+",
     monthlyPrice: "₹39,999/mo",
@@ -76,6 +79,7 @@ const plans = [
                     </span>
                   )
                 }
+                <span class="discount-badge" aria-label={`${plan.discount} discount`}><span>{plan.discount}</span></span>
 
                 <div class="pricing-card-icon" aria-hidden="true">
                   {
@@ -211,6 +215,54 @@ const plans = [
     white-space: nowrap;
   }
 
+  .discount-badge {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 2;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--accent-color, #1d4ed8) 22%, white);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--accent-color, #1d4ed8) 8%, white);
+    padding: 0.28rem 0.52rem;
+    color: var(--accent-color, #1d4ed8);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+  }
+
+  .discount-badge::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -45%;
+    width: 30%;
+    background: rgba(255, 255, 255, 0.8);
+    content: "";
+    transform: skewX(-20deg);
+    animation: discountShine 4.5s ease-in-out infinite;
+  }
+
+  .discount-badge > span {
+    position: relative;
+    top: 2px;
+  }
+
+  .pricing-card:hover .discount-badge {
+    background: color-mix(in srgb, var(--accent-color, #1d4ed8) 13%, white);
+    box-shadow: 0 7px 16px rgba(15, 23, 42, 0.1);
+    transform: translateY(-2px);
+  }
+
+  @keyframes discountShine {
+    0%, 68% { left: -45%; opacity: 0; }
+    75% { opacity: 0.8; }
+    88%, 100% { left: 125%; opacity: 0; }
+  }
+
   .btn-primary {
     border: 0;
     background-color: #0f172a;
@@ -235,13 +287,13 @@ const plans = [
 <script>
   let currentMode = "project";
 
-  const perBtn = document.getElementById("perProjectBtn");
-  const monthlyBtn = document.getElementById("monthlyBtn");
-  const slider = document.getElementById("toggleSlider");
+  const perBtn = document.getElementById("perProjectBtn") as HTMLButtonElement | null;
+  const monthlyBtn = document.getElementById("monthlyBtn") as HTMLButtonElement | null;
+  const slider = document.getElementById("toggleSlider") as HTMLElement | null;
 
-  const prices = document.querySelectorAll(".price");
-  const features = document.querySelectorAll(".features");
-  const buttons = document.querySelectorAll(".email-btn");
+  const prices = document.querySelectorAll<HTMLElement>(".price");
+  const features = document.querySelectorAll<HTMLElement>(".features");
+  const buttons = document.querySelectorAll<HTMLButtonElement>(".email-btn");
 
   const featureData = {
     project: [
@@ -256,20 +308,20 @@ const plans = [
     ],
   };
 
-  function setMode(mode) {
+  function setMode(mode: "project" | "monthly") {
     currentMode = mode;
 
     prices.forEach((price, index) => {
       price.style.opacity = "0.2";
       setTimeout(() => {
-        price.textContent = mode === "monthly" ? price.dataset.monthly : price.dataset.project;
+        price.textContent = mode === "monthly" ? price.dataset.monthly ?? "" : price.dataset.project ?? "";
         price.style.opacity = "1";
       }, 120);
 
       const list = featureData[mode][index];
       features[index].innerHTML = list
         .map(
-          (item) => `
+          (item: string) => `
             <li class="flex items-start gap-2">
               <svg xmlns="http://www.w3.org/2000/svg"
                 class="mt-[0.15em] block h-5 w-5 shrink-0 text-gray-400"
@@ -293,6 +345,10 @@ const plans = [
     });
 
     const isMonthly = mode === "monthly";
+    if (!slider || !perBtn || !monthlyBtn) {
+      return;
+    }
+
     slider.style.transform = isMonthly ? "translateX(100%)" : "translateX(0)";
 
     perBtn.classList.toggle("toggle-btn-active", !isMonthly);

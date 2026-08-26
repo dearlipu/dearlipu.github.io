@@ -114,29 +114,88 @@ const whatsappNumber = siteConfig.social.whatsapp;
           </form>
 
           <aside class="image-card rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-            <div class="overflow-hidden rounded-xl">
+            <div class="contact-image-wrap relative overflow-hidden rounded-xl">
               <img src="/images/contact.webp" alt="Preview of visual creative workflow" class="contact-image" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="contact-qr"
+                aria-hidden="true"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M4 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4" />
+                <path d="M7 17l0 .01" />
+                <path d="M14 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4" />
+                <path d="M7 7l0 .01" />
+                <path d="M4 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4" />
+                <path d="M17 7l0 .01" />
+                <path d="M14 14l3 0" />
+                <path d="M20 14l0 .01" />
+                <path d="M14 14l0 3" />
+                <path d="M14 20l3 0" />
+                <path d="M17 17l3 0" />
+                <path d="M20 17l0 3" />
+              </svg>
             </div>
 
-            <div class="mt-4 rounded-xl border border-gray-100 bg-gray-50 p-4">
+            <div class="contact-direct-panel relative mt-4 overflow-hidden rounded-xl border border-gray-100 bg-gray-50 p-4">
               <p class="text-sm font-semibold text-gray-900">Want to talk directly?</p>
               <div class="mt-3 flex flex-wrap gap-3">
-                <a
-                  href={`mailto:${siteConfig.social.email}`}
-                  class="quick-link"
-                  style={`--accent: ${siteConfig.accentColor}`}
-                >
-                  {siteConfig.social.email}
-                </a>
-                <a
-                  href={`https://wa.me/${whatsappNumber}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="quick-link"
-                  style={`--accent: ${siteConfig.accentColor}`}
-                >
-                  WhatsApp: +{siteConfig.social.whatsapp.slice(0, 2)} {siteConfig.social.whatsapp.slice(2)}
-                </a>
+                <div class="quick-contact" style={`--accent: ${siteConfig.accentColor}`}>
+                  <span class="quick-icon-bubble" aria-hidden="true">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="quick-link-icon"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10" />
+                      <path d="M3 7l9 6l9 -6" />
+                    </svg>
+                  </span>
+                  <a
+                    href={`mailto:${siteConfig.social.email}`}
+                    class="quick-link"
+                  >
+                    <span>{siteConfig.social.email}</span>
+                  </a>
+                </div>
+                <div class="quick-contact" style={`--accent: ${siteConfig.accentColor}`}>
+                  <span class="quick-icon-bubble" aria-hidden="true">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="quick-link-icon"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+                      <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
+                    </svg>
+                  </span>
+                  <a
+                    href={`https://wa.me/${whatsappNumber}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="quick-link"
+                  >
+                    <span>+{siteConfig.social.whatsapp.slice(0, 2)} {siteConfig.social.whatsapp.slice(2)}</span>
+                  </a>
+                </div>
               </div>
             </div>
           </aside>
@@ -158,7 +217,7 @@ const whatsappNumber = siteConfig.social.whatsapp;
   .field-label {
     display: inline-block;
     margin-bottom: 0.35rem;
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     font-weight: 600;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -257,27 +316,124 @@ const whatsappNumber = siteConfig.social.whatsapp;
   }
 
   .quick-link {
+    top: 0;
+    min-width: 0;
+    max-width: calc(100% - 2.8rem);
+    flex: 0 1 auto;
+    display: inline-flex;
+    min-height: 2.25rem;
+    align-items: center;
+    gap: 0.5rem;
     border-radius: 999px;
     border: 1px solid #d1d5db;
     background: #fff;
-    padding: 0.45rem 0.9rem;
-    font-size: 0.85rem;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.9rem;
+    line-height: 1.15;
     font-weight: 600;
     color: #374151;
-    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .quick-link > span {
+    position: relative;
+    top: 2px;
+  }
+
+  .quick-contact {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    flex: 1 1 100%;
+    align-items: center;
+    gap: 0.55rem;
+  }
+
+  .quick-icon-bubble {
+    display: inline-flex;
+    height: 2.25rem;
+    width: 2.25rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #d1d5db;
+    border-radius: 999px;
+    background: #fff;
+    color: #374151;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.07);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, color 0.25s ease, box-shadow 0.3s ease;
+  }
+
+  .quick-link-icon {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex-shrink: 0;
+    color: inherit;
+  }
+
+  .contact-qr {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    width: 3rem;
+    height: 3rem;
+    color: #fff;
+    opacity: 0.35;
+    pointer-events: none;
   }
 
   .quick-link:hover,
-  .quick-link:focus-visible {
+  .quick-link:focus-visible,
+  .quick-contact:hover .quick-link,
+  .quick-contact:focus-within .quick-link {
     border-color: var(--accent);
     color: var(--accent);
-    transform: translateY(-1px);
+    box-shadow: 0 7px 16px rgba(15, 23, 42, 0.08);
+    transform: translateY(-2px);
     outline: none;
+  }
+
+  .quick-link:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  .quick-contact:has(.quick-link:active) .quick-link {
+    transform: translateY(0) scale(0.98);
+  }
+
+  .quick-contact:active .quick-icon-bubble {
+    transform: translateY(0) scale(0.96);
+  }
+
+  .quick-contact:active .quick-link {
+    transform: translateY(0) scale(0.98);
+  }
+
+  .quick-contact:hover .quick-icon-bubble,
+  .quick-contact:focus-within .quick-icon-bubble {
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 7px 16px rgba(15, 23, 42, 0.12);
+    transform: translateY(-2px) scale(1.05) rotate(-4deg);
+  }
+
+  .quick-contact:has(.quick-link:active) .quick-icon-bubble {
+    transform: translateY(0) scale(0.96);
   }
 
   @media (max-width: 768px) {
     .contact-image {
       min-height: 220px;
+    }
+
+    .quick-link {
+      padding: 0.4rem 0.75rem;
+      font-size: 0.82rem;
     }
   }
 </style>
@@ -285,19 +441,19 @@ const whatsappNumber = siteConfig.social.whatsapp;
 <script>
   const contactForm = document.getElementById("contactForm");
   const formStatus = document.getElementById("formStatus");
-  const submitButton = contactForm?.querySelector('button[type="submit"]');
-  const planField = document.getElementById("selectedPlan");
+  const submitButton = contactForm?.querySelector<HTMLButtonElement>('button[type="submit"]');
+  const planField = document.getElementById("selectedPlan") as HTMLInputElement | null;
   const selectedPlanWrapper = document.getElementById("selectedPlanWrapper");
   const timelineBudgetGroup = document.getElementById("timelineBudgetGroup");
-  const timelineField = document.getElementById("timeline");
-  const budgetField = document.getElementById("budget");
+  const timelineField = document.getElementById("timeline") as HTMLSelectElement | null;
+  const budgetField = document.getElementById("budget") as HTMLSelectElement | null;
 
-  function setPlanSelectionState(hasPlan) {
+  function setPlanSelectionState(hasPlan: boolean) {
     selectedPlanWrapper?.classList.toggle("hidden", !hasPlan);
     timelineBudgetGroup?.classList.toggle("hidden", hasPlan);
   }
 
-  function showFormStatus(message, type) {
+  function showFormStatus(message: string, type: "success" | "error") {
     if (!formStatus) {
       return;
     }
@@ -367,7 +523,7 @@ const whatsappNumber = siteConfig.social.whatsapp;
   });
 
   window.addEventListener("pricing-plan-selected", (event) => {
-    const payload = event.detail || {};
+    const payload = (event as CustomEvent<{ plan?: string; mode?: string }>).detail || {};
     const plan = String(payload.plan || "").trim();
     const mode = String(payload.mode || "project").trim();
 

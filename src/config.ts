@@ -7,7 +7,7 @@ export const siteConfig = {
   description: "I help brands, creators, and businesses turn ideas into clear design, video, and content that is ready to share and built to support growth.",
   accentColor: "#1d4ed8",
   social: {
-    email: "infodearlipu+web@gmail.com",
+    email: "hello@dearlipu.is-a.dev",
     whatsapp: "918144991049",
     instagram: "https://www.instagram.com/dearlipu",
     twitter: "https://x.com/dearlipu",
@@ -27,8 +27,6 @@ export const siteConfig = {
         "Created a simple social content system that helped the brand gain 2,000+ followers and post more consistently.",
       images: [
         { src: "/projects/p1-1.gif", alt: "Social content animation preview" },
-        { src: "/projects/p1-3.webp", alt: "Social campaign post design" },
-        { src: "/projects/p1-4.webp", alt: "Brand content system layout" },
       ],
       skills: ["Content Strategy", "Social Design", "System Design"],
     },
@@ -37,9 +35,7 @@ export const siteConfig = {
       description:
         "Improved short videos with stronger openings and better pacing, increasing average watch time by 40% on key clips.",
       images: [
-        { src: "/projects/p1-5.webp", alt: "Video editing visual preview" },
-        { src: "/projects/p1-6.webp", alt: "Short-form content preview" },
-        { src: "/projects/p1-7.webp", alt: "Retention editing frame" },
+        { src: "/projects/p1-4.webp", alt: "Video editing visual preview" },
       ],
       skills: ["Video Editing", "Reels & Shorts", "Retention Design"],
     },
@@ -48,11 +44,18 @@ export const siteConfig = {
       description:
         "Updated old brand assets with a cleaner style that improved clarity, trust, and the way the brand was seen.",
       images: [
-        { src: "/projects/p1-8.webp", alt: "Brand redesign visual preview" },
-        { src: "/projects/p1-9.webp", alt: "Brand direction presentation" },
-        { src: "/projects/p1-2.webp", alt: "Clean brand asset layout" },
+        { src: "/projects/p1-4.webp", alt: "Brand redesign visual preview" },
       ],
       skills: ["Visual Redesign", "Branding", "Design Direction"],
+    },
+    {
+      name: "Launch Campaign Toolkit",
+      description:
+        "Built a focused campaign toolkit that gave the launch a consistent visual system across social and promotional assets.",
+      images: [
+        { src: "/projects/p1-7.webp", alt: "Launch campaign visual preview" },
+      ],
+      skills: ["Campaign Design", "Art Direction", "Content System"],
     },
   ],
   
