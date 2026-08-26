@@ -3,8 +3,8 @@ export const siteConfig = {
   googleSiteVerification: "TSCFrIOxF2u50hCpi2uMfBaJEYATy4CKBIzyvy6iyyc",
 
   name: "Saurav Panda",
-  title: "I design visuals that make brands impossible to ignore.",
-  description: "I help brands and creators turn ideas into strategic design, video editing, and motion graphics that improve clarity, consistency, and conversion.",
+  title: "Clear design and video content for brands that want to grow.",
+  description: "I help brands, creators, and businesses turn ideas into clear design, video, and content that is ready to share and built to support growth.",
   accentColor: "#1d4ed8",
   social: {
     email: "infodearlipu+web@gmail.com",
@@ -14,9 +14,9 @@ export const siteConfig = {
     youtube: "https://www.youtube.com/@dearlipu",
   },
   aboutMe:
-    `a visual designer and video editor focused on making ideas feel clear, human, and persuasive. I work with founders, brands, and creators who want content that looks clean and performs in the real world.
+    `a visual designer and video editor who helps brands, creators, and businesses communicate clearly. I create clean, useful content that helps people understand your offer and take action.
     
-    My process is simple: understand your goal, shape the message, and deliver polished assets fast with clear communication at every step.`,
+    My process is simple: understand your goal, plan the message, and deliver polished files on time with clear communication at every step.`,
 
   skills: ["Fast Turnaround", "Clear Communication", "Consistent Quality", "Detail-Focused"],
   
@@ -24,7 +24,7 @@ export const siteConfig = {
     {
       name: "Social Content System",
       description:
-        "Built a repeatable social content workflow that helped the brand grow by 2,000+ followers and post with stronger consistency.",
+        "Created a simple social content system that helped the brand gain 2,000+ followers and post more consistently.",
       images: [
         { src: "/projects/p1-1.gif", alt: "Social content animation preview" },
         { src: "/projects/p1-3.webp", alt: "Social campaign post design" },
@@ -35,7 +35,7 @@ export const siteConfig = {
     {
       name: "High-Retention Video Editing",
       description:
-        "Reworked short-form videos with stronger hooks and cleaner pacing, increasing average watch time by 40% on priority clips.",
+        "Improved short videos with stronger openings and better pacing, increasing average watch time by 40% on key clips.",
       images: [
         { src: "/projects/p1-5.webp", alt: "Video editing visual preview" },
         { src: "/projects/p1-6.webp", alt: "Short-form content preview" },
@@ -46,7 +46,7 @@ export const siteConfig = {
     {
       name: "Brand Visual Redesign",
       description:
-        "Redesigned outdated brand assets into a cleaner visual direction that improved clarity, trust, and overall brand perception.",
+        "Updated old brand assets with a cleaner style that improved clarity, trust, and the way the brand was seen.",
       images: [
         { src: "/projects/p1-8.webp", alt: "Brand redesign visual preview" },
         { src: "/projects/p1-9.webp", alt: "Brand direction presentation" },
@@ -58,36 +58,36 @@ export const siteConfig = {
   
   services: [
     {
-      degree: "Visual Design",
-      school: "Make your brand look better.",
+      degree: "Brand & Social Design",
+      school: "Make your brand clear, consistent, and easy to trust.",
       achievements: [
-        "Posts, carousels, and campaign graphics",
-        "Thumbnails, banners, and key visuals",
-        "Brand kits and style guides",
-        "Launch, offer, and ad creatives",
-        "Photo edits, retouching, and color grading"
+        "Social posts, carousels, and campaign graphics",
+        "Thumbnails, banners, and ad creatives",
+        "Brand kits and simple style guides",
+        "Launch graphics and offer designs",
+        "Photo editing, retouching, and color correction"
       ],
     },
     {
-      degree: "Video & Motion Design",
-      school: "Make people watch.",
+      degree: "Video Editing & Motion",
+      school: "Make videos people want to watch and share.",
       achievements: [
-        "Reels, Shorts, and long-form edits",
-        "Motion graphics and explainers",
-        "Hooks, pacing, and clean story flow",
-        "Promo videos and paid ad creatives",
+        "Reels, Shorts, and long-form video edits",
+        "Motion graphics, captions, and explainers",
+        "Stronger openings, pacing, and story flow",
+        "Promo videos and paid ad content",
         "2D/3D scenes and character animation"
       ],
     },
     {
-      degree: "Print & Editorial Design",
-      school: "Make information easier to read.",
+      degree: "Print & Layout Design",
+      school: "Make important information easy to read and use.",
       achievements: [
-        "Magazine and editorial layouts",
-        "Book design and ready-to-print files",
-        "Brochures, catalogs, and sell sheets",
+        "Magazine, report, and editorial layouts",
+        "Book design and print-ready files",
+        "Brochures, catalogs, and sales sheets",
         "Flyers, cards, and event materials",
-        "CMYK, bleed, and export setup"
+        "CMYK, bleed, and file export setup"
       ],
     },
   ],

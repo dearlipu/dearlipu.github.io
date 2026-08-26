@@ -50,7 +50,8 @@ const brands = [
     margin: 0;
     padding: 0.25rem 0;
     list-style: none;
-    animation: scroll 25s linear infinite;
+    animation: scroll 32s linear infinite;
+    will-change: transform;
   }
 
   .marquee-track li {
@@ -68,12 +69,18 @@ const brands = [
     transition: transform 0.25s ease, opacity 0.25s ease, filter 0.25s ease;
   }
 
+  .logo:hover {
+    opacity: 1;
+    filter: grayscale(0%) brightness(1);
+    transform: scale(1.08);
+  }
+
   @keyframes scroll {
     from {
       transform: translateX(0);
     }
     to {
-      transform: translateX(-33.333%);
+      transform: translateX(-50%);
     }
   }
 

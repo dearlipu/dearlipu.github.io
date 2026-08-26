@@ -16,13 +16,13 @@ const hasProjects = projects.length > 0;
             </p>
 
             <h2 class="mt-4 text-3xl font-bold leading-tight text-gray-900 sm:text-4xl md:text-5xl">
-              Selected Work.
+              Client Results.
             </h2>
 
             <div class="mt-3 h-1.5 w-20 rounded-full" style={`background-color: ${siteConfig.accentColor}`}></div>
 
             <p class="mt-5 max-w-sm text-sm leading-relaxed text-gray-600 sm:text-base">
-              Real projects with clear goals, smart execution, and measurable outcomes you can trust.
+              Examples of how clear design and video work can help a brand grow and communicate better.
             </p>
           </div>
 
@@ -69,10 +69,10 @@ const hasProjects = projects.length > 0;
                       <div class="space-y-4">
                         <div>
                           <span
-                            class="text-sm font-mono"
+                            class="text-sm"
                             style={{ color: siteConfig.accentColor }}
                           >
-                            0{index + 1}
+                            # 0{index + 1}
                           </span>
                           <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mt-1">
                             {project.name}
@@ -98,7 +98,7 @@ const hasProjects = projects.length > 0;
                           </div>
                         )}
 
-                        {project.link && <p class="text-xs font-semibold uppercase tracking-[0.16em] text-gray-500">View project details</p>}
+                        {project.link && <p class="text-xs font-semibold uppercase tracking-[0.16em] text-gray-500">See the project details</p>}
                       </div>
                     </Component>
                   </div>

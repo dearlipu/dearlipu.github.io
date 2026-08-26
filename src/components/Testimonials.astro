@@ -3,33 +3,33 @@ import { siteConfig } from "../config";
 
 const testimonials = [
   {
-    rating: 4.5,
+    rating: 3.9,
     quote:
-      "We shared a rough brief and references on Monday. By Wednesday, I had polished first drafts that matched our brand voice and needed only minor edits.",
+      "We shared a rough brief and a few references on Monday. By Wednesday, we had polished first drafts that matched our brand and needed only small changes.",
     name: "Riya Sharma",
     role: "Product Designer",
     avatar: "/avatars/user5.webp",
   },
   {
-    rating: 4.9,
+    rating: 4.1,
     quote:
-      "What stood out was consistency. Weekly social assets arrived on time, file handoff was clean, and communication stayed clear even when our priorities changed mid-week.",
+      "The best part was the consistency. Our weekly social assets arrived on time, the files were easy to use, and communication stayed clear when our priorities changed.",
     name: "Brayden Watts",
     role: "Startup Consultant",
     avatar: "/avatars/user6.webp",
   },
   {
-    rating: 4.7,
+    rating: 4.4,
     quote:
-      "It felt like working with an in-house creative partner. Feedback was translated quickly, and each revision improved both clarity and overall campaign performance.",
+      "It felt like working with an in-house creative partner. Feedback was understood quickly, and each revision made the campaign clearer and stronger.",
     name: "Priya Nair",
     role: "Marketing Lead",
     avatar: "/avatars/user7.webp",
   },
   {
-    rating: 4.8,
+    rating: 3.8,
     quote:
-      "Our scope changed midway from static posts to short-form video cutdowns. He adapted quickly, kept timelines realistic, and communicated tradeoffs before each revision round.",
+      "Our project changed from static posts to short videos halfway through. He adapted quickly, kept the timeline realistic, and explained the options before each revision.",
     name: "Arjun Mehta",
     role: "Content Creator",
     avatar: "/avatars/user8.webp",
@@ -37,7 +37,7 @@ const testimonials = [
   {
     rating: 4.6,
     quote:
-      "We hired Saurav for a 3-week launch sprint. The first delivery included editable source files, clear naming, and platform-ready exports, which made handoff easy for our internal team.",
+      "We hired Saurav for a three-week launch project. The first delivery included editable files, clear file names, and exports ready for each platform, which made handoff easy for our team.",
     name: "Emily Carter",
     role: "Brand Strategist",
     avatar: "/avatars/user9.webp",
@@ -54,13 +54,13 @@ const testimonials = [
         </p>
 
         <h2 class="mt-4 text-3xl font-bold leading-tight text-gray-900 sm:text-4xl md:text-5xl">
-          Success Stories.
+          What Clients Say.
         </h2>
 
         <div class="mt-3 h-1.5 w-20 rounded-full" style={`background-color: ${siteConfig.accentColor}`}></div>
 
         <p class="mt-5 max-w-sm text-sm leading-relaxed text-gray-600 sm:text-base">
-          Real feedback from clients I’ve partnered with on branding, social content, and video projects.
+          See what clients say about working with me on design, content, and video projects.
         </p>
       </div>
 
@@ -85,11 +85,11 @@ const testimonials = [
             </svg>
           </div>
           <div>
-            <p class="text-xs uppercase tracking-[0.16em] text-blue-200">Satisfaction rate</p>
+            <p class="text-xs uppercase tracking-[0.16em] text-blue-200">Client satisfaction</p>
             <h3 class="mt-2 text-4xl font-bold">
-              <span id="satisfactionCounter" data-target="98">0</span><span>%</span>
+              <span id="satisfactionCounter" data-target="89">0</span><span>%</span>
             </h3>
-            <p class="mt-2 text-sm text-gray-300">Trusted by 100+ businesses and creators.</p>
+            <p class="mt-2 text-sm text-gray-300">Trusted by businesses and creators for clear, reliable creative work.</p>
           </div>
 
           <div class="mt-4 flex -space-x-5">
@@ -116,7 +116,7 @@ const testimonials = [
             </div>
           </div>
 
-          <p class="mt-4 text-xs text-gray-400">Results-focused creative support with clear communication and dependable turnaround.</p>
+          <p class="mt-4 text-xs text-gray-400">Clear communication, dependable delivery, and creative work built around your goals.</p>
         </article>
       </div>
 
@@ -127,21 +127,31 @@ const testimonials = [
               testimonials.map((item) => (
                 <article class="review-card" aria-label={`Review by ${item.name}`}>
                   <div>
-                    <div class="mb-2 flex items-center gap-2 text-sm leading-none">
-                      <span class="font-semibold text-gray-900">{item.rating}</span>
-                      <div class="flex items-center gap-0.5 text-red-500" aria-hidden="true">
+                    <div class="mb-2 flex items-center gap-2 text-sm leading-none" aria-label={`${item.rating} out of 5 stars`}>
+                      <span class="relative top-0.5 font-semibold text-gray-900">{item.rating}</span>
+                      <div class="flex items-center gap-0.5" aria-hidden="true">
                         {
                           Array(5)
                             .fill(0)
-                            .map(() => (
-                              <svg xmlns="http://www.w3.org/2000/svg" class="block h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="currentColor">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z"></path>
-                              </svg>
-                            ))
+                            .map((_, starIndex) => {
+                              const fill = Math.max(0, Math.min(1, item.rating - starIndex)) * 100;
+
+                              return (
+                                <span class="relative block h-3.5 w-3.5 text-gray-300">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-0 h-full w-full" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
+                                  </svg>
+                                  <span class="absolute inset-y-0 left-0 overflow-hidden text-amber-400" style={`width: ${fill}%`}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor">
+                                      <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
+                                    </svg>
+                                  </span>
+                                </span>
+                              );
+                            })
                         }
                       </div>
-                      <span class="text-gray-500">Rating</span>
+                      <span class="relative top-0.5 text-gray-500">out of 5.0</span>
                     </div>
 
                     <p class="text-sm leading-relaxed text-gray-700">“{item.quote}”</p>

@@ -5,6 +5,13 @@ body {
   background: #fff;
 }
 
+body :where(p, h1, h2, h3, h4, h5, h6, li, dt, dd, label),
+body :where(p, h1, h2, h3, h4, h5, h6, li, dt, dd, label) > span:not([aria-hidden="true"]),
+body :where(a, button):not(:has(svg)) {
+  position: relative;
+  top: 2px;
+}
+
 html {
   scroll-behavior: smooth;
 }

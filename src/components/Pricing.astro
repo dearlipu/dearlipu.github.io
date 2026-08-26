@@ -3,27 +3,27 @@ import { siteConfig } from "../config";
 
 const plans = [
   {
-    name: "Starter",
-    audience: "For one-off creative tasks and quick launches.",
+    name: "Quick Start",
+    audience: "For one clear task or a small content need.",
     badge: null,
     icon: "sparkles",
-    projectPrice: "₹999+",
-    monthlyPrice: "₹8,999/mo",
+    projectPrice: "₹1,999+",
+    monthlyPrice: "₹9,999/mo",
   },
   {
     name: "Growth",
-    audience: "For brands that need consistent monthly content output.",
+    audience: "For brands that need regular content and campaign support.",
     badge: "Most Popular",
     icon: "heart",
-    projectPrice: "₹2,999+",
+    projectPrice: "₹5,999+",
     monthlyPrice: "₹19,999/mo",
   },
   {
     name: "Professional",
-    audience: "For teams running campaigns that need priority execution.",
+    audience: "For growing teams that need a reliable creative partner.",
     badge: null,
     icon: "shield",
-    projectPrice: "₹7,999+",
+    projectPrice: "₹17,999+",
     monthlyPrice: "₹39,999/mo",
   },
 ];
@@ -44,21 +44,21 @@ const plans = [
         <div class="mt-3 h-1.5 w-20 rounded-full" style={`background-color: ${siteConfig.accentColor}`}></div>
 
         <p class="mt-5 max-w-sm text-sm leading-relaxed text-gray-600 sm:text-base">
-          Simple starting points. We can keep it quick, go monthly, or shape a custom package around your goals.
+          Compare the level of support you need, from one simple task to ongoing creative work.
         </p>
 
         <div class="mt-6" role="group" aria-label="Pricing mode toggle">
           <p class="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-gray-500">
-            How do you want to work?
+            How would you like to work?
           </p>
           <div class="relative grid h-11 w-full max-w-[340px] grid-cols-2 rounded-full bg-gray-200 p-1">
             <div id="toggleSlider" class="toggle-slider"></div>
 
             <button id="perProjectBtn" type="button" class="toggle-btn toggle-btn-active" aria-pressed="true">
-              Per Project
+              One Project
             </button>
             <button id="monthlyBtn" type="button" class="toggle-btn" aria-pressed="false">
-              Monthly Retainer
+              Monthly Support
             </button>
           </div>
         </div>
@@ -127,7 +127,7 @@ const plans = [
           }
         </div>
 
-        <p class="mt-6 text-sm text-gray-500">Not sure what fits? Send the goal. I’ll suggest the simplest package that gets you there.</p>
+        <p class="mt-6 text-sm text-gray-500">Not sure what you need? Tell me your goal and I’ll suggest the simplest option.</p>
       </div>
     </div>
   </div>
@@ -198,8 +198,9 @@ const plans = [
 
   .pricing-badge {
     position: absolute;
-    top: -0.65rem;
+    top: -0.75rem;
     left: 50%;
+    z-index: 2;
     transform: translateX(-50%);
     border-radius: 999px;
     padding: 0.25rem 0.65rem;
@@ -244,14 +245,14 @@ const plans = [
 
   const featureData = {
     project: [
-      ["One focused deliverable", "1 revision round included", "Best for quick one-off requirements", "Delivery in 24–48 hours"],
-      ["Built for recurring content needs", "2–3 revision rounds included", "Balanced speed and depth", "Delivery within a few days"],
-      ["Built for larger campaigns and systems", "Priority support", "Flexible revision rounds", "Tailored strategy and execution"],
+              ["One design or video deliverable", "Two concept options", "Two revision rounds included", "Final files ready to publish"],
+              ["A launch campaign or content set", "Multiple design and video assets", "Two revision rounds per asset", "Source files included"],
+              ["A full campaign or content system", "Design, video, and motion support", "Priority project timeline", "Planning and source files included"],
     ],
     monthly: [
-      ["Ongoing creative support", "1 active request at a time", "Multi-format deliverables", "Pause or resume anytime"],
-      ["Consistent high-volume delivery", "2 active requests", "Priority turnaround", "Best for scaling brands"],
-      ["A dedicated creative partner", "Multiple active requests", "Fast-track workflow", "Built for teams with ongoing campaigns"],
+              ["Up to 4 deliverables each month", "One active request at a time", "Design and short-form video", "Pause or resume anytime"],
+              ["Up to 8 deliverables each month", "Two active requests", "More formats and priority delivery", "Weekly progress updates"],
+              ["Up to 16 deliverables each month", "Two active requests at a time", "Design, video, and motion support", "Monthly planning and priority support"],
     ],
   };
 
