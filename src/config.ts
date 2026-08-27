@@ -3,7 +3,7 @@ export const siteConfig = {
   googleSiteVerification: "TSCFrIOxF2u50hCpi2uMfBaJEYATy4CKBIzyvy6iyyc",
 
   name: "Saurav Panda",
-  title: "Clear design and video content for brands that want to grow.",
+  title: "Make people see what matters.",
   description: "I help brands, creators, and businesses turn ideas into clear design, video, and content that is ready to share and built to support growth.",
   accentColor: "#1d4ed8",
   social: {
@@ -12,6 +12,7 @@ export const siteConfig = {
     instagram: "https://www.instagram.com/dearlipu",
     twitter: "https://x.com/dearlipu",
     youtube: "https://www.youtube.com/@dearlipu",
+    buymeacoffee: "https://buymeacoffee.com/dearlipu",
   },
   aboutMe:
     `a visual designer and video editor who helps brands, creators, and businesses communicate clearly. I create clean, useful content that helps people understand your offer and take action.
@@ -62,13 +63,13 @@ export const siteConfig = {
   services: [
     {
       degree: "Brand & Social Design",
-      school: "Make your brand clear, consistent, and easy to trust.",
+      school: "Make brand clear, consistent, and easy to trust.",
       achievements: [
-        "Social posts, carousels, and campaign graphics",
+        "Posts, carousels, and campaign graphics",
         "Thumbnails, banners, and ad creatives",
         "Brand kits and simple style guides",
         "Launch graphics and offer designs",
-        "Photo editing, retouching, and color correction"
+        "Editing, retouching, and color correction"
       ],
     },
     {
@@ -84,7 +85,7 @@ export const siteConfig = {
     },
     {
       degree: "Print & Layout Design",
-      school: "Make important information easy to read and use.",
+      school: "Make information easy to read and use.",
       achievements: [
         "Magazine, report, and editorial layouts",
         "Book design and print-ready files",

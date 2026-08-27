@@ -23,12 +23,12 @@ const heroMetrics = [
 
   <div class="mx-auto grid min-h-[72vh] max-w-6xl items-center gap-12 lg:grid-cols-[1.04fr_.96fr]">
     <div class="relative z-10">
-      <p class="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/80 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-blue-700 shadow-sm animate-fade-in">
+      <p class="availability-pill inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/80 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-blue-700 shadow-sm animate-fade-in">
         <span class="relative flex h-2 w-2" aria-hidden="true">
-          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
-          <span class="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
+          <span id="availabilityPulse" class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+          <span id="availabilityDot" class="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
         </span>
-        <span id="availabilityText" class="availability-text relative top-0.5" aria-label="Available for work ~"></span>
+        <span id="availabilityText" class="availability-text relative top-0.5" aria-live="polite"></span>
       </p>
 
       <h1 class="mt-4 max-w-4xl text-pretty text-5xl font-extrabold tracking-tight text-gray-900 sm:text-6xl lg:text-7xl xl:text-8xl animate-fade-in animation-delay-200">
@@ -67,8 +67,8 @@ const heroMetrics = [
         <img src="/projects/p1-7.webp" alt="Campaign design preview" class="h-full w-full object-cover" decoding="async" />
       </div>
       <div class="insight-card floating-card animation-float-delay-2">
-        <span class="text-xs font-bold uppercase tracking-[0.16em] text-blue-700">Creative system</span>
-        <p class="mt-2 text-lg font-extrabold text-gray-900">You bring the idea. I shape how people see it.</p>
+        <span class="text-[11px] font-bold uppercase tracking-[0.16em] text-blue-700">Creative direction</span>
+        <p class="mt-2 text-xl font-extrabold leading-[1.35] text-gray-900">You bring the vision. I make it visible.</p>
         <div class="mt-4 flex gap-2">
           <span></span><span></span><span></span>
         </div>
@@ -104,6 +104,36 @@ const heroMetrics = [
   .hero-btn-secondary { border: 1px solid #d1d5db; background: rgba(255,255,255,.8); color: #111827; }
   .availability-text { display: inline-block; min-width: 9.8rem; white-space: nowrap; }
   .availability-text.is-typing::after { content: "|"; margin-left: .1rem; color: currentColor; animation: blinkCaret .8s step-end infinite; }
+  .availability-pill {
+    position: relative;
+    gap: 0.55rem;
+    min-height: 2rem;
+    padding: 0.38rem 0.8rem;
+    overflow: hidden;
+    border-color: rgba(255, 255, 255, 0.78);
+    background: rgba(255, 255, 255, 0.58);
+    box-shadow: 0 10px 28px rgba(37, 99, 235, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(14px) saturate(1.2);
+    -webkit-backdrop-filter: blur(14px) saturate(1.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  }
+  .availability-pill::after {
+    position: absolute;
+    top: -80%;
+    bottom: -80%;
+    left: -35%;
+    width: 18%;
+    background: rgba(255, 255, 255, 0.5);
+    content: "";
+    transform: rotate(18deg) translateX(-180%);
+    animation: availabilitySheen 6s ease-in-out 1.5s infinite;
+    pointer-events: none;
+  }
+  .availability-pill:hover {
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: 0 14px 32px rgba(37, 99, 235, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    transform: translateY(-2px);
+  }
   .floating-card { animation: collageReveal .8s cubic-bezier(.16,1,.3,1) both, float 6.5s ease-in-out .8s infinite; box-shadow: 0 28px 70px rgba(15,23,42,.14), 0 8px 18px rgba(15,23,42,.08); will-change: transform; }
   .floating-card::after { position: absolute; inset: -35% auto -35% -25%; z-index: 3; width: 18%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.65), transparent); content: ""; pointer-events: none; transform: translateX(-130%) rotate(18deg); animation: cardShine 7s ease-in-out 1.2s infinite; }
   .animation-float-delay { animation-delay: .18s, -1.4s; }
@@ -117,44 +147,63 @@ const heroMetrics = [
   .insight-card span:not(:first-child), .insight-card div span { display: block; height: .45rem; flex: 1; border-radius: 999px; background: linear-gradient(90deg, var(--accent-color), #67e8f9); }
   @keyframes buttonWave { 0% { width: 0; height: 0; opacity: .8; } 70%, 100% { width: 220%; height: 520%; opacity: 0; } }
   @keyframes blinkCaret { 50% { opacity: 0; } }
-  @media (prefers-reduced-motion: reduce) { .hero-btn-primary::after, .floating-card::after { animation: none; } .floating-card { animation: none; } }
+  @keyframes availabilitySheen { 0%, 68% { opacity: 0; transform: rotate(18deg) translateX(-180%); } 75% { opacity: 0.7; } 88%, 100% { opacity: 0; transform: rotate(18deg) translateX(720%); } }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-btn-primary::after,
+    .floating-card::after,
+    .availability-pill::after,
+    .availability-text.is-typing::after { animation: none; }
+    .floating-card { animation: none; }
+  }
   @media (max-width: 1023px) { .phone-card { right: 18%; } .shot-card-one { left: 7%; } }
   @media (max-width: 640px) { .phone-card { right: 4%; height: 360px; width: 205px; } .shot-card { border-width: 6px; } .shot-card-one { left: -4%; width: 210px; height: 150px; } .shot-card-two { width: 225px; height: 145px; } .insight-card { left: 0; bottom: 20%; width: 225px; } }
 </style>
 
 <script>
   const availabilityText = document.getElementById("availabilityText");
-  const availabilityMessage = "Available for work ~";
+  const availabilityDot = document.getElementById("availabilityDot");
+  const availabilityPulse = document.getElementById("availabilityPulse");
+  const availabilityMessages = [
+    { text: "Available for work", unavailable: false },
+    { text: "Available for new projects", unavailable: false },
+    //{ text: "Not available right now", unavailable: true },
+  ];
 
   if (availabilityText) {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let messageIndex = 0;
+    let characterIndex = 0;
+    let isDeleting = false;
+
+    const updateAvailabilityStatus = () => {
+      const status = availabilityMessages[messageIndex];
+      availabilityText.textContent = status.text.slice(0, characterIndex);
+      availabilityDot?.classList.toggle("bg-red-500", status.unavailable);
+      availabilityDot?.classList.toggle("bg-green-500", !status.unavailable);
+      availabilityPulse?.classList.toggle("bg-red-400", status.unavailable);
+      availabilityPulse?.classList.toggle("bg-green-400", !status.unavailable);
+
+      if (!isDeleting && characterIndex < status.text.length) {
+        characterIndex += 1;
+        window.setTimeout(updateAvailabilityStatus, 75);
+      } else if (!isDeleting) {
+        isDeleting = true;
+        window.setTimeout(updateAvailabilityStatus, 3000);
+      } else if (characterIndex > 0) {
+        characterIndex -= 1;
+        window.setTimeout(updateAvailabilityStatus, 45);
+      } else {
+        isDeleting = false;
+        messageIndex = (messageIndex + 1) % availabilityMessages.length;
+        window.setTimeout(updateAvailabilityStatus, 500);
+      }
+    };
 
     if (prefersReducedMotion) {
-      availabilityText.textContent = availabilityMessage;
+      availabilityText.textContent = availabilityMessages[0].text;
     } else {
       availabilityText.classList.add("is-typing");
-      let characterIndex = 0;
-      let isDeleting = false;
-
-      const typeNextCharacter = () => {
-        availabilityText.textContent = availabilityMessage.slice(0, characterIndex);
-
-        if (!isDeleting && characterIndex < availabilityMessage.length) {
-          characterIndex += 1;
-          window.setTimeout(typeNextCharacter, 75);
-        } else if (!isDeleting) {
-          isDeleting = true;
-          window.setTimeout(typeNextCharacter, 3000);
-        } else if (characterIndex > 0) {
-          characterIndex -= 1;
-          window.setTimeout(typeNextCharacter, 45);
-        } else {
-          isDeleting = false;
-          window.setTimeout(typeNextCharacter, 500);
-        }
-      };
-
-      typeNextCharacter();
+      updateAvailabilityStatus();
     }
   }
 

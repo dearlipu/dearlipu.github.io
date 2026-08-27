@@ -385,6 +385,14 @@ const whatsappNumber = siteConfig.social.whatsapp;
     color: #fff;
     opacity: 0.35;
     pointer-events: none;
+    filter: drop-shadow(0 0 0 rgba(255, 255, 255, 0));
+    animation: contactQrMetal 4.2s ease-in-out infinite;
+  }
+
+  @keyframes contactQrMetal {
+    0%, 62%, 100% { opacity: 0.3; filter: brightness(0.9) drop-shadow(0 0 0 rgba(255, 255, 255, 0)); }
+    74% { opacity: 0.52; filter: brightness(1.35) drop-shadow(0 0 7px rgba(255, 255, 255, 0.55)); }
+    84% { opacity: 0.35; filter: brightness(1) drop-shadow(0 0 2px rgba(255, 255, 255, 0.2)); }
   }
 
   .quick-link:hover,
@@ -434,6 +442,13 @@ const whatsappNumber = siteConfig.social.whatsapp;
     .quick-link {
       padding: 0.4rem 0.75rem;
       font-size: 0.82rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-qr {
+      animation: none;
+      filter: none;
     }
   }
 </style>

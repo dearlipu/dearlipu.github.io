@@ -27,7 +27,7 @@ import { siteConfig } from "../config";
         <p class="text-base text-gray-600">
           {siteConfig.title}
         </p>
-        <div class="flex gap-x-6">
+        <div class="footer-socials flex flex-wrap gap-2.5">
 
           {siteConfig.social?.instagram && (
           <a
@@ -35,7 +35,7 @@ import { siteConfig } from "../config";
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
-            class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
+            class="footer-social-link text-gray-600"
             style={`--accent-color: ${siteConfig.accentColor}`}
           >
             <svg
@@ -48,7 +48,7 @@ import { siteConfig } from "../config";
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="h-6 w-6"
+              class="footer-social-icon h-5 w-5"
               >
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
@@ -63,7 +63,7 @@ import { siteConfig } from "../config";
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Twitter"
-            class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
+            class="footer-social-link text-gray-600"
             style={`--accent-color: ${siteConfig.accentColor}`}
           >
             <svg
@@ -76,7 +76,7 @@ import { siteConfig } from "../config";
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="h-6 w-6"
+              class="footer-social-icon h-5 w-5"
               ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
                 d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path
                 d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg
@@ -89,7 +89,7 @@ import { siteConfig } from "../config";
             target="_blank"
             rel="noopener noreferrer"
             aria-label="YouTube"
-            class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
+            class="footer-social-link text-gray-600"
             style={`--accent-color: ${siteConfig.accentColor}`}
           >
             <svg
@@ -102,12 +102,41 @@ import { siteConfig } from "../config";
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="h-6 w-6"
+              class="footer-social-icon h-5 w-5"
               >
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
               <path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z" />
               <path d="M10 9l5 3l-5 3z" /></svg
             >
+          </a>
+          )}
+          {siteConfig.social?.buymeacoffee && (
+          <a
+            href={siteConfig.social.buymeacoffee}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Buy me a coffee"
+            class="footer-social-link text-gray-600"
+            style={`--accent-color: ${siteConfig.accentColor}`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="footer-social-icon h-5 w-5"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M5 11h14v-3h-14l0 3" />
+              <path d="M17.5 11l-1.5 10h-8l-1.5 -10" />
+              <path d="M6 8v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" />
+              <path d="M15 5v-2" />
+            </svg>
           </a>
           )}
         </div>
@@ -174,6 +203,58 @@ import { siteConfig } from "../config";
 </footer>
 
 <style>
+  .footer-socials {
+    align-items: center;
+    gap: 0.65rem;
+    margin-left: -0.35rem;
+  }
+
+  .footer-social-link {
+    display: inline-flex;
+    height: 2.25rem;
+    width: 2.25rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    color: #475569;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease, opacity 0.25s ease;
+  }
+
+  .footer-social-icon {
+    width: 1.35rem;
+    height: 1.35rem;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .footer-social-link:hover,
+  .footer-social-link:focus-visible {
+    color: var(--accent-color);
+    outline: none;
+    transform: translateY(-2px);
+  }
+
+  .footer-social-link:hover .footer-social-icon,
+  .footer-social-link:focus-visible .footer-social-icon {
+    transform: scale(1.12) rotate(-4deg);
+  }
+
+  .footer-social-link:active {
+    opacity: 0.7;
+    transform: translateY(0) scale(0.94);
+  }
+
+  .footer-social-link:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--accent-color) 45%, transparent);
+    outline-offset: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .footer-social-link,
+    .footer-social-icon {
+      transition: none;
+    }
+  }
+
   .footer-name { cursor: pointer; }
   .footer-name .name-front, .footer-name .name-back { display: block; transition: opacity .25s, transform .25s; }
   .name-back { opacity:0; transform: translateY(6px); position:absolute; left:0; top:0; }
