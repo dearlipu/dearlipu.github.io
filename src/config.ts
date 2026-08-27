@@ -36,7 +36,7 @@ export const siteConfig = {
       description:
         "Improved short videos with stronger openings and better pacing, increasing average watch time by 40% on key clips.",
       images: [
-        { src: "/projects/p1-4.webp", alt: "Video editing visual preview" },
+        { src: "/projects/p1-2.gif", alt: "Video editing visual preview" },
       ],
       skills: ["Video Editing", "Reels & Shorts", "Retention Design"],
     },
@@ -45,7 +45,7 @@ export const siteConfig = {
       description:
         "Updated old brand assets with a cleaner style that improved clarity, trust, and the way the brand was seen.",
       images: [
-        { src: "/projects/p1-4.webp", alt: "Brand redesign visual preview" },
+        { src: "/projects/p1-3.webp", alt: "Brand redesign visual preview" },
       ],
       skills: ["Visual Redesign", "Branding", "Design Direction"],
     },
@@ -54,7 +54,7 @@ export const siteConfig = {
       description:
         "Built a focused campaign toolkit that gave the launch a consistent visual system across social and promotional assets.",
       images: [
-        { src: "/projects/p1-7.webp", alt: "Launch campaign visual preview" },
+        { src: "/projects/p1-4.webp", alt: "Launch campaign visual preview" },
       ],
       skills: ["Campaign Design", "Art Direction", "Content System"],
     },
