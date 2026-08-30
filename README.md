@@ -1,65 +1,36 @@
-# Saurav Panda — Agency Website
+# Saurav Panda — Creative Growth Agency Website
 
-> ⚡ Live: https://dearlipu.github.io/
-> 🎯 Design • UI • Motion • Digital Systems  
-
----
-
-## 🚀 About This Project
-
-This is my personal website where I showcase my work, skills, and services in design and digital development.
-
-Built on top of an open-source template by **Ryan Fitzgerald**, but heavily redesigned and re-engineered to create a more practical, real-world portfolio system.
-
-This is not a basic template edit — it's a structured rebuild focused on usability, clarity, and performance.
+> Live: https://dearlipu.github.io/
+> Brand strategy • Web design • Content systems • Growth creative
 
 ---
 
-## 🧠 What Makes This Different
+## About this site
 
-- Fully redesigned UI (not just styled — rethought layout)
-- Improved UX for better flow and clarity
-- Component-level customization
-- Clean and scalable structure
-- Mobile-first responsive design
-- Real-world ready (not just showcase)
+This is a service-focused creative agency website for Saurav Panda. The content, messaging, and structure are built to position the business as a design and growth partner rather than a personal portfolio.
 
----
+The site highlights:
 
-## 🛠 Tech Stack
-
-- Astro  
-- Tailwind CSS  
-- JavaScript  
-- Modern component-based architecture  
+- Brand strategy and positioning
+- Service-based offerings and pricing
+- Conversion-focused web and content design
+- Client trust through reviews and direct contact
 
 ---
 
-## 📂 Use This as a Base
+## Tech stack
 
-You can use this project as a starting point for your own portfolio.
-
-But don’t copy it blindly.
-
-If you use it:
-- Customize the design  
-- Replace content completely  
-- Build your own identity  
+- Astro
+- Tailwind CSS
+- JavaScript
+- Component-based layout system
 
 ---
 
-## 🙌 Credits
+## Project note
 
-Original template by **Ryan Fitzgerald**  
-This project is a heavily modified and customized version of that work.
+This website is designed for Saurav Panda's creative agency work and is tailored around service-based positioning, business clarity, and lead generation.
 
 ---
-
-## ⚠️ Note
-
-This is a personal portfolio project.
-
-If you fork it, treat it as a foundation — not a finished product.
-
 
 ❤ by Saurav Panda aka @dearlipu

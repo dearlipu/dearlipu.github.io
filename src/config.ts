@@ -20,51 +20,12 @@ export const siteConfig = {
     My process is simple: understand your goal, plan the message, and deliver polished files on time with clear communication at every step.`,
 
   skills: ["Fast Turnaround", "Clear Communication", "Consistent Quality", "Detail-Focused"],
-  
-  projects: [
-    {
-      name: "Social Content System",
-      description:
-        "Created a simple social content system that helped the brand gain 2,000+ followers and post more consistently.",
-      images: [
-        { src: "/projects/p1-1.gif", alt: "Social content animation preview" },
-      ],
-      skills: ["Content Strategy", "Social Design", "System Design"],
-    },
-    {
-      name: "High-Retention Video Editing",
-      description:
-        "Improved short videos with stronger openings and better pacing, increasing average watch time by 40% on key clips.",
-      images: [
-        { src: "/projects/p1-2.gif", alt: "Video editing visual preview" },
-      ],
-      skills: ["Video Editing", "Reels & Shorts", "Retention Design"],
-    },
-    {
-      name: "Brand Visual Redesign",
-      description:
-        "Updated old brand assets with a cleaner style that improved clarity, trust, and the way the brand was seen.",
-      images: [
-        { src: "/projects/p1-3.webp", alt: "Brand redesign visual preview" },
-      ],
-      skills: ["Visual Redesign", "Branding", "Design Direction"],
-    },
-    {
-      name: "Launch Campaign Toolkit",
-      description:
-        "Built a focused campaign toolkit that gave the launch a consistent visual system across social and promotional assets.",
-      images: [
-        { src: "/projects/p1-4.webp", alt: "Launch campaign visual preview" },
-      ],
-      skills: ["Campaign Design", "Art Direction", "Content System"],
-    },
-  ],
-  
+
   services: [
     {
-      degree: "Brand & Social Design",
-      school: "Make brand clear, consistent, and easy to trust.",
-      achievements: [
+      title: "Brand & Social Design",
+      subtitle: "Make brand clear, consistent, and easy to trust.",
+      includes: [
         "Posts, carousels, and campaign graphics",
         "Thumbnails, banners, and ad creatives",
         "Brand kits and simple style guides",
@@ -73,9 +34,9 @@ export const siteConfig = {
       ],
     },
     {
-      degree: "Video Editing & Motion",
-      school: "Make videos people want to watch and share.",
-      achievements: [
+      title: "Video Editing & Motion",
+      subtitle: "Make videos people want to watch and share.",
+      includes: [
         "Reels, Shorts, and long-form video edits",
         "Motion graphics, captions, and explainers",
         "Stronger openings, pacing, and story flow",
@@ -84,9 +45,9 @@ export const siteConfig = {
       ],
     },
     {
-      degree: "Print & Layout Design",
-      school: "Make information easy to read and use.",
-      achievements: [
+      title: "Print & Layout Design",
+      subtitle: "Make information easy to read and use.",
+      includes: [
         "Magazine, report, and editorial layouts",
         "Book design and print-ready files",
         "Brochures, catalogs, and sales sheets",
