@@ -1,4 +1,4 @@
-# Saurav Panda — Portfolio-cum-Agency Website
+# Saurav Panda — Agency Website
 
 > ⚡ Live: https://dearlipu.github.io/
 > 🎯 Design • UI • Motion • Digital Systems  
