@@ -1,6 +1,6 @@
 export const siteConfig = {
   siteUrl: "https://dearlipu.github.io",
-  siteName: "Saurav Panda",
+  siteName: "Saurav Panda - aka dearlipu",
   googleSiteVerification: "TSCFrIOxF2u50hCpi2uMfBaJEYATy4CKBIzyvy6iyyc",
 
   name: "Saurav Panda",

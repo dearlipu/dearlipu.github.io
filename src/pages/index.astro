@@ -21,7 +21,12 @@ const personSchema = {
     siteConfig.social.youtube,
   ],
   jobTitle: "Visual Designer and Video Editor",
-  knowsAbout: ["Visual Design", "Video Editing", "Motion Graphics", "Brand Strategy"],
+  knowsAbout: [
+    "Visual Design",
+    "Video Editing",
+    "Motion Graphics",
+    "Brand Strategy",
+  ],
   description: siteConfig.description,
 };
 ---
@@ -36,12 +41,15 @@ const personSchema = {
     <meta name="keywords" content={siteConfig.keywords.join(", ")} />
     <meta name="theme-color" content={siteConfig.accentColor} />
     <link rel="canonical" href={`${siteConfig.siteUrl}/`} />
-    {siteConfig.googleSiteVerification !== "TSCFrIOxF2u50hCpi2uMfBaJEYATy4CKBIzyvy6iyyc" && (
-      <meta
-        name="google-site-verification"
-        content={siteConfig.googleSiteVerification}
-      />
-    )}
+    {
+      siteConfig.googleSiteVerification !==
+        "TSCFrIOxF2u50hCpi2uMfBaJEYATy4CKBIzyvy6iyyc" && (
+        <meta
+          name="google-site-verification"
+          content={siteConfig.googleSiteVerification}
+        />
+      )
+    }
 
     <!-- OPEN GRAPH / SOCIAL PREVIEW -->
     <meta property="og:title" content={siteConfig.title} />
@@ -49,7 +57,10 @@ const personSchema = {
     <meta property="og:description" content={siteConfig.description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={`${siteConfig.siteUrl}/`} />
-    <meta property="og:image" content={`${siteConfig.siteUrl}/social-card.png`} />
+    <meta
+      property="og:image"
+      content={`${siteConfig.siteUrl}/social-card.png`}
+    />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="en_US" />
@@ -58,11 +69,20 @@ const personSchema = {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={siteConfig.title} />
     <meta name="twitter:description" content={siteConfig.description} />
-    <meta name="twitter:image" content={`${siteConfig.siteUrl}/social-card.png`} />
+    <meta
+      name="twitter:image"
+      content={`${siteConfig.siteUrl}/social-card.png`}
+    />
     <meta name="twitter:creator" content="@dearlipu" />
 
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <script type="application/ld+json" set:html={JSON.stringify(personSchema)}></script>
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(personSchema)}
+    />
 
     <script is:inline>
       document.addEventListener("DOMContentLoaded", () => {
@@ -81,7 +101,7 @@ const personSchema = {
               }
             });
           },
-          { threshold: 0.16, rootMargin: "0px 0px -60px 0px" }
+          { threshold: 0.16, rootMargin: "0px 0px -60px 0px" },
         );
 
         revealItems.forEach((item) => observer.observe(item));
@@ -95,20 +115,20 @@ const personSchema = {
       rel="stylesheet"
     />
 
-    <title>{siteConfig.title}</title>
+    <title>{siteConfig.siteName}</title>
   </head>
 
   <body>
     <Header />
 
-      <section>
-        <Hero />
-        <About />
-        <Services />
-        <Pricing />
-        <Reviews />
-        <Contact />
-      </section>
+    <section>
+      <Hero />
+      <About />
+      <Services />
+      <Pricing />
+      <Reviews />
+      <Contact />
+    </section>
 
     <Footer />
   </body>
