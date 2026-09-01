@@ -1,10 +1,21 @@
 export const siteConfig = {
   siteUrl: "https://dearlipu.github.io",
+  siteName: "Saurav Panda",
   googleSiteVerification: "TSCFrIOxF2u50hCpi2uMfBaJEYATy4CKBIzyvy6iyyc",
 
   name: "Saurav Panda",
-  title: "Make people see what matters.",
-  description: "I help brands, creators, and businesses turn ideas into clear design, video, and content that is ready to share and built to support growth.",
+  title: "Your brand deserves better design.",
+  description:
+    "Saurav Panda helps brands and creators turn ideas into clear strategy, motion graphics, and high-converting visual content that builds trust and drives action.",
+  keywords: [
+    "Visual Designer",
+    "Video Editor",
+    "Motion Graphics",
+    "Brand Design",
+    "Social Media Design",
+    "Creative Studio",
+    "Saurav Panda",
+  ],
   accentColor: "#1d4ed8",
   social: {
     email: "hello@dearlipu.is-a.dev",
