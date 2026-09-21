@@ -16,7 +16,21 @@ import "../styles/global.css";
       rel="stylesheet"
     />
 
-    <title>Privacy Policy</title>
+    <link rel="canonical" href={`${siteConfig.siteUrl}/privacy`} />
+    <meta
+      name="description"
+      content="Privacy Policy for dearlipu (Saurav Panda). Learn how personal information and inquiries are handled."
+    />
+    <meta
+      property="og:title"
+      content={`Privacy Policy | ${siteConfig.siteName}`}
+    />
+    <meta property="og:site_name" content={siteConfig.siteName} />
+    <meta property="og:url" content={`${siteConfig.siteUrl}/privacy`} />
+    <meta property="og:type" content="website" />
+    <meta name="robots" content="index, follow" />
+
+    <title>Privacy Policy | {siteConfig.siteName}</title>
   </head>
 
   <body class="bg-white text-gray-800">

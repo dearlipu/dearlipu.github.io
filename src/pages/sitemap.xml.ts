@@ -1,7 +1,14 @@
 import type { APIRoute } from "astro";
 import { siteConfig } from "../config";
 
-const staticRoutes = ["/", "/faq", "/privacy", "/terms", "/copyright"];
+const staticRoutes = [
+  "/",
+  "/portfolio/",
+  "/faq",
+  "/privacy",
+  "/terms",
+  "/copyright",
+];
 
 function toUrl(path: string) {
   return `${siteConfig.siteUrl}${path}`;

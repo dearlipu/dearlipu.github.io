@@ -16,7 +16,21 @@ import "../styles/global.css";
       rel="stylesheet"
     />
 
-    <title>Copyright Notice</title>
+    <link rel="canonical" href={`${siteConfig.siteUrl}/copyright`} />
+    <meta
+      name="description"
+      content="Copyright Notice for dearlipu. Details on intellectual property, visual assets, and content usage."
+    />
+    <meta
+      property="og:title"
+      content={`Copyright Notice | ${siteConfig.siteName}`}
+    />
+    <meta property="og:site_name" content={siteConfig.siteName} />
+    <meta property="og:url" content={`${siteConfig.siteUrl}/copyright`} />
+    <meta property="og:type" content="website" />
+    <meta name="robots" content="index, follow" />
+
+    <title>Copyright Notice | {siteConfig.siteName}</title>
   </head>
 
   <body class="bg-white text-gray-800">

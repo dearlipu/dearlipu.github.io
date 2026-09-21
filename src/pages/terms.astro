@@ -16,7 +16,21 @@ import "../styles/global.css";
       rel="stylesheet"
     />
 
-    <title>Terms & Conditions</title>
+    <link rel="canonical" href={`${siteConfig.siteUrl}/terms`} />
+    <meta
+      name="description"
+      content="Terms & Conditions for dearlipu (Saurav Panda) design and video editing services."
+    />
+    <meta
+      property="og:title"
+      content={`Terms & Conditions | ${siteConfig.siteName}`}
+    />
+    <meta property="og:site_name" content={siteConfig.siteName} />
+    <meta property="og:url" content={`${siteConfig.siteUrl}/terms`} />
+    <meta property="og:type" content="website" />
+    <meta name="robots" content="index, follow" />
+
+    <title>Terms & Conditions | {siteConfig.siteName}</title>
   </head>
 
   <body class="bg-white text-gray-800">

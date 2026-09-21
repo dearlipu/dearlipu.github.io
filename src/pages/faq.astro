@@ -16,7 +16,21 @@ import "../styles/global.css";
       rel="stylesheet"
     />
 
-    <title>FAQ</title>
+    <link rel="canonical" href={`${siteConfig.siteUrl}/faq`} />
+    <meta
+      name="description"
+      content="Frequently asked questions about design services, timelines, pricing, and creative workflows with Saurav Panda (dearlipu)."
+    />
+    <meta
+      property="og:title"
+      content={`Frequently Asked Questions | ${siteConfig.siteName}`}
+    />
+    <meta property="og:site_name" content={siteConfig.siteName} />
+    <meta property="og:url" content={`${siteConfig.siteUrl}/faq`} />
+    <meta property="og:type" content="website" />
+    <meta name="robots" content="index, follow" />
+
+    <title>Frequently Asked Questions | {siteConfig.siteName}</title>
   </head>
 
   <body class="bg-white text-gray-800">

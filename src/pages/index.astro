@@ -16,7 +16,9 @@ const personSchema = {
   "@type": "Person",
   "@id": `${siteConfig.siteUrl}/#person`,
   name: siteConfig.name,
-  url: siteConfig.siteUrl,
+  alternateName: ["dearlipu", "Dearlipu"],
+  url: `${siteConfig.siteUrl}/`,
+  image: `${siteConfig.siteUrl}/social-card.png`,
   sameAs: [
     siteConfig.social.instagram,
     siteConfig.social.twitter,
@@ -37,9 +39,13 @@ const websiteSchema = {
   "@type": "WebSite",
   "@id": `${siteConfig.siteUrl}/#website`,
   name: siteConfig.siteName,
-  alternateName: ["Dearlipu", "Saurav Panda"],
+  alternateName: ["Dearlipu", "dearlipu.is-a.dev"],
   url: `${siteConfig.siteUrl}/`,
+  inLanguage: "en-US",
   publisher: {
+    "@id": `${siteConfig.siteUrl}/#person`,
+  },
+  creator: {
     "@id": `${siteConfig.siteUrl}/#person`,
   },
 };
@@ -56,8 +62,7 @@ const websiteSchema = {
     <meta name="theme-color" content={siteConfig.accentColor} />
     <link rel="canonical" href={`${siteConfig.siteUrl}/`} />
     {
-      siteConfig.googleSiteVerification !==
-        "TSCFrIOxF2u50hCpi2uMfBaJEYATy4CKBIzyvy6iyyc" && (
+      siteConfig.googleSiteVerification && (
         <meta
           name="google-site-verification"
           content={siteConfig.googleSiteVerification}
@@ -66,7 +71,7 @@ const websiteSchema = {
     }
 
     <!-- OPEN GRAPH / SOCIAL PREVIEW -->
-    <meta property="og:title" content={siteConfig.title} />
+    <meta property="og:title" content={siteConfig.siteTitle} />
     <meta property="og:site_name" content={siteConfig.siteName} />
     <meta property="og:description" content={siteConfig.description} />
     <meta property="og:type" content="website" />
@@ -81,7 +86,7 @@ const websiteSchema = {
 
     <!-- TWITTER PREVIEW -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={siteConfig.title} />
+    <meta name="twitter:title" content={siteConfig.siteTitle} />
     <meta name="twitter:description" content={siteConfig.description} />
     <meta
       name="twitter:image"
@@ -132,7 +137,7 @@ const websiteSchema = {
       rel="stylesheet"
     />
 
-    <title>{siteConfig.siteName}</title>
+    <title>{siteConfig.siteTitle}</title>
   </head>
 
   <body>
