@@ -2,7 +2,7 @@
 
 This project is a premium service-based agency website for Saurav Panda. It is designed to showcase creative services, build trust, and convert visitor interest into direct business inquiries.
 
-Live site: https://dearlipu.github.io/
+Live site: https://dearlipu.is-a.dev/
 
 ---
 

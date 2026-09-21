@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dearlipu.github.io/sitemap.xml
+Sitemap: https://dearlipu.is-a.dev/sitemap.xml
