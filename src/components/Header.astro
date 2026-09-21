@@ -2,295 +2,582 @@
 import { siteConfig } from "../config";
 
 const hasServices = siteConfig.services && siteConfig.services.length > 0;
+
+const menuEntries = [
+  { label: "About", href: "#about" },
+  ...(hasServices ? [{ label: "Services", href: "#services" }] : []),
+  { label: "Pricing", href: "#pricing" },
+  { label: "Reviews", href: "#testimonials" },
+  { label: "Contact", href: "#contact" },
+  { label: "FAQs", href: "/faq" },
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms of Service", href: "/terms" },
+  { label: "Copyright", href: "/copyright" },
+];
 ---
 
-<header id="header"
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
-
+<header
+  id="header"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent"
+>
+  <!-- MOBILE BUTTON (MORPHS FROM MENU TO CLOSE) -->
   <div class="flex md:hidden justify-end px-6 py-4">
-    <button id="menuBtn"
-      class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium leading-none
-      bg-[#101828] text-white shadow-lg transition active:scale-95">
-
-      <span class="relative top-px inline-flex items-center leading-none">Menu</span>
-
-      <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg"
-        class="block w-4 h-4 shrink-0 transition-transform duration-300"
-        fill="none" viewBox="0 0 24 24"
-        stroke="currentColor" stroke-width="2">
-        
-        <path id="iconPath"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M12 5v14M5 12h14" />
+    <button
+      id="menuBtn"
+      class="btn-nav relative z-50 gap-2 shadow-lg shadow-black/10 overflow-hidden"
+      aria-label="Toggle mobile menu"
+      aria-expanded="false"
+      aria-controls="menuPanel"
+    >
+      <span id="menuBtnText" class="menu-btn-text">Menu</span>
+      <svg
+        id="menuIcon"
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-plus w-4 h-4 transition-transform duration-300 origin-center"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M12 5l0 14"></path>
+        <path d="M5 12l14 0"></path>
       </svg>
     </button>
   </div>
 
-  <!-- FLOATING MENU -->
-  <div id="menuPanel"
-    class="fixed left-1/2 top-[4.75rem] w-[calc(100%-2rem)] max-w-xs -translate-x-1/2 h-[min(52vh,360px)] overflow-hidden overscroll-contain bg-[#101828] text-white rounded-3xl p-5 shadow-2xl border border-gray-700 z-50
-    
-    opacity-0 scale-90 translate-y-6 pointer-events-none origin-[50%_-10px]
-    transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]">
-
-    <ul class="menu-list text-lg">
-
-      <li class="menu-item">
-        <a href="#about" class="menu-link font-semibold">
-          About
-          <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M7 17L17 7M17 7H7M17 7V17"/>
-          </svg>
-        </a>
-      </li>
-
-      {hasServices && (
-      <li class="menu-item">
-        <a href="#services" class="menu-link font-semibold">
-          Services
-          <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M7 17L17 7M17 7H7M17 7V17"/>
-          </svg>
-        </a>
-      </li>
-      )}
-
-      <li class="menu-item">
-        <a href="#pricing" class="menu-link font-semibold">
-          Pricing
-          <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M7 17L17 7M17 7H7M17 7V17"/>
-          </svg>
-        </a>
-      </li>
-
-      <li class="menu-item">
-        <a href="#testimonials" class="menu-link font-semibold">
-          Reviews
-          <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M7 17L17 7M17 7H7M17 7V17"/>
-          </svg>
-        </a>
-      </li>
-
-      <li class="menu-item">
-        <a href="#contact" class="menu-link font-semibold">
-          Contact
-          <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M7 17L17 7M17 7H7M17 7V17"/>
-          </svg>
-        </a>
-      </li>
-
-      <li class="menu-item">
-        <a href="/faq" class="menu-link font-semibold">
-          FAQs
-          <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M7 17L17 7M17 7H7M17 7V17"/>
-          </svg>
-        </a>
-      </li>
-      
-      <li class="menu-item">
-        <a href="/privacy" class="menu-link font-semibold">
-          Privacy Policy
-          <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M7 17L17 7M17 7H7M17 7V17"/>
-          </svg>
-        </a>
-      </li>
-      
-      <li class="menu-item">
-        <a href="/terms" class="menu-link font-semibold">
-          Terms of Service
-          <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M7 17L17 7M17 7H7M17 7V17"/>
-          </svg>
-        </a>
-      </li>
-
-      <li class="menu-item">
-        <a href="/copyright" class="menu-link font-semibold">
-          Copyright
-          <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M7 17L17 7M17 7H7M17 7V17"/>
-          </svg>
-        </a>
-      </li>
-
-    </ul>
+  <!-- MOBILE BACKDROP -->
+  <div
+    id="menuBackdrop"
+    class="fixed inset-0 bg-black/45 backdrop-blur-xs z-40 md:hidden opacity-0 pointer-events-none transition-opacity duration-300"
+    aria-hidden="true"
+  >
   </div>
 
-  <!-- DESKTOP NAV -->
+  <!-- MOBILE FLOATING MENU PANEL WITH LINE SIDEBAR ONLY -->
+  <div
+    id="menuPanel"
+    class="fixed left-4 right-4 top-20 max-w-sm mx-auto max-h-[calc(100vh-6rem)] overflow-y-auto overscroll-contain bg-[#0c1222]/95 backdrop-blur-xl text-white rounded-3xl px-6 py-5 shadow-2xl border border-slate-700/70 z-50 md:hidden
+    opacity-0 scale-95 -translate-y-4 pointer-events-none
+    transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+    style={`--accent-color: ${siteConfig.accentColor}`}
+  >
+    <!-- LINE SIDEBAR COMPONENT -->
+    <nav
+      class="line-sidebar line-sidebar--markers line-sidebar--scale-tick"
+      aria-label="Mobile Navigation"
+      style={`--accent-color: ${siteConfig.accentColor};`}
+    >
+      <ul id="lineSidebarList" class="line-sidebar__list">
+        {
+          menuEntries.map((item, index) => (
+            <li
+              class="line-sidebar__item"
+              data-index={index}
+              data-href={item.href}
+              aria-current={index === 0 ? "true" : undefined}
+            >
+              <span class="line-sidebar__marker" aria-hidden="true" />
+              <a href={item.href} class="line-sidebar__link">
+                <span class="line-sidebar__index">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span class="line-sidebar__text">{item.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+
+  <!-- DESKTOP NAV (PRESERVED EXACTLY AS IS) -->
   <nav class="hidden md:block max-w-7xl mx-auto px-8 py-4">
     <ul class="flex items-center gap-8 justify-center">
       <li><a href="#about" class="nav-link">About</a></li>
-      {hasServices && <li><a href="#services" class="nav-link">Services</a></li>}
+      {
+        hasServices && (
+          <li>
+            <a href="#services" class="nav-link">
+              Services
+            </a>
+          </li>
+        )
+      }
       <li><a href="#pricing" class="nav-link">Pricing</a></li>
       <li><a href="#testimonials" class="nav-link">Reviews</a></li>
       <li><a href="#contact" class="nav-link">Contact</a></li>
     </ul>
   </nav>
-
 </header>
 
 <script is:inline>
-document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", () => {
+    const header = document.getElementById("header");
+    const btn = document.getElementById("menuBtn");
+    const btnText = document.getElementById("menuBtnText");
+    const panel = document.getElementById("menuPanel");
+    const backdrop = document.getElementById("menuBackdrop");
+    const icon = document.getElementById("menuIcon");
+    const list = document.getElementById("lineSidebarList");
+    const items = list
+      ? Array.from(list.querySelectorAll(".line-sidebar__item"))
+      : [];
+    const totalItems = items.length;
 
-  const header = document.getElementById("header");
-  const btn = document.getElementById("menuBtn");
-  const panel = document.getElementById("menuPanel");
-  const icon = document.getElementById("menuIcon");
-  const path = document.getElementById("iconPath");
+    let open = false;
+    let openScrollY = 0;
 
-  let open = false;
+    // --- LineSidebar Exponential Smoothing Lerp Loop ---
+    const targets = new Float32Array(totalItems);
+    const currents = new Float32Array(totalItems);
+    let rafId = null;
+    let lastTime = 0;
+    let activeIndex = 0;
+    const proximityRadius = 85;
+    const smoothing = 90; // ms
 
-  function openMenu() {
-    panel.classList.remove("opacity-0","scale-90","translate-y-6","pointer-events-none");
-    panel.classList.add("opacity-100","scale-100","translate-y-0","menu-open");
+    function runFrame(now) {
+      const dt = Math.min((now - lastTime) / 1000, 0.05);
+      lastTime = now;
+      const tau = Math.max(smoothing, 1) / 1000;
+      const k = 1 - Math.exp(-dt / tau);
 
-    icon.style.transform = "rotate(180deg)";
-    path.setAttribute("d","M6 6l12 12M6 18L18 6");
-
-    open = true;
-  }
-
-  function closeMenu() {
-    panel.classList.add("opacity-0","scale-90","translate-y-6","pointer-events-none");
-    panel.classList.remove("opacity-100","scale-100","translate-y-0","menu-open");
-
-    icon.style.transform = "rotate(0deg)";
-    path.setAttribute("d","M12 5v14M5 12h14");
-
-    open = false;
-  }
-
-  btn.addEventListener("click", () => {
-    open ? closeMenu() : openMenu();
-  });
-
-  document.addEventListener("click", (event) => {
-    const target = event.target;
-    if (!open || !(target instanceof Node)) return;
-
-    if (panel.contains(target) || btn.contains(target)) return;
-
-    closeMenu();
-  });
-
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener("click", function(e) {
-      e.preventDefault();
-
-      const target = document.querySelector(this.getAttribute("href"));
-
-      if (target) {
-        const y = target.getBoundingClientRect().top + window.scrollY - 80;
-
-        window.scrollTo({
-          top: y,
-          behavior: "smooth"
-        });
+      let moving = false;
+      for (let i = 0; i < totalItems; i++) {
+        const el = items[i];
+        if (!el) continue;
+        const target = Math.max(targets[i] || 0, activeIndex === i ? 1 : 0);
+        const cur = currents[i] || 0;
+        const next = cur + (target - cur) * k;
+        const settled = Math.abs(target - next) < 0.0015;
+        const value = settled ? target : next;
+        currents[i] = value;
+        el.style.setProperty("--effect", value.toFixed(4));
+        if (!settled) moving = true;
       }
 
-      closeMenu();
+      rafId = moving ? requestAnimationFrame(runFrame) : null;
+    }
+
+    function startLoop() {
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      lastTime = performance.now();
+      rafId = requestAnimationFrame(runFrame);
+    }
+
+    function setActive(idx) {
+      if (idx < 0 || idx >= totalItems) return;
+      activeIndex = idx;
+      items.forEach((it, i) => {
+        it.toggleAttribute("aria-current", i === idx);
+        targets[i] = i === idx ? 1.0 : 0.0;
+      });
+      startLoop();
+    }
+
+    // Touch and pointer tracking
+    function handlePointer(clientY) {
+      if (!list) return;
+      const rect = list.getBoundingClientRect();
+      const pointerY = clientY - rect.top;
+      for (let i = 0; i < totalItems; i++) {
+        const el = items[i];
+        const center = el.offsetTop + el.offsetHeight / 2;
+        const distance = Math.abs(pointerY - center);
+        const p = Math.max(0, 1 - distance / proximityRadius);
+        targets[i] = p * p * (3 - 2 * p);
+      }
+      startLoop();
+    }
+
+    function handleLeave() {
+      for (let i = 0; i < totalItems; i++) {
+        targets[i] = i === activeIndex ? 1 : 0;
+      }
+      startLoop();
+    }
+
+    // Mouse pointer events
+    list?.addEventListener("pointermove", (e) => {
+      if (e.pointerType !== "touch") {
+        handlePointer(e.clientY);
+      }
+    });
+    list?.addEventListener("pointerleave", handleLeave);
+
+    // Mobile touch events: immediate selection on touch + tracking on drag
+    items.forEach((item, idx) => {
+      item.addEventListener(
+        "touchstart",
+        () => {
+          setActive(idx);
+        },
+        { passive: true },
+      );
+
+      item.addEventListener("pointerdown", () => {
+        setActive(idx);
+      });
+    });
+
+    list?.addEventListener(
+      "touchmove",
+      (e) => {
+        if (e.touches && e.touches[0]) {
+          const touch = e.touches[0];
+          const el = document.elementFromPoint(touch.clientX, touch.clientY);
+          const itemLi = el?.closest(".line-sidebar__item");
+          if (itemLi) {
+            const idx = Number(itemLi.dataset.index);
+            if (!isNaN(idx) && idx !== activeIndex) {
+              setActive(idx);
+            }
+          } else {
+            handlePointer(touch.clientY);
+          }
+        }
+      },
+      { passive: true },
+    );
+
+    // Entrance cascade wave on menu open
+    function triggerEntranceCascade() {
+      for (let i = 0; i < totalItems; i++) {
+        currents[i] = 0;
+        targets[i] = 0;
+        items[i]?.style.setProperty("--effect", "0");
+      }
+      items.forEach((_, idx) => {
+        window.setTimeout(() => {
+          if (!open) return;
+          targets[idx] = 1;
+          startLoop();
+          window.setTimeout(() => {
+            if (!open) return;
+            if (activeIndex !== idx) {
+              targets[idx] = 0;
+              startLoop();
+            }
+          }, 160);
+        }, idx * 40);
+      });
+    }
+
+    // --- Menu Open/Close Logic ---
+    function openMenu() {
+      panel?.classList.remove(
+        "opacity-0",
+        "scale-95",
+        "-translate-y-4",
+        "pointer-events-none",
+      );
+      panel?.classList.add("opacity-100", "scale-100", "translate-y-0");
+
+      backdrop?.classList.remove("opacity-0", "pointer-events-none");
+      backdrop?.classList.add("opacity-100");
+
+      // Smooth text transition from Menu -> Close
+      if (btnText) {
+        btnText.style.opacity = "0";
+        btnText.style.transform = "translateY(-4px)";
+        window.setTimeout(() => {
+          btnText.textContent = "Close";
+          btnText.style.opacity = "1";
+          btnText.style.transform = "translateY(1.5px)";
+        }, 110);
+      }
+
+      if (icon) icon.style.transform = "rotate(45deg)";
+      btn?.setAttribute("aria-expanded", "true");
+
+      // Avoid double-blur/dark bar at top when opened
+      header?.classList.remove("bg-white/80", "backdrop-blur-md", "shadow-2xs");
+
+      open = true;
+      openScrollY = window.scrollY;
+      triggerEntranceCascade();
+    }
+
+    function closeMenu() {
+      if (!open) return;
+      panel?.classList.add(
+        "opacity-0",
+        "scale-95",
+        "-translate-y-4",
+        "pointer-events-none",
+      );
+      panel?.classList.remove("opacity-100", "scale-100", "translate-y-0");
+
+      backdrop?.classList.add("opacity-0", "pointer-events-none");
+      backdrop?.classList.remove("opacity-100");
+
+      // Smooth text transition from Close -> Menu
+      if (btnText) {
+        btnText.style.opacity = "0";
+        btnText.style.transform = "translateY(4px)";
+        window.setTimeout(() => {
+          btnText.textContent = "Menu";
+          btnText.style.opacity = "1";
+          btnText.style.transform = "translateY(1.5px)";
+        }, 110);
+      }
+
+      if (icon) icon.style.transform = "rotate(0deg)";
+      btn?.setAttribute("aria-expanded", "false");
+
+      if (window.scrollY > 80) {
+        header?.classList.add("bg-white/80", "backdrop-blur-md", "shadow-2xs");
+      }
+
+      open = false;
+    }
+
+    // Button toggle
+    btn?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      open ? closeMenu() : openMenu();
+    });
+
+    // Outside click / tap to exit menu
+    document.addEventListener("pointerdown", (event) => {
+      if (!open) return;
+      const target = event.target;
+      if (!(target instanceof Node)) return;
+      if (!panel?.contains(target) && !btn?.contains(target)) {
+        closeMenu();
+      }
+    });
+
+    backdrop?.addEventListener("pointerdown", closeMenu);
+    backdrop?.addEventListener("touchstart", closeMenu, { passive: true });
+
+    // Scroll to exit menu
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (open) {
+          const diff = Math.abs(window.scrollY - openScrollY);
+          if (diff > 12) {
+            closeMenu();
+          }
+        } else {
+          if (window.scrollY > 80) {
+            header?.classList.add(
+              "bg-white/80",
+              "backdrop-blur-md",
+              "shadow-2xs",
+            );
+          } else {
+            header?.classList.remove(
+              "bg-white/80",
+              "backdrop-blur-md",
+              "shadow-2xs",
+            );
+          }
+        }
+      },
+      { passive: true },
+    );
+
+    // Escape key to close
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && open) {
+        closeMenu();
+      }
+    });
+
+    // Handle clicks on LineSidebar items and anchors
+    panel?.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", function (e) {
+        const href = this.getAttribute("href") || "";
+
+        const itemLi = this.closest(".line-sidebar__item");
+        if (itemLi) {
+          const idx = Number(itemLi.dataset.index);
+          setActive(idx);
+        }
+
+        if (href.startsWith("#")) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            const y = target.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({
+              top: y,
+              behavior: "smooth",
+            });
+          }
+          closeMenu();
+        } else {
+          closeMenu();
+        }
+      });
     });
   });
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 100) {
-      header.classList.add("bg-white/80", "backdrop-blur-sm");
-    } else {
-      header.classList.remove("bg-white/80", "backdrop-blur-sm");
-    }
-  });
-
-});
 </script>
 
 <style>
-html {
-  scroll-behavior: smooth;
-}
-
-.menu-link {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 8px 13px;
-  border-bottom: 1px solid rgba(29,78,216,0.1);
-  transition: none;
-  border-radius: 0.75rem;
-}
-
-.menu-list {
-  height: 100%;
-  max-height: none;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-width: none;
-}
-
-.menu-list::-webkit-scrollbar {
-  display: none;
-}
-
-.menu-item:first-child .menu-link {
-  border-top: 1px solid rgba(29,78,216,0.1);
-}
-
-.menu-link:hover {
-  background-color: transparent;
-  box-shadow: none;
-  opacity: 1;
-  transform: none;
-}
-
-.menu-link:active {
-  transform: none;
-}
-
-.arrow-icon {
-  width: 22px;
-  height: 22px;
-  stroke: #fff;
-  stroke-width: 2;
-  opacity: 0.9;
-  transition: transform 0.25s ease;
-}
-
-.menu-link:hover .arrow-icon {
-  transform: translate(3px, -3px);
-}
-
-.menu-item {
-  opacity: 0;
-  transform: translateY(10px);
-}
-
-.menu-open .menu-item {
-  animation: fadeUp 0.45s cubic-bezier(0.16,1,0.3,1) forwards;
-}
-
-.menu-item:nth-child(1) { animation-delay: 0.05s; }
-.menu-item:nth-child(2) { animation-delay: 0.1s; }
-.menu-item:nth-child(3) { animation-delay: 0.15s; }
-.menu-item:nth-child(4) { animation-delay: 0.2s; }
-
-@keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  /* Button label animation */
+  .menu-btn-text {
+    display: inline-block;
+    transform: translateY(1.5px);
+    transition:
+      opacity 0.14s ease,
+      transform 0.14s cubic-bezier(0.16, 1, 0.3, 1);
   }
-}
+
+  /* LineSidebar Component Styles from React Bits with Custom Theme */
+  .line-sidebar {
+    --accent-color: #1d4ed8;
+    --text-color: #94a3b8;
+    --marker-color: #334155;
+    --marker-length: 34px;
+    --marker-gap: 6px;
+    --tick-scale: 0.5;
+    --max-shift: 20px;
+    --item-gap: 14px;
+    --font-size: 1.05rem;
+    --smoothing: 100ms;
+
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .line-sidebar--markers {
+    padding-left: calc(var(--marker-length) + var(--marker-gap) + 6px);
+  }
+
+  .line-sidebar__list {
+    list-style: none;
+    margin: 0;
+    padding: 0.25rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--item-gap);
+    width: 100%;
+  }
+
+  .line-sidebar__item {
+    position: relative;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  /* Widen pointer target so touch/cursor reacts smoothly */
+  .line-sidebar__item::before {
+    content: "";
+    position: absolute;
+    inset: -6px -24px;
+  }
+
+  .line-sidebar__link {
+    display: inline-flex;
+    align-items: baseline;
+    text-decoration: none;
+    line-height: 1.25;
+    color: color-mix(
+      in srgb,
+      #ffffff calc(var(--effect, 0) * 100%),
+      var(--text-color)
+    );
+    transform: translateX(calc(var(--effect, 0) * var(--max-shift)));
+    will-change: transform, color;
+    transition: color 0.15s ease;
+  }
+
+  .line-sidebar__item[aria-current="true"] .line-sidebar__link {
+    color: #ffffff;
+  }
+
+  .line-sidebar__index {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    margin-right: 0.65rem;
+    font-size: 0.75em;
+    font-weight: 700;
+    color: color-mix(
+      in srgb,
+      var(--accent-color) calc(var(--effect, 0) * 100%),
+      #64748b
+    );
+    opacity: calc(0.55 + var(--effect, 0) * 0.45);
+  }
+
+  .line-sidebar__text {
+    font-size: var(--font-size);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    display: inline-block;
+    transform: translateY(1.5px);
+  }
+
+  .line-sidebar__marker {
+    position: absolute;
+    top: 50%;
+    left: calc(-1 * var(--marker-length) - var(--marker-gap));
+    height: 2px;
+    width: var(--marker-length);
+    border-radius: 999px;
+    background-color: color-mix(
+      in srgb,
+      var(--accent-color) calc(var(--effect, 0) * 100%),
+      var(--marker-color)
+    );
+    transform-origin: left center;
+    transform: translateY(-50%) scaleX(calc(0.65 + var(--effect, 0) * 0.55));
+    will-change: transform, background-color;
+  }
+
+  /* Short static tick centered in the gap between two menu items */
+  .line-sidebar--markers .line-sidebar__item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: calc(100% + var(--item-gap) / 2);
+    left: calc(-1 * var(--marker-length) - var(--marker-gap));
+    height: 1px;
+    width: calc(var(--marker-length) * var(--tick-scale));
+    background-color: var(--marker-color);
+    opacity: 0.4;
+    transform: translateY(-50%);
+    transform-origin: left center;
+  }
+
+  /* When enabled, the in-between ticks grow with cursor proximity too */
+  .line-sidebar--scale-tick .line-sidebar__item:not(:last-child)::after {
+    transform-origin: left center;
+    transform: translateY(-50%) scaleX(calc(0.65 + var(--effect, 0) * 0.6));
+  }
+
+  /* Desktop Nav Links (Preserved) */
+  .nav-link {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #4b5563;
+    transition: color 0.2s ease;
+    padding: 0.5rem 0.75rem;
+    border-radius: 9999px;
+  }
+
+  .nav-link:hover {
+    color: #111827;
+    background-color: rgba(243, 244, 246, 0.8);
+  }
+
+  /* Scrollbar styling for mobile panel */
+  #menuPanel::-webkit-scrollbar {
+    width: 4px;
+  }
+  #menuPanel::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  #menuPanel::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 999px;
+  }
 </style>

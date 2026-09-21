@@ -1,4 +1,5 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import About from "../components/About.astro";
@@ -9,10 +10,8 @@ import Reviews from "../components/Reviews.astro";
 import Contact from "../components/Contact.astro";
 import BackToTop from "../components/BackToTop.astro";
 import { siteConfig } from "../config";
-import "../styles/global.css";
 
 const personSchema = {
-  "@context": "https://schema.org",
   "@type": "Person",
   "@id": `${siteConfig.siteUrl}/#person`,
   name: siteConfig.name,
@@ -35,124 +34,51 @@ const personSchema = {
 };
 
 const websiteSchema = {
-  "@context": "https://schema.org",
   "@type": "WebSite",
   "@id": `${siteConfig.siteUrl}/#website`,
   name: siteConfig.siteName,
   alternateName: ["Dearlipu", "dearlipu.is-a.dev"],
   url: `${siteConfig.siteUrl}/`,
   inLanguage: "en-US",
-  publisher: {
-    "@id": `${siteConfig.siteUrl}/#person`,
-  },
-  creator: {
-    "@id": `${siteConfig.siteUrl}/#person`,
-  },
+  publisher: { "@id": `${siteConfig.siteUrl}/#person` },
+  creator: { "@id": `${siteConfig.siteUrl}/#person` },
+};
+
+const professionalServiceSchema = {
+  "@type": "ProfessionalService",
+  "@id": `${siteConfig.siteUrl}/#service`,
+  name: siteConfig.siteName,
+  url: `${siteConfig.siteUrl}/`,
+  image: `${siteConfig.siteUrl}/social-card.png`,
+  description: siteConfig.description,
+  provider: { "@id": `${siteConfig.siteUrl}/#person` },
+  serviceType: [
+    "Brand & Social Design",
+    "Video Editing & Motion",
+    "Print & Layout Design",
+  ],
+  areaServed: "Worldwide",
+  availableLanguage: "English",
 };
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={siteConfig.description} />
-    <meta name="keywords" content={siteConfig.keywords.join(", ")} />
-    <meta name="theme-color" content={siteConfig.accentColor} />
-    <link rel="canonical" href={`${siteConfig.siteUrl}/`} />
-    {
-      siteConfig.googleSiteVerification && (
-        <meta
-          name="google-site-verification"
-          content={siteConfig.googleSiteVerification}
-        />
-      )
-    }
+<BaseLayout
+  title={siteConfig.siteTitle}
+  description={siteConfig.description}
+  canonicalUrl={`${siteConfig.siteUrl}/`}
+  jsonLd={[websiteSchema, personSchema, professionalServiceSchema]}
+>
+  <Header />
 
-    <!-- OPEN GRAPH / SOCIAL PREVIEW -->
-    <meta property="og:title" content={siteConfig.siteTitle} />
-    <meta property="og:site_name" content={siteConfig.siteName} />
-    <meta property="og:description" content={siteConfig.description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={`${siteConfig.siteUrl}/`} />
-    <meta
-      property="og:image"
-      content={`${siteConfig.siteUrl}/social-card.png`}
-    />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:locale" content="en_US" />
+  <main>
+    <Hero />
+    <About />
+    <Services />
+    <Pricing />
+    <Reviews />
+    <Contact />
+  </main>
 
-    <!-- TWITTER PREVIEW -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={siteConfig.siteTitle} />
-    <meta name="twitter:description" content={siteConfig.description} />
-    <meta
-      name="twitter:image"
-      content={`${siteConfig.siteUrl}/social-card.png`}
-    />
-    <meta name="twitter:creator" content="@dearlipu" />
-
-    <meta
-      name="robots"
-      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-    />
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@graph": [websiteSchema, personSchema],
-      })}
-    />
-
-    <script is:inline>
-      document.addEventListener("DOMContentLoaded", () => {
-        const revealItems = document.querySelectorAll(".reveal-up");
-        if (!("IntersectionObserver" in window)) {
-          revealItems.forEach((item) => item.classList.add("is-visible"));
-          return;
-        }
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("is-visible");
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.16, rootMargin: "0px 0px -60px 0px" },
-        );
-
-        revealItems.forEach((item) => observer.observe(item));
-      });
-    </script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-
-    <title>{siteConfig.siteTitle}</title>
-  </head>
-
-  <body>
-    <Header />
-
-    <section>
-      <Hero />
-      <About />
-      <Services />
-      <Pricing />
-      <Reviews />
-      <Contact />
-    </section>
-
-    <Footer />
-    <BackToTop />
-  </body>
-</html>
+  <Footer />
+  <BackToTop />
+</BaseLayout>

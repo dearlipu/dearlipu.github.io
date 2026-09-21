@@ -1,73 +1,156 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SubpageHeader from "../components/SubpageHeader.astro";
+import Footer from "../components/Footer.astro";
 import { siteConfig } from "../config";
-import "../styles/global.css";
+
+const pageTitle = `Copyright Notice | ${siteConfig.siteName}`;
+const pageDescription =
+  "Copyright Notice for dearlipu. Details on intellectual property, visual assets, and content usage.";
+
+const breadcrumbSchema = {
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: `${siteConfig.siteUrl}/`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Copyright Notice",
+      item: `${siteConfig.siteUrl}/copyright`,
+    },
+  ],
+};
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalUrl={`${siteConfig.siteUrl}/copyright`}
+  jsonLd={breadcrumbSchema}
+>
+  <SubpageHeader />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-
-    <link rel="canonical" href={`${siteConfig.siteUrl}/copyright`} />
-    <meta
-      name="description"
-      content="Copyright Notice for dearlipu. Details on intellectual property, visual assets, and content usage."
-    />
-    <meta
-      property="og:title"
-      content={`Copyright Notice | ${siteConfig.siteName}`}
-    />
-    <meta property="og:site_name" content={siteConfig.siteName} />
-    <meta property="og:url" content={`${siteConfig.siteUrl}/copyright`} />
-    <meta property="og:type" content="website" />
-    <meta name="robots" content="index, follow" />
-
-    <title>Copyright Notice | {siteConfig.siteName}</title>
-  </head>
-
-  <body class="bg-white text-gray-800">
+  <main>
     <section
-      class="px-6 sm:px-10 md:px-16 lg:px-24 py-12 md:py-16 lg:py-20 overflow-x-hidden"
+      class="px-6 sm:px-10 md:px-16 lg:px-24 py-12 md:py-16 lg:py-24 overflow-x-hidden"
     >
       <div
-        class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start"
+        class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start"
       >
-        <div class="lg:col-span-4">
-          <h2
-            class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900"
+        <!-- LEFT COLUMN -->
+        <div class="lg:col-span-4 lg:sticky lg:top-24">
+          <div class="badge-pill">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-copyright"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+              <path
+                d="M14 9.75a3.016 3.016 0 0 0 -4.163 .173a2.993 2.993 0 0 0 0 4.154a3.016 3.016 0 0 0 4.163 .173"
+              ></path>
+            </svg>
+            <span>Intellectual Property</span>
+          </div>
+
+          <h1
+            class="mt-4 text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-extrabold tracking-tight text-gray-900 leading-[1.15]"
           >
             Copyright Notice.
-          </h2>
+          </h1>
 
           <div
-            class="w-[75px] h-[5px] mt-2 rounded-full"
+            class="w-16 h-1.5 mt-4 rounded-full"
             style={`background-color: ${siteConfig.accentColor}`}
           >
           </div>
 
-          <p
-            class="text-gray-500 mt-5 text-sm sm:text-base max-w-sm leading-relaxed"
-          >
-            Who owns the content on this website and how it may be used.
+          <p class="text-gray-600 mt-5 text-base sm:text-lg leading-relaxed">
+            Ownership information, asset credits, and usage rights for content
+            on this website.
           </p>
+
+          <div
+            class="mt-8 rounded-2xl border border-gray-200/80 bg-linear-to-b from-white to-gray-50/80 p-5 shadow-xs"
+          >
+            <p class="text-xs font-bold uppercase tracking-wider text-gray-500">
+              Attribution questions?
+            </p>
+            <p class="mt-1 text-sm font-medium text-gray-800">
+              For any copyright or usage inquiries:
+            </p>
+            <a
+              href={`mailto:${siteConfig.social.email}`}
+              class="group mt-3 inline-flex items-center gap-2 text-sm font-semibold text-blue-700 hover:text-blue-800 transition-colors"
+            >
+              <span class="inline-block transform translate-y-[1px]"
+                >{siteConfig.social.email}</span
+              >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-arrow-right w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M5 12l14 0"></path>
+                <path d="M13 18l6 -6"></path>
+                <path d="M13 6l6 6"></path>
+              </svg>
+            </a>
+          </div>
         </div>
 
+        <!-- RIGHT COLUMN -->
         <div class="lg:col-span-8 w-full min-w-0">
           <div
-            class="bg-gray-50 border border-gray-200 rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 shadow-sm hover:shadow-lg transition duration-300"
+            class="bg-linear-to-b from-gray-50/80 to-white border border-gray-200 rounded-3xl p-6 sm:p-10 md:p-12 shadow-sm"
           >
-            <p class="text-xs text-gray-400 mb-6">Last updated: August 2026</p>
+            <div
+              class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-gray-200 text-xs font-semibold text-gray-500 mb-8 shadow-2xs"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-calendar w-3.5 h-3.5 text-gray-400"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path
+                  d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z"
+                ></path>
+                <path d="M16 3v4"></path>
+                <path d="M8 3v4"></path>
+                <path d="M4 11h16"></path>
+                <path d="M11 15h1"></path>
+                <path d="M12 15v3"></path>
+              </svg>
+              <span class="inline-block transform translate-y-[1px]"
+                >Last updated: August 2026</span
+              >
+            </div>
 
             <div
-              class="space-y-8 text-lg sm:text-xl md:text-xl leading-relaxed text-gray-600"
+              class="space-y-6 text-base sm:text-lg leading-relaxed text-gray-600"
             >
               <p>
                 Unless stated otherwise, {siteConfig.name} owns the original text,
@@ -95,20 +178,12 @@ import "../styles/global.css";
                 You may not copy, republish, or distribute original content from
                 this website for commercial use without written permission.
               </p>
-
-              <div class="pt-6">
-                <p class="text-gray-500 text-base sm:text-lg">
-                  Copyright questions or attribution requests:
-                </p>
-
-                <p class="text-gray-900 font-medium mt-1">
-                  {siteConfig.social.email}
-                </p>
-              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-  </body>
-</html>
+  </main>
+
+  <Footer />
+</BaseLayout>

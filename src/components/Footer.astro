@@ -8,170 +8,183 @@ import { siteConfig } from "../config";
       class="flex flex-col md:flex-row md:items-center md:justify-between gap-8"
     >
       <div class="flex flex-col gap-2">
-        <h3 class="footer-name text-2xl font-bold text-gray-800 relative inline-block">
-          
-          <span class="name-front inline-flex items-center gap-1">
-            @dearlipu
-          
-            <svg xmlns="http://www.w3.org/2000/svg"
+        <h3
+          class="footer-name text-2xl font-bold text-gray-800 relative inline-block"
+        >
+          <span class="name-front inline-flex items-center gap-1.5">
+            <span class="relative top-[1px]">@dearlipu</span>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
               class="w-5 h-5 inline-block align-middle"
               viewBox="0 0 24 24"
-              fill="#1d4ed8">
-              <path d="M12.01 2.011a3.2 3.2 0 0 1 2.113 .797l.154 .145l.698 .698a1.2 1.2 0 0 0 .71 .341l.135 .008h1a3.2 3.2 0 0 1 3.195 3.018l.005 .182v1c0 .27 .092 .533 .258 .743l.09 .1l.697 .698a3.2 3.2 0 0 1 .147 4.382l-.145 .154l-.698 .698a1.2 1.2 0 0 0 -.341 .71l-.008 .135v1a3.2 3.2 0 0 1 -3.018 3.195l-.182 .005h-1a1.2 1.2 0 0 0 -.743 .258l-.1 .09l-.698 .697a3.2 3.2 0 0 1 -4.382 .147l-.154 -.145l-.698 -.698a1.2 1.2 0 0 0 -.71 -.341l-.135 -.008h-1a3.2 3.2 0 0 1 -3.195 -3.018l-.005 -.182v-1a1.2 1.2 0 0 0 -.258 -.743l-.09 -.1l-.697 -.698a3.2 3.2 0 0 1 -.147 -4.382l.145 -.154l.698 -.698a1.2 1.2 0 0 0 .341 -.71l.008 -.135v-1l.005 -.182a3.2 3.2 0 0 1 3.013 -3.013l.182 -.005h1a1.2 1.2 0 0 0 .743 -.258l.1 -.09l.698 -.697a3.2 3.2 0 0 1 2.269 -.944zm3.697 7.282a1 1 0 0 0 -1.414 0l-3.293 3.292l-1.293 -1.292a1 1 0 1 0 -1.414 1.414l2 2a1 1 0 0 0 1.414 0l4 -4a1 1 0 0 0 0 -1.414z"/>
+              fill="#1d4ed8"
+            >
+              <path
+                d="M12.01 2.011a3.2 3.2 0 0 1 2.113 .797l.154 .145l.698 .698a1.2 1.2 0 0 0 .71 .341l.135 .008h1a3.2 3.2 0 0 1 3.195 3.018l.005 .182v1c0 .27 .092 .533 .258 .743l.09 .1l.697 .698a3.2 3.2 0 0 1 .147 4.382l-.145 .154l-.698 .698a1.2 1.2 0 0 0 -.341 .71l-.008 .135v1a3.2 3.2 0 0 1 -3.018 3.195l-.182 .005h-1a1.2 1.2 0 0 0 -.743 .258l-.1 .09l-.698 .697a3.2 3.2 0 0 1 -4.382 .147l-.154 -.145l-.698 -.698a1.2 1.2 0 0 0 -.71 -.341l-.135 -.008h-1a3.2 3.2 0 0 1 -3.195 -3.018l-.005 -.182v-1a1.2 1.2 0 0 0 -.258 -.743l-.09 -.1l-.697 -.698a3.2 3.2 0 0 1 -.147 -4.382l.145 -.154l.698 -.698a1.2 1.2 0 0 0 .341 -.71l.008 -.135v-1l.005 -.182a3.2 3.2 0 0 1 3.013 -3.013l.182 -.005h1a1.2 1.2 0 0 0 .743 -.258l.1 -.09l.698 -.697a3.2 3.2 0 0 1 2.269 -.944zm3.697 7.282a1 1 0 0 0 -1.414 0l-3.293 3.292l-1.293 -1.292a1 1 0 1 0 -1.414 1.414l2 2a1 1 0 0 0 1.414 0l4 -4a1 1 0 0 0 0 -1.414z"
+              ></path>
             </svg>
           </span>
-          
+
           <span class="name-back">Saurav Panda</span>
-        
         </h3>
         <p class="text-base text-gray-600">
           {siteConfig.title}
         </p>
         <div class="footer-socials flex flex-wrap gap-2.5">
-
-          {siteConfig.social?.instagram && (
-          <a
-            href={siteConfig.social.instagram}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-            class="footer-social-link text-gray-600"
-            style={`--accent-color: ${siteConfig.accentColor}`}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="footer-social-icon h-5 w-5"
+          {
+            siteConfig.social?.instagram && (
+              <a
+                href={siteConfig.social.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                class="footer-social-link text-gray-600"
+                style={`--accent-color: ${siteConfig.accentColor}`}
               >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
-                <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
-                <path d="M16.5 7.5v.01" /></svg
-            >
-          </a>
-          )}
-          {siteConfig.social?.twitter && (
-          <a
-            href={siteConfig.social.twitter}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Twitter"
-            class="footer-social-link text-gray-600"
-            style={`--accent-color: ${siteConfig.accentColor}`}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="footer-social-icon h-5 w-5"
-              ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path
-                d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg
-            >
-          </a>
-          )}
-          {siteConfig.social?.youtube && (
-          <a
-            href={siteConfig.social.youtube}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="YouTube"
-            class="footer-social-link text-gray-600"
-            style={`--accent-color: ${siteConfig.accentColor}`}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="footer-social-icon h-5 w-5"
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="footer-social-icon h-5 w-5"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
+                  <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                  <path d="M16.5 7.5v.01" />
+                </svg>
+              </a>
+            )
+          }
+          {
+            siteConfig.social?.twitter && (
+              <a
+                href={siteConfig.social.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitter"
+                class="footer-social-link text-gray-600"
+                style={`--accent-color: ${siteConfig.accentColor}`}
               >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z" />
-              <path d="M10 9l5 3l-5 3z" /></svg
-            >
-          </a>
-          )}
-          {siteConfig.social?.buymeacoffee && (
-          <a
-            href={siteConfig.social.buymeacoffee}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Buy me a coffee"
-            class="footer-social-link text-gray-600"
-            style={`--accent-color: ${siteConfig.accentColor}`}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="footer-social-icon h-5 w-5"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M5 11h14v-3h-14l0 3" />
-              <path d="M17.5 11l-1.5 10h-8l-1.5 -10" />
-              <path d="M6 8v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" />
-              <path d="M15 5v-2" />
-            </svg>
-          </a>
-          )}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="footer-social-icon h-5 w-5"
+                >
+                  <>
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+                    <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+                  </>
+                </svg>
+              </a>
+            )
+          }
+          {
+            siteConfig.social?.youtube && (
+              <a
+                href={siteConfig.social.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+                class="footer-social-link text-gray-600"
+                style={`--accent-color: ${siteConfig.accentColor}`}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="footer-social-icon h-5 w-5"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z" />
+                  <path d="M10 9l5 3l-5 3z" />
+                </svg>
+              </a>
+            )
+          }
+          {
+            siteConfig.social?.buymeacoffee && (
+              <a
+                href={siteConfig.social.buymeacoffee}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Buy me a coffee"
+                class="footer-social-link text-gray-600"
+                style={`--accent-color: ${siteConfig.accentColor}`}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="footer-social-icon h-5 w-5"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M5 11h14v-3h-14l0 3" />
+                  <path d="M17.5 11l-1.5 10h-8l-1.5 -10" />
+                  <path d="M6 8v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" />
+                  <path d="M15 5v-2" />
+                </svg>
+              </a>
+            )
+          }
         </div>
       </div>
 
-      <div class="hidden md:block flex flex-col md:items-end gap-4">
-        <nav class="flex gap-x-8">
-              <a
-                href="/privacy"
-                class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
-              >
-                Privacy Policy
-              </a>
-              <a
-                href="/terms"
-                class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
-              >
-                Terms of Service
-              </a>
-              <a
-                href="/copyright"
-                class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
-              >
-                Copyright
-              </a>
-              <a
-                href="/faq"
-                class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
-              >
-                FAQs
-              </a>
+      <div class="hidden md:flex flex-col md:items-end gap-4">
+        <nav class="flex gap-x-1">
+          <a
+            href="/privacy"
+            class="subnav-link text-gray-500 hover:text-gray-800"
+          >
+            <span>Privacy</span>
+          </a>
+          <a
+            href="/terms"
+            class="subnav-link text-gray-500 hover:text-gray-800"
+          >
+            <span>Terms</span>
+          </a>
+          <a
+            href="/copyright"
+            class="subnav-link text-gray-500 hover:text-gray-800"
+          >
+            <span>Copyright</span>
+          </a>
+          <a href="/faq" class="subnav-link text-gray-500 hover:text-gray-800">
+            <span>FAQs</span>
+          </a>
         </nav>
-        <p class="text-sm text-gray-500">
-          © {new Date().getFullYear()}
-          {siteConfig.name}. All rights reserved.
+        <p class="text-sm text-gray-500 pr-3">
+          <span
+            >© {new Date().getFullYear()}
+            {siteConfig.name}. All rights reserved.</span
+          >
         </p>
       </div>
     </div>
@@ -217,7 +230,10 @@ import { siteConfig } from "../config";
     justify-content: center;
     border-radius: 0.5rem;
     color: #475569;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease, opacity 0.25s ease;
+    transition:
+      transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      color 0.25s ease,
+      opacity 0.25s ease;
   }
 
   .footer-social-icon {
@@ -255,9 +271,29 @@ import { siteConfig } from "../config";
     }
   }
 
-  .footer-name { cursor: pointer; }
-  .footer-name .name-front, .footer-name .name-back { display: block; transition: opacity .25s, transform .25s; }
-  .name-back { opacity:0; transform: translateY(6px); position:absolute; left:0; top:0; }
-  .footer-name:hover .name-front { opacity:0; transform: translateY(-6px); }
-  .footer-name:hover .name-back { opacity:1; transform: translateY(0); }
+  .footer-name {
+    cursor: pointer;
+  }
+  .footer-name .name-front,
+  .footer-name .name-back {
+    display: block;
+    transition:
+      opacity 0.25s,
+      transform 0.25s;
+  }
+  .name-back {
+    opacity: 0;
+    transform: translateY(6px);
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .footer-name:hover .name-front {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  .footer-name:hover .name-back {
+    opacity: 1;
+    transform: translateY(0);
+  }
 </style>

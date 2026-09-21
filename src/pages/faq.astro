@@ -1,279 +1,212 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SubpageHeader from "../components/SubpageHeader.astro";
+import Footer from "../components/Footer.astro";
 import { siteConfig } from "../config";
-import "../styles/global.css";
+import { faqList } from "../data/faq";
+
+const pageTitle = `Frequently Asked Questions | ${siteConfig.siteName}`;
+const pageDescription =
+  "Frequently asked questions about design services, timelines, pricing, and creative workflows with Saurav Panda (dearlipu).";
+
+const faqSchema = {
+  "@type": "FAQPage",
+  mainEntity: faqList.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: `${siteConfig.siteUrl}/`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "FAQ",
+      item: `${siteConfig.siteUrl}/faq`,
+    },
+  ],
+};
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalUrl={`${siteConfig.siteUrl}/faq`}
+  jsonLd={[faqSchema, breadcrumbSchema]}
+>
+  <SubpageHeader />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-
-    <link rel="canonical" href={`${siteConfig.siteUrl}/faq`} />
-    <meta
-      name="description"
-      content="Frequently asked questions about design services, timelines, pricing, and creative workflows with Saurav Panda (dearlipu)."
-    />
-    <meta
-      property="og:title"
-      content={`Frequently Asked Questions | ${siteConfig.siteName}`}
-    />
-    <meta property="og:site_name" content={siteConfig.siteName} />
-    <meta property="og:url" content={`${siteConfig.siteUrl}/faq`} />
-    <meta property="og:type" content="website" />
-    <meta name="robots" content="index, follow" />
-
-    <title>Frequently Asked Questions | {siteConfig.siteName}</title>
-  </head>
-
-  <body class="bg-white text-gray-800">
+  <main>
     <section
-      class="px-6 sm:px-10 md:px-16 lg:px-24 py-12 md:py-16 lg:py-20 overflow-x-hidden"
+      class="px-6 sm:px-10 md:px-16 lg:px-24 py-12 md:py-16 lg:py-24 overflow-x-hidden"
     >
       <div
-        class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start"
+        class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start"
       >
-        <!-- LEFT -->
-        <div class="lg:col-span-4">
-          <h2
-            class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900"
+        <!-- LEFT COLUMN -->
+        <div class="lg:col-span-4 lg:sticky lg:top-24">
+          <div class="badge-pill">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-help-circle"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+              <path d="M12 16v.01"></path>
+              <path d="M12 13a2 2 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483"
+              ></path>
+            </svg>
+            <span>Help & FAQ</span>
+          </div>
+
+          <h1
+            class="mt-4 text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-extrabold tracking-tight text-gray-900 leading-[1.15]"
           >
             Frequently Asked Questions.
-          </h2>
+          </h1>
 
           <div
-            class="w-[75px] h-[5px] mt-2 rounded-full"
+            class="w-16 h-1.5 mt-4 rounded-full"
             style={`background-color: ${siteConfig.accentColor}`}
           >
           </div>
 
-          <p
-            class="text-gray-500 mt-5 text-sm sm:text-base max-w-sm leading-relaxed"
-          >
-            Quick answers about services, timelines, and how I work.
+          <p class="text-gray-600 mt-5 text-base sm:text-lg leading-relaxed">
+            Quick answers about services, delivery timelines, pricing, and how
+            we work together.
           </p>
+
+          <!-- DIRECT CONTACT CARD -->
+          <div
+            class="mt-8 rounded-2xl border border-gray-200/80 bg-linear-to-b from-white to-gray-50/80 p-5 shadow-xs"
+          >
+            <p class="text-xs font-bold uppercase tracking-wider text-gray-500">
+              Need custom details?
+            </p>
+            <p
+              class="mt-1.5 text-sm sm:text-base font-semibold text-gray-900 leading-snug"
+            >
+              Have a question not answered here?
+            </p>
+            <p class="mt-1 text-xs sm:text-sm text-gray-600 leading-relaxed">
+              I reply personally within a few hours on business days.
+            </p>
+
+            <div class="mt-4 flex flex-col gap-2.5">
+              <a
+                href={`mailto:${siteConfig.social.email}`}
+                class="btn-nav w-full"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-mail w-4 h-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path
+                    d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"
+                  ></path>
+                  <path d="M3 7l9 6l9 -6"></path>
+                </svg>
+                <span>Email Me Directly</span>
+              </a>
+
+              {
+                siteConfig.social.whatsapp && (
+                  <a
+                    href={`https://wa.me/${siteConfig.social.whatsapp}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 hover:text-green-700 active:scale-98 transition-all duration-200 shadow-2xs"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="icon icon-tabler icon-tabler-brand-whatsapp w-4 h-4 text-green-600"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+                      <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
+                    </svg>
+                    <span class="inline-block transform translate-y-[1px]">
+                      WhatsApp Chat
+                    </span>
+                  </a>
+                )
+              }
+            </div>
+          </div>
         </div>
 
-        <!-- RIGHT -->
+        <!-- RIGHT COLUMN: FAQ ITEMS -->
         <div class="lg:col-span-8 w-full min-w-0">
           <div
-            class="bg-gray-50 border border-gray-200 rounded-2xl
-                      p-6 sm:p-8 md:p-10 lg:p-12
-                      shadow-sm hover:shadow-lg transition duration-300
-                      w-full max-w-full"
+            class="bg-linear-to-b from-gray-50/80 to-white border border-gray-200 rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm"
           >
-            <div
-              class="space-y-8 text-lg sm:text-xl md:text-xl leading-relaxed text-gray-600"
-            >
-              <!-- 1 -->
-              <div class="space-y-3">
-                <h2
-                  class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900"
-                >
-                  1. Can you match my style or references?
-                </h2>
+            <div class="space-y-6">
+              {
+                faqList.map((item, index) => (
+                  <div>
+                    <article class="group p-4 -mx-2 sm:-mx-4 rounded-2xl hover:bg-white/80 hover:shadow-xs transition-all duration-200">
+                      <div class="flex items-start gap-3.5">
+                        <span class="flex items-center justify-center w-7 h-7 rounded-full bg-blue-50 text-blue-700 font-bold text-xs shrink-0 mt-0.5 shadow-2xs group-hover:bg-blue-600 group-hover:text-white transition-colors duration-200">
+                          <span class="inline-block transform translate-y-[0.5px]">
+                            {item.id < 10 ? `0${item.id}` : item.id}
+                          </span>
+                        </span>
 
-                <p>
-                  Yes. Share references, examples, or rough ideas. I’ll use them
-                  to create a design that fits your vision and goals.
-                </p>
-              </div>
+                        <div class="flex-1 min-w-0">
+                          <h3 class="text-base sm:text-lg md:text-xl font-bold text-gray-900 tracking-tight leading-snug">
+                            {item.question}
+                          </h3>
 
-              <div
-                class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"
-              >
-              </div>
+                          <p class="mt-2 text-gray-600 text-sm sm:text-base leading-relaxed">
+                            {item.answer}
+                          </p>
+                        </div>
+                      </div>
+                    </article>
 
-              <!-- 2 -->
-              <div class="space-y-3">
-                <h2
-                  class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900"
-                >
-                  2. What if I don’t know exactly what I want?
-                </h2>
-
-                <p>
-                  No problem. Share your goal and I’ll help shape it into a
-                  clear plan with examples and recommendations.
-                </p>
-              </div>
-
-              <div
-                class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"
-              >
-              </div>
-
-              <!-- 3 -->
-              <div class="space-y-3">
-                <h2
-                  class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900"
-                >
-                  3. Do you work with creators, brands, or businesses?
-                </h2>
-
-                <p>
-                  I work with creators, founders, and businesses—from one-off
-                  assets to ongoing content systems.
-                </p>
-              </div>
-
-              <div
-                class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"
-              >
-              </div>
-
-              <!-- 4 -->
-              <div class="space-y-3">
-                <h2
-                  class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900"
-                >
-                  4. Can you handle ongoing or monthly work?
-                </h2>
-
-                <p>
-                  Yes. I offer continuous design and editing support for clients
-                  who need regular content such as social posts, videos, or
-                  branding updates.
-                </p>
-              </div>
-
-              <div
-                class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"
-              >
-              </div>
-
-              <!-- 5 -->
-              <div class="space-y-3">
-                <h2
-                  class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900"
-                >
-                  5. How fast can you deliver?
-                </h2>
-
-                <p>
-                  Delivery time depends on the project. Small tasks are often
-                  ready within 24–48 hours, while larger projects follow a clear
-                  plan.
-                </p>
-              </div>
-
-              <div
-                class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"
-              >
-              </div>
-
-              <!-- 6 -->
-              <div class="space-y-3">
-                <h2
-                  class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900"
-                >
-                  6. What happens after I submit the form?
-                </h2>
-
-                <p>
-                  I’ll reply with the project details, timeline, price, and next
-                  steps. Once you approve, I’ll start the work.
-                </p>
-              </div>
-
-              <div
-                class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"
-              >
-              </div>
-
-              <!-- 7 -->
-              <div class="space-y-3">
-                <h2
-                  class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900"
-                >
-                  7. Will I see previews before final delivery?
-                </h2>
-
-                <p>
-                  Yes. You’ll receive previews or drafts for feedback before
-                  final files are delivered.
-                </p>
-              </div>
-
-              <div
-                class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"
-              >
-              </div>
-
-              <!-- 8 -->
-              <div class="space-y-3">
-                <h2
-                  class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900"
-                >
-                  8. What if I need changes after delivery?
-                </h2>
-
-                <p>
-                  Minor revisions are included. Extra revisions can be added
-                  based on the project and timeline.
-                </p>
-              </div>
-
-              <div
-                class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"
-              >
-              </div>
-
-              <!-- 9 -->
-              <div class="space-y-3">
-                <h2
-                  class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900"
-                >
-                  9. Do you work with international clients?
-                </h2>
-
-                <p>
-                  Yes. I work with clients worldwide and manage communication
-                  online for a smooth workflow.
-                </p>
-              </div>
-
-              <div
-                class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"
-              >
-              </div>
-
-              <!-- 10 -->
-              <div class="space-y-3">
-                <h2
-                  class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900"
-                >
-                  10. Why work with me?
-                </h2>
-
-                <p>
-                  I focus on useful creative work that supports your goals, not
-                  just good looks. You get clear communication, reliable
-                  delivery, and careful attention to detail.
-                </p>
-              </div>
-
-              <!-- CONTACT -->
-              <div class="pt-8">
-                <p class="text-gray-500 text-base sm:text-lg">
-                  Still have questions?
-                </p>
-
-                <p class="text-gray-900 font-medium mt-1">
-                  {siteConfig.social.email}
-                </p>
-              </div>
+                    {index < faqList.length - 1 && (
+                      <div class="h-px bg-linear-to-r from-transparent via-gray-200 to-transparent my-1" />
+                    )}
+                  </div>
+                ))
+              }
             </div>
           </div>
         </div>
       </div>
     </section>
-  </body>
-</html>
+  </main>
+
+  <Footer />
+</BaseLayout>

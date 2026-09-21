@@ -18,17 +18,150 @@ body {
   font-family: 'Anek Devanagari', sans-serif;
   background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
   color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-body :where(p, h1, h2, h3, h4, h5, h6, li, dt, dd, label),
-body :where(p, h1, h2, h3, h4, h5, h6, li, dt, dd, label) > span:not([aria-hidden="true"]),
-body :where(a, button):not(:has(svg)) {
+/* Optical baseline alignment for Anek Devanagari text elements */
+body :where(p, h1, h2, h3, h4, h5, h6, li, dt, dd, label) {
   position: relative;
-  top: 2px;
+  top: 1.5px;
 }
 
-html {
-  scroll-behavior: smooth;
+/* Prevent nested spans inside already-aligned blocks from compounding */
+body :where(p, h1, h2, h3, h4, h5, h6, li, dt, dd, label) :where(span) {
+  top: 0;
+}
+
+/* Tabler icon standard styling */
+.icon-tabler {
+  display: inline-block;
+  vertical-align: middle;
+  stroke-width: 2;
+}
+
+/* Standardized Pill Badge Component */
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-radius: 9999px;
+  border: 1px solid #dbeafe;
+  background: #eff6ff;
+  padding: 0.32rem 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #1d4ed8;
+  box-shadow: 0 1px 2px 0 rgba(15, 23, 42, 0.04);
+  line-height: 1;
+}
+
+.badge-pill > svg {
+  width: 0.95rem;
+  height: 0.95rem;
+  flex-shrink: 0;
+}
+
+.badge-pill > span {
+  display: inline-block;
+  transform: translateY(1.5px);
+}
+
+/* Standardized Nav/Action Button */
+.btn-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1.15rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.25;
+  background-color: #0f172a;
+  color: #ffffff;
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.1);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-nav > span {
+  display: inline-block;
+  transform: translateY(1.5px);
+}
+
+.btn-nav:hover {
+  background-color: var(--accent, #1d4ed8);
+  box-shadow: 0 4px 14px rgba(29, 78, 216, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn-nav:active {
+  transform: translateY(0) scale(0.96);
+}
+
+/* Subpage Back to Home Button */
+.btn-back-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.35rem 0.95rem 0.35rem 0.35rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1e293b;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-back-home .btn-back-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.85rem;
+  height: 1.85rem;
+  border-radius: 9999px;
+  background-color: #f1f5f9;
+  color: #475569;
+  transition: all 0.2s ease;
+}
+
+.btn-back-home > span:last-child {
+  display: inline-block;
+  transform: translateY(1.5px);
+}
+
+.btn-back-home:hover {
+  color: #1d4ed8;
+  background-color: rgba(241, 245, 249, 0.7);
+}
+
+.btn-back-home:hover .btn-back-icon {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  transform: translateX(-2px);
+}
+
+/* Subpage Nav Links */
+.subnav-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #475569;
+  transition: all 0.15s ease;
+}
+
+.subnav-link > span {
+  display: inline-block;
+  transform: translateY(1.5px);
+}
+
+.subnav-link:hover {
+  color: #0f172a;
+  background-color: rgba(241, 245, 249, 0.8);
 }
 
 section {
@@ -85,7 +218,6 @@ img, video {
 .back-to-top:active {
   transform: translateY(-0.05rem) scale(0.94);
 }
-
 
 .reveal-up {
   opacity: 0;

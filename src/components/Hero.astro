@@ -1,11 +1,6 @@
 ---
 import { siteConfig } from "../config";
-
-const heroMetrics = [
-  { value: "48", suffix: "h", label: "first design direction" },
-  { value: "3", suffix: "x", label: "visual formats per campaign" },
-  { value: "100", suffix: "%", label: "ready-to-publish files" },
-];
+import { heroMetrics } from "../data/hero";
 ---
 
 <div
@@ -16,59 +11,119 @@ const heroMetrics = [
   <div
     class="absolute inset-0 -z-20"
     style={`background: radial-gradient(ellipse 800px 1000px at 5% 0%, ${siteConfig.accentColor}33 0%, ${siteConfig.accentColor}18 32%, rgba(255,255,255,.7) 66%, #fff 100%)`}
-  ></div>
+  >
+  </div>
   <div class="hero-grid absolute inset-0 -z-10 opacity-70"></div>
   <div class="blob blob-one" aria-hidden="true"></div>
   <div class="blob blob-two" aria-hidden="true"></div>
 
-  <div class="mx-auto grid min-h-[72vh] max-w-6xl items-center gap-12 lg:grid-cols-[1.04fr_.96fr]">
+  <div
+    class="mx-auto grid min-h-[72vh] max-w-6xl items-center gap-12 lg:grid-cols-[1.04fr_.96fr]"
+  >
     <div class="relative z-10">
-      <p class="availability-pill inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/80 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-blue-700 shadow-sm animate-fade-in">
+      <p
+        class="availability-pill inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/80 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-blue-700 shadow-sm animate-fade-in"
+      >
         <span class="relative flex h-2 w-2" aria-hidden="true">
-          <span id="availabilityPulse" class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
-          <span id="availabilityDot" class="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
+          <span
+            id="availabilityPulse"
+            class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"
+          ></span>
+          <span
+            id="availabilityDot"
+            class="relative inline-flex h-2 w-2 rounded-full bg-green-500"
+          ></span>
         </span>
-        <span id="availabilityText" class="availability-text relative top-0.5" aria-live="polite"></span>
+        <span
+          id="availabilityText"
+          class="availability-text"
+          style="position:relative;top:1.5px"
+          aria-live="polite"></span>
       </p>
 
-      <h1 class="mt-4 max-w-4xl text-pretty text-5xl font-extrabold tracking-tight text-gray-900 sm:text-6xl lg:text-7xl xl:text-8xl animate-fade-in animation-delay-200">
+      <h1
+        class="mt-4 max-w-4xl text-pretty text-5xl font-extrabold tracking-tight text-gray-900 sm:text-6xl lg:text-7xl xl:text-8xl animate-fade-in animation-delay-200"
+      >
         Your brand deserves <span class="text-gradient">better design.</span>
       </h1>
-      <p class="mt-6 max-w-2xl text-pretty text-base font-medium leading-8 text-gray-600 sm:text-lg md:text-xl animate-fade-in animation-delay-300">
+      <p
+        class="mt-6 max-w-2xl text-pretty text-base font-medium leading-8 text-gray-600 sm:text-lg md:text-xl animate-fade-in animation-delay-300"
+      >
         Not louder. Just clearer.
       </p>
 
-      <div class="mt-6 flex flex-col gap-3 sm:flex-row animate-fade-in animation-delay-400">
-        <a href="#contact" class="hero-btn hero-btn-primary"><span>Start a project</span></a>
-        <a href="#services" class="hero-btn hero-btn-secondary"><span>See my services</span></a>
+      <div
+        class="mt-6 flex flex-col gap-3 sm:flex-row animate-fade-in animation-delay-400"
+      >
+        <a href="#contact" class="hero-btn hero-btn-primary"
+          ><span>Start a project</span></a
+        >
+        <a href="#services" class="hero-btn hero-btn-secondary"
+          ><span>See my services</span></a
+        >
       </div>
 
-      <dl class="mt-10 grid max-w-2xl grid-cols-3 gap-3 animate-fade-in animation-delay-500">
-        {heroMetrics.map((metric) => (
-          <div class="rounded-2xl border border-gray-200 bg-white/75 p-3 shadow-sm backdrop-blur">
-            <dt class="text-2xl font-extrabold text-gray-900 sm:text-3xl">
-              <span class="hero-counter" data-target={metric.value}>0</span><span>{metric.suffix}</span>
-            </dt>
-            <dd class="mt-1 text-xs font-medium leading-snug text-gray-500 sm:text-sm">{metric.label}</dd>
-          </div>
-        ))}
+      <dl
+        class="mt-10 grid max-w-2xl grid-cols-3 gap-3 animate-fade-in animation-delay-500"
+      >
+        {
+          heroMetrics.map((metric) => (
+            <div class="rounded-2xl border border-gray-200 bg-white/75 p-3 shadow-sm backdrop-blur">
+              <dt class="text-2xl font-extrabold text-gray-900 sm:text-3xl">
+                <>
+                  <span class="hero-counter" data-target={metric.value}>
+                    0
+                  </span>
+                  <span>{metric.suffix}</span>
+                </>
+              </dt>
+              <dd class="mt-1 text-xs font-medium leading-snug text-gray-500 sm:text-sm">
+                {metric.label}
+              </dd>
+            </div>
+          ))
+        }
       </dl>
     </div>
 
-    <div class="relative min-h-[460px] animate-fade-in animation-delay-400 lg:min-h-[560px]" aria-label="Creative work preview collage">
+    <div
+      class="relative min-h-[460px] animate-fade-in animation-delay-400 lg:min-h-[560px]"
+      aria-label="Creative work preview collage"
+    >
       <div class="phone-card floating-card">
         <div class="phone-top"></div>
-        <img src="/projects/s1-1.gif" alt="Animated social design preview" class="h-full w-full rounded-[1.75rem] object-cover" decoding="async" />
+        <img
+          src="/projects/s1-1.gif"
+          alt="Animated social design preview"
+          class="h-full w-full rounded-[1.75rem] object-cover"
+          decoding="async"
+          fetchpriority="high"
+        />
       </div>
       <div class="shot-card shot-card-one floating-card animation-float-delay">
-        <img src="/projects/s1-3.webp" alt="Brand visual preview" class="h-full w-full object-cover" decoding="async" />
+        <img
+          src="/projects/s1-3.webp"
+          alt="Brand visual preview"
+          class="h-full w-full object-cover"
+          decoding="async"
+        />
       </div>
       <div class="shot-card shot-card-two floating-card">
-        <img src="/projects/s1-2.webp" alt="Campaign design preview" class="h-full w-full object-cover" decoding="async" />
+        <img
+          src="/projects/s1-2.webp"
+          alt="Campaign design preview"
+          class="h-full w-full object-cover"
+          decoding="async"
+        />
       </div>
       <div class="insight-card floating-card animation-float-delay-2">
-        <span class="text-[11px] font-bold uppercase tracking-[0.16em] text-blue-700">Creative direction</span>
-        <p class="mt-2 text-xl font-extrabold leading-[1.35] text-gray-900">You bring the vision. I make it visible.</p>
+        <span
+          class="text-[11px] font-bold uppercase tracking-[0.16em] text-blue-700"
+          >Creative direction</span
+        >
+        <p class="mt-2 text-xl font-extrabold leading-[1.35] text-gray-900">
+          You bring the vision. I make it visible.
+        </p>
         <div class="mt-4 flex gap-2">
           <span></span><span></span><span></span>
         </div>
@@ -78,32 +133,176 @@ const heroMetrics = [
 </div>
 
 <style>
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes float { 0%, 100% { transform: translate3d(0, 0, 0) rotate(var(--rotate, 0deg)); } 50% { transform: translate3d(0, -10px, 0) rotate(calc(var(--rotate, 0deg) + 1deg)); } }
-  @keyframes collageReveal { from { opacity: 0; transform: translateY(24px) scale(.96) rotate(var(--rotate, 0deg)); } to { opacity: 1; transform: translateY(0) scale(1) rotate(var(--rotate, 0deg)); } }
-  @keyframes cardShine { 0%, 60% { transform: translateX(-130%) rotate(18deg); opacity: 0; } 70% { opacity: .32; } 86%, 100% { transform: translateX(180%) rotate(18deg); opacity: 0; } }
-  @keyframes blobMove { 0%, 100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(18px,-24px,0) scale(1.08); } }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) rotate(var(--rotate, 0deg));
+    }
+    50% {
+      transform: translate3d(0, -10px, 0)
+        rotate(calc(var(--rotate, 0deg) + 1deg));
+    }
+  }
+  @keyframes collageReveal {
+    from {
+      opacity: 0;
+      transform: translateY(24px) scale(0.96) rotate(var(--rotate, 0deg));
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1) rotate(var(--rotate, 0deg));
+    }
+  }
+  @keyframes cardShine {
+    0%,
+    60% {
+      transform: translateX(-130%) rotate(18deg);
+      opacity: 0;
+    }
+    70% {
+      opacity: 0.32;
+    }
+    86%,
+    100% {
+      transform: translateX(180%) rotate(18deg);
+      opacity: 0;
+    }
+  }
+  @keyframes blobMove {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(18px, -24px, 0) scale(1.08);
+    }
+  }
 
-  .animate-fade-in { animation: fadeIn .8s ease-out forwards; opacity: 0; }
-  .animation-delay-200 { animation-delay: .2s; }
-  .animation-delay-300 { animation-delay: .3s; }
-  .animation-delay-400 { animation-delay: .4s; }
-  .animation-delay-500 { animation-delay: .5s; }
-  .text-gradient { background: linear-gradient(90deg, #111827, var(--accent-color), #06b6d4); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .hero-grid { background-image: linear-gradient(rgba(15,23,42,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,.06) 1px, transparent 1px); background-size: 120px 120px; mask-image: radial-gradient(80% 70% at 50% 20%, #000, transparent); }
-  .blob { position: absolute; border-radius: 999px; filter: blur(8px); opacity: .24; animation: blobMove 7s ease-in-out infinite; }
-  .blob-one { right: 11%; top: 16%; width: 10rem; height: 10rem; background: #60a5fa; }
-  .blob-two { right: 28%; bottom: 14%; width: 7rem; height: 7rem; background: #22d3ee; animation-delay: -2s; }
-  .hero-btn { display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; padding: .9rem 1.2rem; font-weight: 800; line-height: 1.25; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
-  .hero-btn > span { display: inline-block; transform: translateY(3px); }
-  .hero-btn:hover { transform: translateY(-2px); }
-  .hero-btn-primary { position: relative; isolation: isolate; overflow: hidden; background: #0f172a; color: #fff; box-shadow: 0 18px 35px rgba(15,23,42,.18); }
-  .hero-btn-primary::after { content: ""; position: absolute; inset: 50%; z-index: 0; width: 0; height: 0; border: 1px solid rgba(255,255,255,.7); border-radius: 999px; transform: translate(-50%, -50%); animation: buttonWave 2.4s ease-out infinite; pointer-events: none; }
-  .hero-btn-primary span { position: relative; z-index: 1; }
-  .hero-btn-primary:hover { background: var(--accent-color); }
-  .hero-btn-secondary { border: 1px solid #d1d5db; background: rgba(255,255,255,.8); color: #111827; }
-  .availability-text { display: inline-block; min-width: 9.8rem; white-space: nowrap; }
-  .availability-text.is-typing::after { content: "|"; margin-left: .1rem; color: currentColor; animation: blinkCaret .8s step-end infinite; }
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0;
+  }
+  .animation-delay-200 {
+    animation-delay: 0.2s;
+  }
+  .animation-delay-300 {
+    animation-delay: 0.3s;
+  }
+  .animation-delay-400 {
+    animation-delay: 0.4s;
+  }
+  .animation-delay-500 {
+    animation-delay: 0.5s;
+  }
+  .text-gradient {
+    background: linear-gradient(90deg, #111827, var(--accent-color), #06b6d4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero-grid {
+    background-image:
+      linear-gradient(rgba(15, 23, 42, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
+    background-size: 120px 120px;
+    mask-image: radial-gradient(80% 70% at 50% 20%, #000, transparent);
+  }
+  .blob {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(8px);
+    opacity: 0.24;
+    animation: blobMove 7s ease-in-out infinite;
+  }
+  .blob-one {
+    right: 11%;
+    top: 16%;
+    width: 10rem;
+    height: 10rem;
+    background: #60a5fa;
+  }
+  .blob-two {
+    right: 28%;
+    bottom: 14%;
+    width: 7rem;
+    height: 7rem;
+    background: #22d3ee;
+    animation-delay: -2s;
+  }
+  .hero-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 0.9rem 1.2rem;
+    font-weight: 800;
+    line-height: 1.25;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      background 0.2s ease;
+  }
+  .hero-btn > span {
+    display: inline-block;
+    transform: translateY(3px);
+  }
+  .hero-btn:hover {
+    transform: translateY(-2px);
+  }
+  .hero-btn-primary {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: #0f172a;
+    color: #fff;
+    box-shadow: 0 18px 35px rgba(15, 23, 42, 0.18);
+  }
+  .hero-btn-primary::after {
+    content: "";
+    position: absolute;
+    inset: 50%;
+    z-index: 0;
+    width: 0;
+    height: 0;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 999px;
+    transform: translate(-50%, -50%);
+    animation: buttonWave 2.4s ease-out infinite;
+    pointer-events: none;
+  }
+  .hero-btn-primary span {
+    position: relative;
+    z-index: 1;
+  }
+  .hero-btn-primary:hover {
+    background: var(--accent-color);
+  }
+  .hero-btn-secondary {
+    border: 1px solid #d1d5db;
+    background: rgba(255, 255, 255, 0.8);
+    color: #111827;
+  }
+  .availability-text {
+    display: inline-block;
+    min-width: 9.8rem;
+    white-space: nowrap;
+  }
+  .availability-text.is-typing::after {
+    content: "|";
+    margin-left: 0.1rem;
+    color: currentColor;
+    animation: blinkCaret 0.8s step-end infinite;
+  }
   .availability-pill {
     position: relative;
     gap: 0.55rem;
@@ -112,10 +311,15 @@ const heroMetrics = [
     overflow: hidden;
     border-color: rgba(255, 255, 255, 0.78);
     background: rgba(255, 255, 255, 0.58);
-    box-shadow: 0 10px 28px rgba(37, 99, 235, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    box-shadow:
+      0 10px 28px rgba(37, 99, 235, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(14px) saturate(1.2);
     -webkit-backdrop-filter: blur(14px) saturate(1.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease,
+      background-color 0.3s ease;
   }
   .availability-pill::after {
     position: absolute;
@@ -131,46 +335,205 @@ const heroMetrics = [
   }
   .availability-pill:hover {
     background: rgba(255, 255, 255, 0.72);
-    box-shadow: 0 14px 32px rgba(37, 99, 235, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    box-shadow:
+      0 14px 32px rgba(37, 99, 235, 0.16),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
     transform: translateY(-2px);
   }
-  .floating-card { animation: collageReveal .8s cubic-bezier(.16,1,.3,1) both, float 6.5s ease-in-out .8s infinite; box-shadow: 0 28px 70px rgba(15,23,42,.14), 0 8px 18px rgba(15,23,42,.08); will-change: transform; }
-  .floating-card::after { position: absolute; inset: -35% auto -35% -25%; z-index: 3; width: 18%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.65), transparent); content: ""; pointer-events: none; transform: translateX(-130%) rotate(18deg); animation: cardShine 7s ease-in-out 1.2s infinite; }
-  .animation-float-delay { animation-delay: .18s, -1.4s; }
-  .animation-float-delay-2 { animation-delay: .34s, -2.4s; }
-  .phone-card { position: absolute; right: 8%; top: 4%; height: 430px; width: 245px; overflow: hidden; border: 10px solid #111827; border-radius: 2.4rem; background: #111827; --rotate: 4deg; animation-delay: .05s, -.5s; }
-  .phone-top { position: absolute; left: 50%; top: .55rem; z-index: 2; height: .45rem; width: 4rem; transform: translateX(-50%); border-radius: 999px; background: #111827; }
-  .shot-card { position: absolute; overflow: hidden; border: 8px solid #fff; border-radius: 1.6rem; background: #fff; }
-  .shot-card-one { left: 0; top: 14%; height: 185px; width: 260px; --rotate: -5deg; }
-  .shot-card-two { bottom: 4%; right: 0; height: 185px; width: 285px; --rotate: 3deg; }
-  .insight-card { position: absolute; bottom: 16%; left: 7%; width: 270px; border: 1px solid rgba(229,231,235,.9); border-radius: 1.5rem; background: rgba(255,255,255,.88); padding: 1.1rem; backdrop-filter: blur(14px); --rotate: -2deg; animation-delay: .42s, -2.4s; }
-  .insight-card span:not(:first-child), .insight-card div span { display: block; height: .45rem; flex: 1; border-radius: 999px; background: linear-gradient(90deg, var(--accent-color), #67e8f9); }
-  @keyframes buttonWave { 0% { width: 0; height: 0; opacity: .8; } 70%, 100% { width: 220%; height: 520%; opacity: 0; } }
-  @keyframes blinkCaret { 50% { opacity: 0; } }
-  @keyframes availabilitySheen { 0%, 68% { opacity: 0; transform: rotate(18deg) translateX(-180%); } 75% { opacity: 0.7; } 88%, 100% { opacity: 0; transform: rotate(18deg) translateX(720%); } }
+  .floating-card {
+    animation:
+      collageReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) both,
+      float 6.5s ease-in-out 0.8s infinite;
+    box-shadow:
+      0 28px 70px rgba(15, 23, 42, 0.14),
+      0 8px 18px rgba(15, 23, 42, 0.08);
+    will-change: transform;
+  }
+  .floating-card::after {
+    position: absolute;
+    inset: -35% auto -35% -25%;
+    z-index: 3;
+    width: 18%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.65),
+      transparent
+    );
+    content: "";
+    pointer-events: none;
+    transform: translateX(-130%) rotate(18deg);
+    animation: cardShine 7s ease-in-out 1.2s infinite;
+  }
+  .animation-float-delay {
+    animation-delay:
+      0.18s,
+      -1.4s;
+  }
+  .animation-float-delay-2 {
+    animation-delay:
+      0.34s,
+      -2.4s;
+  }
+  .phone-card {
+    position: absolute;
+    right: 8%;
+    top: 4%;
+    height: 430px;
+    width: 245px;
+    overflow: hidden;
+    border: 10px solid #111827;
+    border-radius: 2.4rem;
+    background: #111827;
+    --rotate: 4deg;
+    animation-delay:
+      0.05s,
+      -0.5s;
+  }
+  .phone-top {
+    position: absolute;
+    left: 50%;
+    top: 0.55rem;
+    z-index: 2;
+    height: 0.45rem;
+    width: 4rem;
+    transform: translateX(-50%);
+    border-radius: 999px;
+    background: #111827;
+  }
+  .shot-card {
+    position: absolute;
+    overflow: hidden;
+    border: 8px solid #fff;
+    border-radius: 1.6rem;
+    background: #fff;
+  }
+  .shot-card-one {
+    left: 0;
+    top: 14%;
+    height: 185px;
+    width: 260px;
+    --rotate: -5deg;
+  }
+  .shot-card-two {
+    bottom: 4%;
+    right: 0;
+    height: 185px;
+    width: 285px;
+    --rotate: 3deg;
+  }
+  .insight-card {
+    position: absolute;
+    bottom: 16%;
+    left: 7%;
+    width: 270px;
+    border: 1px solid rgba(229, 231, 235, 0.9);
+    border-radius: 1.5rem;
+    background: rgba(255, 255, 255, 0.88);
+    padding: 1.1rem;
+    backdrop-filter: blur(14px);
+    --rotate: -2deg;
+    animation-delay:
+      0.42s,
+      -2.4s;
+  }
+  .insight-card span:not(:first-child),
+  .insight-card div span {
+    display: block;
+    height: 0.45rem;
+    flex: 1;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent-color), #67e8f9);
+  }
+  @keyframes buttonWave {
+    0% {
+      width: 0;
+      height: 0;
+      opacity: 0.8;
+    }
+    70%,
+    100% {
+      width: 220%;
+      height: 520%;
+      opacity: 0;
+    }
+  }
+  @keyframes blinkCaret {
+    50% {
+      opacity: 0;
+    }
+  }
+  @keyframes availabilitySheen {
+    0%,
+    68% {
+      opacity: 0;
+      transform: rotate(18deg) translateX(-180%);
+    }
+    75% {
+      opacity: 0.7;
+    }
+    88%,
+    100% {
+      opacity: 0;
+      transform: rotate(18deg) translateX(720%);
+    }
+  }
   @media (prefers-reduced-motion: reduce) {
     .hero-btn-primary::after,
     .floating-card::after,
     .availability-pill::after,
-    .availability-text.is-typing::after { animation: none; }
-    .floating-card { animation: none; }
+    .availability-text.is-typing::after {
+      animation: none;
+    }
+    .floating-card {
+      animation: none;
+    }
   }
-  @media (max-width: 1023px) { .phone-card { right: 18%; } .shot-card-one { left: 7%; } }
-  @media (max-width: 640px) { .phone-card { right: 4%; height: 360px; width: 205px; } .shot-card { border-width: 6px; } .shot-card-one { left: -4%; width: 210px; height: 150px; } .shot-card-two { width: 225px; height: 145px; } .insight-card { left: 0; bottom: 20%; width: 225px; } }
+  @media (max-width: 1023px) {
+    .phone-card {
+      right: 18%;
+    }
+    .shot-card-one {
+      left: 7%;
+    }
+  }
+  @media (max-width: 640px) {
+    .phone-card {
+      right: 4%;
+      height: 360px;
+      width: 205px;
+    }
+    .shot-card {
+      border-width: 6px;
+    }
+    .shot-card-one {
+      left: -4%;
+      width: 210px;
+      height: 150px;
+    }
+    .shot-card-two {
+      width: 225px;
+      height: 145px;
+    }
+    .insight-card {
+      left: 0;
+      bottom: 20%;
+      width: 225px;
+    }
+  }
 </style>
 
 <script>
+  import { availabilityMessages } from "../data/hero";
+
   const availabilityText = document.getElementById("availabilityText");
   const availabilityDot = document.getElementById("availabilityDot");
   const availabilityPulse = document.getElementById("availabilityPulse");
-  const availabilityMessages = [
-    { text: "Available for work", unavailable: false },
-    { text: "Available for new projects", unavailable: false },
-    //{ text: "Not available right now", unavailable: true },
-  ];
 
   if (availabilityText) {
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     let messageIndex = 0;
     let characterIndex = 0;
     let isDeleting = false;
@@ -211,7 +574,9 @@ const heroMetrics = [
 
   if (heroCounters.length) {
     const duration = 1300;
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     const frameIds = new WeakMap();
 
     const animateCounter = (counter: Element) => {

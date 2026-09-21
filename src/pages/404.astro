@@ -1,25 +1,13 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
 import { siteConfig } from "../config";
-import "../styles/global.css";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex, follow" />
-    <title>404 - Page Not Found | {siteConfig.siteName}</title>
-
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-
+<BaseLayout
+  title={`404 – Page Not Found | ${siteConfig.siteName}`}
+  description="The page you're looking for doesn't exist or has been moved."
+  noindex={true}
+>
   <body style={`--accent-color: ${siteConfig.accentColor}`}>
     <div class="wrapper">
       <!-- Glow -->
@@ -34,7 +22,7 @@ import "../styles/global.css";
         <h2 class="title">Page not found</h2>
 
         <p class="subtitle">
-          The page you’re looking for doesn’t exist or has been moved.
+          The page you're looking for doesn't exist or has been moved.
         </p>
 
         <div class="actions">
@@ -44,7 +32,7 @@ import "../styles/global.css";
       </div>
     </div>
   </body>
-</html>
+</BaseLayout>
 
 <style>
   /* GLOBAL */

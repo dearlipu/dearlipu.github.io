@@ -10,11 +10,25 @@ const whatsappNumber = siteConfig.social.whatsapp;
   <div class="mx-auto max-w-6xl reveal-up">
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-14">
       <div class="lg:col-span-4">
-        <p
-          class="inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-blue-700"
-        >
-          Contact
-        </p>
+        <div class="badge-pill">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-send"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M10 14l11 -11"></path>
+            <path
+              d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5"
+            ></path>
+          </svg>
+          <span>Contact</span>
+        </div>
 
         <h2
           class="mt-4 text-3xl font-bold leading-tight text-gray-900 sm:text-4xl md:text-5xl"
@@ -700,7 +714,7 @@ const whatsappNumber = siteConfig.social.whatsapp;
 
     const modeLabel = mode === "monthly" ? "Monthly Retainer" : "Per Project";
     const budgetPrefill =
-      plan === "Starter"
+      plan === "Quick Start" || plan === "Starter"
         ? "₹1k–₹3k (Basic)"
         : plan === "Growth"
           ? "₹3k–₹10k (Standard)"
