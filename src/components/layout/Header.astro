@@ -1,0 +1,578 @@
+---
+import { siteConfig } from "../../config";
+
+const menuGroups = [
+  {
+    title: "Explore",
+    links: [
+      { label: "About", href: "#about", icon: "user" },
+      { label: "Services", href: "#services", icon: "sparkles" },
+      { label: "Pricing", href: "#pricing", icon: "tag" },
+      { label: "Reviews", href: "#testimonials", icon: "message" },
+      { label: "Contact", href: "#contact", icon: "send" },
+    ],
+  },
+  {
+    title: "Information",
+    links: [
+      { label: "FAQs", href: "/faq", icon: "help" },
+      { label: "Privacy", href: "/privacy", icon: "shield" },
+      { label: "Terms", href: "/terms", icon: "scale" },
+      { label: "Copyright", href: "/copyright", icon: "copyright" },
+    ],
+  },
+];
+---
+
+<header id="header" class="site-header fixed inset-x-0 top-0 z-50">
+  <div class="mobile-header-bar md:hidden">
+    <a class="mobile-brand" href="/" aria-label="Dearlipu home">
+      <span class="mobile-brand-mark" aria-hidden="true">d</span>
+      <span>Dearlipu</span>
+    </a>
+    <button
+      id="menuBtn"
+      class="menu-trigger"
+      type="button"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="menuPanel"
+    >
+      <span id="menuBtnText">Menu</span>
+      <svg
+        id="menuIcon"
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon-tabler"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M4 7h16" />
+        <path d="M4 12h16" />
+        <path d="M4 17h16" />
+      </svg>
+    </button>
+  </div>
+
+  <div id="menuBackdrop" class="menu-backdrop" aria-hidden="true"></div>
+
+  <section
+    id="menuPanel"
+    class="mobile-menu-panel"
+    aria-labelledby="menuTitle"
+    aria-hidden="true"
+    aria-modal="true"
+    role="dialog"
+    tabindex="-1"
+    inert
+    style={`--accent-color: ${siteConfig.accentColor}`}
+  >
+    <div class="menu-panel-heading">
+      <div>
+        <p class="menu-eyebrow">Navigation</p>
+        <h2 id="menuTitle">Explore the site</h2>
+      </div>
+    </div>
+
+    {
+      menuGroups.map((group, groupIndex) => (
+        <nav
+          class:list={["menu-group", groupIndex > 0 && "menu-group-secondary"]}
+          aria-label={group.title}
+        >
+          <h3 class="menu-group-title">{group.title}</h3>
+          <ul class="menu-link-grid">
+            {group.links.map((item) => (
+              <li>
+                <a class="menu-link" href={item.href}>
+                  <span class="menu-link-icon" aria-hidden="true">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="icon-tabler"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                    >
+                      {item.icon === "user" && (
+                        <>
+                          <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                          <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                        </>
+                      )}
+                      {item.icon === "sparkles" && (
+                        <path d="M16 18a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2m0 -12a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2m-7 12a6 6 0 0 1 6 -6a6 6 0 0 1 -6 -6a6 6 0 0 1 -6 6a6 6 0 0 1 6 6" />
+                      )}
+                      {item.icon === "tag" && (
+                        <>
+                          <path d="M7.5 7.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+                          <path d="M3 6v5.172a2 2 0 0 0 .586 1.414l7.71 7.71a2.41 2.41 0 0 0 3.408 0l5.592 -5.592a2.41 2.41 0 0 0 0 -3.408l-7.71 -7.71a2 2 0 0 0 -1.414 -.586h-5.172a3 3 0 0 0 -3 3z" />
+                        </>
+                      )}
+                      {item.icon === "message" && (
+                        <path d="M8 9h8m-8 4h6m-5 5h-3a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-3l-3 3z" />
+                      )}
+                      {item.icon === "send" && (
+                        <path d="M10 14 21 3m0 0-6.5 18a.55.55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55.55 0 0 1 0 -1L21 3z" />
+                      )}
+                      {item.icon === "help" && (
+                        <>
+                          <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+                          <path d="M12 16v.01M12 13a2 2 0 1 0 -2 -2" />
+                        </>
+                      )}
+                      {item.icon === "shield" && (
+                        <path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15A12 12 0 0 0 12 3m-3 9 2 2 4 -4" />
+                      )}
+                      {item.icon === "scale" && (
+                        <path d="M7 20h10m-5 0V4m-7 3h14M7 7l-4 7h8L7 7zm10 0-4 7h8l-4-7z" />
+                      )}
+                      {item.icon === "copyright" && (
+                        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0m2.5 0a3.5 3.5 0 0 1 5.8 -2.6m0 5.2a3.5 3.5 0 0 1 -5.8 -2.6" />
+                      )}
+                    </svg>
+                  </span>
+                  <span class="menu-link-label">{item.label}</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="menu-link-arrow icon-tabler"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d="M7 17 17 7M7 7h10v10" />
+                  </svg>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ))
+    }
+
+    <a class="menu-contact-link" href="#contact">
+      <span>Have a project in mind?</span>
+      <strong>Let’s talk</strong>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon-tabler"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M5 12h14m-6-6 6 6-6 6" />
+      </svg>
+    </a>
+  </section>
+
+  <nav class="desktop-nav hidden md:block" aria-label="Main navigation">
+    <ul>
+      {
+        menuGroups[0].links.map((item) => (
+          <li>
+            <a class="nav-link" href={item.href}>
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<script>
+  import "../../scripts/navigation";
+</script>
+
+<style>
+  .site-header {
+    padding: 0.75rem var(--gutter-site);
+    transition: background-color var(--duration-standard) ease,
+      box-shadow var(--duration-standard) ease;
+  }
+
+  .site-header.is-scrolled {
+    border-bottom: 1px solid rgb(226 232 240 / 0.8);
+    background: rgb(255 255 255 / 0.88);
+    box-shadow: 0 8px 28px rgb(15 23 42 / 0.06);
+    backdrop-filter: blur(16px);
+  }
+
+  .mobile-header-bar {
+    display: flex;
+    min-height: 3.5rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .mobile-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: #0f172a;
+    font-size: 1rem;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .mobile-brand-mark {
+    display: grid;
+    width: 2.15rem;
+    height: 2.15rem;
+    place-items: center;
+    border: 1px solid #dbeafe;
+    border-radius: 0.75rem;
+    background: #eff6ff;
+    color: var(--accent);
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+
+  .menu-trigger {
+    position: relative;
+    z-index: 60;
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    border: 1px solid rgb(219 234 254 / 0.9);
+    border-radius: 999px;
+    background: #fff;
+    padding: 0.5rem 0.95rem 0.5rem 1rem;
+    color: #0f172a;
+    font-size: 0.875rem;
+    font-weight: 700;
+    box-shadow: 0 4px 14px rgb(15 23 42 / 0.08);
+    cursor: pointer;
+    transition: transform var(--duration-fast) var(--ease-standard),
+      border-color var(--duration-fast) ease,
+      box-shadow var(--duration-fast) ease;
+  }
+
+  .menu-trigger > span {
+    display: inline-block;
+    transform: translateY(1.5px);
+  }
+
+  .menu-trigger:hover {
+    transform: translateY(-1px);
+    border-color: #bfdbfe;
+    box-shadow: 0 8px 20px rgb(15 23 42 / 0.12);
+  }
+
+  .menu-trigger:active {
+    transform: scale(0.97);
+  }
+
+  .menu-trigger .icon-tabler {
+    color: var(--accent);
+  }
+
+  .menu-trigger .icon-tabler path {
+    transform-box: fill-box;
+    transform-origin: center;
+    transition:
+      transform var(--duration-standard) var(--ease-standard),
+      opacity var(--duration-fast) ease;
+  }
+
+  .menu-trigger .icon-tabler path:nth-child(2) {
+    opacity: 1;
+  }
+
+  .menu-is-open .menu-trigger .icon-tabler path:first-child {
+    transform: translateY(5px) rotate(45deg);
+  }
+
+  .menu-is-open .menu-trigger .icon-tabler path:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0.4);
+  }
+
+  .menu-is-open .menu-trigger .icon-tabler path:last-child {
+    transform: translateY(-5px) rotate(-45deg);
+  }
+
+  .menu-backdrop {
+    position: fixed;
+    z-index: 40;
+    inset: 0;
+    background: rgb(15 23 42 / 0.3);
+    opacity: 0;
+    pointer-events: none;
+    backdrop-filter: blur(3px);
+    transition: opacity var(--duration-standard) ease;
+  }
+
+  .menu-backdrop.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-menu-panel {
+    position: fixed;
+    z-index: 50;
+    inset: calc(4.75rem + env(safe-area-inset-top)) 0 auto;
+    width: min(31rem, calc(100% - 1.5rem));
+    max-height: calc(100dvh - 6rem - env(safe-area-inset-top));
+    margin-inline: auto;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border: 1px solid rgb(226 232 240 / 0.92);
+    border-radius: 1.5rem;
+    background: rgb(255 255 255 / 0.98);
+    padding: clamp(1.125rem, 4vw, 1.5rem);
+    color: #0f172a;
+    box-shadow:
+      0 28px 70px rgb(15 23 42 / 0.18),
+      0 4px 16px rgb(15 23 42 / 0.08);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.5rem) scale(0.98);
+    transform-origin: top center;
+    transition: opacity var(--duration-standard) ease,
+      transform 300ms var(--ease-standard);
+  }
+
+  .mobile-menu-panel.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+
+  .menu-panel-heading {
+    display: block;
+    padding-bottom: 1.125rem;
+  }
+
+  .menu-eyebrow,
+  .menu-group-title {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+
+  .menu-panel-heading h2 {
+    margin: 0.25rem 0 0;
+    color: #0f172a;
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+  }
+
+  .menu-group + .menu-group {
+    margin-top: 1.25rem;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 1.125rem;
+  }
+
+  .menu-group-title {
+    margin-bottom: 0.625rem;
+  }
+
+  .menu-link-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .menu-link {
+    display: flex;
+    min-width: 0;
+    min-height: 3.25rem;
+    align-items: center;
+    gap: 0.625rem;
+    border: 1px solid transparent;
+    border-radius: 0.9rem;
+    background: #f8fafc;
+    padding: 0.625rem 0.7rem;
+    color: #334155;
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.25;
+    text-decoration: none;
+    transition: transform var(--duration-fast) var(--ease-standard),
+      border-color var(--duration-fast) ease,
+      background-color var(--duration-fast) ease,
+      color var(--duration-fast) ease,
+      box-shadow var(--duration-fast) ease;
+  }
+
+  .menu-link:hover,
+  .menu-link:focus-visible {
+    transform: translateY(-1px);
+    border-color: #dbeafe;
+    background: #eff6ff;
+    color: #1d4ed8;
+    box-shadow: 0 5px 14px rgb(29 78 216 / 0.08);
+  }
+
+  .menu-link:active {
+    transform: scale(0.98);
+  }
+
+  .menu-link-icon {
+    display: grid;
+    width: 2rem;
+    height: 2rem;
+    flex: none;
+    place-items: center;
+    border-radius: 0.65rem;
+    background: #fff;
+    color: var(--accent);
+    box-shadow: 0 1px 3px rgb(15 23 42 / 0.06);
+  }
+
+  .menu-link-icon .icon-tabler {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  .menu-link-label {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .menu-link-arrow {
+    width: 1rem;
+    height: 1rem;
+    color: #94a3b8;
+    transition: transform var(--duration-fast) var(--ease-standard),
+      color var(--duration-fast) ease;
+  }
+
+  .menu-link:hover .menu-link-arrow,
+  .menu-link:focus-visible .menu-link-arrow {
+    transform: translate(1px, -1px);
+    color: var(--accent);
+  }
+
+  .menu-group-secondary .menu-link {
+    min-height: 2.875rem;
+    background: transparent;
+    font-size: 0.84rem;
+  }
+
+  .menu-group-secondary .menu-link-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    background: #eff6ff;
+  }
+
+  .menu-contact-link {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    column-gap: 0.75rem;
+    margin-top: 1.25rem;
+    border-radius: 1rem;
+    background: #0f172a;
+    padding: 0.85rem 1rem;
+    color: #fff;
+    text-decoration: none;
+    transition: transform var(--duration-fast) var(--ease-standard),
+      background-color var(--duration-fast) ease,
+      box-shadow var(--duration-fast) ease;
+  }
+
+  .menu-contact-link:hover {
+    transform: translateY(-2px);
+    background: var(--accent);
+    box-shadow: 0 10px 22px rgb(29 78 216 / 0.2);
+  }
+
+  .menu-contact-link > span {
+    grid-column: 1;
+    color: #cbd5e1;
+    font-size: 0.75rem;
+    line-height: 1.35;
+  }
+
+  .menu-contact-link > strong {
+    grid-column: 1;
+    margin-top: 0.1rem;
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+
+  .menu-contact-link > .icon-tabler {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+
+  .desktop-nav {
+    display: none;
+    width: min(100%, 80rem);
+    margin-inline: auto;
+    padding-block: 0.25rem;
+  }
+
+  .desktop-nav ul {
+    display: flex;
+    justify-content: center;
+    gap: clamp(0.25rem, 1.25vw, 1.25rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .nav-link {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    border-radius: 999px;
+    padding: 0.5rem 0.9rem;
+    color: #475569;
+    font-size: 0.92rem;
+    font-weight: 650;
+    text-decoration: none;
+  }
+
+  .nav-link:hover {
+    transform: translateY(-1px);
+    background: #eff6ff;
+    color: #1d4ed8;
+  }
+
+  @media (min-width: 768px) {
+    .site-header {
+      padding-block: 0.5rem;
+    }
+
+    .mobile-header-bar,
+    .menu-backdrop,
+    .mobile-menu-panel {
+      display: none;
+    }
+
+    .desktop-nav {
+      display: block;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-header,
+    .menu-trigger,
+    .menu-trigger .icon-tabler path,
+    .menu-backdrop,
+    .mobile-menu-panel,
+    .menu-link,
+    .menu-link-arrow,
+    .menu-contact-link,
+    .nav-link {
+      transition-duration: 0.01ms;
+    }
+  }
+</style>

@@ -9,7 +9,7 @@ interface Props {
   image?: string;
   type?: string;
   noindex?: boolean;
-  jsonLd?: Record<string, any> | Record<string, any>[];
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
@@ -99,29 +99,9 @@ const schemaData = jsonLd
     />
 
     <!-- REVEAL-UP OBSERVER -->
-    <script is:inline>
-      document.addEventListener("DOMContentLoaded", () => {
-        const revealItems = document.querySelectorAll(".reveal-up");
-        if (!("IntersectionObserver" in window)) {
-          revealItems.forEach((item) => item.classList.add("is-visible"));
-          return;
-        }
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("is-visible");
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.16, rootMargin: "0px 0px -60px 0px" },
-        );
-
-        revealItems.forEach((item) => observer.observe(item));
-      });
-    </script>
+    <script>
+  import "../scripts/reveal";
+</script>
 
     <title>{title}</title>
   </head>

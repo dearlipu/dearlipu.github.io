@@ -1,0 +1,16 @@
+:root {
+  --bg: #f8fafc;
+  --panel: #ffffff;
+  --panel-soft: #f1f5f9;
+  --text: #0f172a;
+  --muted: #475569;
+  --line: #e2e8f0;
+  --accent: #1d4ed8;
+  --radius-card: 1.25rem;
+  --radius-control: 0.875rem;
+  --gutter-site: clamp(1.25rem, 5vw, 5rem);
+  --space-section: clamp(4rem, 7vw, 6.5rem);
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --duration-fast: 160ms;
+  --duration-standard: 240ms;
+}

@@ -1,11 +1,11 @@
 ---
-import { siteConfig } from "../config";
-import { aboutHighlights } from "../data/about";
+import { siteConfig } from "../../config";
+import { aboutHighlights } from "../../data/about";
 ---
 
 <section
   id="about"
-  class="px-6 py-14 sm:px-10 sm:py-16 md:px-14 lg:px-20 lg:py-24"
+  class="site-section"
 >
   <div class="mx-auto max-w-6xl reveal-up">
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-14">
@@ -56,8 +56,8 @@ import { aboutHighlights } from "../data/about";
           >
             Hi~ I'm
             <span
-              style={`color:${siteConfig.accentColor}; top: 0`}
-              class="relative font-semibold"
+              style={`color:${siteConfig.accentColor}`}
+              class="font-semibold"
             >
               {siteConfig.name}
             </span>,
@@ -93,7 +93,7 @@ import { aboutHighlights } from "../data/about";
                   {item.points.map((point) => (
                     <li class="flex items-start gap-2.5 text-sm leading-relaxed text-gray-600 sm:text-base">
                       <span class="service-bullet" aria-hidden="true" />
-                      <span class="min-w-0 flex-1">{point}</span>
+                      <span class="service-item-text min-w-0 flex-1">{point}</span>
                     </li>
                   ))}
                 </ul>
@@ -106,7 +106,7 @@ import { aboutHighlights } from "../data/about";
           <div class="mt-3 flex flex-wrap gap-3">
             {
               siteConfig.skills.map((skill) => (
-                <span class="relative top-0.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-gray-100 text-gray-800 rounded-full text-sm sm:text-base md:text-lg font-medium hover:bg-gray-200 transition-colors duration-200">
+                <span class="px-3 sm:px-4 py-1.5 sm:py-2 bg-gray-100 text-gray-800 rounded-full text-sm sm:text-base md:text-lg font-medium hover:bg-gray-200 transition-colors duration-200">
                   {skill}
                 </span>
               ))
@@ -127,5 +127,10 @@ import { aboutHighlights } from "../data/about";
     flex-shrink: 0;
     border-radius: 999px;
     background: #9ca3af;
+  }
+
+  .service-item-text {
+    display: inline-block;
+    transform: translateY(1.5px);
   }
 </style>

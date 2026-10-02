@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import SubpageHeader from "../components/SubpageHeader.astro";
-import Footer from "../components/Footer.astro";
+import SubpageHeader from "../components/layout/SubpageHeader.astro";
+import Footer from "../components/layout/Footer.astro";
 import { siteConfig } from "../config";
 import { faqList } from "../data/faq";
 
@@ -50,7 +50,7 @@ const breadcrumbSchema = {
 
   <main>
     <section
-      class="px-6 sm:px-10 md:px-16 lg:px-24 py-12 md:py-16 lg:py-24 overflow-x-hidden"
+      class="site-section overflow-x-hidden"
     >
       <div
         class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start"

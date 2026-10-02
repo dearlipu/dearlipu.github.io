@@ -1,11 +1,11 @@
 ---
-import { siteConfig } from "../config";
-import { heroMetrics } from "../data/hero";
+import { siteConfig } from "../../config";
+import { heroMetrics } from "../../data/hero";
 ---
 
 <div
   id="hero"
-  class="relative isolate overflow-hidden bg-white px-6 pb-32 pt-28 sm:px-10 sm:py-24 md:min-h-screen md:px-14 lg:px-20"
+  class="site-hero relative isolate overflow-hidden bg-white pb-32 pt-28 sm:py-24 md:min-h-screen"
   style={`--accent-color: ${siteConfig.accentColor}`}
 >
   <div
@@ -25,20 +25,10 @@ import { heroMetrics } from "../data/hero";
         class="availability-pill inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/80 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-blue-700 shadow-sm animate-fade-in"
       >
         <span class="relative flex h-2 w-2" aria-hidden="true">
-          <span
-            id="availabilityPulse"
-            class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"
-          ></span>
-          <span
-            id="availabilityDot"
-            class="relative inline-flex h-2 w-2 rounded-full bg-green-500"
-          ></span>
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
         </span>
-        <span
-          id="availabilityText"
-          class="availability-text"
-          style="position:relative;top:1.5px"
-          aria-live="polite"></span>
+        <span>Available for work</span>
       </p>
 
       <h1
@@ -243,19 +233,21 @@ import { heroMetrics } from "../data/hero";
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    min-height: 3rem;
     border-radius: 999px;
-    padding: 0.9rem 1.2rem;
+    padding: 0.75rem 1.25rem;
     font-weight: 800;
-    line-height: 1.25;
+    line-height: 1.2;
     transition:
       transform 0.2s ease,
       box-shadow 0.2s ease,
       background 0.2s ease;
   }
-  .hero-btn > span {
-    display: inline-block;
-    transform: translateY(3px);
+  .hero-btn > span,
+  .availability-pill > span:last-child {
+    transform: translateY(1.5px);
   }
+
   .hero-btn:hover {
     transform: translateY(-2px);
   }
@@ -291,17 +283,6 @@ import { heroMetrics } from "../data/hero";
     border: 1px solid #d1d5db;
     background: rgba(255, 255, 255, 0.8);
     color: #111827;
-  }
-  .availability-text {
-    display: inline-block;
-    min-width: 9.8rem;
-    white-space: nowrap;
-  }
-  .availability-text.is-typing::after {
-    content: "|";
-    margin-left: 0.1rem;
-    color: currentColor;
-    animation: blinkCaret 0.8s step-end infinite;
   }
   .availability-pill {
     position: relative;
@@ -458,31 +439,10 @@ import { heroMetrics } from "../data/hero";
       opacity: 0;
     }
   }
-  @keyframes blinkCaret {
-    50% {
-      opacity: 0;
-    }
-  }
-  @keyframes availabilitySheen {
-    0%,
-    68% {
-      opacity: 0;
-      transform: rotate(18deg) translateX(-180%);
-    }
-    75% {
-      opacity: 0.7;
-    }
-    88%,
-    100% {
-      opacity: 0;
-      transform: rotate(18deg) translateX(720%);
-    }
-  }
   @media (prefers-reduced-motion: reduce) {
     .hero-btn-primary::after,
     .floating-card::after,
-    .availability-pill::after,
-    .availability-text.is-typing::after {
+    .availability-pill::after {
       animation: none;
     }
     .floating-card {
@@ -524,110 +484,5 @@ import { heroMetrics } from "../data/hero";
 </style>
 
 <script>
-  import { availabilityMessages } from "../data/hero";
-
-  const availabilityText = document.getElementById("availabilityText");
-  const availabilityDot = document.getElementById("availabilityDot");
-  const availabilityPulse = document.getElementById("availabilityPulse");
-
-  if (availabilityText) {
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    let messageIndex = 0;
-    let characterIndex = 0;
-    let isDeleting = false;
-
-    const updateAvailabilityStatus = () => {
-      const status = availabilityMessages[messageIndex];
-      availabilityText.textContent = status.text.slice(0, characterIndex);
-      availabilityDot?.classList.toggle("bg-red-500", status.unavailable);
-      availabilityDot?.classList.toggle("bg-green-500", !status.unavailable);
-      availabilityPulse?.classList.toggle("bg-red-400", status.unavailable);
-      availabilityPulse?.classList.toggle("bg-green-400", !status.unavailable);
-
-      if (!isDeleting && characterIndex < status.text.length) {
-        characterIndex += 1;
-        window.setTimeout(updateAvailabilityStatus, 75);
-      } else if (!isDeleting) {
-        isDeleting = true;
-        window.setTimeout(updateAvailabilityStatus, 3000);
-      } else if (characterIndex > 0) {
-        characterIndex -= 1;
-        window.setTimeout(updateAvailabilityStatus, 45);
-      } else {
-        isDeleting = false;
-        messageIndex = (messageIndex + 1) % availabilityMessages.length;
-        window.setTimeout(updateAvailabilityStatus, 500);
-      }
-    };
-
-    if (prefersReducedMotion) {
-      availabilityText.textContent = availabilityMessages[0].text;
-    } else {
-      availabilityText.classList.add("is-typing");
-      updateAvailabilityStatus();
-    }
-  }
-
-  const heroCounters = document.querySelectorAll(".hero-counter");
-
-  if (heroCounters.length) {
-    const duration = 1300;
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    const frameIds = new WeakMap();
-
-    const animateCounter = (counter: Element) => {
-      const target = Number(counter.getAttribute("data-target") || 0);
-
-      if (prefersReducedMotion) {
-        counter.textContent = target.toString();
-        return;
-      }
-
-      const start = performance.now();
-
-      const tick = (now: number) => {
-        const progress = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        counter.textContent = Math.floor(target * eased).toString();
-
-        if (progress < 1) {
-          frameIds.set(counter, requestAnimationFrame(tick));
-        } else {
-          counter.textContent = target.toString();
-        }
-      };
-
-      counter.textContent = "0";
-      frameIds.set(counter, requestAnimationFrame(tick));
-    };
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const counter = entry.target;
-
-          if (!(counter instanceof HTMLElement)) {
-            return;
-          }
-
-          if (entry.isIntersecting) {
-            animateCounter(counter);
-          } else {
-            const frameId = frameIds.get(counter);
-            if (frameId) {
-              cancelAnimationFrame(frameId);
-            }
-            counter.textContent = "0";
-          }
-        });
-      },
-      { threshold: 0.5 },
-    );
-
-    heroCounters.forEach((counter) => observer.observe(counter));
-  }
+  import "../../scripts/hero-metrics";
 </script>

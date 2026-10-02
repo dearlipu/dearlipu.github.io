@@ -1,0 +1,28 @@
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  margin: 0;
+  font-family: "Anek Devanagari", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+}
+
+body :where(p, h1, h2, h3, h4, h5, h6, li, dt, dd, label) {
+  margin-block-end: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}

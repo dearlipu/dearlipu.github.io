@@ -8,12 +8,11 @@ interface SitemapRoute {
 }
 
 const staticRoutes: SitemapRoute[] = [
-  { path: "/",            changefreq: "weekly",  priority: 1.0 },
-  { path: "/faq",         changefreq: "monthly", priority: 0.8 },
-  { path: "/privacy",     changefreq: "yearly",  priority: 0.4 },
-  { path: "/terms",       changefreq: "yearly",  priority: 0.4 },
-  { path: "/copyright",   changefreq: "yearly",  priority: 0.4 },
-  { path: "/portfolio/",  changefreq: "weekly",  priority: 0.9 },
+  { path: "/", changefreq: "weekly", priority: 1.0 },
+  { path: "/faq", changefreq: "monthly", priority: 0.8 },
+  { path: "/privacy", changefreq: "yearly", priority: 0.4 },
+  { path: "/terms", changefreq: "yearly", priority: 0.4 },
+  { path: "/copyright", changefreq: "yearly", priority: 0.4 },
 ];
 
 const lastmod = new Date().toISOString().split("T")[0];

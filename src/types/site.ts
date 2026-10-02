@@ -43,11 +43,6 @@ export interface HeroMetric {
   label: string;
 }
 
-export interface AvailabilityMessage {
-  text: string;
-  unavailable: boolean;
-}
-
 export interface AboutHighlight {
   title: string;
   points: string[];
@@ -68,4 +63,3 @@ export interface SiteConfig {
   skills: string[];
   services: ServiceItem[];
 }
-

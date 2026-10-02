@@ -1,15 +1,15 @@
 ---
-import { siteConfig } from "../config";
+import { siteConfig } from "../../config";
 import {
   testimonials,
   clientAvatars,
   satisfactionMetric,
-} from "../data/reviews";
+} from "../../data/reviews";
 ---
 
 <section
   id="testimonials"
-  class="bg-white px-6 py-14 sm:px-10 sm:py-16 md:px-14 lg:px-20 lg:py-24"
+  class="site-section bg-white"
 >
   <div class="mx-auto max-w-6xl reveal-up">
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
@@ -134,7 +134,7 @@ import {
                       class="mb-2 flex items-center gap-2 text-sm leading-none"
                       aria-label={`${item.rating} out of 5 stars`}
                     >
-                      <span class="relative top-0.5 font-semibold text-gray-900">
+                      <span class="font-semibold text-gray-900">
                         {item.rating}
                       </span>
                       <div class="flex items-center gap-0.5" aria-hidden="true">
@@ -174,7 +174,7 @@ import {
                             );
                           })}
                       </div>
-                      <span class="relative top-0.5 text-gray-500">
+                      <span class="text-gray-500">
                         out of 5.0
                       </span>
                     </div>
@@ -264,7 +264,6 @@ import {
   .review-shell {
     height: 100%;
     overflow: hidden;
-    border-radius: 1rem;
   }
 
   .review-slider {
@@ -279,7 +278,6 @@ import {
     min-height: 100%;
     flex-direction: column;
     justify-content: space-between;
-    border-radius: 1rem;
     border: 1px solid #e5e7eb;
     background: #f9fafb;
     color: #111827;
@@ -288,116 +286,14 @@ import {
   }
 
   .review-dot {
-    height: 0.45rem;
-    width: 0.45rem;
-    border-radius: 999px;
-    border: 0;
-    background: #d1d5db;
-    transition:
-      transform 0.2s ease,
-      background-color 0.2s ease;
+    position: relative;
   }
 
   .review-dot-active {
-    transform: scale(1.25);
-    background: #111827;
+    color: var(--accent);
   }
 </style>
 
 <script>
-  const slider = document.getElementById("reviewSlider");
-  const dotsContainer = document.getElementById("reviewDots");
-  const satisfactionCounter = document.getElementById("satisfactionCounter");
-
-  if (satisfactionCounter) {
-    const target = Number(
-      satisfactionCounter.getAttribute("data-target") || 98,
-    );
-    const duration = 1300;
-    let frameId: number | undefined;
-
-    const animateCounter = () => {
-      const start = performance.now();
-
-      const tick = (now: number) => {
-        const progress = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        satisfactionCounter.textContent = Math.floor(target * eased).toString();
-
-        if (progress < 1) {
-          frameId = requestAnimationFrame(tick);
-        } else {
-          satisfactionCounter.textContent = target.toString();
-        }
-      };
-
-      satisfactionCounter.textContent = "0";
-      frameId = requestAnimationFrame(tick);
-    };
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            animateCounter();
-          } else if (frameId) {
-            cancelAnimationFrame(frameId);
-            satisfactionCounter.textContent = "0";
-          }
-        });
-      },
-      { threshold: 0.5 },
-    );
-
-    observer.observe(satisfactionCounter);
-  }
-
-  if (slider && dotsContainer) {
-    const reviewSlider = slider;
-    const reviewDots = dotsContainer;
-    const total = reviewSlider.children.length;
-    let index = 0;
-    let timer: number | undefined;
-
-    function renderDots() {
-      reviewDots.innerHTML = "";
-      for (let i = 0; i < total; i += 1) {
-        const dot = document.createElement("button");
-        dot.type = "button";
-        dot.className = `review-dot ${i === 0 ? "review-dot-active" : ""}`;
-        dot.setAttribute("aria-label", `Go to review ${i + 1}`);
-        dot.addEventListener("click", () => {
-          index = i;
-          updateSlider();
-          startAutoRotate();
-        });
-        reviewDots.appendChild(dot);
-      }
-    }
-
-    function updateSlider() {
-      reviewSlider.style.transform = `translateX(-${index * 100}%)`;
-      reviewDots
-        .querySelectorAll<HTMLButtonElement>(".review-dot")
-        .forEach((dot, dotIndex) => {
-          dot.classList.toggle("review-dot-active", dotIndex === index);
-        });
-    }
-
-    function startAutoRotate() {
-      clearInterval(timer);
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      timer = window.setInterval(() => {
-        index = (index + 1) % total;
-        updateSlider();
-      }, 3500);
-    }
-
-    reviewSlider.addEventListener("mouseenter", () => clearInterval(timer));
-    reviewSlider.addEventListener("mouseleave", startAutoRotate);
-
-    renderDots();
-    updateSlider();
-    startAutoRotate();
-  }
+  import "../../scripts/reviews";
 </script>

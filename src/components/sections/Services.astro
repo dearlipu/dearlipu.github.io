@@ -1,13 +1,13 @@
 ---
-import { siteConfig } from "../config";
-import { services } from "../data/services";
+import { siteConfig } from "../../config";
+import { services } from "../../data/services";
 ---
 
 {
   services.length > 0 && (
     <section
       id="services"
-      class="bg-white px-6 py-14 sm:px-10 sm:py-16 md:px-14 lg:px-20 lg:py-24"
+      class="site-section bg-white"
     >
       <div class="mx-auto max-w-6xl reveal-up">
         <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-14">
@@ -66,7 +66,7 @@ import { services } from "../data/services";
                     {service.includes.map((item) => (
                       <li class="flex items-start gap-2 text-sm leading-relaxed text-gray-600 sm:text-base">
                         <span class="service-bullet" aria-hidden="true" />
-                        <span class="min-w-0 flex-1">{item}</span>
+                        <span class="service-item-text min-w-0 flex-1">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -100,21 +100,21 @@ import { services } from "../data/services";
     background: #9ca3af;
   }
 
+  .service-item-text {
+    display: inline-block;
+    transform: translateY(1.5px);
+  }
+
   .service-card {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    border-radius: 1rem;
     border: 1px solid #e5e7eb;
     background: linear-gradient(160deg, #ffffff, #f8fafc);
     box-shadow: 0 8px 28px rgba(15, 23, 42, 0.04);
-    transition:
-      transform 0.25s ease,
-      box-shadow 0.25s ease;
   }
 
   .service-card:hover {
-    transform: translateY(-3px);
     box-shadow: 0 16px 38px rgba(15, 23, 42, 0.09);
   }
 

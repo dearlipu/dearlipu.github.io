@@ -1,11 +1,11 @@
 ---
-import { siteConfig } from "../config";
-import { plans, featureData } from "../data/pricing";
+import { siteConfig } from "../../config";
+import { plans, featureData } from "../../data/pricing";
 ---
 
 <section
   id="pricing"
-  class="px-6 py-14 sm:px-10 sm:py-16 md:px-14 lg:px-20 lg:py-24"
+  class="site-section"
 >
   <div class="mx-auto max-w-6xl reveal-up">
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-14">
@@ -66,7 +66,7 @@ import { plans, featureData } from "../data/pricing";
               class="toggle-btn toggle-btn-active"
               aria-pressed="true"
             >
-              One Project
+              <span>One Project</span>
             </button>
             <button
               id="monthlyBtn"
@@ -74,7 +74,7 @@ import { plans, featureData } from "../data/pricing";
               class="toggle-btn"
               aria-pressed="false"
             >
-              Monthly Support
+              <span>Monthly Support</span>
             </button>
           </div>
         </div>
@@ -224,6 +224,12 @@ import { plans, featureData } from "../data/pricing";
     color: #6b7280;
   }
 
+  .toggle-btn > span,
+  .features li > span {
+    display: inline-block;
+    transform: translateY(1.5px);
+  }
+
   .toggle-btn-active {
     color: #111827;
   }
@@ -232,12 +238,10 @@ import { plans, featureData } from "../data/pricing";
     position: relative;
     display: flex;
     flex-direction: column;
-    border-radius: 1rem;
     border: 1px solid #e5e7eb;
     background-color: #f9fafb;
-    padding: 1.25rem;
+    padding: clamp(1.125rem, 2vw, 1.5rem);
     overflow: visible;
-    transition: box-shadow 0.2s ease;
   }
 
   .pricing-card-icon {
@@ -313,11 +317,6 @@ import { plans, featureData } from "../data/pricing";
     animation: discountShine 4.5s ease-in-out infinite;
   }
 
-  .discount-badge > span {
-    position: relative;
-    top: 2px;
-  }
-
   .pricing-card:hover .discount-badge {
     background: color-mix(in srgb, var(--accent-color, #1d4ed8) 13%, white);
     box-shadow: 0 7px 16px rgba(15, 23, 42, 0.1);
@@ -340,22 +339,6 @@ import { plans, featureData } from "../data/pricing";
     }
   }
 
-  .btn-primary {
-    border: 0;
-    background-color: #0f172a;
-    color: #fff;
-    transition:
-      transform 0.2s ease,
-      background-color 0.2s ease;
-  }
-
-  .btn-primary:hover,
-  .btn-primary:focus-visible {
-    background-color: var(--accent);
-    transform: translateY(-1px);
-    outline: none;
-  }
-
   @media (max-width: 640px) {
     .toggle-btn {
       font-size: 0.78rem;
@@ -364,97 +347,5 @@ import { plans, featureData } from "../data/pricing";
 </style>
 
 <script>
-  import { featureData } from "../data/pricing";
-
-  let currentMode = "project";
-
-  const perBtn = document.getElementById(
-    "perProjectBtn",
-  ) as HTMLButtonElement | null;
-  const monthlyBtn = document.getElementById(
-    "monthlyBtn",
-  ) as HTMLButtonElement | null;
-  const slider = document.getElementById("toggleSlider") as HTMLElement | null;
-
-  const prices = document.querySelectorAll<HTMLElement>(".price");
-  const features = document.querySelectorAll<HTMLElement>(".features");
-  const buttons = document.querySelectorAll<HTMLButtonElement>(".email-btn");
-
-  function setMode(mode: "project" | "monthly") {
-    currentMode = mode;
-
-    prices.forEach((price, index) => {
-      price.style.opacity = "0.2";
-      setTimeout(() => {
-        price.textContent =
-          mode === "monthly"
-            ? (price.dataset.monthly ?? "")
-            : (price.dataset.project ?? "");
-        price.style.opacity = "1";
-      }, 120);
-
-      const list = featureData[mode][index];
-      features[index].innerHTML = list
-        .map(
-          (item: string) => `
-            <li class="flex items-start gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg"
-                class="mt-[0.15em] block h-5 w-5 shrink-0 text-gray-400"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
-                <path d="M9 12h6" />
-                <path d="M12 9v6" />
-              </svg>
-              <span>${item}</span>
-            </li>
-          `,
-        )
-        .join("");
-    });
-
-    const isMonthly = mode === "monthly";
-    if (!slider || !perBtn || !monthlyBtn) {
-      return;
-    }
-
-    slider.style.transform = isMonthly ? "translateX(100%)" : "translateX(0)";
-
-    perBtn.classList.toggle("toggle-btn-active", !isMonthly);
-    monthlyBtn.classList.toggle("toggle-btn-active", isMonthly);
-    perBtn.setAttribute("aria-pressed", String(!isMonthly));
-    monthlyBtn.setAttribute("aria-pressed", String(isMonthly));
-  }
-
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const plan = button.dataset.plan || "";
-      const contactSection = document.getElementById("contact");
-
-      window.dispatchEvent(
-        new CustomEvent("pricing-plan-selected", {
-          detail: {
-            plan,
-            mode: currentMode,
-          },
-        }),
-      );
-
-      if (contactSection) {
-        contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    });
-  });
-
-  perBtn?.addEventListener("click", () => setMode("project"));
-  monthlyBtn?.addEventListener("click", () => setMode("monthly"));
-
-  // Initialize in project mode (features already SSR-rendered, just setup toggle state)
-  setMode("project");
+  import "../../scripts/pricing";
 </script>

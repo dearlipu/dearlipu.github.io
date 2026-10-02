@@ -78,10 +78,22 @@ npm run build
 ```bash
 src/
   components/
-  pages/
+    layout/       # Site header, footer, subpage heading, and back-to-top control
+    sections/     # Homepage sections
+  data/           # Content collections used by the site
+  layouts/        # Shared document shells
+  pages/          # Astro routes and generated endpoints
+  scripts/        # Bundled browser-side interactions
   styles/
+    global.css    # Tailwind entry point and shared component rules
+    tokens.css    # Theme colors, spacing, radii, and motion tokens
+    typography.css
+  types/          # Shared TypeScript types
   config.ts
 public/
+  avatars/
+  images/
+  projects/
 README.md
 package.json
 ```
@@ -90,8 +102,12 @@ Key files:
 
 - `src/config.ts` — site branding, services, social links, and core business data
 - `src/pages/index.astro` — homepage structure and SEO metadata
-- `src/components/` — all reusable homepage sections
-- `src/styles/global.css` — global design system and styling
+- `src/components/layout/` — shared site chrome and navigation
+- `src/components/sections/` — homepage content sections and their scoped presentation
+- `src/scripts/` — browser interactions, separated from Astro markup
+- `src/data/` and `src/types/` — content and shared type definitions
+- `src/styles/` — shared theme tokens, typography, and global styles
+- `public/` — static assets grouped by purpose; public URLs remain rooted at `/`
 
 ---
 

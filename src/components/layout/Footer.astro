@@ -1,9 +1,9 @@
 ---
-import { siteConfig } from "../config";
+import { siteConfig } from "../../config";
 ---
 
 <footer class="relative bg-gray-50 border-t border-gray-200">
-  <div class="mx-auto max-w-6xl px-6 py-12 lg:px-8">
+  <div class="site-container py-12">
     <div
       class="flex flex-col md:flex-row md:items-center md:justify-between gap-8"
     >
@@ -12,7 +12,7 @@ import { siteConfig } from "../config";
           class="footer-name text-2xl font-bold text-gray-800 relative inline-block"
         >
           <span class="name-front inline-flex items-center gap-1.5">
-            <span class="relative top-[1px]">@dearlipu</span>
+            <span>@dearlipu</span>
 
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +33,7 @@ import { siteConfig } from "../config";
         </p>
         <div class="footer-socials flex flex-wrap gap-2.5">
           {
-            siteConfig.social?.instagram && (
+            siteConfig.social.instagram && (
               <a
                 href={siteConfig.social.instagram}
                 target="_blank"
@@ -63,7 +63,7 @@ import { siteConfig } from "../config";
             )
           }
           {
-            siteConfig.social?.twitter && (
+            siteConfig.social.twitter && (
               <a
                 href={siteConfig.social.twitter}
                 target="_blank"
@@ -94,7 +94,7 @@ import { siteConfig } from "../config";
             )
           }
           {
-            siteConfig.social?.youtube && (
+            siteConfig.social.youtube && (
               <a
                 href={siteConfig.social.youtube}
                 target="_blank"
@@ -123,7 +123,7 @@ import { siteConfig } from "../config";
             )
           }
           {
-            siteConfig.social?.buymeacoffee && (
+            siteConfig.social.buymeacoffee && (
               <a
                 href={siteConfig.social.buymeacoffee}
                 target="_blank"
@@ -271,9 +271,6 @@ import { siteConfig } from "../config";
     }
   }
 
-  .footer-name {
-    cursor: pointer;
-  }
   .footer-name .name-front,
   .footer-name .name-back {
     display: block;
