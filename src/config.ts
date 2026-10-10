@@ -1,16 +1,16 @@
 export const siteConfig = {
-  name: "Ryan Fitzgerald",
+  name: "Saurav Panda",
   title: "Senior Software Engineer",
-  description: "Portfolio website of Ryan Fitzgerald",
+  description: "Portfolio website of Saurav Panda",
   accentColor: "#1d4ed8",
   social: {
     email: "your-email@example.com",
     linkedin: "https://linkedin.com/in/yourprofile",
     twitter: "https://x.com/rfitzio",
-    github: "https://github.com/RyanFitzgerald",
+    github: "https://github.com/dearlipu",
   },
   aboutMe:
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quos asperiores nihil consequatur tempore cupiditate architecto natus commodi corrupti quas quasi facere est, dignissimos odit nam veniam sapiente ut, vitae eligendi ipsum dolor, nostrum ullam impedit! Corrupti ratione mollitia temporibus necessitatibus, consectetur reiciendis recusandae id, dolorum quaerat, vero pariatur. Ratione!",
+    "I’m Saurav Panda, a creative partner for businesses looking to communicate clearly and grow with intention. I work across brand design, social content, video, and web messaging, bringing thoughtful visuals and practical strategy together. My focus is helping businesses present their ideas consistently, connect with the right audience, and turn interest into meaningful conversations.",
   skills: ["Javascript", "React", "Node.js", "Python", "AWS", "Docker"],
   projects: [
     {
