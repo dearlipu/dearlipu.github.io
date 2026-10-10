@@ -1,187 +1,134 @@
-<img width="1943" height="1093" alt="image" src="https://github.com/user-attachments/assets/cc2ff955-17c2-48c7-81c8-479a0f061850" />
+# Saurav Panda — Creative Growth Agency
 
-# DevPortfolio Template
+This project is a premium service-based agency website for Saurav Panda. It is designed to showcase creative services, build trust, and convert visitor interest into direct business inquiries.
 
-A modern, minimalist portfolio template built with Astro and Tailwind CSS. Perfect for developers looking to showcase their skills, experience, and projects in a clean, professional way.
+Live site: https://dearlipu.is-a.dev/
 
-This was completely rebuilt from the ground up from V1. This template was built to be entirely ready to go with a quick config edit (see below) but also provides the ability to easily extend in whatever way you want.
+---
 
-This template also comes with `CLAUDE.md` and `.cursor/rules` files for easy integration with your existing AI workflows.
+## What is this?
 
-> **📬 Connect & Share!**  
-> For questions and updates, feel free to reach out on [**X (Twitter)**](https://x.com/rfitzio).  
-> If you've built and published your personal site with this template, I'd love to see it! Send me a DM 🚀
+This is a marketing and service website for a creative business. Instead of behaving like a personal portfolio, it is structured as a high-conversion agency landing page focused on:
 
-## Preview
+- Brand design and creative strategy
+- Social content and promotional visuals
+- Video editing and motion work
+- Conversion-focused web messaging
+- Direct inquiry and contact flow
 
-To view a live preview of the site, [click here](https://ryanfitzgerald.github.io/devportfolio/).
+The goal is to help visitors quickly understand the services, trust the quality, and reach out for work.
 
-## Built With
+---
 
-- **[Astro](https://astro.build/)** - Static site generator for modern web apps
-- **[Tailwind CSS v4](https://tailwindcss.com/)** - Utility-first CSS framework
-- **[Tabler Icons](https://tabler.io/icons)** - Free and open source icons
-- **TypeScript** - For type-safe configuration
+## How I use it
 
-## Updating the Template
+I use this project as the main website for my creative agency presence. It helps me:
 
-### Configuration
+- present services clearly
+- tell a stronger brand story
+- show proof through reviews and direct contact
+- collect client inquiries from the homepage
+- manage an online identity that feels premium and polished
 
-The template is designed to be easily customizable through the `src/config.ts` file. This single file controls:
+---
 
-- **Personal Information**: Name, title, description
-- **Accent Color**: Primary color theme (changing this will change the accent color site wide)
-- **Social Links**: Email, LinkedIn, Twitter, GitHub (all optional)
-- **About Section**: Personal bio/description
-- **Skills**: List of technical skills
-- **Projects**: Project showcase with descriptions and links
-- **Experience**: Work history with bullet points
-- **Education**: Educational background and achievements
+## How others can use it
 
-If skills, projects, experience, or education are removed from the config, those sections will be hidden entirely.
+Anyone can use this project as a starter template for a personal brand, studio, or service business website. To adapt it:
 
-### Example structures
+1. Update the branding and text in the config file.
+2. Replace the service details with your own offers.
+3. Change the contact information and social links.
+4. Swap the visuals and imagery to match your brand style.
+5. Customize the pricing and review content as needed.
 
-Here's what the config data structure looks like for each section:
+This project works well as a foundation for a modern creative business website.
 
-#### Basic Information
-```typescript
-name: "Your Name",
-title: "Your Job Title",
-description: "Brief site description",
-accentColor: "#1d4ed8", // Hex color for theme
-```
+---
 
-#### Social Links (all optional)
-```typescript
-social: {
-  email: "your-email@example.com",
-  linkedin: "https://linkedin.com/in/yourprofile",
-  twitter: "https://twitter.com/yourprofile", 
-  github: "https://github.com/yourusername",
-}
-```
+## Getting started
 
-#### About Section
-```typescript
-aboutMe: "A paragraph describing yourself, your background, interests, and what you're passionate about. This appears in the About section of your portfolio."
-```
+### Prerequisites
 
-#### Skills
-```typescript
-skills: ["JavaScript", "React", "Node.js", "Python", "AWS", "Docker"]
-```
+- Node.js
+- npm
 
-#### Projects
-```typescript
-projects: [
-  {
-    name: "Project Name",
-    description: "Brief description of what the project does and its impact",
-    link: "https://github.com/yourusername/project",
-    skills: ["React", "Node.js", "AWS"], // Technologies used
-  }
-]
-```
+### Install
 
-#### Experience
-```typescript
-experience: [
-  {
-    company: "Company Name",
-    title: "Your Job Title",
-    dateRange: "Jan 2022 - Present",
-    bullets: [
-      "Led development of microservices architecture serving 1M+ users",
-      "Reduced API response times by 40% through optimization",
-      "Mentored team of 5 junior developers",
-    ],
-  }
-]
-```
-
-#### Education
-```typescript
-education: [
-  {
-    school: "University Name",
-    degree: "Bachelor of Science in Computer Science",
-    dateRange: "2014 - 2018",
-    achievements: [
-      "Graduated Magna Cum Laude with 3.8 GPA",
-      "Dean's List all semesters",
-      "President of Computer Science Club"
-    ]
-  }
-]
-```
-
-### Icons
-
-The template uses [Tabler Icons](https://tabler.io/icons) for all icons. If you wish to add more icons and have it look consistent with what's already there, you can browse through their extensive icon library.
-
-## Project Structure
-
-```
-devportfolio/
-├── public/
-│   └── favicon.svg          # Site favicon
-├── src/
-│   ├── components/          # Astro components
-│   │   ├── About.astro      # About section
-│   │   ├── Education.astro  # Education section
-│   │   ├── Experience.astro # Work experience section
-│   │   ├── Footer.astro     # Site footer
-│   │   ├── Header.astro     # Navigation header
-│   │   ├── Hero.astro       # Hero/intro section
-│   │   └── Projects.astro   # Projects showcase
-│   ├── pages/
-│   │   └── index.astro      # Main page layout
-│   ├── styles/
-│   │   └── global.css       # Global styles
-│   └── config.ts            # Site configuration
-├── astro.config.mjs         # Astro configuration
-├── package.json             # Project dependencies
-├── tailwind.config.js       # Tailwind configuration
-└── tsconfig.json            # TypeScript configuration
-```
-
-## Local Development
-
-If you'd like to run it locally:
-
-```
-git clone https://github.com/RyanFitzgerald/devportfolio.git
-cd devportfolio
+```bash
 npm install
 ```
 
-After that, start up the Astro dev server with:
+### Run locally
 
-```
+```bash
 npm run dev
 ```
 
-## Deployment
+### Build for production
 
-The template can be deployed to any static hosting service easily (and in most cases, completely free). Here are some options:
+```bash
+npm run build
+```
 
-- To deploy with Netlify, [click here](https://docs.astro.build/en/guides/deploy/netlify/).
-- To deploy with Vercel, [click here](https://docs.astro.build/en/guides/deploy/vercel/).
-- To deploy with GitHub Pages, [click here](https://docs.astro.build/en/guides/deploy/github/).
-- To deploy with Cloudflare Pages, [click here](https://docs.astro.build/en/guides/deploy/cloudflare/).
-- To deploy with Render, [click here](https://docs.astro.build/en/guides/deploy/render/).
+---
 
-Want to deploy somewhere else? Find more guides [here](https://docs.astro.build/en/guides/deploy/).
+## Project structure
 
-## Changelog
+```bash
+src/
+  components/
+    layout/       # Site header, footer, subpage heading, and back-to-top control
+    sections/     # Homepage sections
+  data/           # Content collections used by the site
+  layouts/        # Shared document shells
+  pages/          # Astro routes and generated endpoints
+  scripts/        # Bundled browser-side interactions
+  styles/
+    global.css    # Tailwind entry point and shared component rules
+    tokens.css    # Theme colors, spacing, radii, and motion tokens
+    typography.css
+  types/          # Shared TypeScript types
+  config.ts
+public/
+  avatars/
+  images/
+  projects/
+README.md
+package.json
+```
 
-To view the changelog, see CHANGELOG.md.
+Key files:
 
-## License
+- `src/config.ts` — site branding, services, social links, and core business data
+- `src/pages/index.astro` — homepage structure and SEO metadata
+- `src/components/layout/` — shared site chrome and navigation
+- `src/components/sections/` — homepage content sections and their scoped presentation
+- `src/scripts/` — browser interactions, separated from Astro markup
+- `src/data/` and `src/types/` — content and shared type definitions
+- `src/styles/` — shared theme tokens, typography, and global styles
+- `public/` — static assets grouped by purpose; public URLs remain rooted at `/`
 
-This project is fully and completely MIT. See LICENSE.md.
+---
 
-## Questions?
+## Customizing it
 
-Feel free to reach out on [X (Twitter)](https://x.com/rfitzio) if you have any questions or need help.
+To personalize the site for your own brand:
+
+- edit `src/config.ts` for business info and service details
+- replace assets in `public/` with your own images and visual files
+- update the homepage copy in the component files
+- change the contact form details and social links as needed
+
+---
+
+## Notes
+
+- Built with Astro and Tailwind CSS
+- Cleaned up legacy template content and portfolio-style leftovers
+- Reframed to feel like a premium service brand rather than a personal portfolio
+- Designed for business clarity, trust, and lead generation
+
+---
+
+Made with care by Saurav Panda.
