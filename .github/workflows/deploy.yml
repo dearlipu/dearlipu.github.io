@@ -31,15 +31,6 @@ jobs:
       - name: Build site
         run: npm run build
 
-      - name: Validate sitemap output
-        run: |
-          test -f dist/sitemap-index.xml
-          grep -q "<sitemapindex" dist/sitemap-index.xml
-          test -f dist/sitemap-0.xml
-          grep -q "<urlset" dist/sitemap-0.xml
-          test -f dist/robots.txt
-          grep -q "Sitemap: https://dearlipu.is-a.dev/sitemap-index.xml" dist/robots.txt
-
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

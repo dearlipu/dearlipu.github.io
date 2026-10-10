@@ -1,12 +1,10 @@
 // @ts-check
 import { defineConfig } from "astro/config";
-import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://dearlipu.is-a.dev",
-  integrations: [sitemap()],
+  site: "https://dearlipu.github.io",
   vite: {
     plugins: [tailwindcss()],
   },
