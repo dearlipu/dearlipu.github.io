@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://dearlipu.is-a.dev/sitemap.xml
