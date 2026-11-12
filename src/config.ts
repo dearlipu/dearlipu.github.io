@@ -8,7 +8,7 @@ export const siteConfig = {
     "Systems & Workflow Builder",
     "Designing Better Digital Work",
     "Turning Ideas Into Systems",
-    "Building Useful Things"
+    "Building Useful Things",
   ],
   description:
     "Portfolio of Saurav Panda, a developer and designer with experience in web development, user experience, and digital design.",
@@ -103,7 +103,7 @@ export const siteConfig = {
     {
       name: "Museum Collection Management",
       isNew: true,
-      link: "#",
+      link: "https://sauravpanda.is-a.dev/museum-collection-management",
       description:
         "Built a complete digital accession and collection system from scratch, cataloguing museum artefacts with accession numbers, reference codes, images, provenance, and detailed records. Researched collection practices used by leading museums and organized the museum’s archive across Access, Excel, and Google Drive, with QR codes linking each artefact to its high-resolution images on any device. Developed the system at no cost for the NGO, providing a practical, long-term solution that staff can maintain independently.",
       skills: ["Operations", "Administration", "Documentation", "Team Support"],
@@ -111,35 +111,35 @@ export const siteConfig = {
     {
       name: "Digital Literacy Training",
       isNew: true,
-      link: "#",
+      link: "https://sauravpanda.is-a.dev/digital-literacy-training",
       description:
         "Delivered computer and digital literacy training to students, covering MS Office, internet use, and beginner web development through practical instruction.",
       skills: ["Training", "Computer Skills", "MS Office", "Web Basics"],
     },
     {
       name: "Media Production & Branding",
-      link: "#",
+      link: "https://sauravpanda.is-a.dev/media-production-branding",
       description:
         "Produced posters, graphics, thumbnails, and video content for digital publishing, branding, and online communication.",
       skills: ["Graphic Design", "Video Editing", "Content Creation", "Branding"],
     },
     {
       name: "Technical Support & Systems Maintenance",
-      link: "#",
+      link: "https://sauravpanda.is-a.dev/technical-support-systems-maintenance",
       description:
         "Provided hands-on technical support, maintained workplace systems, and helped keep digital and operational processes running smoothly.",
       skills: ["IT Support", "System Maintenance", "Problem Solving", "Operations"],
     },
     {
       name: "Content Strategy & Social Media Design",
-      link: "#",
+      link: "https://sauravpanda.is-a.dev/content-strategy-social-media-design",
       description:
         "Created visual content, promotional assets, and digital materials to support branding, audience engagement, and online communication.",
       skills: ["Graphic Design", "Content Creation", "Branding", "Social Media"],
     },
     {
       name: "Workshop & Training Coordination",
-      link: "#",
+      link: "https://sauravpanda.is-a.dev/workshop-training-coordination",
       description:
         "Organized practical training sessions, guided learners through essential digital tools, and supported skill-building in real-world settings.",
       skills: ["Training", "Facilitation", "Digital Skills", "Mentoring"],

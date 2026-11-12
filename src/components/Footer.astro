@@ -2,8 +2,8 @@
 import { siteConfig } from "../config";
 ---
 
-<footer class="page-shell footer" data-reveal>
-  <div class="certifications" id="certifications">
+<footer class="page-shell footer">
+  <div class="certifications" id="certifications" data-reveal>
     <div class="section-heading">
       <span class="eyebrow">05 / certifications</span>
     </div>
@@ -46,7 +46,7 @@ import { siteConfig } from "../config";
       }
     </ul>
   </div>
-  <div class="footer-grid">
+  <div class="footer-grid" data-reveal>
     <div>
       <p class="eyebrow">Have a project in mind?</p>
       <h2>Let's make something<br /><em>useful together.</em></h2>
@@ -161,152 +161,184 @@ import { siteConfig } from "../config";
 
 <style>
   .footer {
-    padding: var(--section-space) 0 28px;
+    padding: var(--section-space) 0 1.5rem;
   }
+
   .certifications {
     padding: 0;
   }
+
   .section-heading {
-    border-top: none;
-    margin-bottom: clamp(24px, 2.8vw, 38px);
+    margin-bottom: 1.25rem;
   }
+
   .cert-list {
     list-style: none;
+    display: grid;
+    gap: 0.75rem;
     margin: 0;
     padding: 0;
-    display: grid;
-    gap: 12px;
   }
+
   .cert-list li {
     color: var(--muted);
-    font-size: 0.8rem;
-    line-height: 1.6;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    border: 1px solid var(--line);
+    border-left: 2px solid var(--accent);
+    transition: border-color 180ms ease, background-color 180ms ease,
+      transform 180ms ease;
   }
+
   .cert-list a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 18px;
-    padding: 14px 16px 14px 18px;
-    border: 1px solid var(--line);
-    border-left: 2px solid var(--accent);
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.01),
-      rgba(183, 201, 124, 0.02)
-    );
+    gap: 1.5rem;
+    padding: 0.8rem 1rem;
     color: var(--muted);
     text-decoration: none;
-    transition:
-      transform 220ms ease,
-      border-color 220ms ease,
-      background-color 220ms ease,
-      box-shadow 220ms ease;
+    transition: color 180ms ease;
   }
-  .cert-list a:hover {
+
+  .cert-list a:hover,
+  .cert-list a:focus-visible {
     color: var(--ink);
-    transform: translateX(4px);
-    border-color: rgba(183, 201, 124, 0.5);
-    background: rgba(183, 201, 124, 0.04);
-    box-shadow: inset 0 0 0 1px rgba(183, 201, 124, 0.12);
   }
+
+  .cert-list li:hover,
+  .cert-list li:focus-within {
+    border-color: var(--accent);
+    background: var(--hover-surface);
+    transform: translateY(-2px);
+  }
+
   .cert-copy {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 0.25rem;
     min-width: 0;
   }
   .cert-name {
     color: var(--ink);
-    font-size: 0.8rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.85rem;
     line-height: 1.4;
   }
+
   .cert-meta {
     color: var(--muted);
-    font-size: 0.68rem;
-    letter-spacing: 0.04em;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.72rem;
     text-transform: uppercase;
   }
+
   .cert-link-label {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     border: none;
     border-radius: 0;
     background: transparent;
-    color: var(--accent);
+    color: var(--muted);
     flex-shrink: 0;
+    transition: color 180ms ease, transform 180ms ease;
   }
+
+  .cert-list a:hover .cert-link-label {
+    color: var(--accent);
+    transform: translate(2px, -2px);
+  }
+
   .cert-link-label svg {
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
     display: block;
   }
   .footer-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10%;
-    padding: var(--section-space) 0 100px;
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.7fr);
+    gap: clamp(2rem, 8vw, 7rem);
+    padding: clamp(3.5rem, 7vw, 5.5rem) 0;
+    border-bottom: 1px solid var(--line);
   }
+
   h2 {
-    margin: 28px 0 0;
-    font-family: var(--serif);
-    font-size: clamp(2.8rem, 6vw, 6rem);
-    font-weight: 400;
-    letter-spacing: -0.07em;
-    line-height: 0.92;
+    margin: 1.5rem 0 0;
+    font-family: var(--title-font);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 0.98;
   }
+
   h2 em {
     color: var(--muted);
     font-style: italic;
   }
+
   .footer-links {
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: start;
-    gap: 30px;
+    gap: 1.5rem;
+    padding-bottom: 0.25rem;
   }
+
   .email-link {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    border-bottom: 1px solid var(--ink);
-    padding-bottom: 7px;
-    font-size: 0.9rem;
+    gap: 0.65rem;
+    border-bottom: 1px solid var(--line);
+    padding: 0.5rem 0 0.65rem;
+    font-size: clamp(0.95rem, 1.4vw, 1.1rem);
     text-decoration: none;
+    transition: border-color 180ms ease, color 180ms ease;
   }
+
+  .email-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
   .email-icon {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     color: var(--accent);
     display: block;
     flex-shrink: 0;
   }
   .socials {
     display: flex;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 1.25rem;
   }
+
   .socials a {
     color: var(--muted);
-    font-size: 0.75rem;
+    font-size: 0.9rem;
     text-decoration: none;
+    text-underline-offset: 0.25em;
   }
+
   .socials a:hover {
     color: var(--ink);
+    text-decoration: underline;
   }
+
   .footer-bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 12px;
-    border-top: 1px solid var(--line);
-    padding-top: 15px;
+    gap: 1rem;
+    padding-top: 1rem;
     color: var(--muted);
-    font-size: 0.68rem;
+    font-size: 0.8rem;
   }
+
   .footer-brand {
     display: inline-flex;
     align-items: center;
@@ -317,36 +349,43 @@ import { siteConfig } from "../config";
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     color: var(--accent);
     line-height: 1;
   }
   .footer-brand-mark svg {
     display: block;
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
   }
   .footer-meta {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 0.4rem;
     white-space: nowrap;
   }
   .footer-copyright-icon {
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
     display: block;
     flex-shrink: 0;
   }
   @media (max-width: 700px) {
-    .footer {
-      padding-top: var(--section-space);
-    }
     .footer-grid {
       grid-template-columns: 1fr;
-      gap: 50px;
-      padding: var(--section-space) 0 70px;
+      gap: 2.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-bottom {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .footer-meta {
+      white-space: normal;
     }
   }
 </style>

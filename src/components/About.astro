@@ -14,19 +14,40 @@ import { siteConfig } from "../config";
         <div class="skill-entry">
           <span class="skill-label">Languages</span>
           <div class="skill-values">
-            {siteConfig.languages.map((item) => <span>{item}</span>)}
+            {
+              siteConfig.languages.map((item) => (
+                <span>
+                  <span class="skill-plus" aria-hidden="true">+</span>
+                  {item}
+                </span>
+              ))
+            }
           </div>
         </div>
         <div class="skill-entry">
           <span class="skill-label">Skills</span>
           <div class="skill-values">
-            {siteConfig.skills.map((item) => <span>{item}</span>)}
+            {
+              siteConfig.skills.map((item) => (
+                <span>
+                  <span class="skill-plus" aria-hidden="true">+</span>
+                  {item}
+                </span>
+              ))
+            }
           </div>
         </div>
         <div class="skill-entry">
           <span class="skill-label">Software</span>
           <div class="skill-values">
-            {siteConfig.software.map((item) => <span>{item}</span>)}
+            {
+              siteConfig.software.map((item) => (
+                <span>
+                  <span class="skill-plus" aria-hidden="true">+</span>
+                  {item}
+                </span>
+              ))
+            }
           </div>
         </div>
       </div>
@@ -35,74 +56,90 @@ import { siteConfig } from "../config";
 </section>
 
 <style>
-  .section-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: clamp(24px, 2.8vw, 32px);
-    padding-bottom: 0;
-  }
   .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10%;
-    padding-top: 0;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+    gap: clamp(2.5rem, 8vw, 7rem);
   }
+
   h2 {
     margin: 0;
-    font-family: var(--serif);
-    font-size: clamp(2.8rem, 6vw, 6rem);
-    font-weight: 400;
-    letter-spacing: -0.07em;
-    line-height: 0.92;
+    font-family: var(--title-font);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 0.98;
   }
+
   h2 em {
     color: var(--muted);
     font-style: italic;
   }
+
   .about-copy {
     margin: 0;
-    font-size: clamp(0.9rem, 1.3vw, 1.12rem);
-    line-height: 1.6;
+    font-size: clamp(1rem, 1.3vw, 1.12rem);
+    line-height: 1.75;
+    text-align: justify;
   }
+
   .skill-list {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin-top: 44px;
+    gap: 0;
+    margin-top: clamp(2rem, 4vw, 3rem);
     border-top: 1px solid var(--line);
-    padding-top: 18px;
   }
+
   .skill-entry {
     display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 18px;
+    grid-template-columns: 7.5rem minmax(0, 1fr);
+    gap: 1.25rem;
     align-items: start;
+    border-bottom: 1px solid var(--line);
+    padding: 0.875rem 0;
   }
+
   .skill-label {
     color: var(--ink);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-size: 0.85rem;
   }
+
   .skill-values {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px 16px;
+    gap: 0.25rem 0.75rem;
     color: var(--muted);
-    font-size: 0.76rem;
-    line-height: 1.8;
+    font-size: 0.9rem;
+    line-height: 1.7;
   }
-  .skill-values span::before {
-    content: "+ ";
+
+  .skill-values span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .skill-plus {
     color: var(--accent);
   }
+
+  .experience-row li svg {
+    width: 0.9em;
+    height: 0.9em;
+    flex: 0 0 0.9em;
+    color: var(--accent);
+  }
+
   @media (max-width: 700px) {
     .about-grid {
       grid-template-columns: 1fr;
-      gap: 36px;
-      padding-top: 36px;
+      gap: 2rem;
+    }
+
+    .skill-entry {
+      grid-template-columns: 6rem minmax(0, 1fr);
+      gap: 1rem;
     }
   }
 </style>

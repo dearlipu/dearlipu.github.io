@@ -3,39 +3,6 @@ import { siteConfig } from "../config";
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
 const visibleProjects = siteConfig.projects.slice(0, 3);
 const hiddenProjects = siteConfig.projects.slice(3);
-
-const toRomanNumeral = (value: number) => {
-  const numerals: Array<[number, string]> = [
-    [1000, "M"],
-    [900, "CM"],
-    [500, "D"],
-    [400, "CD"],
-    [100, "C"],
-    [90, "XC"],
-    [50, "L"],
-    [40, "XL"],
-    [10, "X"],
-    [9, "IX"],
-    [5, "V"],
-    [4, "IV"],
-    [1, "I"],
-  ];
-
-  let remaining = value;
-  let result = "";
-
-  for (const numeralEntry of numerals) {
-    const number = numeralEntry[0] as number;
-    const numeral = numeralEntry[1];
-
-    while (remaining >= number) {
-      result += numeral;
-      remaining -= number;
-    }
-  }
-
-  return result;
-};
 ---
 
 {
@@ -47,10 +14,12 @@ const toRomanNumeral = (value: number) => {
       <div class="project-list">
         {visibleProjects.map((project, index) => (
           <article class="project-row" data-reveal>
-            <span class="project-number">{toRomanNumeral(index + 1)}</span>
+            <span class="project-number">
+              {String(index + 1).padStart(2, "0")}
+            </span>
             <div class="project-main">
               <h3>
-                {project.link ? (
+                {project.link && project.link !== "#" ? (
                   <a
                     class="project-link"
                     href={project.link}
@@ -72,7 +41,7 @@ const toRomanNumeral = (value: number) => {
                   <span>{skill}</span>
                 ))}
               </div>
-              {project.link && (
+              {project.link && project.link !== "#" && (
                 <a
                   class="project-arrow"
                   href={project.link}
@@ -103,7 +72,12 @@ const toRomanNumeral = (value: number) => {
         ))}
 
         {hiddenProjects.length > 0 && (
-          <div class="project-extra" data-projects-extra>
+          <div
+            class="project-extra"
+            data-projects-extra
+            id="project-extra"
+            inert
+          >
             <div class="project-extra-inner">
               {hiddenProjects.map((project, extraIndex) => (
                 <article
@@ -111,11 +85,14 @@ const toRomanNumeral = (value: number) => {
                   data-reveal
                 >
                   <span class="project-number">
-                    {toRomanNumeral(visibleProjects.length + extraIndex + 1)}
+                    {String(visibleProjects.length + extraIndex + 1).padStart(
+                      2,
+                      "0",
+                    )}
                   </span>
                   <div class="project-main">
                     <h3>
-                      {project.link ? (
+                      {project.link && project.link !== "#" ? (
                         <a
                           class="project-link"
                           href={project.link}
@@ -137,7 +114,7 @@ const toRomanNumeral = (value: number) => {
                         <span>{skill}</span>
                       ))}
                     </div>
-                    {project.link && (
+                    {project.link && project.link !== "#" && (
                       <a
                         class="project-arrow"
                         href={project.link}
@@ -176,9 +153,10 @@ const toRomanNumeral = (value: number) => {
               class="project-toggle"
               type="button"
               data-project-toggle
+              aria-controls="project-extra"
               aria-expanded="false"
             >
-              More Projects
+              More projects
             </button>
           </div>
         )}
@@ -201,116 +179,124 @@ const toRomanNumeral = (value: number) => {
       margin-top 280ms ease;
   }
   .project-extra.is-expanded {
-    max-height: 1400px;
+    max-height: 2600px;
     opacity: 1;
-    margin-top: 8px;
+    margin-top: 0.5rem;
   }
   .project-row {
     display: grid;
-    grid-template-columns: 70px minmax(0, 1fr) 240px;
-    gap: 24px;
+    grid-template-columns: 2.5rem minmax(0, 1fr) 13rem;
+    gap: clamp(1.25rem, 3vw, 2.5rem);
     align-items: start;
     border-bottom: 1px solid var(--line);
-    padding: 32px 0 44px;
-    transition:
-      border-color 180ms ease,
-      background-color 180ms ease;
+    padding: clamp(1.25rem, 2.5vw, 1.75rem) 0;
+    transition: border-color 180ms ease;
   }
+
   .project-row:hover {
-    background: color-mix(in srgb, var(--accent) 7%, transparent);
+    border-color: var(--accent);
   }
+
   .project-number,
   .project-meta {
     color: var(--muted);
-    font-size: 0.72rem;
+    font-size: 0.8rem;
   }
+
+  .project-number {
+    padding-top: 0.4rem;
+    font-variant-numeric: tabular-nums;
+  }
+
   h3 {
     margin: 0;
-    font-family: var(--serif);
-    font-size: clamp(1.7rem, 2.75vw, 2.75rem);
-    font-weight: 400;
-    letter-spacing: -0.05em;
+    font-family: var(--title-font);
+    font-size: clamp(1.65rem, 2.8vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
   }
+
   .project-link {
     color: inherit;
     text-decoration: none;
     text-decoration-thickness: 1px;
-    text-underline-offset: 0.14em;
+    text-underline-offset: 0.16em;
   }
   .project-link:hover,
   .project-link:focus-visible {
     color: var(--accent);
     text-decoration: underline;
   }
+
   .new-badge {
     display: inline-flex;
     align-items: center;
-    min-height: 1.85em;
-    margin-left: 0.5rem;
-    padding: 0.25em 0.7em;
-    border: 1px solid color-mix(in srgb, var(--accent) 70%, var(--line));
-    border-radius: 2px;
-    background: color-mix(in srgb, var(--accent) 9%, transparent);
+    justify-content: center;
+    margin-left: 0.75rem;
+    padding: 0.18rem 0.4rem;
+    border: 1px solid var(--accent);
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
     color: var(--accent);
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     font-weight: 500;
     letter-spacing: 0.08em;
-    line-height: 1;
+    line-height: 1.1;
     text-transform: uppercase;
     vertical-align: middle;
     white-space: nowrap;
   }
+
   .project-main p {
-    max-width: 540px;
-    margin: 14px 0 0;
+    max-width: 46rem;
+    margin: 0.85rem 0 0;
     color: var(--muted);
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     line-height: 1.7;
   }
+
   .project-meta {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: flex-start;
     gap: 12px;
   }
-  .project-skills {
-    gap: 6px;
-    max-width: 205px;
-  }
-  .project-skills span {
-    display: inline-flex;
-    align-items: center;
-    min-height: 26px;
-    padding: 5px 8px;
-    border: 1px solid var(--line);
-    border-radius: 2px;
-    background: color-mix(in srgb, var(--ink) 3%, transparent);
-    color: var(--muted);
-    font-size: 0.66rem;
-    letter-spacing: 0.02em;
-    line-height: 1;
-    white-space: nowrap;
-  }
-  .project-meta .project-skills span::before {
-    content: none;
-  }
+
   .project-skills {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: end;
-    gap: 6px;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.35rem;
+    max-width: 13rem;
   }
-  .project-meta div span::before {
-    content: "· ";
+
+  .project-skills span {
+    border: 1px solid var(--line);
+    padding: 0.15rem 0.45rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+    line-height: 1.4;
   }
+
   .project-arrow {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border: 1px solid var(--line);
+    border-radius: 0;
     color: var(--ink);
     line-height: 1;
+    transition: border-color 180ms ease, color 180ms ease;
   }
+
+  .project-arrow:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
   .project-arrow svg {
     display: block;
     width: 1.1rem;
@@ -319,62 +305,73 @@ const toRomanNumeral = (value: number) => {
   .project-toggle-wrap {
     display: flex;
     justify-content: flex-end;
-    margin-top: 18px;
+    margin-top: 1.5rem;
   }
+
   .project-toggle {
     border: 1px solid var(--line);
     background: transparent;
     color: var(--ink);
-    min-width: 110px;
     min-height: 44px;
-    padding: 10px 14px;
+    padding: 0.65rem 1rem;
     font-family: inherit;
-    font-size: 0.76rem;
-    line-height: 1;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-size: 0.9rem;
     cursor: pointer;
-    border-radius: 2px;
-    transition:
-      transform 180ms ease,
-      border-color 180ms ease,
-      background-color 180ms ease,
-      color 180ms ease;
+    transition: border-color 180ms ease, color 180ms ease,
+      background-color 180ms ease;
   }
+
   .project-toggle:hover,
   .project-toggle:focus-visible {
-    transform: translateY(-1px);
-    border-color: rgba(183, 201, 124, 0.7);
-    background: rgba(183, 201, 124, 0.06);
-    color: var(--ink);
+    border-color: var(--accent);
+    background: var(--hover-surface);
+    color: var(--accent);
   }
-  @media (max-width: 860px) {
+
+  @media (max-width: 800px) {
     .project-row {
-      grid-template-columns: 35px 1fr;
-      gap: 12px;
+      grid-template-columns: 2rem minmax(0, 1fr);
+      gap: 1rem;
     }
+
     .project-meta {
+      position: relative;
       grid-column: 2;
-      justify-content: space-between;
+      justify-content: flex-start;
+      padding-right: 44px;
     }
+
     .project-meta div {
-      justify-content: start;
+      justify-content: flex-start;
     }
+
+    .project-arrow {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
     .project-skills {
       max-width: none;
+      align-items: flex-start;
     }
   }
 </style>
 
 <script>
-  const toggleButton = document.querySelector("[data-project-toggle]");
-  const extraSection = document.querySelector("[data-projects-extra]");
+  const toggleButton =
+    document.querySelector<HTMLButtonElement>("[data-project-toggle]");
+  const extraSection =
+    document.querySelector<HTMLElement>("[data-projects-extra]");
 
   if (toggleButton && extraSection) {
     toggleButton.addEventListener("click", () => {
       const isExpanded = extraSection.classList.toggle("is-expanded");
+      extraSection.inert = !isExpanded;
       toggleButton.setAttribute("aria-expanded", String(isExpanded));
-      toggleButton.textContent = isExpanded ? "Show Less" : "More Projects";
+      toggleButton.textContent = isExpanded
+        ? "Show fewer projects"
+        : "More projects";
     });
   }
 </script>

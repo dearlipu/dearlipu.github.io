@@ -1,0 +1,88 @@
+---
+const portrait = `9&&&&@&&&B&&@&&&&B
+                 @&&&&&&&&&BBBBB&99B&
+              &&&&&&9&&&&&SS#SS#S#99&&B&B 9
+           &@&&&&&&BSSS#&&&9&SS#GGSBB9@BB&  B
+        #&@&&&&&&&&BB9#SS999#B&BB##BB&9&BBB &
+        #&&&&&B&&&9&&&&&&&9S@&&#@&&&&&#&&#&&&
+        &&&&&&&9B&&&9SS#@&@&&&B&9&&&&&S&&&&&&&&&9
+     &&&&&&&&S#&SB&SB&@&&&&&&&&&&&&&&B#&&#&&&&& BB
+     &&&&B&&9#HG#&99&&&&&&&&&&&&&&&&B9B&&&&&&&&&BB
+     &&&&B#G#BS&&&&#&&&&&&&&&&&@&&&&9B&&&&&B&&&&&9
+    &&&&&&&&S&B&&&&&B&&&&&@@&     #B&B99&&&B&&&&&&
+    @&&&&##B#&&&&&&&&&B&&@&S AXX     S999B&B&&&&&B
+    &@&&&&@B@@&@&&BBBBB&B# srsXXX       S&B&&&&BB@
+   9@&B&B9&@&&9#G#9B9SB5;s rrssXX       #BB9&&&&&&
+     @&@&&&&@#B    AriiBi rrssss        ##&&&&&&&@
+     B@&&&&&&       r  ArrrssrirX       99B&&&&&&&
+       &&&&&&      Xsii;iiiiiiir     s   99B@&&&&&
+       &&&B&   srrrrrrrrrssss   GBH@@@@@@@@@B&&&&B
+        &&&@  5B3SB95@&#A    A&5@@@@@@@&&&@@@&AB9S
+        B&HB@@93@@@@@@@@&&&@@@@@@@@&&&&&@@&@@B&##&B
+         @@@@&&&@&&&@@@@@@&B&B@@@@@@@@@@@&&&@G&B&&#
+        B &@&&&&&@@@@@@@&@r;s @@@@@@@@@@@&&@#5&&##
+        A9@@&&&&&@@@@@@@@@s;r 9@@@@@@@@@@@@@95&&B
+        # B&@&&&@@@@@@@@@Asir S @@@@@@@@&&@BB2&#9
+         s & &&&@@@@@@@@& srr # SB@@@@ABBBBBB5&BSS
+               @@@@@h&BB   ::     sB&&&BBBBBMhB99G
+           rX   BBBBBB rs     B999rss  #BBBBhhBS#
+          9X     #SsiiiiSB&B99BB&& rs    #BGMS
+              S     iirrrAAX BB##        BBBG&
+               G     srXAAXi  i     3   #9BB9
+                      AAXiS  S#99BS9G  S9999H
+               G       9B&            9B9999
+                #       A       #S#G #9B999G
+                 9         B&BB9######BBBGBG
+                  &S        iiir      BBS&BG
+                   9&     siiirr    SBB&&&BB#
+                    GB&S         SS9B#&&&&BB&
+                   G  9B&9#S#99BBB9#&&&&&BBBH2
+                  BS    9B&&&&&&&&&&&B&BBB#9hXB9
+                 &.9     S99&&&&&&&&BB&BB##9BsX&@
+                B&i,       #99&&BBBBBBB99##Br52h&&9
+              &&B&;;.        9999BBBBB9#99Bi555A&B&&
+            B&&&B;;;,.,       #999BBB999Br33355M@&&&&&&
+         @B&&&&&BB;:.:,.,G       99999BAs333353h&&&&&&&&&&@@
+     &&BBB@&&&&&B&;:......,S GSSS#9999i332sssA3@&&&&&&&&&&&&
+ B@&BBBBB&BB&&&&B&::........,9SSS##H;rArriiss53@&&&&&&&&&&&&
+@&&BBBBB&BBBBB&&BB,:.........,MAG9::,,,,,,issA;&&&&&&&&&&&&&
+&BBBBBBBBBBBBBBBB9S.,.......S&9BB&&,,,,,:;;rr;B&&@&&&&&&&&&&
+BBBBB&BBBBBBBBBB99B;.......@B999BBB&@,,:;;;iri@&&&&&&&&&&&&&
+BBBB&BBBB9BBBBBB9BB......5G@&B999&&@&BS:;;;;;M@&&&BB&&&&&&&&
+BBBB&@B99BBBBBBBB9&i....9GGA&@B9B&@&BHrH:;;:M;BBBBBBB&B&&&&@`;
+---
+
+<aside
+  class="code-portrait"
+  role="img"
+  aria-label="Portrait of Saurav Panda rendered in code characters"
+>
+  <pre aria-hidden="true">{portrait}</pre>
+</aside>
+
+<style>
+  .code-portrait {
+    display: none;
+    justify-self: end;
+    margin: 0;
+    overflow: hidden;
+    color: var(--accent);
+    opacity: 0.9;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  pre {
+    margin: 0;
+    font-family: "IBM Plex Mono", "Courier New", monospace;
+    font-size: clamp(0.42rem, 0.62vw, 0.56rem);
+    line-height: 1;
+    white-space: pre;
+  }
+
+  @media (min-width: 900px) {
+    .code-portrait {
+      display: block;
+    }
+  }
+</style>
